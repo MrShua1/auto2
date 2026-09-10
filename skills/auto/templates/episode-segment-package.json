@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "auto-episode-package/2.3",
+  "packageMode": "final_prevideo",
+  "outputRoot": "C:\\absolute\\delivery-root",
+  "episodeFolder": "第1集",
+  "scriptSource": "script-source.txt",
+  "videoBackend": "unselected",
+  "targetModel": "",
+  "targetModelKey": "",
+  "modeType": "",
+  "aspectRatio": "REQUIRED_ASPECT_RATIO",
+  "resolution": "",
+  "enableSound": null,
+  "outputCount": 1,
+  "targetDurationSeconds": 15,
+  "declaredSegmentCount": 1,
+  "segmentDurationMinimumSeconds": null,
+  "segmentDurationMaximumSeconds": null,
+  "productionProfile": {
+    "schemaVersion": "auto-production-profile/1.0",
+    "profileId": "REQUIRED_PROFILE_ID",
+    "contentCategory": "REQUIRED_CONTENT_CATEGORY",
+    "genres": ["REQUIRED_GENRE_OR_FORM"],
+    "visualMedium": "REQUIRED_VISUAL_MEDIUM",
+    "audience": "REQUIRED_AUDIENCE",
+    "tone": ["REQUIRED_TONE"],
+    "look": {
+      "styleSuffix": "REQUIRED_OBSERVABLE_LOOK_SUFFIX"
+    },
+    "prompt": {
+      "language": "zh-CN",
+      "shotFormat": "numbered_fields_v1",
+      "requireShotDuration": true,
+      "timedPhaseMinimum": null,
+      "timedPhaseMaximum": null,
+      "stateChangeContract": "explicit_pre_action_ordered_action_post_action",
+      "continuityMode": "written_ending_state_only",
+      "musicPolicy": "REQUIRED_MUSIC_POLICY",
+      "endingPolicy": "仅记录文字状态，不上传或引用视频尾帧。REQUIRED_SOUND_AND_MUSIC_POLICY_SENTENCE"
+    }
+  },
+  "promptCharacterAliases": [
+    {
+      "characterName": "protagonist",
+      "promptAliases": ["protagonist"]
+    }
+  ],
+  "episodeFiles": [
+    { "source": "project-inventory.json", "destination": "project-inventory.json" },
+    { "source": "script-preview.md", "destination": "script-preview.md" },
+    { "source": "asset-requirements.json", "destination": "asset-requirements.json" },
+    { "source": "生图需求全集.xlsx", "destination": "生图需求全集.xlsx" },
+    { "source": "asset-requirements-workbook-result.json", "destination": "asset-requirements-workbook-result.json" },
+    { "source": "segment-progress.json", "destination": "segment-progress.json" },
+    { "source": "production-brief.md", "destination": "production-brief.md" },
+    { "source": "asset-bible.yaml", "destination": "asset-bible.yaml" },
+    { "source": "资产总表.xlsx", "destination": "资产总表.xlsx" },
+    { "source": "asset-workbook-result.json", "destination": "asset-workbook-result.json" },
+    { "source": "look-lock.md", "destination": "look-lock.md" },
+    { "source": "reference-manifest.yaml", "destination": "reference-manifest.yaml" },
+    { "source": "auto-state.json", "destination": "auto-state.json" },
+    { "source": "image-delivery-manifest.json", "destination": "image-delivery-manifest.json" },
+    { "source": "sound-reference-manifest.yaml", "destination": "sound-reference-manifest.yaml" },
+    { "source": "release-report.md", "destination": "release-report.md" }
+  ],
+  "layout": {
+    "assetCategoryDirectories": [
+      "资产/场景",
+      "资产/道具",
+      "资产/人物",
+      "资产/声音参考"
+    ],
+    "promptFile": "prompt.txt",
+    "scriptSourceFile": "script-source.txt",
+    "scriptCoverageReportFile": "script-coverage-report.md",
+    "scriptVerbatimFile": "script-verbatim.txt",
+    "storyboardExecutionFile": "storyboard-execution.txt",
+    "tscHandoffFile": "tsc-handoff.yaml",
+    "promptDurationPrefix": "生成时长：",
+    "promptDurationSuffix": "秒。",
+    "productionProfileFile": "production-profile.json",
+    "promptFixedSections": [
+      "【角色清单】",
+      "【资源引用】",
+      "【场景】",
+      "【站位与起始状态】",
+      "【结束状态】"
+    ],
+    "mappingFile": "素材映射.txt",
+    "episodeSummaryFile": "episode-summary.txt",
+    "episodeMissingFile": "episode-missing-assets.txt",
+    "episodeUniqueMissingFile": "unique-missing-assets.txt",
+    "episodeLabel": "Episode",
+    "segmentCountLabel": "Segment count",
+    "segmentLabel": "Segment",
+    "storyLabel": "Story",
+    "durationLabel": "Suggested story duration in seconds; model not bound",
+    "mappingNotice": "Mixed tokens are deterministic reference slots until adapted to a selected video backend.",
+    "referenceNotice": "本片段只交付人物、场景、道具和声音参考四类资产；镜头执行信息已经写入 prompt.txt；尚未声明任何视频后端连接。",
+    "mappingHeader": "Mixed\tStatus\tAsset type\tRole\tPackaged path",
+    "missingTitle": "Missing assets",
+    "missingNotice": "Slots remain reserved. Add source files and rebuild with -Force."
+  },
+  "segments": [
+    {
+      "id": "SEG001",
+      "folder": "SEG001",
+      "story": "Short description of the complete dramatic beat",
+      "durationSeconds": 15,
+      "shotTimings": [],
+      "sameSceneAsPrevious": false,
+      "scriptVerbatimSource": "video-segments/SEG001/script-verbatim.txt",
+      "storyboardExecutionSource": "video-segments/SEG001/storyboard-execution.txt",
+      "tscHandoffSource": "video-segments/SEG001/tsc-handoff.yaml",
+      "promptSource": "video-segments/SEG001/prompt.txt",
+      "promptStatus": "complete_local_prompt_video_generation_not_executed",
+      "assets": [
+        {
+          "mixedToken": "{{Mixed 1}}",
+          "assetType": "character",
+          "semanticClass": "character_identity",
+          "characterName": "protagonist",
+          "promptAliases": ["protagonist"],
+          "role": "character-protagonist",
+          "source": "references/characters/protagonist.png",
+          "destination": "资产/人物/01-protagonist.png",
+          "required": true,
+          "approvalStatus": "approved",
+          "slotStatus": "package_slot_verified"
+        },
+        {
+          "mixedToken": "{{Mixed 2}}",
+          "assetType": "location",
+          "semanticClass": "location",
+          "role": "location-main",
+          "source": "references/locations/main-location.jpg",
+          "destination": "资产/场景/02-main-location.jpg",
+          "required": true,
+          "approvalStatus": "approved",
+          "slotStatus": "package_slot_verified"
+        }
+      ]
+    }
+  ]
+}

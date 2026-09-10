@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "auto-asset-workbook-input/1.0",
+  "projectId": "REQUIRED",
+  "outputFile": "资产总表.xlsx",
+  "sheetOrder": ["人物", "场景", "道具", "_索引"],
+  "approvalStatus": "approved",
+  "approvedAt": "REQUIRED_ISO_8601_AFTER_HUMAN_APPROVAL",
+  "assets": [
+    {
+      "assetId": "CHAR001",
+      "category": "人物",
+      "name": "REQUIRED",
+      "images": [
+        {
+          "role": "主参考",
+          "source": "references/characters/approved-reference.png",
+          "sha256": "REQUIRED",
+          "approvalStatus": "approved",
+          "approvedAt": "REQUIRED_ISO_8601_AFTER_HUMAN_APPROVAL"
+        }
+      ]
+    }
+  ]
+}

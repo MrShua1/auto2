@@ -1,0 +1,46 @@
+schema_version: ai-short-film-assets/1.0
+project_id: PROJECT_ID
+revision: 1
+style_lock:
+  text_canon_status: draft
+  medium: ""
+  color_and_contrast: ""
+  lens_and_composition: ""
+  camera_limits: ""
+  atmosphere: ""
+  forbidden: []
+characters:
+  - id: C001
+    name: ""
+    text_canon_status: draft
+    identity_features: []
+    movement_signature: ""
+    voice: ""
+    canonical_refs: []
+    visual_ref_status: not_required_for_t2v
+    wardrobe_states:
+      - id: W_C001_01
+        description: ""
+    forbidden_drift: []
+locations:
+  - id: L001
+    name: ""
+    text_canon_status: draft
+    layout_anchors: []
+    light_and_weather: ""
+    canonical_refs: []
+    visual_ref_status: not_required_for_t2v
+    forbidden_drift: []
+props:
+  - id: P001
+    name: ""
+    text_canon_status: draft
+    canonical_ref: ""
+    visual_ref_status: not_required_for_t2v
+    initial_state: ""
+scene_reference_map:
+  SC001:
+    characters: [C001]
+    locations: [L001]
+    props: [P001]
+    refs: []

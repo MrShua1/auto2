@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "auto-asset-requirements/1.0",
+  "projectId": "REQUIRED",
+  "projectRoot": "REQUIRED_ABSOLUTE_PROJECT_ROOT",
+  "scriptSource": "script-source.txt",
+  "scriptSha256": "REQUIRED",
+  "inventoryPath": "project-inventory.json",
+  "previewPath": "script-preview.md",
+  "generatedAt": "REQUIRED_ISO_8601",
+  "rows": [
+    {
+      "assetType": "character_or_location_or_prop",
+      "semanticClass": "character_identity_or_wardrobe_state_or_location_time_or_prop_state",
+      "entityId": "CHAR001",
+      "name": "REQUIRED",
+      "versionId": "CHAR001-WARD001-STATE001",
+      "characterSourceId": "CHAR001_OR_EMPTY",
+      "wardrobeId": "WARD001_OR_EMPTY",
+      "characterState": "REQUIRED_WHEN_CHARACTER",
+      "sceneTime": "REQUIRED_WHEN_LOCATION",
+      "propState": "REQUIRED_WHEN_PROP",
+      "episodes": ["EP001"],
+      "scenes": ["SCENE001"],
+      "scriptEvidence": ["exact source evidence"],
+      "existingFiles": [],
+      "confirmationEvidence": [],
+      "validationStatus": "approved_existing_or_pending_human_review_or_missing_or_rejected_invalid_or_generated_pending_human_review_or_approved_generated",
+      "validationIssues": [],
+      "generationRequired": true,
+      "generationPrompt": "REQUIRED_WHEN_GENERATION_REQUIRED",
+      "generationStatus": "planned_or_generating_or_generated_or_failed_or_not_required_or_approved",
+      "finalPath": "",
+      "finalSha256": ""
+    }
+  ],
+  "coverage": {
+    "fullSeriesRequiredVersions": 0,
+    "validExistingVersions": 0,
+    "validGeneratedVersions": 0,
+    "missingVersions": 0,
+    "invalidVersions": 0,
+    "pendingHumanReviewVersions": 0,
+    "generationRequiredVersions": 0,
+    "byEpisode": [
+      {
+        "episodeId": "EP001",
+        "requiredVersions": 0,
+        "validVersions": 0,
+        "missingVersions": 0,
+        "invalidVersions": 0,
+        "pendingHumanReviewVersions": 0
+      }
+    ]
+  },
+  "issues": [],
+  "status": "NEED_FIX_OR_COMPLETE",
+  "review": {
+    "scriptRequirementCoverage": "pending_or_passed",
+    "humanApproval": "pending_or_approved",
+    "reviewedAt": ""
+  }
+}

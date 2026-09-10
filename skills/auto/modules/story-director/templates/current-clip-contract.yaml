@@ -1,0 +1,48 @@
+schema_version: ai-short-film-clip-contract/1.0
+project_id: PROJECT_ID
+state_revision: 1
+scene_id: SC001
+clip_id: CLIP001
+narrative_job: ""
+duration_s: 10
+surface:
+  name: unknown
+  confidence: low
+  model_variant: unknown
+  mode: unknown
+  ratio: "16:9"
+  resolution: unknown
+  generate_audio: unknown
+asset_role_map: []
+canonical_locks:
+  characters: []
+  location: ""
+  props: []
+  wardrobe: []
+  style: []
+start_state: {}
+timeline_beats:
+  - time: 0-3s
+    action: ""
+primary_action: ""
+end_state: {}
+camera:
+  framing: ""
+  angle: ""
+  dominant_motion: ""
+light_environment: ""
+audio:
+  dialogue: []
+  ambience: ""
+  sfx: []
+  score_in_post: true
+transition_out: ""
+handoff_requirement: ""
+chain:
+  eligible: false
+  current_depth: 0
+  max_depth: 2
+  source_take_id: null
+  reanchor_rule: canonical_refs_at_scene_open_or_chain_cap
+negative_rules: []
+lint_status: pending

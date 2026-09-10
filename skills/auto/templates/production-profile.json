@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "auto-production-profile/1.0",
+  "profileId": "REQUIRED_PROFILE_ID",
+  "contentCategory": "REQUIRED_CONTENT_CATEGORY",
+  "genres": ["REQUIRED_GENRE_OR_FORM"],
+  "visualMedium": "REQUIRED_VISUAL_MEDIUM",
+  "audience": "REQUIRED_AUDIENCE",
+  "tone": ["REQUIRED_TONE"],
+  "look": {
+    "styleSuffix": "REQUIRED_OBSERVABLE_LOOK_SUFFIX"
+  },
+  "prompt": {
+    "language": "zh-CN",
+    "shotFormat": "numbered_fields_v1",
+    "requireShotDuration": true,
+    "timedPhaseMinimum": null,
+    "timedPhaseMaximum": null,
+    "stateChangeContract": "explicit_pre_action_ordered_action_post_action",
+    "continuityMode": "written_ending_state_only",
+    "musicPolicy": "REQUIRED_MUSIC_POLICY",
+    "endingPolicy": "仅记录文字状态，不上传或引用视频尾帧。REQUIRED_SOUND_AND_MUSIC_POLICY_SENTENCE"
+  }
+}

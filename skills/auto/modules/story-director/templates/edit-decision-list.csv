@@ -1,0 +1,2 @@
+event_id,scene_id,clip_id,take_id,source_path,source_in,source_out,timeline_in,timeline_out,transition,video_adjustment,audio_treatment,boundary_risk,pickup_id,status
+E001,SC001,CLIP001,TAKE_A,,00:00.000,00:10.000,00:00.000,00:10.000,cut,,,none,,planned

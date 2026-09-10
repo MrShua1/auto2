@@ -1,0 +1,69 @@
+{
+  "schema_version": "ai-short-film-state/1.0",
+  "project_id": "PROJECT_ID",
+  "revision": 1,
+  "target": {
+    "duration_s": 300,
+    "ratio": "16:9",
+    "surface": "unknown",
+    "surface_confidence": "low",
+    "model_variant": "unknown",
+    "mode": "unknown",
+    "resolution": "unknown",
+    "generate_audio": "unknown"
+  },
+  "budget": {
+    "unit": "generation_attempts",
+    "authorization_status": "proposed",
+    "authorized_by": null,
+    "authorized_at": null,
+    "primary_clips": 30,
+    "attempt_multiplier": 1.75,
+    "pickup_reserve_clips": 5,
+    "pickup_attempt_multiplier": 1.5,
+    "estimated_attempts": 61,
+    "max_attempts_per_ordinary_clip": 2,
+    "max_attempts_per_hero_clip": 3,
+    "warning_fraction": 0.85,
+    "hard_stop": 61,
+    "spent": 0,
+    "attempts_spent": 0,
+    "next_job_estimate": null,
+    "estimate_currency_or_credit_unit": null,
+    "estimate_as_of": null
+  },
+  "active_scene_id": "SC001",
+  "active_clip_id": "CLIP001",
+  "completed_beats": [],
+  "reserved_beats": [],
+  "scenes": [
+    {
+      "id": "SC001",
+      "status": "planned",
+      "canonical_ref_ids": [],
+      "max_chain_depth": 2,
+      "clips": [
+        {
+          "id": "CLIP001",
+          "status": "planned",
+          "tier": "ordinary",
+          "dependencies": [],
+          "chain_depth": 0,
+          "chain_source_take_id": null,
+          "reanchor_rule": "canonical_refs_at_scene_open_or_chain_cap",
+          "attempts_spent": 0,
+          "attempt_cap": 2,
+          "planned_start": {},
+          "planned_end": {},
+          "observed_start": null,
+          "observed_end": null,
+          "accepted_take_id": null,
+          "decision": null
+        }
+      ]
+    }
+  ],
+  "regen_queue": [],
+  "pickup_queue": [],
+  "updated_at": null
+}

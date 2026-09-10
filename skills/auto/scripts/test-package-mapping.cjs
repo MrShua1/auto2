@@ -1,0 +1,12 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const { validateMapping } = require('./lib/package-mapping.cjs');
+const assets = [{ assetType: 'character', role: 'identity', destination: '资产/人物/01.png' }];
+const valid = '{{Mixed 1}}\tOK\tcharacter\tidentity\t资产/人物/01.png';
+test('mapping matches actual packaged character path', () => { validateMapping(valid, assets, 'SEG001'); });
+test('mapping cannot point at another asset', () => { assert.throws(() => validateMapping(valid.replace('01.png', '02.png'), assets, 'SEG001'), /ownership\/path/); });
+test('mapping cannot change ownership', () => { assert.throws(() => validateMapping(valid.replace('identity', 'someone-else'), assets, 'SEG001'), /ownership\/path/); });
+test('mapping cannot change category', () => { assert.throws(() => validateMapping(valid.replace('character', 'prop'), assets, 'SEG001'), /ownership\/path/); });
+test('mapping cannot omit rows', () => { assert.throws(() => validateMapping('', assets, 'SEG001'), /row count/); });
+test('mapping cannot escape category', () => { assert.throws(() => validateMapping(valid, [{ ...assets[0], destination: '资产/人物/../01.png' }], 'SEG001'), /category\/path/); });
+test('no assets still allows an empty mapping', () => { validateMapping('Mixed\tStatus\tAsset type\tRole\tPackaged path', [], 'SEG001'); });

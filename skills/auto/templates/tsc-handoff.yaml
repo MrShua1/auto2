@@ -1,0 +1,106 @@
+schema_version: auto-tsc-handoff/2.1
+project_id: REQUIRED
+segment_id: SEG001
+production_profile:
+  schema_version: auto-production-profile/1.0
+  profile_id: REQUIRED
+  source: episode-package-config.json
+  status: locked
+script:
+  source_path: script-verbatim.txt
+  verbatim_path: script-verbatim.txt
+  storyboard_execution_path: storyboard-execution.txt
+  coverage_policy: every_in_scope_source_line_is_causal_backbone
+  coverage_status: REQUIRED_100_PERCENT
+  narrative_job: REQUIRED
+  exact_dialogue: []
+  dramatic_turn: REQUIRED
+  endpoint: REQUIRED
+duration:
+  policy: story_derived
+  proposed_seconds: 0
+  model_supported_values: []
+continuity:
+  previous_prompt_id: NONE_FOR_FIRST_PROMPT
+  previous_end_state: NONE_FOR_FIRST_PROMPT
+  continuity_mode: written_ending_state_only
+  same_scene_as_previous: false
+  opening_state: REQUIRED
+  ending_state: REQUIRED
+wardrobe_visual_locks:
+  - character_id: REQUIRED_WHEN_VISIBLE
+    lock_mode: textual_or_reference_preservation
+    lock: REQUIRED_WHEN_VISIBLE
+    source_reference: REQUIRED_WHEN_VISIBLE
+    change_authorized_by_script: false
+character_visual_locks:
+  - character_id: REQUIRED_WHEN_VISIBLE
+    lock_mode: textual_or_reference_preservation
+    narrative_role: REQUIRED_WHEN_VISIBLE
+    source_reference: REQUIRED_WHEN_VISIBLE
+    gender_presentation: REQUIRED_WHEN_VISIBLE
+    face_and_build_lock: REQUIRED_WHEN_VISIBLE
+    hair_and_headwear_lock: REQUIRED_WHEN_VISIBLE
+    wardrobe_lock: REQUIRED_WHEN_VISIBLE
+    unique_accessory_or_trim: REQUIRED_WHEN_VISIBLE
+    reference_preservation_contract: REQUIRED_WHEN_APPROVED_REFERENCE_IS_SOLE_APPEARANCE_AUTHORITY
+    cross_character_transfer_forbidden: true
+    change_authorized_by_script: false
+spatial_topology_lock:
+  required: false
+  fixed_landmarks: []
+  character_levels_and_anchors: []
+  permitted_corridors: []
+  forbidden_surfaces_or_crossings: []
+  visibility_proof: REQUIRED_WHEN_APPLICABLE
+  validation_status: REQUIRED_WHEN_APPLICABLE
+model:
+  backend: unselected
+  display_name: ''
+  key: ''
+  capability_source: ''
+  capability_status: unbound
+  mode_type: ''
+  max_image_references: null
+  max_audio_references: null
+references:
+  - id: REF_CHAR001
+    asset_type: character
+    path: REQUIRED
+    subject: REQUIRED
+    role: identity
+    required: true
+    availability: available
+    approval_status: approved
+    mixed_token: '{{Mixed 1}}'
+    slot_status: package_slot_verified
+sound_policy:
+  default: user_supplied_or_explicitly_requested_only
+  story_critical_exceptions: []
+  forbidden_defaults:
+    - ambience
+    - room_tone
+    - reverb
+    - foley
+    - sound_effects
+    - music
+reference_image_policy:
+  role: asset_reference_only
+  video_frame_continuity_allowed: false
+  allowed_categories: [character, location, prop, required_sound]
+  conflict_precedence: script_then_textual_shot_execution_then_reference_image
+locks:
+  identity: []
+  wardrobe: []
+  visual_style_suffix: REQUIRED
+  geography: []
+  camera: []
+  dialogue: preserve_verbatim
+  music: REQUIRED_FROM_PRODUCTION_PROFILE
+coverage:
+  exact_source_passage_present: false
+  every_source_line_mapped_to_textual_execution: false
+  every_source_line_enacted: false
+  episode_source_reconstruction_verified: false
+status: pending_or_complete_local_prompt_video_generation_not_executed
+output_prompt_path: prompt.txt

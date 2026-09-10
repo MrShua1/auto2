@@ -1,0 +1,110 @@
+schema_version: cinematic-storyboard-shot-language/1.0
+project_id: REQUIRED
+sequence_id: REQUIRED
+clip_id: REQUIRED
+shot_id: REQUIRED
+timeline:
+  in: REQUIRED
+  out: REQUIRED
+  duration_s: REQUIRED
+editorial:
+  source_authority: REQUIRED_USER_LOCKED_OR_DIRECTOR_PROPOSED
+  user_direction_lock:
+    status: REQUIRED_LOCKED_OR_OPEN
+    sequence_position: REQUIRED
+    verbatim_direction: REQUIRED_OR_NA
+    locked_fields: []
+    conflict_status: REQUIRED_NONE_OR_EXPLICIT
+  narrative_job: REQUIRED
+  coverage_type: REQUIRED
+  information_added: REQUIRED
+  cut_in_relation: REQUIRED
+  cut_out_relation: REQUIRED
+  removal_cost: REQUIRED
+frozen_state:
+  start_context: REQUIRED
+  visible_instant: REQUIRED
+  actor_or_object: REQUIRED
+  action_threshold: REQUIRED
+  force_level: REQUIRED_OR_NA
+  physical_consequence: REQUIRED_OR_NA
+  visible_endpoint: REQUIRED
+camera:
+  shot_scale: REQUIRED
+  focal_length_mm: REQUIRED
+  lens_behavior: REQUIRED
+  aperture_or_depth_behavior: REQUIRED
+  camera_height: REQUIRED
+  angle: REQUIRED
+  composition: REQUIRED
+  visual_center: REQUIRED
+  subject_placement: REQUIRED
+  screen_direction: REQUIRED
+  future_movement:
+    type: REQUIRED_LOCKED_OR_ONE_MOVE
+    speed: REQUIRED
+    subject_relationship: REQUIRED
+    endpoint: REQUIRED
+  conflicts_removed: []
+depth:
+  primary_mechanism: REQUIRED_EXACTLY_ONE
+  foreground: REQUIRED_OR_NONE
+  background_structure_rule: REQUIRED
+characters:
+  exact_visible_people: REQUIRED
+  entries:
+    - tag: REQUIRED_OR_EMPTY
+      identity_reference: REQUIRED_OR_NA
+      identity_role: REQUIRED_OR_NA
+      screen_position: REQUIRED_OR_NA
+      pose: REQUIRED_OR_NA
+      gaze_expression: REQUIRED_OR_NA
+      upper_garment: REQUIRED_OR_NA
+      lower_garment: REQUIRED_OR_NA
+      legwear: REQUIRED_OR_NA
+      footwear: REQUIRED_OR_NA
+      bag_accessories: REQUIRED_OR_NA
+      forbidden_source_garments: []
+  exact_fragile_anatomy: []
+props:
+  state_and_ownership: REQUIRED_OR_NA
+location:
+  geometry_anchor: REQUIRED
+  weather_period: REQUIRED
+  continuity_reference: REQUIRED_OR_NA
+lighting:
+  key_source: REQUIRED
+  direction: REQUIRED
+  color_temperature: REQUIRED
+  fill_level: REQUIRED
+  shadow_behavior: REQUIRED
+  reflection_behavior: REQUIRED_OR_NA
+  atmosphere_medium: NONE_OR_PHYSICAL_SOURCE
+look:
+  look_lock_id: REQUIRED
+  medium: REQUIRED
+  camera_response: REQUIRED
+  palette_saturation: REQUIRED
+  tonal_density: REQUIRED
+  texture_budget: REQUIRED
+  realism_anchor: REQUIRED
+  anti_slop_bucket: REQUIRED
+rights:
+  named_reference_translation: REQUIRED_OR_NA
+  identity_authorization_note: REQUIRED_OR_NA
+references_sent:
+  - order: REQUIRED_OR_EMPTY
+    path_or_asset_id: REQUIRED_OR_EMPTY
+    role: REQUIRED_OR_EMPTY
+    preserve: []
+    ignore: []
+output:
+  independent_master: true
+  aspect_ratio: "16:9"
+  target_size: REQUIRED
+  contact_sheet_after_approval: true
+lint:
+  status: BLOCKED_UNTIL_PASS
+  user_direction_lock_match: REQUIRED_PASS
+  applicable_skills: []
+  n_a_skills_with_reason: []

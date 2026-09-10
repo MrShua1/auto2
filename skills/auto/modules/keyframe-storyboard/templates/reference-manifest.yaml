@@ -1,0 +1,65 @@
+schema_version: adaptive-storyboard-reference-manifest/2.0
+board_id: BOARD_ID
+references:
+  - asset_id: REF_CHAR_A
+    source: attachment-or-file-path
+    role: character_identity
+    subject: Character A
+    preserve:
+      - face geometry
+      - hair silhouette
+      - age presentation
+    ignore:
+      - source background
+      - source pose
+      - incidental objects
+    panels: []
+    priority: 100
+    source_wardrobe_policy: ignore_unless_assigned
+  - asset_id: REF_WARDROBE_CONTINUITY_A
+    source: approved-frame-or-file-path
+    role: wardrobe
+    subject: Character A
+    preserve:
+      - upper garment
+      - lower garment
+      - legwear
+      - footwear
+      - bag and accessories
+    ignore:
+      - face identity
+      - background and pose
+    panels: []
+    priority: 110
+  - asset_id: REF_LOCATION_01
+    source: attachment-or-file-path
+    role: location_layout
+    subject: Main scene
+    preserve:
+      - room layout
+      - architectural anchors
+      - materials
+      - light direction
+    ignore:
+      - people
+      - visible text
+      - logos
+      - temporary clutter
+    panels: []
+    priority: 80
+conflicts: []
+canonical_decisions: []
+panel_wardrobe_contracts:
+  - panel: PANEL_ID
+    characters:
+      - subject: Character A
+        screen_position: screen-left
+        upper_garment: REQUIRED
+        lower_garment: REQUIRED
+        legwear: REQUIRED
+        footwear: REQUIRED
+        bag_accessories: REQUIRED
+        forbidden_source_garments: []
+    exact_visible_people: 1
+    exact_visible_anatomy: []
+images_sent_to_model: []

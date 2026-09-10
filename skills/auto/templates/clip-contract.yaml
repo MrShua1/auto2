@@ -1,0 +1,50 @@
+schema_version: auto-clip-contract/1.0
+clip_id: CLIP001
+scene_id: SCENE001
+narrative_job: REQUIRED
+script_verbatim_path: REQUIRED
+storyboard_execution: REQUIRED
+duration_seconds: 0
+target_model: REQUIRED_BEFORE_VIDEO
+verified_max_duration_seconds: 30
+capability_source: REQUIRED_BEFORE_VIDEO
+start_state: REQUIRED
+primary_action: REQUIRED
+end_state: REQUIRED
+shot:
+  size: REQUIRED
+  lens: REQUIRED
+  angle: REQUIRED
+  camera_height: REQUIRED
+  composition: REQUIRED
+  camera_behavior: REQUIRED
+blocking:
+  characters: []
+  props: []
+  screen_direction: REQUIRED
+  action_axis: REQUIRED
+continuity:
+  receiver_in: REQUIRED
+  handoff_out: REQUIRED
+  previous_prompt_id: NONE_FOR_FIRST_PROMPT
+  previous_end_state: REQUIRED
+  continuity_mode: written_ending_state_only
+  same_scene_as_previous: false
+  identity_ids: []
+  wardrobe_ids: []
+  location_id: REQUIRED
+  prop_ids: []
+  look_id: REQUIRED
+reference_policy: segment_assets_only_plus_written_state_handoff
+generation_segment_id: REQUIRED
+audio:
+  dialogue: []
+  ambience: not_specified
+  sfx: []
+  music: none
+  character_voice_reference_ids: []
+  environment_audio_reference_ids: []
+risks: []
+fallback: REQUIRED
+user_locked_fields: []
+status: planned

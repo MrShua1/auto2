@@ -1,0 +1,28 @@
+{
+  "schema_version": "ai-short-film-take-review/1.0",
+  "project_id": "PROJECT_ID",
+  "state_revision_reviewed": 1,
+  "scene_id": "SC001",
+  "clip_id": "CLIP001",
+  "take_id": "TAKE_A",
+  "source_path": "",
+  "decision": "accept|accept_with_deviation|reject|repair_tail",
+  "checks": {
+    "technical": "pass|fail",
+    "identity": "pass|fail",
+    "start_handoff": "pass|fail",
+    "primary_action": "pass|fail",
+    "end_handoff": "pass|fail",
+    "camera": "pass|fail",
+    "audio": "pass|fail",
+    "style": "pass|fail"
+  },
+  "observed_start": {},
+  "observed_end": {},
+  "completed_beats": [],
+  "deviations": [],
+  "repair_instruction": null,
+  "last_frame_path": "",
+  "next_action": "update_canon|regenerate|create_pickup|stop",
+  "reviewed_at": null
+}

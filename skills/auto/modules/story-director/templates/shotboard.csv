@@ -1,0 +1,2 @@
+scene_id,clip_id,timeline_in,timeline_out,duration_s,narrative_job,start_state,primary_action,end_state,character_ids,location_id,prop_ids,framing,camera_motion,light_weather,dialogue,ambience_sfx,transition,handoff_requirement,generation_mode,chain_eligible,max_chain_depth,reanchor_rule,chain_source_take_id,status
+SC001,CLIP001,00:00.000,00:10.000,10,,,,,C001,L001,P001,,,,,,,,unknown,false,2,canonical_refs_at_scene_open_or_chain_cap,,planned

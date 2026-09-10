@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "auto-state/2.2",
+  "control": {
+    "mode": "episode_prevideo",
+    "invokedBy": "/分集",
+    "terminalStage": "pre_video_delivery_complete",
+    "videoSideEffectsAllowed": false,
+    "readOnlyLibTVPreflightAllowed": true
+  },
+  "project": {
+    "id": "",
+    "title": "",
+    "sourceScript": "script-source.txt",
+    "workingRoot": "",
+    "packageOutputRoot": "",
+    "targetDurationSeconds": 0,
+    "aspectRatio": "",
+    "rightsMode": "original",
+    "videoBackend": "unselected",
+    "targetModel": "",
+    "segmentDurationRangeSeconds": []
+  },
+  "productionProfile": {
+    "schemaVersion": "auto-production-profile/1.0",
+    "profileId": "",
+    "contentCategory": "",
+    "genres": [],
+    "visualMedium": "",
+    "audience": "",
+    "tone": [],
+    "look": {
+      "styleSuffix": ""
+    },
+    "prompt": {
+      "language": "zh-CN",
+      "timedPhaseMinimum": 0,
+      "timedPhaseMaximum": 0,
+      "stateChangeContract": "",
+      "continuityMode": "written_ending_state_only",
+      "musicPolicy": "",
+      "endingPolicy": ""
+    },
+    "status": "pending"
+  },
+  "budget": {
+    "imageLimit": 0,
+    "imageBudgetMode": "exact_finalized_manifest_count",
+    "imageUsed": 0,
+    "videoLimit": 0,
+    "videoUsed": 0,
+    "maxAttemptsPerClip": 1,
+    "hardStopPolicy": "no_video_side_effects",
+    "hardStopReached": false
+  },
+  "modelContract": {
+    "backend": "unselected",
+    "modelKey": "",
+    "modelName": "",
+    "capabilitySource": "",
+    "schemaVerifiedAt": "",
+    "verifiedModeTypes": [],
+    "verifiedDurationRangeSeconds": [],
+    "verifiedMaxImageReferences": null,
+    "verifiedMaxAudioReferences": null,
+    "status": "unbound"
+  },
+  "stage": "intake",
+  "status": "in_progress",
+  "blockers": [],
+  "projectIntake": {
+    "projectRootProvided": false,
+    "initialConfirmedAssetCheck": "pending",
+    "confirmedAssetRecordsFound": 0,
+    "confirmedAssetRecords": [],
+    "scriptPreviewPath": "script-preview.md",
+    "scriptPreviewStatus": "pending",
+    "inventoryPath": "project-inventory.json",
+    "inventoryStatus": "pending",
+    "allScriptCandidatesRead": false,
+    "allImageCandidatesListed": false
+  },
+  "assetRequirements": {
+    "registryPath": "asset-requirements.json",
+    "workbookPath": "生图需求全集.xlsx",
+    "workbookResultPath": "asset-requirements-workbook-result.json",
+    "status": "pending",
+    "fullSeriesRequiredVersions": 0,
+    "validExistingVersions": 0,
+    "validGeneratedVersions": 0,
+    "missingVersions": 0,
+    "invalidVersions": 0,
+    "pendingHumanReviewVersions": 0,
+    "generationRequiredVersions": 0,
+    "perEpisodeCoverage": [],
+    "issues": []
+  },
+  "parallelPreparation": {
+    "assetGenerationBranch": "pending",
+    "segmentProjectBranch": "pending",
+    "assetIndependentFilesAllowed": [
+      "script-verbatim.txt",
+      "storyboard-execution.txt",
+      "draft tsc-handoff.yaml with planned_unverified slots"
+    ],
+    "assetDependentPromptFinalization": "blocked_until_asset_approval"
+  },
+  "segmentPlan": {
+    "declaredSegmentCount": 0,
+    "uniqueSegmentCount": 0,
+    "totalDurationSeconds": 0,
+    "progressAuditPath": "segment-progress.json",
+    "status": "pending"
+  },
+  "imageDelivery": {
+    "generationExistenceCheck": "pending",
+    "allGeneratedOutputsDeliveredForHumanReview": false,
+    "automaticImageReviewPerformed": false
+  },
+  "imageExecution": {
+    "tool": "direct_image_run_when_generation_required",
+    "route": "st2",
+    "maxProviderConcurrency": 10,
+    "status": "pending_manifest_or_not_required"
+  },
+  "assetImages": {
+    "candidatePolicy": {
+      "defaultCandidatesPerGeneratedAsset": 3,
+      "effectiveCandidatesPerGeneratedAsset": 3,
+      "source": "default",
+      "scope": "newly_generated_character_wardrobe_location_prop_assets_only"
+    },
+    "planned": [],
+    "generated": [],
+    "provisionalBindings": []
+  },
+  "aggregateAssetReview": {
+    "status": "pending_generation",
+    "reviewedAt": "",
+    "approved": [],
+    "rejected": []
+  },
+  "soundReferences": {
+    "manifestPath": "sound-reference-manifest.yaml",
+    "complete": false,
+    "missing": []
+  },
+  "semanticReview": {
+    "status": "pending",
+    "evidencePath": "content-review.json",
+    "scriptCoverage": "pending",
+    "dialogueFidelity": "pending",
+    "continuity": "pending",
+    "promptIdentityWardrobeContracts": "pending",
+    "spatialTopology": "pending",
+    "stateChanges": "pending",
+    "promptAliases": "pending",
+    "reviewedAt": ""
+  },
+  "assetWorkbook": {
+    "inputPath": "asset-workbook-input.json",
+    "path": "资产总表.xlsx",
+    "resultPath": "asset-workbook-result.json",
+    "status": "pending",
+    "generatedAt": "",
+    "approvedAssetCount": 0
+  },
+  "preVideoDelivery": {
+    "status": "pending",
+    "configPath": "episode-package-config.json",
+    "formalDeliveryRoot": "",
+    "imageManifestPath": "image-delivery-manifest.json",
+    "soundReferenceManifestPath": "sound-reference-manifest.yaml",
+    "scriptSourcePath": "script-source.txt",
+    "scriptCoverageReportPath": "script-coverage-report.md",
+    "scriptCoveragePercent": 0,
+    "allSourceLinesMappedToTextualExecution": false,
+    "allSourceLinesEnactedInPrompts": false,
+    "generationSegmentsWithTscHandoffs": 0,
+    "generationSegmentsWithTscPrompts": 0,
+    "allRequiredReferencesResolved": false,
+    "allGeneratedImageFilesExist": false,
+    "allPromptsComplete": false,
+    "promptValidation": "pending",
+    "packageValidation": "pending",
+    "validatedAt": "",
+    "deliveredAt": ""
+  },
+  "video": {
+    "inScope": false,
+    "generated": 0,
+    "status": "excluded_by_control_mode",
+    "authorization": {
+      "status": "not_authorized",
+      "explicitCommand": "",
+      "authorizedAt": ""
+    }
+  },
+  "videoSegments": [],
+  "clips": [],
+  "updatedAt": ""
+}

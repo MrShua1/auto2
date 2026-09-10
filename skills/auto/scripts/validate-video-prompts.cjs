@@ -1,0 +1,254 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+const { resolveProductionProfile } = require('./lib/production-profile.cjs');
+const { validateDuration, validateKnownDefects, isStandaloneAlias } = require('./lib/content-review.cjs');
+const { shotsOf, validateTiming, validateFields, validateAction, validateSubjects, validateSound, physicalStates, NUMBERED_FORMAT } = require('./lib/shot-format.cjs');
+
+function fail(message) {
+  throw new Error(message);
+}
+
+function parseArgs(argv) {
+  const options = { projectRoot: process.cwd(), config: 'episode-package-config.json' };
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (arg === '--help' || arg === '-h') {
+      console.log(`Usage:
+  node validate-video-prompts.cjs [--project-root <path>] [--config <path>]
+
+Validates every configured source prompt without generating, uploading or modifying files.`);
+      process.exit(0);
+    }
+    if (arg !== '--project-root' && arg !== '--config') fail(`Unknown argument: ${arg}`);
+    const value = argv[++index];
+    if (!value || value.startsWith('--')) fail(`${arg} requires a value.`);
+    options[arg === '--project-root' ? 'projectRoot' : 'config'] = value;
+  }
+  options.projectRoot = path.resolve(options.projectRoot);
+  options.config = path.isAbsolute(options.config)
+    ? options.config
+    : path.resolve(options.projectRoot, options.config);
+  return options;
+}
+
+function readText(filePath, label) {
+  if (!fs.existsSync(filePath)) fail(`Missing ${label}: ${filePath}`);
+  return fs.readFileSync(filePath, 'utf8')
+    .replace(/^\uFEFF/, '')
+    .replace(/\r\n?/g, '\n')
+    .trim();
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function getPromptSections(config) {
+  const sections = config.layout?.promptFixedSections || config.promptFixedSections || [
+    '【角色清单】',
+    '【资源引用】',
+    '【场景】',
+    '【站位与起始状态】',
+    '【结束状态】',
+  ];
+  if (!Array.isArray(sections) || sections.length !== 5) fail('Config must define exactly five promptFixedSections.');
+  return sections;
+}
+
+function getCharacterAliasEntries(config, assets) {
+  const characterAssets = assets.filter((item) => item.assetType === 'character');
+  if (!Array.isArray(config.promptCharacterAliases)) fail('Config must define promptCharacterAliases as an array.');
+  if (characterAssets.length > 0 && config.promptCharacterAliases.length === 0) fail('Character assets require promptCharacterAliases.');
+  const entries = new Map();
+  for (const entry of config.promptCharacterAliases) {
+    if (!entry || typeof entry.characterName !== 'string' || !entry.characterName.trim() || !Array.isArray(entry.promptAliases) || entry.promptAliases.length === 0) {
+      fail('Every promptCharacterAliases entry requires characterName and promptAliases.');
+    }
+    const aliases = [...new Set([entry.characterName, ...entry.promptAliases].filter((item) => typeof item === 'string' && item.trim()))];
+    if (aliases.length !== entry.promptAliases.length + (entry.promptAliases.includes(entry.characterName) ? 0 : 1)) {
+      fail(`Duplicate prompt aliases for ${entry.characterName}.`);
+    }
+    if (entries.has(entry.characterName)) fail(`Duplicate promptCharacterAliases characterName: ${entry.characterName}.`);
+    entries.set(entry.characterName, aliases);
+  }
+  for (const asset of characterAssets) {
+    if (typeof asset.characterName !== 'string' || !asset.characterName.trim() || !Array.isArray(asset.promptAliases) || asset.promptAliases.length === 0) {
+      fail(`Character asset ${asset.mixedToken} requires characterName and promptAliases.`);
+    }
+    const configuredAliases = entries.get(asset.characterName);
+    if (!configuredAliases || !asset.promptAliases.every((alias) => configuredAliases.includes(alias))) {
+      fail(`Character asset ${asset.mixedToken} aliases are not registered for ${asset.characterName}.`);
+    }
+  }
+  return [...entries.values()].flat();
+}
+
+function assertNamesOnlyInAllowedSpans(prompt, sectionStart, aliases, context) {
+  let remainder = prompt.slice(sectionStart);
+  remainder = remainder.replace(/[“”‘’"'][^“”‘’"']*[“”‘’"']/g, (match) => ' '.repeat(match.length));
+  const voiceClause = /把\s+\{\{Mixed\s+\d+\}\}\s+仅作为[^；。\n]*(?:音色|声音)[^；。\n]*[；。]?/g;
+  remainder = remainder.replace(voiceClause, (match) => ' '.repeat(match.length));
+  remainder = remainder.replace(/(?:画外声音|电话声音|内心声音|现场齐声|线上弹幕)[（(][^）)]+[）)]/g, (match) => ' '.repeat(match.length));
+  const forbidden = [...new Set(aliases)].sort((left, right) => right.length - left.length);
+  for (const alias of forbidden) {
+    if (isStandaloneAlias(remainder, alias)) {
+      fail(`${context} uses character name or alias outside a voice-ownership clause or quoted dialogue: ${alias}`);
+    }
+  }
+}
+
+function validatePrompt(config, profile, segment, prompt) {
+  const context = segment.id || segment.folder;
+  validateKnownDefects(prompt, context, segment);
+  const numberedFormat = profile.prompt.shotFormat === NUMBERED_FORMAT;
+  const duration = Number(segment.durationSeconds);
+  if (!Number.isFinite(duration) || duration <= 0) fail(`${context} has an invalid durationSeconds.`);
+  const prefix = config.layout?.promptDurationPrefix || '生成时长：';
+  const suffix = config.layout?.promptDurationSuffix || '秒。';
+  if (!prompt.startsWith(`${prefix}${duration}${suffix}`)) {
+    fail(`${context} prompt duration does not match durationSeconds.`);
+  }
+
+  const sections = getPromptSections(config);
+  let cursor = -1;
+  for (const section of sections) {
+    if (prompt.split(section).length !== 2) fail(`${context} must contain ${section} exactly once.`);
+    const index = prompt.indexOf(section);
+    if (index < 0 || index <= cursor) fail(`${context} prompt sections are missing or out of order: ${section}`);
+    cursor = index;
+  }
+
+  const timed = shotsOf(prompt, segment);
+  if (profile.prompt.requireShotDuration && timed.some((shot) => shot.durationSeconds === undefined)) fail(`${context} every shot heading must include its duration in seconds.`);
+  if (!timed.length || timed.some((shot) => shot.numbered !== numberedFormat)) fail(`${context} shot headings do not match the locked format.`);
+  if (timed.length < profile.prompt.timedPhaseMinimum || timed.length > profile.prompt.timedPhaseMaximum) {
+    fail(`${context} must contain ${profile.prompt.timedPhaseMinimum}-${profile.prompt.timedPhaseMaximum} timed ranges for production profile ${profile.profileId}.`);
+  }
+  const startSectionEnd = prompt.indexOf('【站位与起始状态】');
+  const endingSectionStart = prompt.indexOf('【结束状态】');
+  if (timed[0].index <= startSectionEnd || timed.at(-1).index >= endingSectionStart) {
+    fail(`${context} timed ranges must be between the starting and ending state sections.`);
+  }
+  validateTiming(timed, duration, context);
+  for (const [index, match] of timed.entries()) {
+    const field = match.body;
+    if (numberedFormat) {
+      const fields = validateFields(match, `${context} shot ${index + 1}`);
+      if (profile.prompt.stateChangeContract === 'explicit_pre_action_ordered_action_post_action') validateAction(fields.get('动作/表演'), `${context} shot ${index + 1}`);
+      validateSound(fields.get('环境音/动作音'), profile, `${context} shot ${index + 1}`);
+    }
+    if ((field.match(/主体锁：/g) || []).length !== 1 || !field.includes('各主体仅保留自身主体锁，不交换外观。')) {
+      fail(`${context} timed range ${index + 1} must contain exactly one complete subject lock.`);
+    }
+  }
+
+  const assets = segment.assets || [];
+  validateSubjects(prompt, assets, context);
+  const aliases = getCharacterAliasEntries(config, assets);
+  assets.forEach((asset, index) => {
+    const expected = `{{Mixed ${index + 1}}}`;
+    if (asset.mixedToken !== expected) fail(`${context} expected ${expected}, found ${asset.mixedToken}.`);
+    if (!prompt.includes(expected)) fail(`${context} prompt does not reference ${expected}.`);
+  });
+  for (const match of prompt.matchAll(/\{\{Mixed\s+(\d+)\}\}/g)) {
+    const number = Number(match[1]);
+    if (number < 1 || number > assets.length) fail(`${context} references undefined {{Mixed ${number}}}.`);
+  }
+  const roleList = prompt.slice(prompt.indexOf('【角色清单】'), prompt.indexOf('【资源引用】'));
+  for (const asset of assets.filter((item) => ['character', 'location', 'prop'].includes(item.assetType))) {
+    const number = asset.mixedToken.match(/\d+/)?.[0];
+    const token = escapeRegExp(asset.mixedToken);
+    if (!new RegExp(`把 ${token} 中[\\s\\S]*?作为主体${number}`).test(roleList)) {
+      fail(`${context} does not define ${asset.mixedToken} as 主体${number}.`);
+    }
+  }
+  assertNamesOnlyInAllowedSpans(prompt, prompt.indexOf('【资源引用】'), aliases, context);
+  const definitions = [...roleList.matchAll(/把\s+(\{\{Mixed\s+(\d+)\}\})\s+中[^；\n]+作为主体(\d+)[；。]/g)];
+  const visualAssets = assets.filter((item) => ['character', 'location', 'prop'].includes(item.assetType));
+  if (definitions.length !== visualAssets.length) {
+    fail(`${context} role list must contain exactly one bounded definition per visual asset.`);
+  }
+  for (const definition of definitions) {
+    if (definition[2] !== definition[3]) fail(`${context} maps ${definition[1]} to the wrong subject number.`);
+  }
+  if (/CHAR\d{3}|角色锁|各角色|主体\d+-主体\d+/.test(prompt)) {
+    fail(`${context} contains a legacy subject alias.`);
+  }
+  if (/\bC\d{3}\b|\bSHOT\d{3,}\b|秒｜镜头\d+|\bclipId\b/i.test(prompt)) {
+    fail(`${context} contains an internal planning identifier.`);
+  }
+  if (/\{\{TailFrame\}\}|tail[-_ ]frame/i.test(prompt)) {
+    fail(`${context} contains a deprecated video tail-frame input.`);
+  }
+  const endingPolicy = profile.prompt.endingPolicy;
+  if ((prompt.match(new RegExp(escapeRegExp(endingPolicy), 'g')) || []).length !== 1) {
+    fail(`${context} must contain exactly one no-tail-frame/no-background-music sentence.`);
+  }
+  if (!numberedFormat && profile.prompt.stateChangeContract === 'explicit_pre_action_ordered_action_post_action') {
+    for (const marker of ['动作前状态：', '动作顺序：', '动作后状态：']) {
+      if (!prompt.includes(marker)) fail(`${context} is missing ${marker}`);
+    }
+  }
+  const visualStyleSuffix = profile.look.styleSuffix;
+  if (visualStyleSuffix && !prompt.endsWith(visualStyleSuffix)) {
+    fail(`${context} does not end with the configured visual-style suffix.`);
+  }
+  if (visualStyleSuffix && !prompt.endsWith(`${endingPolicy}\n\n${visualStyleSuffix}`)) {
+    fail(`${context} must place the no-tail-frame/no-background-music sentence immediately before the style suffix.`);
+  }
+  if (numberedFormat) {
+    const states = physicalStates(prompt, timed, profile);
+    return { inheritedSnapshot: segment.sameSceneAsPrevious ? states.startKey : '', endingSnapshot: states.endKey, timedRanges: timed.length };
+  }
+  const endingSnapshot = prompt.match(/^连续性快照：([^\r\n]+)/m)?.[1] || '';
+  if (!endingSnapshot) fail(`${context} is missing a complete written ending snapshot.`);
+  return {
+    inheritedSnapshot: prompt.match(/^继承连续性快照：([^\r\n]+)/m)?.[1] || '',
+    endingSnapshot,
+    timedRanges: timed.length,
+  };
+}
+
+function main() {
+const options = parseArgs(process.argv.slice(2));
+const config = JSON.parse(readText(options.config, 'episode package config'));
+const profile = resolveProductionProfile(config);
+validateDuration(config);
+if (!Array.isArray(config.segments) || config.segments.length === 0) fail('Config has no segments.');
+
+const results = [];
+for (const segment of config.segments) {
+  const promptPath = path.resolve(options.projectRoot, segment.promptSource);
+  const prompt = readText(promptPath, `${segment.id} prompt`);
+  const result = validatePrompt(config, profile, segment, prompt);
+  if (segment.sameSceneAsPrevious === true && !result.inheritedSnapshot) {
+    fail(`${segment.id} is marked sameSceneAsPrevious but has no inherited continuity payload.`);
+  }
+  if (segment.sameSceneAsPrevious === false && result.inheritedSnapshot) {
+    fail(`${segment.id} inherits continuity while sameSceneAsPrevious is false.`);
+  }
+  if (result.inheritedSnapshot) {
+    const previous = results.at(-1);
+     if (!previous || !previous.endingSnapshot || previous.endingSnapshot !== result.inheritedSnapshot) {
+      fail(`${segment.id} inherited continuity payload does not equal the previous configured prompt ending payload.`);
+    }
+  }
+  results.push({ id: segment.id, promptPath, ...result });
+}
+
+console.log(JSON.stringify({
+  projectRoot: options.projectRoot,
+  config: options.config,
+  productionProfile: profile.profileId,
+  prompts: results.length,
+  timedRanges: results.reduce((sum, item) => sum + item.timedRanges, 0),
+  inheritedContinuityChecks: results.filter((item) => item.inheritedSnapshot).length,
+  internalPlanningIdentifiers: 0,
+  validation: 'passed',
+}));
+}
+
+if (require.main === module) main();
+module.exports = { validatePrompt };

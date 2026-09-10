@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "auto-image-delivery-manifest/2.1",
+  "projectId": "REQUIRED",
+  "route": "st2",
+  "providerModel": "gpt-image-2",
+  "status": "approved_complete",
+  "candidatePolicy": {
+    "defaultCandidatesPerGeneratedAsset": 3,
+    "effectiveCountSource": "default_or_user_explicit"
+  },
+  "humanReview": {
+    "status": "approved",
+    "reviewedAt": "REQUIRED_ISO_8601"
+  },
+  "items": [
+    {
+      "assetId": "CHAR001",
+      "assetType": "character",
+      "sourceType": "supplied_or_generated",
+      "taskId": "SUPPLIED_OR_STABLE_V_OR_R_ID",
+      "role": "REQUIRED",
+      "path": "references/characters/approved-reference.png",
+      "sha256": "REQUIRED",
+      "prompt": "REQUIRED_WHEN_GENERATED",
+      "referencePaths": [],
+      "approvalStatus": "approved",
+      "approvedAt": "REQUIRED_ISO_8601"
+    }
+  ],
+  "failedOriginals": [],
+  "boundedRepairs": [],
+  "missingRequiredItems": []
+}

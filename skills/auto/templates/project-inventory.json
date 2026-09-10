@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "auto-project-inventory/1.0",
+  "projectRoot": "REQUIRED_ABSOLUTE_PROJECT_ROOT",
+  "scannedAt": "REQUIRED_ISO_8601",
+  "filesScanned": 0,
+  "scripts": [],
+  "images": [],
+  "assetManifests": [],
+  "wardrobeTables": [],
+  "otherRelevantFiles": [],
+  "scanErrors": [],
+  "status": "pending_or_complete"
+}

@@ -1,0 +1,7 @@
+schema_version: auto-sound-references/2.1
+project_id: REQUIRED
+complete: true
+character_voice_references: []
+story_critical_sound_references: []
+optional_environment_audio_references: []
+missing_required_references: []
