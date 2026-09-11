@@ -100,6 +100,14 @@ All numbered shots must strictly comply with cinematic shot grammar and perspect
    - Any text inside Chinese quotes `“……”` or English quotes `"..."` representing spoken dialogue, voiceover (VO), offscreen dialogue (OS), or internal monologue MUST be 100% verbatim from the authoritative source script!
    - Under NO circumstances may entity names (character names, fish species, prop items, locations) inside quotation marks be substituted with subject placeholders (`主体1`, `主体2`, `主体3`).
    - Any prompt containing `[“"][^”"\n]*主体\d+[^”"\n]*[”"]` fails validation immediately.
+6. **Continuous Medium Dive & Progressive Underwater Reveal (Rule 0.13)**:
+   - **Anti-Double-Exposure Gate**: Never combine surface/beach and underwater/seabed scenes in a single shot expecting the model to do "in-place see-through transparency". Multi-modal video models will naively double-expose and overlay underwater coral/fish as a transparent sticker on top of the sea waves.
+   - **Cinematic Medium Penetration Sequence**: When characters look through water or penetrate mediums (e.g. 水眼金睛, 透视海底), it must be realized through camera physical diving or shot sequencing:
+     - Shot A: Objective Reaction on beach (ECU, eyes flash gold, lips closed, 2.5~3.5s).
+     - Shot B: Subjective POV Dive Shot (camera pushes forward following gaze, submerges through water surface into shallow water, bubbles clear, progressively revealing underwater reef, current, and fish as camera descends, 4.0~5.0s, O.S. dialogue, 0 character body in shot).
+     - Shot C: Reaction shot on beach (touching eyes in shock, 3.5~4.0s).
+     - Shot D: Underwater POV Close-up on target fish/prop (pure underwater environment, 3.5~4.5s).
+     - Shot E: Objective Resolution on beach (standing tall facing dawn, resolute declaration, 3.5~4.5s).
 
 Timing is both visible after each heading and retained as executable audit data.
 Each config segment must have one shotTimings row per shot, for example:
