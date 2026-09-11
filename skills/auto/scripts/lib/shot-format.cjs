@@ -40,14 +40,27 @@ function validateTiming(shots, duration, context) {
   }
 }
 
+const FIELD_ALIASES = {
+  '人物': ['人物', '角色'],
+  '场景/时间/光线': ['场景/时间/光线', '场景/时间/光照', '环境基底'],
+  '景别/拍摄/运镜': ['景别/拍摄/运镜', '景别/机位/运动视角', '景别/机位'],
+  '主体': ['主体', '主体锁'],
+  '动作/表演': ['动作/表演', '动作/内容', '动作'],
+  '位置承接': ['位置承接', '位置关系'],
+  '台词/O.S./OS': ['台词/O.S./OS', '台词', '对白', '台词/对白', '画外音', '台词（画外音）', '画外音（O.S.）', '画外音（OS）', '台词（O.S.）', '台词（OS）'],
+  '视效': ['视效', '音效'],
+  '环境音/动作音': ['环境音/动作音', '光影/色彩', '音效', '光影'],
+  '转场': ['转场', '转场机位']
+};
+
 function matchFieldLabel(line) {
+  const cleanLine = line.replace(/^【/, '').replace(/】/, '');
   for (const field of FIELDS) {
-    if (field === '台词/O.S./OS') {
-      if (/^(?:台词\/O\.S\.\/OS|台词|对白|台词\/对白|画外音|台词（画外音）|画外音（O\.S\.）|画外音（OS）|台词（O\.S\.）|台词（OS）)[：:]/.test(line)) {
+    const aliases = FIELD_ALIASES[field] || [field];
+    for (const alias of aliases) {
+      if (cleanLine.startsWith(`${alias}：`) || cleanLine.startsWith(`${alias}:`)) {
         return field;
       }
-    } else if (line.startsWith(`${field}：`) || line.startsWith(`${field}:`)) {
-      return field;
     }
   }
   return null;
@@ -78,7 +91,13 @@ function validateFields(shot, context) {
 }
 
 function validateAction(action, context) {
-  const labels = ['动作前状态：', '动作顺序：', '动作后状态：'];
+  let labels = ['动作前状态：', '动作顺序：', '动作后状态：'];
+  if (!labels.every((l) => action.includes(l))) {
+    const bracketLabels = ['【前置状态】', '【动作顺序】', '【后置状态】'];
+    if (bracketLabels.every((l) => action.includes(l))) {
+      labels = bracketLabels;
+    }
+  }
   const positions = labels.map((label) => action.indexOf(label));
   if (positions.some((position, index) => position < 0 || (index > 0 && position <= positions[index - 1])) || labels.some((label) => action.split(label).length !== 2)) throw new Error(`${context}: action requires ordered pre-state, action and post-state fields.`);
   labels.forEach((label, index) => {
