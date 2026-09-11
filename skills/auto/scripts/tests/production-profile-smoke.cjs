@@ -5,7 +5,12 @@ const crypto = require('crypto');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { spawnSync } = require('child_process');
+const { spawnSync: spawn } = require('child_process');
+const spawnSync = (command, args, options) => {
+  const result = spawn(command === 'powershell' && process.platform !== 'win32' ? 'pwsh' : command, args, options);
+  if (typeof result.stderr === 'string') result.stderr = result.stderr.replace(/\x1b\[[0-9;]*m/g, '').replace(/\n[^\n]*?\|\s*/g, ' ');
+  return result;
+};
 const { resolveProductionProfile } = require('../lib/production-profile.cjs');
 
 function hash(filePath) {
@@ -410,6 +415,9 @@ try {
   const placeholder = JSON.parse(JSON.stringify(config));
   placeholder.productionProfile.profileId = 'REQUIRED_PROFILE_ID';
   assert.throws(() => resolveProductionProfile(placeholder), /placeholder/);
+  const enriched = spawnSync(process.execPath, [path.join(__dirname, 'image-workflow-smoke.cjs'), temporary], { encoding: 'utf8' });
+  assert.strictEqual(enriched.status, 0, enriched.stdout + enriched.stderr);
+  console.log(enriched.stdout);
   console.log(JSON.stringify({ productionProfile: profile.profileId, autonomousVisualLockContract: 'passed', bulkVisualLockQuestionnaireForbidden: 'passed', referencePreservationLock: 'passed', genericNoCharacterPrompt: 'passed', genericPackageBuild: 'passed', genericLibTVDryRun: 'passed', episodePrevideoRunGate: 'passed', backendNeutralFinalPackage: 'passed', episodeSegmentHierarchy: 'passed', invalidEpisodeFolderGate: 'passed', invalidSegmentFolderGate: 'passed', backendNeutralFinalValidation: 'passed', noImageToolRequiredWhenNoGeneration: 'passed', optionalExternalVoiceReference: 'passed', neutralPackageLibTVGate: 'passed', legacyCompatibility: 'passed', placeholderGate: 'passed' }));
 } finally {
   fs.rmSync(temporary, { recursive: true, force: true });

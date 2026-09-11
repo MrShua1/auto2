@@ -1,623 +1,159 @@
 ---
 name: auto
-description: "全自动 AI 短片生产与 /分集 预视频交付：剧本转逐片段执行提示词、连续性资产绑定，并可按授权适配 LibTV 或其他视频后端。Use when the user says auto, /分集, 分集, 剧本到视频, or asks for screenplay-to-pre-video-package or screenplay-to-video-backend workflow."
-license: MIT
-compatibility: "OpenCode; Windows-first; self-contained rules; image and video execution tools are required only for the corresponding selected execution stage."
-metadata:
-  version: "1.8.4"
-  updated: "2026-09-05"
-  scope: "screenplay-to-pre-video and optional video-backend orchestration"
+description: "Auto 全自动影视分集与分镜生产工程。支持 /auto batch20（推进1-20集）、/auto batch40（推进21-40集）等批次指令。默认 20 并发分析架构。严格执行四维协同支柱、严禁纯代码机械死模板拼接、空间与情境感知动态换装、真实大模型逐幕物理动作转译与严格0视频生成。"
 ---
 
-# Auto
+# Auto 影视分集工程规范（Auto Screenplay-to-Prevideo Production）
 
-For missing tools after installation, read references/host-tool-diagnostics.md.
-Offline readiness does not measure live host registration or restarts. After one
-confirmed full restart, diagnose actual config/import/permissions/tool exposure;
-never repeatedly blame the user's restart based on a hardcoded readiness status.
+本技能专门用于短剧剧本到预视频交付工程（Pre-video Engineering Package）的专业分集与分镜提示词制作。
 
-## Auto D Mandatory Delivery Rules
+---
 
-Image generation uses the relaxed preflight and bounded automatic regeneration in
-`references/auto-d-image-retry.md`. This latest user policy replaces older mandatory
-three-repair-candidate groups and no-retry instructions for Auto-managed image jobs
-only. Do not apply it to video or unrelated direct st commands.
+## 一、 快速命令索引（Batch Commands）
 
-Read `references/auto-d-portability-and-materials.md` before intake, generation,
-TSC compilation, final delivery, or redistribution. These newer rules override
-conflicting older defaults in this file and bundled snapshots.
+用户输入 `/auto batch<N>` 或 `/auto batch <range>` 时，按每批严格 **≤ 20 集** 的黄金颗粒度精准推进：
 
-- Ship every execution tool, all eight internal skill modules, their resources,
-  pinned dependencies, installation, offline tests and readiness checks together.
-  Missing required tools still block their stage; never bypass them with ad hoc API
-  calls. Install the included direct_image_run plugin and restart OpenCode first.
-- TSC is performed by the Agent under the bundled TSC module, not by a missing
-  external screenplay generator. Missing real handoffs/approval still block final output.
-- Use the user's explicit image route (including stx); st2 remains the default only
-  when no route is selected. Never switch routes automatically. stx is 1K/auto quality.
-- Supplied notices, posters, letters, cards and banners must be physically integrated
-  into the relevant location and prop assets through role-bound image references.
-  Filing a source image or reserving a blank surface is not visible integration.
-- Do not create delivery previews, HTML overviews or contact sheets. Preserve the
-  requested SEG granularity; multiple shots can belong to one SEG without any
-  larger episode/unit folder when SEG is the user's maximum delivery unit.
-- `/分镜` is an alias of `/分集` unless the user narrows its scope. It does not
-  authorize video or bypass any approval, asset or final-delivery gate.
+| 指令 | 目标集数范围 | 生产与交付内容 |
+| :--- | :---: | :--- |
+| `/auto batch20` | **第 001 集 ~ 第 020 集** | 提取第 1~20 集剧本，四维支柱真实 AI 语义转译，输出全集工程包与独立质检报告 |
+| `/auto batch40` | **第 021 集 ~ 第 040 集** | 推进第 21~40 集，承接前期人物与场景状态，输出对应工程包与报告 |
+| `/auto batch60` | **第 041 集 ~ 第 060 集** | 推进第 41~60 集，动态绑定最新出场资产与情境服装 |
+| `/auto batch80` | **第 061 集 ~ 第 080 集** | 推进第 61~80 集 |
+| `/auto batch100`| **第 081 集 ~ 第 100 集**| 推进第 81~100 集 |
+| `/auto batch120`| **第 101 集 ~ 第 120 集**| 推进第 101~120 集（校园开端、新生报到） |
+| `/auto batch140`| **第 121 集 ~ 第 140 集**| 推进第 121~140 集 |
+| `/auto batch160`| **第 141 集 ~ 第 160 集**| 推进第 141~160 集 |
+| `/auto batch180`| **第 161 集 ~ 第 180 集**| 推进第 161~180 集 |
+| `/auto batch200`| **第 181 集 ~ 第 200 集**| 推进第 181~200 集（含第182集阶梯教室与合伙买船等） |
+| `/auto batch220`| **第 201 集 ~ 第 220 集**| 推进第 201~220 集 |
+| `/auto batch240`| **第 221 集 ~ 第 240 集**| 推进第 221~240 集 |
+| `/auto batch260`| **第 241 集 ~ 第 260 集**| 推进第 241~260 集 |
+| `/auto batch280`| **第 261 集 ~ 第 280 集**| 推进第 261~280 集 |
+| `/auto batch300`| **第 281 集 ~ 第 300 集**| 推进第 281~300 集（高潮对决与大结局） |
 
-## Current Shot And State Rules
+*语法扩展*：若用户输入自定义区间如 `/auto 1-20` 或 `/auto 181-200`，只要总集数 ≤ 20 集，同样视同对应 batch 执行；若输入超过 20 集（如 `/auto 1-100`），系统必须强制拆解为每 20 集为一个独立 batch 滚动推进。
 
-Newly generated character assets MUST follow
-`references/character-asset-standard.md`: one composite image with a single left
-front-facing, eye-level upper-body portrait and a right column of two stacked
-views (top: front standing clothing view excluding head and neck by framing;
-bottom: back standing view including the head and rear hairstyle). This is a
-required asset layout, not an optional delivery contact sheet. Apply it to every
-new character/wardrobe candidate; preserve already approved assets unchanged.
+---
 
-Runtime dependencies are pinned in package-lock.json. Install with `npm ci
---ignore-scripts` in the Skill directory when node_modules is absent. Official
-workbook entrypoints now use local OpenXML generation rather than Excel COM;
-they reopen and hash-bind the saved workbooks before approval. Audio/image pixels
-are not creatively judged; mechanical image dimensions only preserve Excel layout.
-Before any authorized video side effect, reserve output-count budget atomically;
-failed/unknown attempts are not automatically refunded or retried. Read
-`references/release-1.8.3.md` and `REVIEW-1.8.4.md` for migration and verification limits.
+## 二、 核心生产宪法（四大协同支柱 & 最高红线）
 
-Natural scene/action audio (such as visible stream sound and footsteps during
-walking) is now explicitly permitted without inventing external audio assets.
-This overrides older blanket exclusions of such ambience/foley. Background music
-remains separately governed by the project's music policy; no-music does not mean
-silence. See the sound policy in `references/numbered-shot-contract.md`.
+执行任何 batch 生产时，必须 100% 恪守以下铁律：
 
-Read `references/numbered-shot-contract.md` before authoring or revising prompts.
-For new prompts and explicitly requested format revisions, use
-`productionProfile.prompt.shotFormat: numbered_fields_v1`.
-Set `productionProfile.prompt.requireShotDuration: true` for new or explicitly
-revised prompts. Display each shot's own duration after its heading; these durations
-must match shotTimings and sum to the SEG duration. Never equal-split by default.
-This contract overrides older timed-heading and verbatim whole-snapshot instructions below and in internal
-source snapshots: headings are `【镜头1】（6秒）`, `【镜头2】（8秒）`, etc.; every shot has the
-ten required fields. Opening/ending sections contain physical facts only, never
-spoken dialogue or completed performance. Preserve previous project shot-count and
-duration bounds, Mixed bindings, resource scope, role list and offscreen rules.
-Existing delivered projects are not silently migrated; regenerate and rereview
-affected prompts and handoffs when a format revision is requested.
+### 1. 【最高绝对红线：严禁自动偷懒写死 Python/JS 模板拼接剧本（Rule 0.8）】
+- **严禁机械死模板作弊**：严禁编写任何使用固定字符串套词（如机械拼接“主体1与主体2立于中央目光对视、神情激动向前迈出半步、紧握双拳注视主体1”、“向前迈一步面露惊疑”）来伪造批量分镜与提示词的脚本！
+- **代码仅为调度管道，语义转译必须由真正大模型逐幕推理**：脚本仅负责提取剧本切片、组装上下文并分发 API/子智能体；每一集、每一场戏的微观动作链、机位调度与视听语言，必须由具备真实深度语义理解能力的大模型（LLM）逐集、逐幕、逐字阅读剧本 `△` 动作行真实生成。
 
-Default to no added subtitles/overlays in new prompts. Apply the short global
-instruction in `references/numbered-shot-contract.md` once; preserve spoken audio
-and original scene/prop text, honor explicit script/user overlay requirements, and
-remove contradictory unsolicited caption instructions. Do not rewrite old projects.
+### 2. 【剧本物理切片直传与绝对零大模型转述铁律（Deterministic Docx Slice & Zero LLM Script Relay Gate）】
+- **源头确定性切片硬落盘**：剧本从权威 `.docx` 到各集 `script-source.txt`，必须通过脚本 `sync-docx-slices.py` 纯代码提取并直接落盘，中间绝对严禁任何大模型介入转述、修改或概括！
+- **调度 Prompt 绝对严禁手写/复述剧本**：主智能体在向并发 Worker（子智能体）派发任务时，`Prompt` 字符串中**绝对严禁包含任何剧本正文、对白或 △ 动作行**！Prompt 中只能包含物理文件路径指令：`请使用 view_file 工具直接读取本地物理文件：<Target Directory>/script-source.txt，以此作为唯一真理逐字逐句进行影视转译，严禁任何删减与脑补！`
+- **全流程逐字一致性强门禁（Docx Verbatim Parity Gate）**：调度系统在派发任务前及聚合验收时，必须强制运行 `python auto/scripts/verify-docx-parity.py --batch <N>` 进行 100% 逐字哈希与字数核验；凡字数缩水率 > 0% 或存在未溯源对白，直接熔断阻断构建，一票否决！
 
-Turn a supplied screenplay into an auditable, backend-neutral AI-video production
-package and, when a backend is selected, authorized and technically ready, adapt and
-generate each accepted clip. LibTV is one optional adapter. This Skill is the single user-facing orchestrator and owns its full
-production rule set inside this directory.
+### 3. 【分集生产四维协同支柱】
+- **支柱 1（剧本物理语义全解析，动作 100% 溯源）**：分镜中的动作必须 100% 取自原著剧本 `△` 舞台动作行（如发军训服、敲黑板、拍胸脯自夸、女生围拢、后排抓发咬牙），严禁丢失剧本动作，严禁任何假动作与模板套词；
+- **支柱 2（全量资产多级语义动态匹配，彻底消灭无脑海边兜底）**：彻底废止仅匹配十几个死关键词的简陋规则，严禁任何形式的“海边滩涂无脑兜底”！基于剧本场次标头（如 `日 内 教室`、`夜 内 宿舍`、`日 外 码头`），遍历项目全量场景资产库（如 `SCENE_040_多媒体阶梯教室`）进行多级语义检索匹配；
+- **支柱 3（空间与剧情情境感知动态换装，彻底消灭集数一刀切）**：彻底废除按集数区间粗暴一刀切换装！必须根据角色当前身处的物理场景与剧情处境（校园课室穿学生常服、深海沉船探宝穿潜水服、远洋出海穿海钓战服、商务宴会穿千亿西装）动态绑定合理的服装变体；
+- **支柱 4（多角色动态镜头调度与台词声画解耦）**：现场有多人互动时，依照电影视听语言切分机位（中景、全景、特写、反应镜头交替），现场说话的角色必须在画面中给到镜头且开口对白；画外音（OS）仅限于真正的内心独白、电话音或旁白，并强制注入双唇严密闭合锁。
 
-## Trigger And Scope
+### 4. 【批次生产颗粒度上限 20 集铁律（Rule 0.9）】
+- 单次生产任务上限严格锁定为 **≤ 20 集**（约 50~70 个 SEG），确保大模型注意力高度聚焦、逐句深读，杜绝批量上下文疲劳导致的粗制滥造。
 
-Use this Skill when the user invokes `auto` or requests the complete chain:
+### 5. 【批次默认20并发分析与极速并行处理铁律（Rule 0.10）】
+- **默认 20 并发分析架构**：针对单批次 20 集的分集生产任务，严禁单线程串行逐集等待！Auto 调度系统必须**默认启用 20 并发分析（20 Concurrent Workers）**，将批次内的 20 集一键分发至 20 个独立的 AI 语义推理管道中同时并行分析与处理。
+- **并发分支四大支柱守恒**：每一个并发分支必须 100% 独立且完整执行四大支柱（逐字解析 △ 动作、精准匹配场景资产、情境动态换装、台词声画解耦），严禁降级使用简化死模板。
+- **批次聚合质检**：20 个并发任务完成后统一收集汇总，执行全量资产纯洁性、原著逐字一致性门禁与 0 视频生成红线质检。
 
-```text
-PROJECT_ROOT -> confirmed-asset check -> required script preview -> recursive inventory
--> complete script extraction -> version-level asset requirement universe
--> existing-asset human-confirmation matching -> image-requirement workbook
--> asset generation || segment-project preparation
--> generated-asset coverage review -> TSC prompts -> complete pre-video delivery
--> explicit video command -> selected-backend adaptation/pilot/batch -> take review -> download
+### 6. 【预视频交付红线：严格 0 视频生成】
+- 本流水线为预视频交付工程，全流程仅输出标准化工程配置文件、分镜脚本与素材映射，**严禁执行任何底层的视频渲染与生成命令（严禁 --run / 任务提交）**。
+
+---
+
+## 三、 `/auto batch<N>` 标准生产流水线 SOP
+
+当触发 `/auto batch<N>` 时，智能体必须严格依照以下 6 个步骤推进：
+
+```mermaid
+flowchart TD
+    A[识别 batchN 指令并解析集数区间 [Start, End]] --> B[步骤 1: 地毯式提取权威 Docx 目标集数剧本切片]
+    B --> C[步骤 2: 空间与情境感知解析 (场景匹配 + 角色换装)]
+    C --> D[步骤 3: 真实大模型 LLM 物理转译 (△动作行深度分镜)]
+    D --> E[步骤 4: 物理资产纯洁性连线 (0连线污染, 素材映射)]
+    E --> F[步骤 5: 规范工程包写入 (4项集配置 + 5项SEG工件)]
+    F --> G[步骤 6: 自动化测试门禁校验并输出 Batch 交付验收报告]
 ```
 
-Modes:
+### 步骤 1：精确提取剧本切片与前置门禁（Deterministic Slicing & Parity Gate）
+- **确定性提取落盘**：执行 `python auto/scripts/sync-docx-slices.py --batch <range>`，直接将原著 docx 中的文字 100% 逐字提取并写入各集 `script-source.txt`；
+- **前置逐字门禁核验**：执行 `python auto/scripts/verify-docx-parity.py --batch <range>`，确保每集 `script-source.txt` 与 docx 字符一致性达 100%（0 遗漏、0 压缩），通过后方可流转下一步。
 
-- `/分集`: execute one complete screenplay through the complete pre-video delivery
-  gate and stop before all video side effects. Read
-  `references/episode-command.md` and preserve its `episode_prevideo` state lock on
-  every resume. This mode may generate required `st2` asset images and pauses for
-  aggregate human asset selection, but it never uploads to LibTV, creates/updates a
-  node, runs video generation, downloads video or enters Stage 7.
-- `auto plan`: create planning artifacts and clearly labeled `planned_unverified`
-  prompt drafts with no paid generation. It cannot produce a complete pre-video
-  delivery unless every required reference was already supplied and approved.
-- `auto images`: execute the complete in-scope `st2` image workflow directly
-  without intermediate review pauses or a separate `st2` command.
-  Then present all generated asset candidates for human asset selection. After required character,
-  location, prop and sound references are approved, compile every
-  generation-segment prompt exclusively through Auto's integrated TSC module and
-  present the complete pre-video package for final approval.
-- `auto video`: continue a human-approved package through the explicitly selected
-  video backend. LibTV generation and no-watermark download apply only when LibTV is
-  selected;
-  it does not generate images. This or an equally explicit user command containing
-  an unambiguous request to generate video is the only video authorization.
-- `auto resume`: read `auto-state.json` and continue only the next unresolved stage.
-  When generation-required image rows remain, call `direct_image_run` directly for
-  those in-scope batches; do not ask for another `st2` command or wait for an image
-  token. Skip the tool check when no image generation is required.
-- Bare `auto` with `PROJECT_ROOT` means the complete workflow through validated
-  pre-video delivery. Its image stage calls `direct_image_run` only when generation
-  work exists, and it stops before every video side effect. Completing assets, prompts or approval does not
-  imply permission to generate video; wait for `auto video` or an equally explicit
-  command for this project.
+### 步骤 2：全量资产多级检索与情境换装
+- 读取项目资产库（全量场景库、全量角色库）；
+- 对每一场戏的标头执行空间感知匹配（如 `182-1 日 内 教室` $\rightarrow$ `SCENE_040_多媒体阶梯教室`）；
+- 对主要角色（如黄子名）根据当前场景环境与剧情行为动态绑定服装（如课堂绑定 `CHAR_001` 牛仔衬衫常服）。
 
-Do not use for one unrelated image, traditional screenplay formatting, pure
-live-action planning, or a LibTV operation unrelated to narrative production.
+### 步骤 3：默认 20 并发真实大模型逐幕物理动作转译（拒绝手写复述剧本）
+- **默认启用 20 并发分析架构**：批次内的 20 集一键分发至 20 个独立的 AI 语义推理 Worker 并发并行推进，绝不串行低效等待；
+- **【核心禁令】Prompt 严禁手写剧本正文**：主智能体派发任务时，Prompt 仅传递目标目录路径，**严禁大模型在 Prompt 里复述、概括剧本**；
+- **必须物理读取本地文件**：每个 Worker 必须通过 `view_file` 等文件读取工具，直接读取对应分集目录下的 `script-source.txt`，逐字逐句进行微观动作链、机位调度、视线朝向、声唇硬锁与自然拟音转译。
 
-## Closed Skill Boundary
+### 步骤 4：物理资产连线与纯洁性审查
+- 每个 SEG 只连入该分段实际肉眼出镜的角色、场景与道具；
+- 将资产图片拷贝/软链至该 SEG 的本地 `资产/` 目录；
+- 输出精确的 `素材映射.txt`，确保 `{{Mixed N}}` 映射 100% 同源且 0 悬空。
 
-During an Auto task, never load, read or invoke any Skill outside this Auto
-directory. This prohibition includes similarly named story, director, prompt,
-image-generation and LibTV Skills. Use only files and modules contained in
-this Auto directory:
+### 步骤 5：标准化写入工程物料
+- 在交付目录中按集创建工程包：
+  * **单集根目录**：`episode-package-config.json`、`production-profile.json`、`script-source.txt`、`segment-progress.json`、`分集大纲.txt`、`分集质检报告.txt`；
+  * **单 SEG 目录**：`prompt.txt`、`script-verbatim.txt`、`storyboard-execution.txt`、`tsc-handoff.yaml`、`素材映射.txt`、`资产/`。
 
-| Internal module | Owned responsibility |
-|---|---|
-  | `references/internal-production-rules.md` | Story scope, canon, blocking, coverage, camera, asset contracts and review boundary |
-| `references/internal-image-execution.md` | `direct_image_run` route, task batching, concurrency, failure repair and mechanical validation |
-  | `modules/tsc/MODULE.md` | Exclusive backend-neutral video-prompt compiler using script, textual shot execution, character, location, prop and sound references |
+### 步骤 6：批次聚合质检与交付报告
+- 调度总线（Batch Aggregator）统一收集 20 个并发分支产物，执行自动化质检套件：
+  1. 运行 `python auto/scripts/verify-docx-parity.py --batch <range>` 确认原著逐字一致性 100% PASS；
+  2. 3 大红线检查（0 假动作、0 视频生成、0 连线污染）；
+  3. 场景与服装匹配率检查（100% 命中真实资产，0 海滩无脑兜底）；
+  4. 声唇锁与道具负向姿态锁合规性检查；
+  5. 跨集位置与状态承接连续性检查；
+- 输出该 Batch 的《交付与验收检查点报告》（Markdown 格式），标记该批次已锁定完成，等待用户检阅或推进下一个 Batch。
 
-Read `references/internal-module-manifest.md` for the complete load order,
-capability map, allowed execution interfaces and forbidden dependencies.
-For `/分集`, also read `references/episode-command.md` before Stage 0.
+---
 
-Detailed integrated modules live under `modules/`. Enter each module through its
-`MODULE.md`; read its renamed `SOURCE-SKILL.md` and local resources only when the
-active stage requires them. Never resolve those source snapshots through the Skill
-loader. Auto's main hard gates, current internal rules and user locks have precedence
-over conflicting historical language inside a snapshot.
+## 四、 默认 20 并发分析架构规范（20-Concurrency Parallel Architecture）
 
-`direct_image_run` and the `libtv` executable are optional execution interfaces, not
-Skills. Require `direct_image_run` only when unresolved asset rows actually require
-image generation. Require `libtv` only after `videoBackend: libtv` is selected. If a
-required tool for the active execution stage is absent, mark that stage `BLOCKED`;
-its absence never blocks backend-neutral story, segmentation, storyboard, TSC prompt
-or pre-video packaging work.
+针对每批固定 20 集的分集生产工程，调度系统默认采用 20 并发极速推进架构：
 
-## Authority And Precedence
-
-1. The complete user-authored script, verbatim dialogue and explicit per-shot locks.
-2. Accepted generated take and its observed end state.
-3. Canonical identity, wardrobe, location, prop and LOOK assets.
-4. Selected video backend's verified capability contract, when a backend is selected.
-5. `auto` workflow and project state.
-6. Auto internal-module defaults.
-
-Never let a style layer change story state, identity, wardrobe, blocking,
-geography, screen direction or a user-locked shot.
-
-## Production Profile Contract
-
-Auto is genre-, audience-, period-, culture-, medium- and model-neutral. Every new
-project must instantiate `templates/production-profile.json` before shot planning.
-The locked profile records content category, genres or documentary form, visual
-medium, audience, tone, observable LOOK suffix, prompt language, timed-phase range,
-state-change contract, written-continuity mode and sound/music policy. Do not inherit
-these choices from a previous project, bundled example or target model.
-
-Every generated still or video prompt ends with the locked project LOOK suffix. It
-must describe observable medium, camera, lighting, color, texture and realism rather
-than merely naming a genre, title, studio or creator. Auto has no Skill-wide visual
-style default.
-
-## Project Intake And Asset Universe
-
-`PROJECT_ROOT` is mandatory for every new Auto project. Before any paid generation:
-
-1. Check whether the project already contains user-confirmed asset decisions or an
-   approved Auto manifest. Record what was found, but do not trust a filename,
-   directory or old approval after its file hash changes.
-2. Preview the exact script portion requested by the user. When no narrower preview
-   was requested, present a concise episode/scene-indexed preview of the complete
-   script. This preview always happens, whether confirmed assets exist or not.
-3. Run `scripts/scan-project-root.cjs --project-root <PROJECT_ROOT>`, then fully read
-   every candidate screenplay, image asset, asset manifest and wardrobe table in its
-   usable native form. The complete in-scope script remains the sole authority for
-   required content.
-4. Build `asset-requirements.json` with one row per required asset version. Create one
-   entity per visible character; split a character for every distinct wardrobe or
-   visible state, a location for every distinct story time/lighting state, and a prop
-   for every distinct visible state. Every row carries episode, scene and exact script
-   evidence.
-5. Match existing files using filename, directory, manifest and wardrobe-table
-   evidence, but do not inspect or judge image content. An existing image is valid
-   only when the user already confirmed that exact file and its recorded hash still
-   matches. All other existing images are delivered as `pending_human_review`.
-6. Preserve every human-confirmed valid asset byte-for-byte. Never regenerate, overwrite, rename,
-   move or delete it merely to normalize the project. Generate only missing or human-rejected
-   versions, writing to new non-conflicting paths.
-7. Before image generation, build `生图需求全集.xlsx` from the registry. It contains
-   one generation-required asset version per row and the required columns defined by
-   `templates/asset-requirements-workbook.md`.
-
-After generation, check only whether each requested output file exists, record its path,
-and deliver it directly for human review. Do not inspect,
-rank, describe, approve or reject image content. `STATUS=COMPLETE` is legal only when
-the user has approved every required version and full-series and every episode have
-zero missing, human-rejected and pending-human-review versions; otherwise use
-`STATUS=NEED_FIX` and list every issue.
-
-Every action that changes a visible state must be compiled as `动作前状态 -> 动作顺序
--> 动作后状态`. The pre-action state must make relevant unchanged conditions explicit,
-including appearance, wardrobe, posture, gaze, hands, contact, prop ownership and
-location. Dependent steps such as pick up, open, contact, apply, reveal, release or
-withdraw must remain in causal order.
-
-## Script Fidelity Contract
-
-Read `references/content-review-contract.md` before segmentation, TSC compilation,
-repair or final delivery. Structural validators do not prove semantic correctness.
-Every final package requires an independently read, hash-bound `content-review.json`;
-its executable gate runs before formal packaging and again before completion.
-Preparation helpers must initialize semantic review as pending, never passed.
-
-The source script is the sole authority for what happens and in what order.
-The textual shot execution translates every in-scope script event into executable
-prompt phases. Reference images constrain only identity, wardrobe, location and
-props; they never replace, summarize or rewrite the script.
-
-Every piece of content inside the user-defined script scope is causal backbone.
-Auto must not classify any script line as secondary, decorative, redundant or
-safe to remove.
-
-Before shot planning, extract the complete in-scope script verbatim into
-`script-source.txt`. Preserve every non-empty scene heading, cast line, action,
-dialogue, reaction, pause, transition, insert, entrance, exit and story-relevant
-sound cue in source order.
-
-These are hard requirements:
-
-1. Segment passages are contiguous and non-overlapping. Concatenating every segment's
-   `script-verbatim.txt` in episode order must reproduce `script-source.txt` exactly.
-2. The ordered per-segment `storyboard-execution.txt` files must collectively execute
-   every source line. If any line is omitted, revise the textual execution before
-   generating assets or prompts.
- 3. Every TSC segment prompt uses the fixed production format:
-    `【角色清单】`, `【资源引用】`, `【场景】`, `【站位与起始状态】`,
-    the production profile's permitted number of continuous timed camera fields,
-    and `【结束状态】`.
-    Every visual `{{Mixed N}}` is introduced in `【角色清单】` as `主体N` with
-    an observable appearance description. After that section, use only `主体N`
-    for people, locations and props. Character names may remain only in voice
-    ownership text and inside verbatim spoken dialogue. Never emit `CHAR###`,
-    named character locks or a second alias system beside `主体N`.
-    Internal `C###`, `SHOT###`, `镜头###` and `clipId` identifiers are audit metadata,
-    not prompt prose; omit them from every delivered video `prompt.txt` while
-    retaining them where needed for traceability in handoffs and audit files. Use
-    only the timed range in a delivered phase heading, without `镜头N`.
- 4. The complete source passage remains in the audit files. The final video prompt
-    uses textual shot execution and does not paste the source passage or repeat
-    each shot's source wording.
-5. Never shorten, merge, drop or summarize exact dialogue, speakers, actions,
-   reactions, pauses, entrances, exits, props, transitions, causal order or endpoints.
-   Every source line is causal backbone. If all
-   content cannot fit the duration or model limit, split at a natural beat or increase
-   the planned duration. Never resolve a duration conflict by deleting story content.
- 6. Keep one continuous scene and related action chain inside one generation segment whenever it can
-      be completed within the configured model-supported maximum duration. If related material crosses a segment boundary,
-      the next Prompt inherits the previous Prompt's written ending state only.
-      Never use, extract, upload or claim a video tail frame as continuity input.
-      The next Prompt's starting blocking must match the previous ending blocking,
-      pose, facing, eyeline, hand occupancy, props, contact and unfinished action.
-      The prior `【结束状态】` must contain one complete observable continuity snapshot:
-      physical scene and lighting, fixed anchors, every visible character's exact
-      position, level, posture, facing, eyeline, left-hand state, right-hand state,
-      held-object ownership, contact, prop position, appearance state and unfinished
-      action. When the next segment is a direct continuation, copy that snapshot
-      verbatim into `【站位与起始状态】`; do not summarize, reinterpret or rebuild it.
- 7. When a reference image conflicts with the script or textual shot execution, the script wins.
-    Ignore incidental image content or regenerate the image; never alter the story to
-    match a generated frame.
-  8. Every prompt uses the project or user-specified visual-style suffix as a
-    deterministic final style constraint. The suffix may refine rendering, palette,
-    lighting and medium, but must never change story state, identity, wardrobe,
-    blocking, geography, chronology or user-locked action.
-  9. Before every action that changes a character, prop, garment, held object,
-    posture, gaze, contact, location or visible appearance, state the complete
-    observable pre-action state, then describe the action in causal order and state
-    the resulting condition. Do not let a prompt jump directly to a changed state.
-    For a localized appearance change, name the one exact target and freeze every
-    non-target part before, during and after the action. For nail painting, identify
-    the target hand and digit; only the nail physically touched by the brush may gain
-    color, while every other nail remains at its recorded unchanged color.
-
-Any missing source line, incomplete textual execution mapping, absent verbatim segment
-script or prompt-coverage failure blocks TSC final compilation and video generation.
-
-Prompt compilation is a semantic Agent operation owned by the internal TSC module,
-not an external Skill or a project-specific prompt generator. For every project,
-write source prompts from the finalized handoffs under `modules/tsc/MODULE.md`, run
-`scripts/validate-video-prompts.cjs` for the complete set, package with
-`scripts/build-episode-segment-package.ps1`, and use
-`scripts/generate-segment-libtv.cjs` for dry-run or authorized execution. A
-project-local preparation helper may exist, but Auto must remain able to apply its
-rules and gates without treating that helper as authoritative.
-
-## Hard Gates
-
-1. Establish duration, aspect ratio, output root, rights boundary, generation budget
-   unit, attempt limit and hard stop. Record `videoBackend` as `unselected`, `libtv` or
-   `custom`; target model fields may remain unbound for backend-neutral pre-video work.
-2. Before paid image generation, finalize the canon, prompts and image budget.
-   `script-source.txt` and `script-coverage-report.md` must prove 100 percent
-   coverage of the in-scope source script; a summary-only execution plan is not final.
-   When a character, wardrobe state, location or prop lacks a suitable supplied
-   reference, or the user explicitly requests a newly generated canonical asset,
-   create exactly three base candidates by default. Use stable `-V1`, `-V2` and `-V3` job suffixes,
-   record all three in the finalized image manifest and include all three in
-   `imageLimit`. A user-specified candidate count overrides this default exactly.
-   Do not generate three copies of an already supplied usable asset unless the
-   user explicitly requests new asset generation, and do not
-    apply this asset default to per-shot states. Each provider-failed candidate
-   still follows the separate bounded `-R1/-R2/-R3` repair rule.
-   Generate images only through `st2`; never substitute `st`, `st1`, `st3`,
-    `st4`, the standalone `gpt-image` CLI, or another provider. `auto`, `auto images`,
-    and `auto resume` call `direct_image_run` directly for all in-scope `st2` image
-    batches; do not ask the user to send a separate `st2` command and never block on
-    a missing authorization token, marker, continuation token, or prior plugin
-    message. Start each batch only when its contracts are final. Do not pause for
-    human review between these batches. Use a plain `prompts` array only when all
-    tasks in the batch are text-only. Otherwise submit `jobs` with a stable `jobID`,
-    final `prompt`, and zero or more per-task `referencePaths`; each path must remain
-    inside the supplied Auto `projectRoot` or the current session's generated-output
-    root. Never attach one shared reference set to unrelated jobs. Auto decides the
-    batch composition, batch size, dependency order and number of tool calls from the
-    finalized task graph; do not impose a fixed 10-task grouping policy. Wait for a
-    tool call to finish and verify every requested image was generated and saved
-    before starting dependent work. The finalized project manifest may
-    contain any total number of in-scope image tasks, including hundreds;
-    `imageLimit` records that exact project total and is not capped at 10, 30, or
-    100. The provider executor hard-caps simultaneous requests at 10 independently
-    of task count, so a call containing more than 10 tasks is queued through the
-    same worker pool rather than denied or run all at once.
-   `auto plan` and `auto video` never call the image tool.
-   After all non-video images and bounded failure-repair groups are complete, check
-   only whether every requested output was generated and saved. Do not inspect image
-   content and do not load an image-review Skill. Present every generated candidate
-   directly for human asset selection. After that decision,
-    resolve user-supplied or explicitly required speaking-character voice references
-    plus user-specified or story-critical sound references, compile TSC handoffs and prompts, and
-    present one complete pre-video package containing every approved reference, exact
-    manifests, every `tsc-handoff.yaml`, and every TSC `prompt.txt`. A count,
-    directory path, partial batch, legacy prompt or
-    placeholder prompt is not a complete delivery. Wait for explicit final approval;
-    never infer approval from silence or begin video generation before this gate.
-
-   Do not create a separate human data-entry gate for `character_visual_lock` or
-   `wardrobe_visual_lock`. Derive explicit lock text from screenplay facts, character
-   bibles, wardrobe tables, asset manifests and approved generation prompts. When an
-   approved image is the only appearance authority, bind the lock to that exact
-   `{{Mixed N}}` reference and use a reference-preservation contract that freezes its
-   face/build, hair/headwear, garment silhouette/layers, color/material and unique
-   trim without claiming to inspect or describe the pixels. Never ask the user to fill
-   dozens of appearance rows already backed by approved references.
-  3. Before paid video generation, require an explicit current-project video command,
-     an explicitly selected video backend, completed pre-video delivery, and
-     human-approved character references, location references, prop references, any
-     user-required speaking-character voice references, any user-specified or
-     story-critical sound references and TSC-compiled motion prompts. LibTV login,
-     bound canvas and live model schema are required only when `videoBackend: libtv`.
-     A missing applicable reference blocks final prompt
-    compilation; Auto must not draft a substitute prompt. A voice-reference audit
-    timeout does not block video generation when the user has authorized it; record
-    the unresolved audio reference and continue without binding that audio node.
-4. When the user explicitly selects Seedance 2.5 and specifies 15-30 second
-   generation segments, use that range during planning and prompt packaging; do not
-   replace it with the unknown-model 15-second fallback. Before paid video execution,
-   resolve the exact LibTV model key and confirm the live endpoint supports the planned
-    values. If the live schema conflicts, block execution instead of deleting story content.
-   A missing or temporarily unavailable live schema never blocks story analysis,
-   dramatic-beat segmentation, `script-verbatim.txt` or `storyboard-execution.txt`.
-    It blocks only LibTV-specific duration adaptation, LibTV compatibility verification
-    and LibTV video execution. It does not block a backend-neutral final TSC handoff,
-    final prompt or `final_prevideo` package. Retry the read-only model query only when
-    LibTV is selected, and distinguish the Agent model from the video target model.
-5. One video generation unit has one narrative job, one dominant action chain
-   and one primary camera behavior. Split overloaded clips even if 30s is allowed.
-    Derive its duration from the script's action, dialogue, reaction and transition
-   needs; never impose equal chunks or a fixed seconds-per-shot formula and never
-   omit script content to satisfy a target duration. Treat
-   reference images as role-bound identity, wardrobe, location, prop or LOOK
-     controls. Asset images constrain appearance only; they do not define time zero
-     or replace written shot actions. Written handoff state is
-     the only cross-segment continuity mechanism.
-   6. Use the complete textual shot execution to author each prompt. Feed only the current
-      segment's approved character, location, prop and required audio assets. For
-      related cross-segment material, copy the previous written ending state into
-      the next starting blocking. Bind only character, location, prop and required
-      sound assets.
-    7. Generate and approve a representative pilot clip before batch video creation.
-      Record its observed written ending state when a following Prompt continues
-      from that state; no frame extraction or frame registration is required.
-8. Treat `libtv node ... --run` as synchronous. Wait for process exit; do not
-   add external polling, background execution or arbitrary timeout.
-9. Never fabricate model names, schema fields, node keys, URLs, login state,
-   canvas binding, generation success or downloaded files.
-10. For every failed image task, regardless of whether the provider charged for
-      the failed attempt, record the original failure and automatically create exactly
-      three repaired replacement candidates. Submit those three candidates with a
-      provider concurrency limit of 3 through a direct `direct_image_run` call; do
-      not ask for another `st2`, image token, or `auto resume` command. Give each
-      replacement a stable suffix (`-R1`, `-R2`, `-R3`) and apply the smallest practical prompt
-      correction while preserving identity, story state, continuity and reference
-      roles. This is one bounded repair group, not a replay of the failed request.
-      If a replacement candidate also fails, record it but do not recursively spawn
-      another repair group.
-11. **Complete pre-video delivery is mandatory.** After aggregate image approval and
-       before final pre-video approval or any video operation, verify that every required original image
-      slot has at least one generated local image file, verbatim script and
-      textual shot-execution coverage is complete, every failed slot has
-      its bounded repair result recorded, every generation segment has a complete
-      `tsc-handoff.yaml` and non-empty TSC-generated `prompt.txt`, and the
-      package has complete image, sound-reference and prompt
-       manifests. Deliver all of those artifacts together. Never call a partial image
-       set, a prompt-only set or a directory-only summary complete.
-
-## Workflow
-
-Read `references/workflow.md` and execute its gates in order. Create each segment
-from `templates/package-layout.md` and initialize episode state from
-`templates/auto-state.json`. New projects use `auto-episode-package/2.3`,
-`auto-state/2.2` and a locked `productionProfile`. Existing 2.1/2.0 and 2.2/2.1 projects may
-resume under their recorded legacy contract without silently changing creative or
-model settings.
-
-Once `asset-requirements.json` and every image prompt are final, execute two branches
-concurrently when tools and dependencies permit:
-
-- Asset branch: generate only registry rows marked `generationRequired: true`, then
-  check file existence, deliver all candidates for human review and update coverage.
-- Segment-project branch: create contiguous segment passages, `script-verbatim.txt`,
-  `storyboard-execution.txt`, segment folders and draft handoffs with stable
-  `planned_unverified` asset slots.
-
-Do not finalize asset-dependent `tsc-handoff.yaml`, compile final `prompt.txt`, mark
-slots `package_slot_verified` or build the formal pre-video package until generated
-assets pass file-existence checks and aggregate human approval. Auto does not inspect
-image content or infer human approval from a candidate's existence or ordering.
-
-When the user requests character/location/prop/sound assets packaged separately
-by episode segment before LibTV node connection, create one data-only episode JSON and run
-`scripts/build-episode-segment-package.ps1` using
-`templates/episode-segment-package.json` as the starting schema. Keep stable `{{Mixed N}}` slots for
-missing assets. This model-neutral export is a review and handoff artifact; it does
-not replace the final approved-reference TSC gate or make draft prompts runnable.
-For Auto 2.3 `final_prevideo`, use one shared package `outputRoot`, canonical episode
-folders `第1集`, `第2集`, ... `第X集`, and exact segment folders `SEG001`, `SEG002`, ...
-inside each episode. Do not append story titles to final segment folder names. Draft
-and legacy package naming remains unchanged.
-
-Apply a minimum-necessary sound policy. Never invent, request, reserve a
-`{{Mixed N}}` slot for, or mention environmental ambience, room tone, reverb,
-foley, sound effects or music merely because a scene could contain it. Include
-such sound only when the user supplied or explicitly requested it, or when its
-exact presence is indispensable to the plot, timing or transition. Always check
-and report missing independent character references for visible characters and
-preserve exact dialogue and speaker ownership. Report a missing external voice
-reference only when the user supplied or requested one, or the selected backend
-requires one. Other missing sound references are reported only when they meet the
-user-specified or story-critical test, with the reason recorded.
-
-Every segment prompt must state its intended generation duration on the first
-line using the story-derived value recorded in the handoff and package JSON, for
-example `生成时长：16秒。`. The packaging script verifies or adds this line
-without duplicating it. Before video generation, the same duration must be
-supported by and selected in the live model schema; prompt text does not override
-the model's duration control.
-
-Separate the duration, every named section, the timed-shot block, the ending state
-and the final style suffix with blank lines. Use the minimum sufficient number of
-timed fields within the locked profile range. Every timed field uses
-`主体锁：...；各主体仅保留自身主体锁，不交换外观。` The exact
-`productionProfile.prompt.endingPolicy` is mandatory immediately before the final
-visual-style suffix. It always forbids video tail-frame continuity; its music clause
-follows the project's locked sound plan.
-
-After character, location and prop asset images have explicit human approval, or the
-human explicitly confirms that the project has no visual-reference slots,
-    record their decisions in the aggregate asset review, then generate
-the fixed deliverable `资产总表.xlsx` according to
-`templates/asset-workbook.md`. This is a required embedded-image workbook, not
-a CSV or path-only manifest.
-
-At every transition:
-
-1. Validate the current artifact with `references/quality-gates.md`.
-2. Write the artifact and state update atomically before starting the next stage.
-3. Keep exactly one clip `in_progress`; other clips remain `planned`, `blocked`,
-   `accepted`, or `downloaded`.
-4. On resume, trust accepted artifacts and observed state. Do not regenerate them
-   unless the user explicitly requests a revision.
-
-For LibTV commands, follow Auto's internal `references/libtv-runbook.md` and call
-the `libtv` executable directly. Do not load a LibTV Skill. The CLI's live `--help`
-and model schema outrank examples in this Skill.
-
-## Output Contract
-
-Every delivered segment directory has one immutable filesystem contract. This is
-the only valid per-segment delivery shape; names are literal and are never localized,
-renamed, omitted or supplemented:
-
-```text
-<segment-folder>/
-|-- 资产/
-|   |-- 场景/
-|   |-- 道具/
-|   |-- 人物/
-|   `-- 声音参考/
-|-- prompt.txt
-|-- script-verbatim.txt
-|-- storyboard-execution.txt
-|-- tsc-handoff.yaml
-`-- 素材映射.txt
+```mermaid
+flowchart TD
+    CMD["/auto batch(N) 指令触发"] --> DISPATCH["Orchestrator 并发调度总线 (Concurrency Dispatcher)"]
+    DISPATCH --> W01["Worker 01: Ep (N-19) 真实AI解析"]
+    DISPATCH --> W02["Worker 02: Ep (N-18) 真实AI解析"]
+    DISPATCH --> W03["Worker 03: Ep (N-17) 真实AI解析"]
+    DISPATCH --> WDOT["... Worker 04 ~ 19 并发独立推进 ..."]
+    DISPATCH --> W20["Worker 20: Ep (N) 真实AI解析"]
+    
+    W01 --> AGG["Batch Aggregator (批次聚合器)"]
+    W02 --> AGG
+    W03 --> AGG
+    WDOT --> AGG
+    W20 --> AGG
+    
+    AGG --> GATE["跨集状态承接 + 0假动作 + 0视频生成 门禁验收"]
+    GATE --> REPORT["输出 Batch 统一交付检查点报告"]
 ```
 
-The segment root contains exactly these six entries. `资产/` contains exactly the
-four named directories, even when one is empty. No per-segment missing report,
-preview, manifest, image board or convenience file may be added. Missing-reference
-status belongs in `素材映射.txt` and episode-level reports. `storyboard-execution.txt`
-is mandatory plain text: it records shot execution that is compiled into `prompt.txt`;
-it never represents or points to an additional image asset.
+### 1. 20 并发分发机制（Dispatch Principle）
+- 批次启动时，调度器一次性生成 20 个独立的作业任务（Job 01 ~ Job 20），并行下发给 20 个大模型推理子进程或智能体上下文；
+- 严禁单线程串行循环 `for ep in 1..20: wait()` 导致长时间低效阻塞。
 
-Only four asset categories are legal in `资产/`: character images under `人物`,
-location images under `场景`, prop images under `道具`, and audio under `声音参考`.
-Every `{{Mixed N}}` mapping must point to one of those four directories.
+### 2. 并发分支四大支柱守恒（Concurrent Full-Pillar Parity）
+- 每一个并发分支（Worker）必须 100% 独立且完整履行四大支柱：
+  * **支柱 1**：独立逐字深度解析该集 `△` 舞台动作行，绝不偷工减料；
+  * **支柱 2**：多级语义遍历全量场景资产库，精准绑定真实场景（0 海滩兜底）；
+  * **支柱 3**：剧情与空间感知动态换装（根据剧情处境绑定常服/潜水服/金瞳版）；
+  * **支柱 4**：多角色镜头调度与声画解耦（说话开口，OS独白强制双唇严密闭合）；
+- **防降级防护网**：严禁因追求并发吞吐而降级使用机械死模板或简陋规则拼接！
 
-The minimum episode delivery is:
+### 3. 聚合质检与跨集承接（Batch Aggregation & Quality Gate）
+- 20 个并发任务完成后，聚合器集中审查单集产物与全局连贯性：
+  * 角色状态承接（前一集末尾姿态与下一集开场姿态逻辑连续）；
+  * 0 视频级联输入与 0 视频渲染指令校验（`backend: unselected`）；
+  * 确认通过后生成统一批次质检报告。
 
-```text
-script-source.txt
-script-coverage-report.md
-content-review.json
-production-profile.json
-project-inventory.json
-script-preview.md
-asset-requirements.json
-生图需求全集.xlsx
-asset-requirements-workbook-result.json
-production-brief.md
-asset-bible.yaml
-资产总表.xlsx
-look-lock.md
-reference-manifest.yaml
-auto-state.json
-image-delivery-manifest.json
-<segment-folder>/资产/场景/
-<segment-folder>/资产/道具/
-<segment-folder>/资产/人物/
-<segment-folder>/资产/声音参考/
-<segment-folder>/prompt.txt
-<segment-folder>/script-verbatim.txt
-<segment-folder>/storyboard-execution.txt
-<segment-folder>/tsc-handoff.yaml
-<segment-folder>/素材映射.txt
-release-report.md
-```
-
-Do not create empty downstream artifacts for a blocked stage. Record the block
-in `auto-state.json` and the release report.
-
-The mandatory delivery immediately before video generation is narrower than the
-eventual full-production delivery above. It must contain all successfully generated
-independent images, exact failed/repaired image status, `image-delivery-manifest.json`,
-`script-source.txt`, `script-coverage-report.md`, the locked `production-profile.json`, all per-segment
-`script-verbatim.txt` and `storyboard-execution.txt` files,
-all segment `tsc-handoff.yaml` and TSC-compiled `prompt.txt` files,
-all required sound references and `release-report.md`.
-Surface the image files themselves through visible previews or direct local links;
-do not make the user infer the deliverables from counts or search the package tree.
-
-## Completion Report
-
-  Report only verified facts: project path, scene/clip count, planned versus
-  generated duration, generated asset candidates, the exact asset delivery manifest,
-per-segment TSC handoff/prompt completeness, sound-reference
-completeness, LibTV generated/failed
-clips, downloaded files, `资产总表.xlsx` path/status/embedded asset count, attempt
-usage, blocking issues and the exact next resumable stage.
-
-## Rights
-
-This self-contained Auto Skill is MIT licensed. It does not load or incorporate
-external Skill rule sets. The image provider, `direct_image_run` tool and LibTV
-CLI retain their own service terms and implementation licenses. Named platform or
-studio shorthand must be translated into observable production descriptors and
-must not imply affiliation. See `THIRD_PARTY_NOTICES.md`.

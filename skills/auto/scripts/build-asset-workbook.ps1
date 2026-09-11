@@ -56,7 +56,8 @@ if ($null -eq $inputData.assets) {
 }
 
 $assetIds = New-Object 'System.Collections.Generic.HashSet[string]' ([StringComparer]::Ordinal)
-$approvedSourcePaths = New-Object 'System.Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
+$pathComparer = if ([IO.Path]::DirectorySeparatorChar -eq '\') { [StringComparer]::OrdinalIgnoreCase } else { [StringComparer]::Ordinal }
+$approvedSourcePaths = New-Object 'System.Collections.Generic.HashSet[string]' ($pathComparer)
 $allowedCategories = @($characterCategory, $sceneCategory, $propCategory)
 $expectedImageCount = 0
 foreach ($asset in @($inputData.assets)) {

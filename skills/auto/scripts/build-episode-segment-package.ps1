@@ -67,7 +67,8 @@ function Test-PathInside {
     param([string]$Candidate, [string]$Root)
     $rootWithSeparator = [IO.Path]::GetFullPath($Root).TrimEnd([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
     $candidateFull = [IO.Path]::GetFullPath($Candidate)
-    return $candidateFull.StartsWith($rootWithSeparator, [StringComparison]::OrdinalIgnoreCase)
+    $comparison = if ([IO.Path]::DirectorySeparatorChar -eq '\') { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
+    return $candidateFull.StartsWith($rootWithSeparator, $comparison)
 }
 
 function Assert-SourceFile {
@@ -376,8 +377,10 @@ if (-not [IO.Path]::IsPathRooted([string]$config.outputRoot)) {
     Assert-RelativePackagePath -PathValue ([string]$config.outputRoot) -Context 'outputRoot'
 }
 $outputRoot = Resolve-ConfiguredPath -PathValue $config.outputRoot -ConfigDirectory $configDirectory
-$episodeRoot = [IO.Path]::GetFullPath((Join-Path $outputRoot $config.episodeFolder))
-if (-not (Test-PathInside -Candidate $episodeRoot -Root $outputRoot)) {
+$segmentsAtRoot = $config.deliveryLayout -eq 'segments_at_root'
+if ($config.deliveryLayout -and $config.deliveryLayout -notin @('episode', 'segments_at_root')) { throw 'Unsupported deliveryLayout.' }
+$episodeRoot = if ($segmentsAtRoot) { [IO.Path]::GetFullPath($outputRoot) } else { [IO.Path]::GetFullPath((Join-Path $outputRoot $config.episodeFolder)) }
+if (-not $segmentsAtRoot -and -not (Test-PathInside -Candidate $episodeRoot -Root $outputRoot)) {
     throw "episodeFolder escapes outputRoot: $episodeRoot"
 }
 $outputParent = Split-Path -Parent $outputRoot
@@ -639,8 +642,9 @@ $finalEpisodeRoot = $episodeRoot
 if (-not (Test-Path -LiteralPath $outputRoot -PathType Container)) {
     New-Item -ItemType Directory -Path $outputRoot -Force | Out-Null
 }
-$stagingEpisodeRoot = Join-Path $outputRoot ('.auto-stage-{0}-{1}' -f $PID, [Guid]::NewGuid().ToString('N'))
-$backupEpisodeRoot = Join-Path $outputRoot ('.auto-backup-{0}-{1}' -f $PID, [Guid]::NewGuid().ToString('N'))
+$transactionParent = if ($segmentsAtRoot) { $outputParent } else { $outputRoot }
+$stagingEpisodeRoot = Join-Path $transactionParent ('.auto-stage-{0}-{1}' -f $PID, [Guid]::NewGuid().ToString('N'))
+$backupEpisodeRoot = Join-Path $transactionParent ('.auto-backup-{0}-{1}' -f $PID, [Guid]::NewGuid().ToString('N'))
 $episodeRoot = $stagingEpisodeRoot
 $stageCommitted = $false
 $backupCreated = $false

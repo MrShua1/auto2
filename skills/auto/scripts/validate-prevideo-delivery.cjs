@@ -493,9 +493,12 @@ if (config.schemaVersion === 'auto-episode-package/2.3') {
   }
 }
 
+if (config.deliveryLayout && !['episode', 'segments_at_root'].includes(config.deliveryLayout)) fail('Unsupported deliveryLayout.');
 const formalRoot = state.preVideoDelivery.formalDeliveryRoot
   ? resolveFrom(options.projectRoot, state.preVideoDelivery.formalDeliveryRoot, 'Formal delivery root')
-  : path.join(resolveFrom(path.dirname(options.config), config.outputRoot, 'Package output root'), config.episodeFolder);
+  : config.deliveryLayout === 'segments_at_root'
+    ? resolveFrom(path.dirname(options.config), config.outputRoot, 'Package output root')
+    : path.join(resolveFrom(path.dirname(options.config), config.outputRoot, 'Package output root'), config.episodeFolder);
 if (!fs.existsSync(formalRoot) || !fs.statSync(formalRoot).isDirectory()) fail(`Formal delivery root is missing: ${formalRoot}`);
 const contentReview = validateContentReview({ root: options.projectRoot, configPath: options.config, config, state, formalRoot });
 const actualSegmentNames = listNames(formalRoot, 'Formal delivery').filter((name) => /^SEG\d+/.test(name));

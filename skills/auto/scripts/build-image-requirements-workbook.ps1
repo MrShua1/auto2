@@ -10,6 +10,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $resolvedRoot = [IO.Path]::GetFullPath($ProjectRoot)
+$pathComparison = if ([IO.Path]::DirectorySeparatorChar -eq '\') { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
 if (-not (Test-Path -LiteralPath $resolvedRoot -PathType Container)) {
     throw "Project root not found: $resolvedRoot"
 }
@@ -24,7 +25,7 @@ function Resolve-ProjectPath {
         [IO.Path]::GetFullPath((Join-Path $resolvedRoot $PathValue))
     }
     $rootPrefix = $resolvedRoot.TrimEnd([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
-    if ($resolved -ne $resolvedRoot -and -not $resolved.StartsWith($rootPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+    if (-not $resolved.Equals($resolvedRoot, $pathComparison) -and -not $resolved.StartsWith($rootPrefix, $pathComparison)) {
         throw "$Context must remain inside PROJECT_ROOT: $PathValue"
     }
     return $resolved
@@ -47,7 +48,7 @@ if ($data.schemaVersion -ne 'auto-asset-requirements/1.0') { throw "Unsupported 
 if (-not $data.projectId -or -not $data.projectRoot -or -not $data.scriptSource -or -not $data.scriptSha256 -or $null -eq $data.rows) {
     throw 'Asset requirement registry must define projectId, projectRoot, scriptSource, scriptSha256 and rows.'
 }
-if ([IO.Path]::GetFullPath([string]$data.projectRoot) -ne $resolvedRoot) { throw 'Asset requirement registry PROJECT_ROOT does not match the command PROJECT_ROOT.' }
+if (-not [IO.Path]::GetFullPath([string]$data.projectRoot).Equals($resolvedRoot, $pathComparison)) { throw 'Asset requirement registry PROJECT_ROOT does not match the command PROJECT_ROOT.' }
 $scriptPath = Resolve-ProjectPath -PathValue ([string]$data.scriptSource) -Context 'Script source'
 if (-not (Test-Path -LiteralPath $scriptPath -PathType Leaf)) { throw "Script source not found: $scriptPath" }
 if ((Get-FileHash -LiteralPath $scriptPath -Algorithm SHA256).Hash -ine [string]$data.scriptSha256) { throw 'Script source hash changed after the asset universe was built.' }

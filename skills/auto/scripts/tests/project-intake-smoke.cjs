@@ -23,7 +23,7 @@ function run(command, args) {
 
 function runWorkbook() {
   const invocation = `try { & '${workbookBuilder.replace(/'/g, "''")}' -ProjectRoot '${temporary.replace(/'/g, "''")}' -Force } catch { [Console]::Error.WriteLine($_.Exception.ToString()); [Console]::Error.WriteLine($_.ScriptStackTrace); exit 1 }`;
-  return run('powershell', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', invocation]);
+  return run(process.platform === 'win32' ? 'powershell' : 'pwsh', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', invocation]);
 }
 
 function writeRegistry(status, validationStatus, generationStatus, confirmationEvidence) {
@@ -83,7 +83,7 @@ try {
   const scan = run(process.execPath, [scanner, '--project-root', temporary]);
   assert.strictEqual(scan.status, 0, `${scan.stdout}\n${scan.stderr}`);
   const inventory = JSON.parse(fs.readFileSync(path.join(temporary, 'project-inventory.json'), 'utf8'));
-  assert.deepStrictEqual(inventory.scripts.map((item) => item.path).sort(), ['scripts\\episode-02.md', '剧本.txt'].sort());
+  assert.deepStrictEqual(inventory.scripts.map((item) => item.path.replace(/\\/g, '/')).sort(), ['scripts/episode-02.md', '剧本.txt'].sort());
   assert.ok(!inventory.otherRelevantFiles.some((item) => ['prompt.txt', 'report.md'].includes(item.path)));
   assert.strictEqual(inventory.images.length, 2);
   assert.ok(inventory.images.every((item) => !('width' in item) && !('height' in item)));

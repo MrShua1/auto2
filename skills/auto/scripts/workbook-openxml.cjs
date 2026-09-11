@@ -42,7 +42,7 @@ async function build(root, inputPath, kind, force) {
       ids.add(asset.assetId);
       const sheet = sheets[asset.category]; const row = sheet.addRow([asset.name]); row.height = 140;
       for (const [imageIndex, image] of asset.images.entries()) {
-        const file = path.resolve(root, image.source); const key = file.toLowerCase();
+        const file = path.resolve(root, image.source); const key = process.platform === 'win32' ? file.toLowerCase() : file;
         if (sources.has(key) || !image.role || image.approvalStatus !== 'approved' || image.approvedAt !== input.approvedAt || hash(file).toLowerCase() !== String(image.sha256).toLowerCase()) throw new Error('Unapproved/duplicate/changed workbook image.');
         sources.add(key);
         const buffer = fs.readFileSync(file); const dimensions = await sharp(buffer).metadata();

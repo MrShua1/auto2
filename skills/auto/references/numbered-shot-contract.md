@@ -51,7 +51,7 @@ physical lines. Each label occurs once at the start of its field.
 景别/拍摄/运镜：明确景别、拍摄角度及摄影机行为。
 主体：主体锁：本镜适用的编号主体锁；各主体仅保留自身主体锁，不交换外观。
 动作/表演：动作前状态：具体必要前态；动作顺序：具体有序动作；动作后状态：具体结果。不重复全套静态约束。
-位置承接：承接本段起始状态或上一镜的具体位置、朝向与接触变化。
+位置承接：必须明确人物在场景中的具体物理锚点、身体与视线朝向（如：身体面朝画面右侧大凸窗，背对玄关大门），严禁使用“承接上一镜”等泛泛空词。
 台词/O.S./OS：实际说话主体、同步/画外/内心声归属及逐字台词；没有则写“无”。
 视效：仅剧情要求的效果；没有则写“无”。
 环境音/动作音：与当前画面和动作一致的自然声音，如溪流声、脚步声；没有则写“无新增”。
@@ -134,3 +134,25 @@ and use the existing non-continuation mechanism, not a fabricated matching snaps
 The independent reader still checks source fidelity, true physical continuity,
 ownership, action feasibility and whether each ten-field shot actually enacts the
 source. Mechanical parsing does not certify natural-language correctness.
+
+
+## Segment Boundary Continuity, Spatial Orientation and Tail-Action Avoidance
+
+To prevent AI video diffusion models (e.g., Seedance 2.5) from duplicating actions across segment boundaries (such as throwing an iPad in SEG001 and then holding it and throwing it again in SEG002) or flipping character orientations:
+
+1. **Tail-Action Avoidance (Segment Endings Must Be Static)**:
+   - In the final shot of any segment (SEG_N), active transitional or irreversible physical actions (e.g., throwing a device, opening a door, falling over, sitting up, punching) MUST NOT occur.
+   - The final shot and `【结束状态】` must conclude on a **static holding state / suspense freeze** (e.g., character sits on bed gripping the tablet, staring angrily at the screen with chest heaving). The action is NOT executed in the ending shot.
+
+2. **Head-Action Trigger (Action Triggers in Next Segment Opening Shot)**:
+   - Dynamic transitional actions must be shifted to the opening shot (Shot 1) of the subsequent segment (SEG_(N+1)).
+   - SEG_(N+1) `【站位与起始状态】` inherits the static holding pose from SEG_N's ending. Then, Shot 1 of SEG_(N+1) triggers and completes the dynamic action (e.g., character throws the tablet onto the bed).
+   - This guarantees that the physical action occurs exactly once across the entire production timeline, completely eliminating the model's propensity to reset props into hands and duplicate actions.
+
+3. **Explicit Facing Direction & Landmark Anchor in Continuity (`位置承接：`)**:
+   - The `位置承接：` field of every shot, as well as `【站位与起始状态】` and `【结束状态】`, MUST explicitly specify:
+     a. Landmark physical anchor in the set (e.g., center of master bed leaning on pillows).
+     b. Body torso orientation (e.g., torso facing stage-right bay window, 90 degrees to door).
+     c. Eyeline and head direction (e.g., head angled 45 degrees toward window).
+     d. Relative spatial topology (e.g., back to double entrance doors, bedside table on left).
+   - Vague phrases like "承接上一镜" are strictly forbidden. Orientation must be preserved 1:1 across segment boundaries to avoid 180-degree axis jumping or bloopers.

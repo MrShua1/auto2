@@ -86,6 +86,10 @@ files and records cancelled=true separately from the saved phase.
   valid candidate in declared manifest order only as a provisional reference;
   mark that binding `provisional_unapproved` and never describe it as selected or
   approved.
+- **Master Anchor Image-to-Image Pipeline for Wardrobe Variants**:
+  * For any character with multiple wardrobe states or variants, the canonical master candidate (`<CHAR_ID>_MASTER`) must be generated first.
+  * Subsequent wardrobe variants MUST NOT be generated via independent text-to-image prompts. They must be generated as Image-to-Image jobs referencing the base master anchor (`referencePaths: [masterImagePath]`), passing the master base64/file input with explicit facial and bone identity preservation prompts.
+  * Prompt must strictly enforce Chinese ethnicity (authentic East Asian features, dark eyes) and explicit 3D wardrobe differentiation (no generic "workwear/coastal drama" prompt templates).
 - Preserve every successful candidate for aggregate human review. The user may
   approve one or more variants for a canonical asset.
 
