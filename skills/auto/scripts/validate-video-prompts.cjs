@@ -140,6 +140,7 @@ function validatePrompt(config, profile, segment, prompt) {
   const characterRegex = characterSubjectNumbers.length > 0
     ? new RegExp(`主体(?:${characterSubjectNumbers.join('|')})\\b`)
     : /主体\d+/;
+  const segmentAnchorDepths = new Map();
   let previousActionText = '';
   for (const [index, match] of timed.entries()) {
     const field = match.body;
@@ -194,6 +195,33 @@ function validatePrompt(config, profile, segment, prompt) {
         const hasFacingDirection = /面朝|面向|背向|背对|朝向|身体朝|面部朝|直视|注视|仰卧|平躺|伏卧|俯视/i.test(positionText);
         if (!hasFacingDirection) {
           fail(`${context} shot ${index + 1} violates Rule 0.16: 位置承接 ("${positionText}") must explicitly declare character facing/body orientation ("面朝...", "身体与面部面向...", "背对..."), and inherit orientation from previous character shot.`);
+        }
+      }
+
+      // Rule 0.17 Check: Physical Spatial Anchor & Depth Invariant Gate
+      const hasVagueFloatingDirection = /(?:正前方|正后方|向前方|前方海面|面朝前方|面向前方|背朝后方|背向后方)/i.test(positionText);
+      if (hasVagueFloatingDirection) {
+        fail(`${context} shot ${index + 1} violates Rule 0.17: 位置承接 ("${positionText}") contains forbidden vague floating direction words ("正前方", "正后方", "向前方", "前方海面"). Must use physical anchor + depth layer (e.g. "面向深景处的远景大海", "背向近景细沙").`);
+      }
+      if (/(?:面朝正?前方|面向正?前方|走向正?前方|跑向正?前方|正前方海面|前方海面)/i.test(actionText)) {
+        fail(`${context} shot ${index + 1} violates Rule 0.17: 动作/表演 ("${actionText}") contains forbidden vague floating direction words. Must anchor direction to physical entity and depth layer (e.g. "望向深景处的远景海面").`);
+      }
+
+      if (hasCharacterInShot) {
+        const anchorMatches = [
+          ...positionText.matchAll(/(远景|近景|深景)(?:处的)?(大海|海面|细沙|沙地|沙滩|陆地|门外)/g),
+          ...positionText.matchAll(/(大海|海面|细沙|沙地|沙滩|陆地|门外)(?:处于|作为)?(远景|近景|深景)/g),
+        ];
+        for (const m of anchorMatches) {
+          const depth = m[1].includes('景') ? m[1] : m[2];
+          const anchor = m[1].includes('景') ? m[2] : m[1];
+          const normAnchor = (anchor === '海面') ? '大海' : ((anchor === '沙地' || anchor === '沙滩') ? '细沙' : anchor);
+          const normDepth = (depth === '深景' || depth === '远景') ? '远景' : depth;
+          if (!segmentAnchorDepths.has(normAnchor)) {
+            segmentAnchorDepths.set(normAnchor, normDepth);
+          } else if (segmentAnchorDepths.get(normAnchor) !== normDepth) {
+            fail(`${context} shot ${index + 1} violates Rule 0.17: spatial anchor depth drift detected! Anchor "${normAnchor}" was established as "${segmentAnchorDepths.get(normAnchor)}", but switched to "${normDepth}". In a single segment, anchor depth is invariant.`);
+          }
         }
       }
       previousActionText = actionText;

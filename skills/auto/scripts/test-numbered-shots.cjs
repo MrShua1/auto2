@@ -162,4 +162,35 @@ test('shot with character specifying facing direction passes Rule 0.16', () => {
   assert.equal(f.run().timedRanges, 2);
 });
 
+test('vague floating direction words in 位置承接 fails Rule 0.17', () => {
+  const f = fixture();
+  const modified = f.prompt.replace('位置承接：双脚留在岸边石块右侧，身体仍面向溪流。', '位置承接：主体1身体与面部正向面朝正前方大海，背对陆地细沙。');
+  assert.throws(() => f.run(modified), /Rule 0.17.*forbidden vague floating direction words/);
+});
+
+test('vague floating direction words in 动作/表演 fails Rule 0.17', () => {
+  const f = fixture();
+  const modified = f.prompt.replace('动作后状态：竿线绷紧，右手仍握竿。', '动作后状态：主体1转头面朝正前方，双眸凝视。');
+  assert.throws(() => f.run(modified), /Rule 0.17.*forbidden vague floating direction words/);
+});
+
+test('spatial anchor depth drift within segment fails Rule 0.17', () => {
+  const f = fixture();
+  const shot1 = f.prompt.slice(0, f.prompt.indexOf('【镜头2】'));
+  const shot2 = f.prompt.slice(f.prompt.indexOf('【镜头2】'));
+  const modShot1 = shot1.replace('位置承接：双脚留在岸边石块右侧，身体仍面向溪流。', '位置承接：苏醒原位，身体面向深景处的远景大海，背向近景细沙。');
+  const modShot2 = shot2.replace('位置承接：双脚留在岸边石块右侧，身体仍面向溪流。', '位置承接：苏醒原位，身体面向近景大海，背向远景细沙。');
+  assert.throws(() => f.run(modShot1 + modShot2), /Rule 0.17.*spatial anchor depth drift detected/);
+});
+
+test('spatial anchor with consistent depth passes Rule 0.17', () => {
+  const f = fixture();
+  const shot1 = f.prompt.slice(0, f.prompt.indexOf('【镜头2】'));
+  const shot2 = f.prompt.slice(f.prompt.indexOf('【镜头2】'));
+  const modShot1 = shot1.replace('位置承接：双脚留在岸边石块右侧，身体仍面向溪流。', '位置承接：苏醒原位，身体面向深景处的远景大海，背向近景细沙。');
+  const modShot2 = shot2.replace('位置承接：双脚留在岸边石块右侧，身体仍面向溪流。', '位置承接：苏醒原位，身体面向深景处的远景大海，背向近景细沙。');
+  assert.equal(f.run(modShot1 + modShot2).timedRanges, 2);
+});
+
+
 

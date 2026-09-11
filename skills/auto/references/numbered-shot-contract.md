@@ -51,7 +51,7 @@ physical lines. Each label occurs once at the start of its field.
 景别/拍摄/运镜：明确景别、拍摄角度及摄影机行为。
 主体：主体锁：本镜适用的编号主体锁；各主体仅保留自身主体锁，不交换外观。
 动作/表演：动作前状态：具体必要前态；动作顺序：具体有序动作；动作后状态：具体结果。不重复全套静态约束。
-位置承接：必须明确人物在场景中的具体物理锚点、身体与面朝方向，并显式承接前序镜头中该角色的朝向（如：承接镜头2朝向，身体与面部严格面朝正前方大海，背对陆地细沙，严禁背朝大海），严禁使用“承接上一镜”等泛泛空词，严禁漏写面朝方向。
+位置承接：必须明确人物在场景中的具体物理锚点（如细沙滩、礁石、门外）、景深层次（远景/中景/近景/深景）、身体与面朝方向，并显式承接前序镜头中该角色的朝向与空间锚点（如：承接镜头2朝向与空间锚点，身体与面部严格正向面朝深景处的远景大海，后背严格背向近景陆地细沙，绝对严禁背朝远景大海或面朝近景陆地），绝对严禁使用“前方/后方/正前方/正后方”等孤立模糊词，严禁使用“承接上一镜”等泛泛空词，严禁漏写面朝方向与景深锚点。
 台词/O.S./OS：实际说话主体、同步/画外/内心声归属及逐字台词；没有则写“无”。
 视效：仅剧情要求的效果；没有则写“无”。
 环境音/动作音：与当前画面和动作一致的自然声音，如溪流声、脚步声；没有则写“无新增”。
@@ -181,12 +181,15 @@ To prevent AI video diffusion models (e.g., Seedance 2.5) from duplicating actio
    - SEG_(N+1) `【站位与起始状态】` inherits the static holding pose from SEG_N's ending. Then, Shot 1 of SEG_(N+1) triggers and completes the dynamic action (e.g., character throws the tablet onto the bed).
    - This guarantees that the physical action occurs exactly once across the entire production timeline, completely eliminating the model's propensity to reset props into hands and duplicate actions.
 
-3. **Explicit Facing Direction & Landmark Anchor in Continuity (`位置承接：`, Rule 0.16)**:
+3. **Explicit Facing Direction & Landmark Anchor in Continuity (`位置承接：`, Rule 0.16 & Rule 0.17)**:
    - The `位置承接：` field of every shot with characters, as well as `【站位与起始状态】` and `【结束状态】`, MUST explicitly specify:
      a. Landmark physical anchor in the set (e.g., center of master bed leaning on pillows, sand ground spot).
-     b. Body torso orientation and explicit facing direction (e.g., torso and face strictly facing the open sea, back to land, strictly zero back-to-sea reversal).
-     c. Eyeline and head direction (e.g., head turned facing stage-forward sea waves).
-     d. Relative spatial topology (e.g., back to double entrance doors, bedside table on left).
-     e. **Orientation Inheritance across Interleaved Shots**: When an objective character shot follows an interleaved POV shot, cutaway or prop insert, `位置承接：` MUST explicitly inherit the character's prior orientation (e.g. `承接镜头2主体1的朝向：主体1身体与面部严格保持正向面朝前方大海，背对陆地细沙（严禁身体背朝大海），挺拔巍然而立`), preventing models from flipping the character 180 degrees.
-   - Vague phrases like "承接上一镜" or omitting facing directions are strictly forbidden and fail validation immediately.
+     b. Depth plane association (e.g., `深景处的远景大海`, `近景细沙地面`, `中景走廊大门`).
+     c. Body torso orientation and explicit facing direction tied to anchor and depth (e.g., torso and face strictly facing the background sea, back strictly facing foreground sand ground; strictly zero back-to-sea reversal).
+     d. Eyeline and head direction (e.g., head turned facing background sea waves).
+     e. Relative spatial topology (e.g., back to double entrance doors, bedside table on left).
+     f. **Orientation & Anchor-Depth Inheritance across Interleaved Shots**: When an objective character shot follows an interleaved POV shot, cutaway or prop insert, `位置承接：` MUST explicitly inherit the character's prior orientation and anchor-depth relation (e.g. `承接镜头2主体1的朝向与空间锚点：主体1身体与面部严格正向面朝深景处的远景大海，后背严格背向近景陆地细沙（绝对严禁背朝远景大海或面朝近景陆地），挺拔巍然而立`), preventing models from flipping the character 180 degrees.
+     g. **Ban Vague Direction Words (Rule 0.17)**: Pure floating directions such as `正前方`, `前方`, `正后方`, `后方` without depth plane and concrete physical anchor are strictly banned.
+     h. **Anchor Depth Invariance Across Segment (Rule 0.17)**: If an anchor is established as background (e.g. `远景大海`), it must remain background throughout the segment.
+   - Vague phrases like "承接上一镜" or omitting facing directions/depth anchors are strictly forbidden and fail validation immediately.
 
