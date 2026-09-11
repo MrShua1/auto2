@@ -138,21 +138,27 @@ function validatePrompt(config, profile, segment, prompt) {
       const fields = validateFields(match, `${context} shot ${index + 1}`);
       if (profile.prompt.stateChangeContract === 'explicit_pre_action_ordered_action_post_action') validateAction(fields.get('动作/表演'), `${context} shot ${index + 1}`);
       validateSound(fields.get('环境音/动作音'), profile, `${context} shot ${index + 1}`);
+
+      const sceneText = fields.get('场景/时间/光线') || '';
+      const actionText = fields.get('动作/表演') || '';
+      const framingText = fields.get('景别/拍摄/运镜') || '';
+      const characterText = fields.get('人物') || '';
+      const visualDescription = (sceneText + ' ' + actionText + ' ' + framingText).replace(/[“"][^”"\n]*[”"]/g, '');
+      const hasUnderwaterSeabed = /海底|水下(?:礁石|珊瑚|暗流|生物|海鱼|游鱼)/i.test(visualDescription);
+      const hasSurfaceLand = /海滩|沙滩|陆地/i.test(visualDescription);
+      if (hasUnderwaterSeabed && hasSurfaceLand) {
+        const hasCharacterOnLand = /主体\d+/i.test(characterText) && /(?:平躺|站立|跪坐|站起身|立于|迈步|手抚|握)/i.test(actionText);
+        if (hasCharacterOnLand) {
+          fail(`${context} shot ${index + 1} violates Rule 0.13: cross-medium static double exposure (character physically present on land/beach while simultaneously rendering see-through underwater seabed). Decouple into objective reaction and subjective dive/underwater shots.`);
+        }
+        const isSubjectivePOV = /主观(?:视角|视点|镜头)|POV|大俯角|俯瞰/i.test(framingText + ' ' + actionText);
+        if (!isSubjectivePOV) {
+          fail(`${context} shot ${index + 1} violates Rule 0.13: cross-medium transition from surface/beach to underwater requires an explicit subjective POV camera perspective.`);
+        }
+      }
     }
     if ((field.match(/主体锁：/g) || []).length !== 1 || !field.includes('各主体仅保留自身主体锁，不交换外观。')) {
       fail(`${context} timed range ${index + 1} must contain exactly one complete subject lock.`);
-    }
-    const hasUnderwaterSeabed = /海底|水下(?:礁石|珊瑚|暗流|生物|海鱼|游鱼)/i.test(field);
-    const hasSurfaceLand = /海滩|沙滩|陆地/i.test(field);
-    if (hasUnderwaterSeabed && hasSurfaceLand) {
-      const hasCharacterOnLand = /人物：\s*主体\d+/i.test(field) && /(?:平躺|站立|跪坐|站起身|立于|迈步|手抚)/i.test(field);
-      if (hasCharacterOnLand) {
-        fail(`${context} shot ${index + 1} violates Rule 0.13: cross-medium static double exposure (character physically present on land/beach while simultaneously rendering see-through underwater seabed). Decouple into objective reaction and subjective dive/underwater shots.`);
-      }
-      const isSubjectivePOV = /主观(?:视角|视点)|POV|大俯角|俯瞰/i.test(field);
-      if (!isSubjectivePOV) {
-        fail(`${context} shot ${index + 1} violates Rule 0.13: cross-medium transition from surface/beach to underwater requires an explicit subjective POV camera perspective.`);
-      }
     }
   }
 
