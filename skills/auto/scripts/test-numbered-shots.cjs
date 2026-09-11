@@ -87,7 +87,7 @@ test('physical continuity ignores line order, not physical values', () => { cons
 test('old persisted profiles keep timed heading format', () => { const f = fixture(); delete f.config.productionProfile.prompt.shotFormat; assert.equal(resolveProductionProfile(f.config).prompt.shotFormat, 'timed_legacy'); });
 test('spoken fictional subject label does not create an asset reference', () => { const f = fixture(); assert.equal(f.run(f.prompt.replace('台词/O.S./OS：无。', '台词/O.S./OS：主体1说：“老王是隔壁村的张三。”')).timedRanges, 2); });
 test('spoken dialogue with subject placeholder tokens fails Rule 0.12', () => { const f = fixture(); assert.throws(() => f.run(f.prompt.replace('台词/O.S./OS：无。', '台词/O.S./OS：主体1说：“主体99是文件里的编号。”')), /Rule 0.12/); });
-test('cross-medium static double exposure fails Rule 0.13', () => { const f = fixture(); assert.throws(() => f.run(f.prompt.replace('溪流岸边，白天，树隙自然光。', '海滩海面与海底深海，白天，海浪波光。')), /Rule 0.13/); });
+test('cross-medium static double exposure fails Rule 0.13', () => { const f = fixture(); assert.throws(() => f.run(f.prompt.replace('溪流岸边，白天，树隙自然光。', '海滩沙地，白天，可清晰透视海底暗流礁石。')), /Rule 0.13/); });
 test('empty action fails under existing state-change contract', () => { const f = fixture(); assert.throws(() => f.run(f.prompt.replace(/动作\/表演：[^\n]+/, '动作/表演：无。')), /action requires/); });
 test('empty action marker values also fail', () => { const f = fixture(); assert.throws(() => f.run(f.prompt.replace(/动作\/表演：[^\n]+/, '动作/表演：动作前状态：无；动作顺序：无；动作后状态：无。')), /concrete execution/); });
 test('unchanged observational profile does not acquire mandatory action markers', () => { const f = fixture(); f.profile.prompt.stateChangeContract = 'none'; assert.equal(f.run(f.prompt.replace(/动作\/表演：[^\n]+/, '动作/表演：固定机位观察岸边的竿梢。')).timedRanges, 2); });

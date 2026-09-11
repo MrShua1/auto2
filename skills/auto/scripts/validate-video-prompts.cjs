@@ -142,13 +142,16 @@ function validatePrompt(config, profile, segment, prompt) {
     if ((field.match(/主体锁：/g) || []).length !== 1 || !field.includes('各主体仅保留自身主体锁，不交换外观。')) {
       fail(`${context} timed range ${index + 1} must contain exactly one complete subject lock.`);
     }
-    const hasSurfaceBeach = /海面|海滩|沙滩|陆地|海岸/i.test(field);
-    const hasUnderwaterSeabed = /海底|水下|深海/i.test(field);
-    if (hasSurfaceBeach && hasUnderwaterSeabed) {
-      const hasDivePOV = /(?:镜头跟随视线前推|前推|俯冲|切入水面|穿透水面|扎入水面|潜入水[中下]|潜行下潜)[^。\n]*(?:水下|水体|海底|逐渐显露|礁石)/i.test(field);
-      const mentionsCharacterBodyInShot = /人物：[^。\n]*?主体1/i.test(field) || /动作\/表演：[^。\n]*?(?:主体1(?:平躺|站立|跪坐|站起身|立于|迈步|手抚))/i.test(field);
-      if (!hasDivePOV || mentionsCharacterBodyInShot) {
-        fail(`${context} shot ${index + 1} violates Rule 0.13: cross-medium conflict between surface and underwater scenes without valid subjective dive POV trajectory, causing double-exposure artifacts.`);
+    const hasUnderwaterSeabed = /海底|水下(?:礁石|珊瑚|暗流|生物|海鱼|游鱼)/i.test(field);
+    const hasSurfaceLand = /海滩|沙滩|陆地/i.test(field);
+    if (hasUnderwaterSeabed && hasSurfaceLand) {
+      const hasCharacterOnLand = /人物：\s*主体\d+/i.test(field) && /(?:平躺|站立|跪坐|站起身|立于|迈步|手抚)/i.test(field);
+      if (hasCharacterOnLand) {
+        fail(`${context} shot ${index + 1} violates Rule 0.13: cross-medium static double exposure (character physically present on land/beach while simultaneously rendering see-through underwater seabed). Decouple into objective reaction and subjective dive/underwater shots.`);
+      }
+      const isSubjectivePOV = /主观(?:视角|视点)|POV|大俯角|俯瞰/i.test(field);
+      if (!isSubjectivePOV) {
+        fail(`${context} shot ${index + 1} violates Rule 0.13: cross-medium transition from surface/beach to underwater requires an explicit subjective POV camera perspective.`);
       }
     }
   }
