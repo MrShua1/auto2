@@ -121,3 +121,45 @@ test('CLI validates consecutive physical-state inheritance without repeated dial
     assert.notEqual(run().status, 0);
   } finally { fs.rmSync(root, { recursive: true, force: true }); }
 });
+
+test('unmotivated subjective POV without gaze trigger fails Rule 0.14', () => {
+  const f = fixture();
+  const shot1 = f.prompt.slice(0, f.prompt.indexOf('【镜头2】'));
+  const shot2 = f.prompt.slice(f.prompt.indexOf('【镜头2】'));
+  const modifiedShot2 = shot2
+    .replace('景别/拍摄/运镜：中景，平视，固定机位。', '景别/拍摄/运镜：第一人称主观视角POV，大俯角下倾。')
+    .replace('动作/表演：动作前状态：主体1右手握竿，竿梢低垂；动作顺序：主体1轻提竿梢后停住；动作后状态：竿线绷紧，右手仍握竿。', '动作/表演：动作前状态：镜头俯瞰水面；动作顺序：镜头向前推移下倾；动作后状态：镜头固定在水面。');
+  const modified = shot1 + modifiedShot2;
+  assert.throws(() => f.run(modified), /Rule 0.14.*unmotivated subjective POV/);
+});
+
+test('subjective POV motivated by prior gaze trigger passes Rule 0.14', () => {
+  const f = fixture();
+  const shot1 = f.prompt.slice(0, f.prompt.indexOf('【镜头2】'));
+  const shot2 = f.prompt.slice(f.prompt.indexOf('【镜头2】'));
+  const modifiedShot1 = shot1.replace('动作后状态：竿线绷紧，右手仍握竿。', '动作后状态：主体1猛然转头望向前方水面，双眸凝视。');
+  const modifiedShot2 = shot2
+    .replace('景别/拍摄/运镜：中景，平视，固定机位。', '景别/拍摄/运镜：第一人称主观视角POV，大俯角下倾。')
+    .replace('动作/表演：动作前状态：主体1右手握竿，竿梢低垂；动作顺序：主体1轻提竿梢后停住；动作后状态：竿线绷紧，右手仍握竿。', '动作/表演：动作前状态：主观视线承接主体1目光；动作顺序：视线焦点推近观察水下动向；动作后状态：视线焦点锁定游鱼。');
+  const modified = modifiedShot1 + modifiedShot2;
+  assert.equal(f.run(modified).timedRanges, 2);
+});
+
+test('hallucinated terrain or elevation drift fails Rule 0.15', () => {
+  const f = fixture();
+  const modified = f.prompt.replace('位置承接：双脚留在岸边石块右侧，身体仍面向溪流。', '位置承接：海滩最高礁石沙坎处，主体1迎风挺立。');
+  assert.throws(() => f.run(modified), /Rule 0.15.*hallucinated spatial terrain/);
+});
+
+test('shot with character missing facing direction in 位置承接 fails Rule 0.16', () => {
+  const f = fixture();
+  const modified = f.prompt.replace('位置承接：双脚留在岸边石块右侧，身体仍面向溪流。', '位置承接：双脚留在岸边石块右侧。');
+  assert.throws(() => f.run(modified), /Rule 0.16.*facing\/body orientation/);
+});
+
+test('shot with character specifying facing direction passes Rule 0.16', () => {
+  const f = fixture();
+  assert.equal(f.run().timedRanges, 2);
+});
+
+

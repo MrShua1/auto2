@@ -132,6 +132,15 @@ function validatePrompt(config, profile, segment, prompt) {
     fail(`${context} timed ranges must be between the starting and ending state sections.`);
   }
   validateTiming(timed, duration, context);
+  const assets = segment.assets || [];
+  const characterSubjectNumbers = assets
+    .filter((item) => item.assetType === 'character')
+    .map((item) => item.mixedToken.match(/\d+/)?.[0])
+    .filter(Boolean);
+  const characterRegex = characterSubjectNumbers.length > 0
+    ? new RegExp(`主体(?:${characterSubjectNumbers.join('|')})\\b`)
+    : /主体\d+/;
+  let previousActionText = '';
   for (const [index, match] of timed.entries()) {
     const field = match.body;
     if (numberedFormat) {
@@ -143,6 +152,7 @@ function validatePrompt(config, profile, segment, prompt) {
       const actionText = fields.get('动作/表演') || '';
       const framingText = fields.get('景别/拍摄/运镜') || '';
       const characterText = fields.get('人物') || '';
+      const isSubjectivePOV = /主观(?:视角|视点|镜头)|POV|大俯角|俯瞰/i.test(framingText + ' ' + actionText);
       const visualDescription = (sceneText + ' ' + actionText + ' ' + framingText).replace(/[“"][^”"\n]*[”"]/g, '');
       const hasUnderwaterSeabed = /海底|水下(?:礁石|珊瑚|暗流|生物|海鱼|游鱼)/i.test(visualDescription);
       const hasSurfaceLand = /海滩|沙滩|陆地/i.test(visualDescription);
@@ -151,7 +161,6 @@ function validatePrompt(config, profile, segment, prompt) {
         if (hasCharacterOnLand) {
           fail(`${context} shot ${index + 1} violates Rule 0.13: cross-medium static double exposure (character physically present on land/beach while simultaneously rendering see-through underwater seabed). Decouple into objective reaction and subjective dive/underwater shots.`);
         }
-        const isSubjectivePOV = /主观(?:视角|视点|镜头)|POV|大俯角|俯瞰/i.test(framingText + ' ' + actionText);
         if (!isSubjectivePOV) {
           fail(`${context} shot ${index + 1} violates Rule 0.13: cross-medium transition from surface/beach to underwater requires an explicit subjective POV camera perspective.`);
         }
@@ -163,13 +172,37 @@ function validatePrompt(config, profile, segment, prompt) {
           fail(`${context} shot ${index + 1} violates Rule 0.13: gaze penetration mimics virtual sightline optical refocus, NOT physical splash/submersion! Strictly forbidden to hallucinate physical disturbance ("浪花与气泡向两侧划开散去", "水体由...过渡为...").`);
         }
       }
+
+      // Rule 0.14 Check: Eyeline Causality & Gaze Trigger Gate
+      if (isSubjectivePOV && index > 0) {
+        const hasGazeTrigger = /转头|望向|看向|抬眼|凝视|视线|直视|注视|远眺/i.test(previousActionText + ' ' + actionText);
+        if (!hasGazeTrigger) {
+          fail(`${context} shot ${index + 1} violates Rule 0.14: unmotivated subjective POV cut! Prior objective shot or current shot must contain explicit physical gaze trigger ("转头面向...", "视线望向...", "直视...").`);
+        }
+      }
+
+      // Rule 0.15 Check: Single-Scene Micro-Spatial Parity & Anti-Drift Gate
+      const positionText = fields.get('位置承接') || '';
+      const hasHallucinatedTerrain = /(?:最高礁石|沙坎(?:之巅|处)?|断崖(?:之上|之巅)?|绝壁|高台之巅)/i.test(positionText);
+      if (hasHallucinatedTerrain && !/(?:走|跑|爬|登上|迈向).*(?:礁石|沙坎|断崖|高台)/i.test(actionText)) {
+        fail(`${context} shot ${index + 1} violates Rule 0.15: hallucinated spatial terrain/elevation drift in 位置承接 ("${positionText}"). Character must preserve co-location parity unless walking/climbing action is explicit.`);
+      }
+
+      // Rule 0.16 Check: Facing Direction Hard Lock & Cross-Shot Orientation Inheritance Gate
+      const hasCharacterInShot = characterRegex.test(characterText) && characterText !== '无' && !/第一人称主观|0人物|纯水下|纯画外/i.test(characterText);
+      if (hasCharacterInShot) {
+        const hasFacingDirection = /面朝|面向|背向|背对|朝向|身体朝|面部朝|直视|注视|仰卧|平躺|伏卧|俯视/i.test(positionText);
+        if (!hasFacingDirection) {
+          fail(`${context} shot ${index + 1} violates Rule 0.16: 位置承接 ("${positionText}") must explicitly declare character facing/body orientation ("面朝...", "身体与面部面向...", "背对..."), and inherit orientation from previous character shot.`);
+        }
+      }
+      previousActionText = actionText;
     }
     if ((field.match(/主体锁：/g) || []).length !== 1 || !field.includes('各主体仅保留自身主体锁，不交换外观。')) {
       fail(`${context} timed range ${index + 1} must contain exactly one complete subject lock.`);
     }
   }
 
-  const assets = segment.assets || [];
   validateSubjects(prompt, assets, context);
   const aliases = getCharacterAliasEntries(config, assets);
   assets.forEach((asset, index) => {
