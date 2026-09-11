@@ -78,6 +78,25 @@ Every unquoted 主体N in prompt prose must resolve to a bound visual asset, inc
 those in action, state and dialogue-speaker clauses. Quoted literal speech/sign text
 is preserved and is not an asset declaration.
 
+## Cinematic Grammar, POV Decoupling, And Single Physical Momentum (Rule 0.11)
+
+All numbered shots must strictly comply with cinematic shot grammar and perspective decoupling:
+1. **Objective vs Subjective POV Decoupling Gate**:
+   - Never merge third-person character observation/reaction (e.g. eye opening, ability activation) with first-person POV or environment X-Ray/penetration effects into a single shot.
+   - When the script describes sensory abilities (e.g. 水眼金睛, 透视), character gaze, or medium penetration (e.g. sea water turning transparent to reveal fish), it MUST be split into an authentic montage sequence:
+     - Shot A: Objective Reaction Shot (ECU / Close-up of character's face/eyes, golden light burst, lips strictly closed, zero lip movement).
+     - Shot B: Subjective POV Shot (High-angle POV looking down at the environment, expanding ripples, crystal transparency, marine life).
+     - Shot C: Reaction / Result Shot (Medium shot of character smiling or executing subsequent physical actions).
+2. **Shot Duration Budget & Single Physical Action Rule**:
+   - Short drama individual shot durations must stay within the 2.5s to 5.0s golden range (ECU 2.5~3.5s, POV/VFX 3.5~5.0s, dialogue 3.0~4.5s). Never cram 8~10s multi-stage actions into one shot.
+   - 动作顺序 must contain exactly ONE core physical momentum change. Multi-stage continuous transitions (e.g. eye opening + wave expanding + sea clearing + fish swimming + speaking/laughing) are strictly forbidden within a single shot.
+3. **POV Asset Purge & Ghost Mixed Elimination**:
+   - Zero Ghost Mixed: Only declare Mixed IDs for subjects that actually physically appear in this specific shot. Never output unrendered placeholder tokens like `{{Mixed 3}}`.
+   - In Subjective POV Shots: The observer's character asset (e.g. `{{Mixed 1}}`) MUST be purged from the shot's 主体锁 field to prevent video diffusion models from hallucinating floating human bodies/faces in the sea or sky.
+4. **Cinematic Audio-Visual Decoupling & O.S. Voiceover**:
+   - Spoken dialogue during a POV shot must be marked as `画外音（O.S.）`, with explicit note: `纯画外音配音回荡，出镜画面无人物，彻底规避口型同步失真风险`.
+   - Any character appearing in extreme close-up during internal monologue or ability burst must declare: `双唇严密闭合（Lips tightly closed, zero lip movement），严禁开口驱动`.
+
 Timing is both visible after each heading and retained as executable audit data.
 Each config segment must have one shotTimings row per shot, for example:
 
