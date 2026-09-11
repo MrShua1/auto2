@@ -96,6 +96,10 @@ All numbered shots must strictly comply with cinematic shot grammar and perspect
 4. **Cinematic Audio-Visual Decoupling & O.S. Voiceover**:
    - Spoken dialogue during a POV shot must be marked as `画外音（O.S.）`, with explicit note: `纯画外音配音回荡，出镜画面无人物，彻底规避口型同步失真风险`.
    - Any character appearing in extreme close-up during internal monologue or ability burst must declare: `双唇严密闭合（Lips tightly closed, zero lip movement），严禁开口驱动`.
+5. **Verbatim Dialogue Sacred & Zero Subject Placeholder Replacement (Rule 0.12)**:
+   - Any text inside Chinese quotes `“……”` or English quotes `"..."` representing spoken dialogue, voiceover (VO), offscreen dialogue (OS), or internal monologue MUST be 100% verbatim from the authoritative source script!
+   - Under NO circumstances may entity names (character names, fish species, prop items, locations) inside quotation marks be substituted with subject placeholders (`主体1`, `主体2`, `主体3`).
+   - Any prompt containing `[“"][^”"\n]*主体\d+[^”"\n]*[”"]` fails validation immediately.
 
 Timing is both visible after each heading and retained as executable audit data.
 Each config segment must have one shotTimings row per shot, for example:

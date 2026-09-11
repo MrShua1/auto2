@@ -176,6 +176,10 @@ function validatePrompt(config, profile, segment, prompt) {
   if (/CHAR\d{3}|角色锁|各角色|主体\d+-主体\d+/.test(prompt)) {
     fail(`${context} contains a legacy subject alias.`);
   }
+  const quotedSubjectMatch = prompt.match(/[“"][^”"\n]*?主体\d+[^”"\n]*?[”"]/);
+  if (quotedSubjectMatch) {
+    fail(`${context} violates Rule 0.12: quoted literal dialogue/speech contains forbidden subject placeholder token (${quotedSubjectMatch[0]}). Dialogue/O.S. lines must remain 100% verbatim from original script and must never substitute words with 主体N.`);
+  }
   if (/\bC\d{3}\b|\bSHOT\d{3,}\b|秒｜镜头\d+|\bclipId\b/i.test(prompt)) {
     fail(`${context} contains an internal planning identifier.`);
   }
