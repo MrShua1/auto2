@@ -52,7 +52,7 @@ physical lines. Each label occurs once at the start of its field.
 主体：主体锁：本镜适用的编号主体锁；各主体仅保留自身主体锁，不交换外观。
 动作/表演：动作前状态：具体必要前态；动作顺序：具体有序动作；动作后状态：具体结果。不重复全套静态约束。
 位置承接：必须明确人物在场景中的具体物理锚点（如细沙滩、礁石、门外）、景深层次（远景/中景/近景/深景）、身体与面朝方向，并显式承接前序镜头中该角色的朝向与空间锚点（如：承接镜头2朝向与空间锚点，身体与面部严格正向面朝深景处的远景大海，后背严格背向近景陆地细沙，绝对严禁背朝远景大海或面朝近景陆地），绝对严禁使用“前方/后方/正前方/正后方”等孤立模糊词，严禁使用“承接上一镜”等泛泛空词，严禁漏写面朝方向与景深锚点。
-台词/O.S./OS：实际说话主体、同步/画外/内心声归属及逐字台词；没有则写“无”。
+台词：实际说话主体与逐字台词；没有则写“无”。（注：剧本无OS必须人嘴说话，嘴唇同步张合发音，严禁O.S.标签污染；仅剧本有OS或纯POV方可写为画外音；兼容标签：台词：/对白：/画外音：/台词/O.S./OS：）
 视效：仅剧情要求的效果；没有则写“无”。
 环境音/动作音：与当前画面和动作一致的自然声音，如溪流声、脚步声；没有则写“无新增”。
 转场：到下一镜的具体衔接方式；连续拍摄则明确连续承接。
@@ -192,4 +192,14 @@ To prevent AI video diffusion models (e.g., Seedance 2.5) from duplicating actio
      g. **Ban Vague Direction Words (Rule 0.17)**: Pure floating directions such as `正前方`, `前方`, `正后方`, `后方` without depth plane and concrete physical anchor are strictly banned.
      h. **Anchor Depth Invariance Across Segment (Rule 0.17)**: If an anchor is established as background (e.g. `远景大海`), it must remain background throughout the segment.
    - Vague phrases like "承接上一镜" or omitting facing directions/depth anchors are strictly forbidden and fail validation immediately.
+
+4. **Dialogue Lip-Sync & Strict OS Voiceover Isolation (`台词：`, Rule 0.18)**:
+   - **On-Screen Speech (No OS in Script)**: If the script does not write `(OS)` and the character is on screen, it MUST be on-screen speech (`人嘴说话`).
+     * Field heading MUST use clean `台词：` (or `对白：`). NEVER include `O.S.` or `OS` in the heading or notes!
+     * `动作/表演：` MUST include physical mouth opening action (e.g. `主体1嘴唇根据台词清晰自然张合发音，面部肌肉自然配合咬字驱动，严禁紧闭双唇`).
+     * The dialogue line must conclude with explicit on-screen lock: `（主体1正常开口发声，双唇清晰自然张合咬字驱动，现场原声对白，严禁闭口，严禁生成画外音）`.
+   - **Voiceover / Inner Monologue (OS in Script or pure POV)**:
+     * Only when the original script explicitly designates `(OS)` or in pure subjective POV shots (0 characters on screen) can voiceover be used.
+     * When character is visible on camera during an OS line, character MUST be locked: `双唇严密闭合（Lips tightly closed, zero lip movement），内心独白画外音，严禁口型张开驱动`.
+
 

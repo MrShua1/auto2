@@ -40,16 +40,30 @@ function validateTiming(shots, duration, context) {
   }
 }
 
+function matchFieldLabel(line) {
+  for (const field of FIELDS) {
+    if (field === '台词/O.S./OS') {
+      if (/^(?:台词\/O\.S\.\/OS|台词|对白|台词\/对白|画外音|台词（画外音）|画外音（O\.S\.）|画外音（OS）|台词（O\.S\.）|台词（OS）)[：:]/.test(line)) {
+        return field;
+      }
+    } else if (line.startsWith(`${field}：`) || line.startsWith(`${field}:`)) {
+      return field;
+    }
+  }
+  return null;
+}
+
 function validateFields(shot, context) {
   const fields = new Map();
   let current;
   for (const rawLine of shot.body.trim().split(/\r?\n/)) {
     const line = rawLine.trim();
     if (!line) continue;
-    const label = FIELDS.find((field) => line.startsWith(`${field}：`));
+    const label = matchFieldLabel(line);
     if (label) {
       if (fields.has(label) || label !== FIELDS[fields.size]) throw new Error(`${context}: duplicate or out-of-order field ${label}.`);
-      fields.set(label, line.slice(label.length + 1).trim());
+      const colonIndex = line.search(/[：:]/);
+      fields.set(label, line.slice(colonIndex + 1).trim());
       current = label;
     } else {
       if (!current) throw new Error(`${context}: content before the first labeled field.`);
@@ -79,7 +93,10 @@ function validateSubjects(prompt, assets, context) {
   // legacy speech clause). Quoted actors in action/state fields remain bindings.
   let inDialogue = false;
   const prose = prompt.split('\n').map((line) => {
-    if (FIELDS.some((field) => line.trim().startsWith(`${field}：`)) || /^【/.test(line)) inDialogue = line.trim().startsWith('台词/O.S./OS：');
+    const trimmed = line.trim();
+    if (matchFieldLabel(trimmed) || /^【/.test(trimmed)) {
+      inDialogue = matchFieldLabel(trimmed) === '台词/O.S./OS';
+    }
     return inDialogue ? line.replace(/“[^”]*”|"[^"\n]*"/g, '') : line.replace(/((?:同步说|说|喊|问|答|OS|O\.S\.)\s*[：:]\s*)(?:“[^”]*”|"[^"\n]*")/g, '$1');
   }).join('\n');
   for (const match of prose.matchAll(/主体(\d+)/g)) {

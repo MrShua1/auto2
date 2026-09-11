@@ -192,5 +192,32 @@ test('spatial anchor with consistent depth passes Rule 0.17', () => {
   assert.equal(f.run(modShot1 + modShot2).timedRanges, 2);
 });
 
+test('on-screen spoken dialogue without physical mouth movement in action fails Rule 0.18', () => {
+  const f = fixture();
+  const modified = f.prompt
+    .replace('动作顺序：主体1轻提竿梢，嘴唇自然张合开口说话；', '动作顺序：主体1轻提竿梢后停住；')
+    .replace('台词/O.S./OS：无。', '台词：主体1说：“今天天气不错。”（主体1开口说话）');
+  assert.throws(() => f.run(modified), /Rule 0.18.*requires explicit physical mouth\/lip action/);
+});
+
+test('on-screen spoken dialogue with physical mouth movement passes Rule 0.18', () => {
+  const f = fixture();
+  const modified = f.prompt.replace('台词/O.S./OS：无。', '台词：主体1说：“今天天气不错。”');
+  assert.equal(f.run(modified).timedRanges, 2);
+});
+
+test('on-screen dialogue with OS/voiceover label pollution fails Rule 0.18', () => {
+  const f = fixture();
+  const modified = f.prompt.replace('台词/O.S./OS：无。', '台词：主体1开口说：“今天天气不错。”（主体1画外音配音）');
+  assert.throws(() => f.run(modified), /Rule 0.18.*forbidden OS\/voiceover label pollution/);
+});
+
+test('OS inner monologue with closed lips declaration passes Rule 0.18', () => {
+  const f = fixture();
+  const modified = f.prompt.replace('台词/O.S./OS：无。', '台词（画外音）：内心声音（主体1）说：“我得抓紧了。”（双唇严密闭合，画外音驱动）');
+  assert.equal(f.run(modified).timedRanges, 2);
+});
+
+
 
 

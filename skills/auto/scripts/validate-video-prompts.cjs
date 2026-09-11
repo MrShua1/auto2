@@ -224,6 +224,33 @@ function validatePrompt(config, profile, segment, prompt) {
           }
         }
       }
+
+      // Rule 0.18 Check: Dialogue Lip-Sync & Strict OS Voiceover Isolation Gate
+      const dialogueText = fields.get('台词/O.S./OS') || '';
+      const hasSpokenDialogue = dialogueText !== '无' && dialogueText !== '无。' && !/^(?:无[。；]?)$/.test(dialogueText.trim());
+
+      if (hasSpokenDialogue && hasCharacterInShot) {
+        const hasLipMovement = /(?:开口|张嘴|张口|嘴唇.*张合|说话|咬字|发声|念出)/i.test(actionText);
+        const hasClosedLips = /(?:双唇.*闭合|严禁口型|闭口|不张嘴)/i.test(dialogueText + ' ' + actionText);
+        const dialogueNotes = dialogueText.replace(/[“"][^”"\n]*[”"]/g, '');
+        const mentionsVoiceover = /(?:画外音|O\.S\.|OS)/i.test(dialogueNotes);
+        const isInnerMonologue = /(?:内心(?:声音|独白)|（(?:OS|O\.S\.)）)/i.test(dialogueNotes);
+
+        if (isInnerMonologue) {
+          if (!hasClosedLips) {
+            fail(`${context} shot ${index + 1} violates Rule 0.18: character on-screen during OS/inner monologue must declare closed lips ("双唇严密闭合，严禁口型驱动")!`);
+          }
+        } else {
+          const isExplicitOnScreen = /(?:开口|张嘴|现场原声|自然咬合|人嘴)/i.test(dialogueNotes);
+          if (isExplicitOnScreen && mentionsVoiceover) {
+            fail(`${context} shot ${index + 1} violates Rule 0.18: on-screen spoken dialogue contains forbidden OS/voiceover label pollution ("画外音", "O.S."). Must declare as on-screen speech.`);
+          }
+          if (isExplicitOnScreen && !hasLipMovement) {
+            fail(`${context} shot ${index + 1} violates Rule 0.18: on-screen spoken dialogue without OS requires explicit physical mouth/lip action in 动作/表演 ("嘴唇自然张合开口说话", "面部配合咬字发声")!`);
+          }
+        }
+      }
+
       previousActionText = actionText;
     }
     if ((field.match(/主体锁：/g) || []).length !== 1 || !field.includes('各主体仅保留自身主体锁，不交换外观。')) {
@@ -258,6 +285,13 @@ function validatePrompt(config, profile, segment, prompt) {
   }
   for (const definition of definitions) {
     if (definition[2] !== definition[3]) fail(`${context} maps ${definition[1]} to the wrong subject number.`);
+  }
+  const audioAssets = assets.filter((item) => item.assetType === 'audio');
+  for (const asset of audioAssets) {
+    const token = escapeRegExp(asset.mixedToken);
+    if (!new RegExp(`${token}\\s+(?:为|作为|提供|限定)[^\\n；。]+音频参考`).test(prompt)) {
+      fail(`${context} does not define audio asset ${asset.mixedToken} as audio reference.`);
+    }
   }
   if (/CHAR\d{3}|角色锁|各角色|主体\d+-主体\d+/.test(prompt)) {
     fail(`${context} contains a legacy subject alias.`);
