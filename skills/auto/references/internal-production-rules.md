@@ -208,6 +208,8 @@
        2. 凡包含现场对白（非空、非无、无OS）且人物出镜的镜头，其 `动作/表演：` 中必须匹配到开口动作正则 `/开口|张嘴|张口|嘴唇.*张合|念出台词|说话|咬字/`，缺失物理嘴部动作声明者，直接阻断报错（Exit 1）；
        3. 凡剧本明确为 OS 的台词镜头，出镜角色的动作或台词中必须包含双唇严密闭合声明（`/双唇.*闭合|严禁口型/`）。
 
+
+
 # Internal Production Rules
 
 These rules are owned by the Auto Skill and are the only creative-production

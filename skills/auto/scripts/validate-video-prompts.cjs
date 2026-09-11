@@ -132,6 +132,17 @@ function validatePrompt(config, profile, segment, prompt) {
     fail(`${context} timed ranges must be between the starting and ending state sections.`);
   }
   validateTiming(timed, duration, context);
+  // Rule 0.21 Check: Zero Wardrobe Declaration in Staging Gate
+  const stagingMatch = prompt.match(/【站位与起始状态】([\s\S]*?)(?:【|$)/);
+  if (stagingMatch) {
+    const stagingBody = stagingMatch[1];
+    const forbiddenWardrobeRegex = /(?:身穿|穿着|穿戴|着装|佩戴|套着|工装|便服|长裤|短裤|短袖|长袖|衬衫|西装|T恤|旗袍|马甲|外衣|夹克)/;
+    const match = stagingBody.match(forbiddenWardrobeRegex);
+    if (match) {
+      fail(`${context} violates Rule 0.21: 【站位与起始状态】 contains forbidden wardrobe declaration ("${match[0]}"). Wardrobe must be 100% defined by character reference image assets, zero clothing descriptions in staging.`);
+    }
+  }
+
   const assets = segment.assets || [];
   const characterSubjectNumbers = assets
     .filter((item) => item.assetType === 'character')
@@ -251,7 +262,24 @@ function validatePrompt(config, profile, segment, prompt) {
         }
       }
 
-      previousActionText = actionText;
+      // Rule 0.21 Check: Zero Wardrobe Declaration in Continuity Gate
+      if (positionText) {
+        const forbiddenWardrobeRegex = /(?:身穿|穿着|穿戴|着装|佩戴|套着|工装|便服|长裤|短裤|短袖|长袖|衬衫|西装|T恤|旗袍|马甲|外衣|夹克)/;
+        const match = positionText.match(forbiddenWardrobeRegex);
+        if (match) {
+          fail(`${context} shot ${index + 1} violates Rule 0.21: 【位置承接】 contains forbidden wardrobe declaration ("${match[0]}"). Wardrobe must be 100% defined by character reference image assets.`);
+        }
+      }
+
+      // Rule 0.20 Check: POV Underwater Angle & Zero Sky-Fish Gate
+      const hasSkyOrHorizon = /(?:天空|苍穹|地平线|开阔海面|远景海面|晴空|海风)/.test(actionText + ' ' + sceneText);
+      const hasUnderwaterFish = /(?:水下.*?(?:游鱼|鱼群|游弋|海鱼|石斑|黄鱼)|海里.*?(?:游鱼|鱼群|游弋|海鱼)|水中.*?(?:游鱼|鱼群|游弋|海鱼)|海底.*?(?:游鱼|鱼群|游弋|海鱼))/.test(actionText);
+      const isHighAnglePOV = /(?:大俯角.*?(?:俯视水面|俯视清澈海水)|垂直向下.*?(?:俯视|俯拍)|主观视点.*?(?:俯视水面|水下)|POV)/.test(framingText + ' ' + actionText);
+      if (hasSkyOrHorizon && hasUnderwaterFish && !isHighAnglePOV) {
+        fail(`${context} shot ${index + 1} violates Rule 0.20: objective shot with sky/horizon contains underwater fish ("fish flying in sky" hazard). Must decouple into objective setup shot and pure high-angle top-down underwater POV shot.`);
+      }
+
+            previousActionText = actionText;
     }
     if ((field.match(/主体锁：/g) || []).length !== 1 || !field.includes('各主体仅保留自身主体锁，不交换外观。')) {
       fail(`${context} timed range ${index + 1} must contain exactly one complete subject lock.`);

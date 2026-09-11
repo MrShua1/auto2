@@ -202,4 +202,17 @@ To prevent AI video diffusion models (e.g., Seedance 2.5) from duplicating actio
      * Only when the original script explicitly designates `(OS)` or in pure subjective POV shots (0 characters on screen) can voiceover be used.
      * When character is visible on camera during an OS line, character MUST be locked: `双唇严密闭合（Lips tightly closed, zero lip movement），内心独白画外音，严禁口型张开驱动`.
 
+5. **Dialogue & Plot Capacity, Action Hierarchy & Segment Boundary (Rule 0.19, 7.2/7.3/7.4 Specs)**:
+   - Dialogue capacity: 20-45 characters per 15s prompt; 8-18 characters per shot; 4-10 characters for dramatic peaks. Never hallucinate or delete verbatim dialogue.
+   - Action hierarchy: Class A (key plot changes) allocated 1.5-3s full action arc; Class B (connective moves) concise; Class C (decorative gestures) bundled or pruned.
+   - Boundary condition: End segment only upon capacity saturation (15-28s), natural plot beat boundary, or major scene transition.
+
+6. **POV Underwater Decoupling & Zero Sky-Fish Gate (Rule 0.20)**:
+   - In objective shots with sky/horizon/beach/person, strictly forbid describing underwater fish/marine life in the same frame to prevent diffusion models from rendering 'fish flying in the sky'.
+   - Split cross-medium underwater reveals into a three-shot montage: Objective Setup Shot -> High-Angle Top-Down Subjective POV looking directly down into water (0 sky, 0 people) -> Objective Result Shot.
+
+7. **Zero Wardrobe Declaration in Staging & Continuity (Rule 0.21)**:
+   - 【站位与起始状态】, 【位置承接】, and 【结束状态】 MUST NEVER declare character clothing, wardrobe, or accessories (e.g. 身穿粗布工装, 穿着便服, 短袖, etc.).
+   - Character attire is 100% and exclusively governed by the character reference image cards bound in 【资源引用】.
+   - Staging sections must strictly describe pure physical spatial coordinates, body postures, facing directions, and relative environmental anchors.
 

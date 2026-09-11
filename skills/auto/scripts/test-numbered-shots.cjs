@@ -218,6 +218,29 @@ test('OS inner monologue with closed lips declaration passes Rule 0.18', () => {
   assert.equal(f.run(modified).timedRanges, 2);
 });
 
+test('wardrobe declaration in 【站位与起始状态】 fails Rule 0.21', () => {
+  const f = fixture();
+  const modified = f.prompt.replace('主体1站在岸边石块右侧', '主体1身穿粗布工装站在岸边石块右侧');
+  assert.throws(() => f.run(modified), /Rule 0.21.*forbidden wardrobe declaration/);
+});
 
+test('wardrobe declaration in 【位置承接】 fails Rule 0.21', () => {
+  const f = fixture();
+  const modified = f.prompt.replace('位置承接：双脚留在岸边石块右侧', '位置承接：主体1身穿便服留在岸边石块右侧');
+  assert.throws(() => f.run(modified), /Rule 0.21.*forbidden wardrobe declaration/);
+});
 
+test('objective shot with sky/horizon and underwater fish fails Rule 0.20', () => {
+  const f = fixture();
+  const modified = f.prompt.replace('动作后状态：竿线绷紧，右手仍握竿。', '动作后状态：远景海面波光粼粼，水下鱼群游弋。');
+  assert.throws(() => f.run(modified), /Rule 0.20.*objective shot with sky.*contains underwater fish/);
+});
+
+test('high-angle underwater POV shot with fish passes Rule 0.20', () => {
+  const f = fixture();
+  const modified = f.prompt
+    .replace('景别/机位/运动视角：中景平视，固定机位。', '景别/机位/运动视角：大俯角垂直向下俯视水面，主观视点。')
+    .replace('动作后状态：竿线绷紧，右手仍握竿。', '动作后状态：清澈透明海水下，海底细沙之间，水下鱼群游弋。');
+  assert.equal(f.run(modified).timedRanges, 2);
+});
 
