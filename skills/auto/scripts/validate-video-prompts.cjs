@@ -156,6 +156,13 @@ function validatePrompt(config, profile, segment, prompt) {
           fail(`${context} shot ${index + 1} violates Rule 0.13: cross-medium transition from surface/beach to underwater requires an explicit subjective POV camera perspective.`);
         }
       }
+      const isGazePenetration = /视线|看穿|透视|水眼金睛|瞳孔|主观(?:视角|视点)/i.test(framingText + ' ' + actionText);
+      if (isGazePenetration && hasUnderwaterSeabed) {
+        const hasPhysicalDisturbance = /(?:伴随.*浪花|气泡.*(?:划开|散去)|划开散去|破水.*飞溅|扎入水|水花炸裂|水体由.*(?:过渡|变))/i.test(actionText + ' ' + framingText + ' ' + visualDescription);
+        if (hasPhysicalDisturbance) {
+          fail(`${context} shot ${index + 1} violates Rule 0.13: gaze penetration mimics virtual sightline optical refocus, NOT physical splash/submersion! Strictly forbidden to hallucinate physical disturbance ("浪花与气泡向两侧划开散去", "水体由...过渡为...").`);
+        }
+      }
     }
     if ((field.match(/主体锁：/g) || []).length !== 1 || !field.includes('各主体仅保留自身主体锁，不交换外观。')) {
       fail(`${context} timed range ${index + 1} must contain exactly one complete subject lock.`);
