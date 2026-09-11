@@ -100,15 +100,15 @@ All numbered shots must strictly comply with cinematic shot grammar and perspect
    - Any text inside Chinese quotes `“……”` or English quotes `"..."` representing spoken dialogue, voiceover (VO), offscreen dialogue (OS), or internal monologue MUST be 100% verbatim from the authoritative source script!
    - Under NO circumstances may entity names (character names, fish species, prop items, locations) inside quotation marks be substituted with subject placeholders (`主体1`, `主体2`, `主体3`).
    - Any prompt containing `[“"][^”"\n]*主体\d+[^”"\n]*[”"]` fails validation immediately.
-6. **Optical Gaze Penetration & Anti-Physical-Disturbance Gate (Rule 0.13)**:
-   - **Anti-Double-Exposure Gate**: Never combine surface/beach and underwater/seabed scenes in a single shot expecting the model to do "in-place see-through transparency". Multi-modal video models will naively double-expose and overlay underwater coral/fish as a transparent sticker on top of the sea waves.
-   - **Anti-Physical-Disturbance & Invariant Water Body Gate**: Gaze penetration represents virtual optical depth-of-field refocusing, NOT a physical diver or camera splashing into water! Never hallucinate physical disturbances ("浪花与气泡向两侧划开散去", "破水飞溅") or water body transformations ("水体由...过渡为..."). Water remains naturally serene and clear; focal depth shifts to reveal submerged reefs and fish.
-   - **Cinematic Optical Penetration Sequence**:
-     - Shot A: Objective Reaction on beach (ECU, eyes flash gold, lips closed, gaze focused downwards, 2.5~3.5s).
-     - Shot B: Subjective POV Optical Penetration Shot (camera simulates gaze focal push-in, penetrating natural surface glare without physical disturbance, depth of field refocuses into deep water, sharply revealing underwater reefs and fish, 4.0~5.0s, O.S. dialogue, 0 character body in shot).
-     - Shot C: Reaction shot on beach (touching eyes in shock, 3.5~4.0s).
-     - Shot D: Underwater POV Close-up on target fish/prop (pure underwater environment, 3.5~4.5s).
-     - Shot E: Objective Resolution on beach (standing tall facing dawn, resolute declaration, 3.5~4.5s).
+6. **Universal Subjective Gaze Penetration & Optical Refocusing Gate (Rule 0.13)**:
+   - **Universal Scope**: Applies not just to supernatural/divine vision (水眼金睛), but universally to all cinematic scenes where a character "gazes over / looks through" (视线望过去) across physical mediums or vast distances:
+     - Looking into water from docks/boats/bridges (0 bubbles or splash);
+     - Looking through windows/glass with raindrops or reflections into exterior/interior spaces (0 glass vibration/breakage);
+     - Gazing across mist/curtains/distance towards a distant subject (rack focus reveal, 0 medium deformation);
+     - Supernatural or X-ray vision revealing deep targets.
+   - **Anti-Double-Exposure Gate**: Never combine foreground medium scene and background target scene in a single static shot expecting in-place transparency.
+   - **Three Invariants**: Non-physical gaze trajectory (zero physical fluid/mechanical disturbance), medium objective invariance (zero pseudo-transformation), depth-of-field optical reveal.
+   - **Cinematic Sequence**: Shot A (Objective reaction ECU) -> Shot B (Subjective POV Optical Penetration & Refocusing, 0 character body in frame, O.S. monologue, 4.0~5.0s) -> Shot C (Objective reaction) -> Shot D (Target close-up).
 
 Timing is both visible after each heading and retained as executable audit data.
 Each config segment must have one shotTimings row per shot, for example:
