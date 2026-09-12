@@ -46,15 +46,20 @@ function escapeRegExp(value) {
 }
 
 function getPromptSections(config) {
-  const sections = config.layout?.promptFixedSections || config.promptFixedSections || [
+  const configured = config.layout?.promptFixedSections || config.promptFixedSections;
+  if (configured) {
+    if (!Array.isArray(configured) || (configured.length !== 5 && configured.length !== 4)) {
+      fail('Config must define exactly 4 or 5 promptFixedSections.');
+    }
+    return configured;
+  }
+  return [
     '【角色清单】',
     '【资源引用】',
     '【场景】',
     '【站位与起始状态】',
     '【结束状态】',
   ];
-  if (!Array.isArray(sections) || sections.length !== 5) fail('Config must define exactly five promptFixedSections.');
-  return sections;
 }
 
 function getCharacterAliasEntries(config, assets) {
@@ -88,6 +93,7 @@ function getCharacterAliasEntries(config, assets) {
 function assertNamesOnlyInAllowedSpans(prompt, sectionStart, aliases, context) {
   let remainder = prompt.slice(sectionStart);
   remainder = remainder.replace(/[“”‘’"'][^“”‘’"']*[“”‘’"']/g, (match) => ' '.repeat(match.length));
+  remainder = remainder.replace(/\[线稿图对应关系：[^\]]+\]/g, (match) => ' '.repeat(match.length));
   const voiceClause = /把\s+\{\{Mixed\s+\d+\}\}\s+仅作为[^；。\n]*(?:音色|声音)[^；。\n]*[；。]?/g;
   remainder = remainder.replace(voiceClause, (match) => ' '.repeat(match.length));
   remainder = remainder.replace(/(?:画外声音|电话声音|内心声音|现场齐声|线上弹幕)[（(][^）)]+[）)]/g, (match) => ' '.repeat(match.length));
@@ -105,10 +111,6 @@ function validatePrompt(config, profile, segment, prompt) {
   const numberedFormat = profile.prompt.shotFormat === NUMBERED_FORMAT;
   const duration = Number(segment.durationSeconds);
   if (!Number.isFinite(duration) || duration <= 0) fail(`${context} has an invalid durationSeconds.`);
-  const isSd20 = /sd2(?:\.0)?|seedance-2\.0/i.test(config.targetModel || '') || /sd2(?:\.0)?|auto2/i.test(profile.profileId || '');
-  if (isSd20 && (duration <= 10 || duration > 15)) {
-    fail(`${context} duration ${duration}s is invalid for SD 2.0 / Auto2 profile. Segment duration must be > 10s and <= 15s (11~15s).`);
-  }
   const prefix = config.layout?.promptDurationPrefix || '生成时长：';
   const suffix = config.layout?.promptDurationSuffix || '秒。';
   if (!prompt.startsWith(`${prefix}${duration}${suffix}`)) {
@@ -118,6 +120,10 @@ function validatePrompt(config, profile, segment, prompt) {
   const sections = getPromptSections(config);
   let cursor = -1;
   for (const section of sections) {
+    if (section === '【资源引用】' && !prompt.includes('【资源引用】')) {
+      // Rule 0.24: 【资源引用】 is deprecated and can be omitted in favor of decoupled lineart & storyboard image workflow
+      continue;
+    }
     if (prompt.split(section).length !== 2) fail(`${context} must contain ${section} exactly once.`);
     const index = prompt.indexOf(section);
     if (index < 0 || index <= cursor) fail(`${context} prompt sections are missing or out of order: ${section}`);
@@ -147,6 +153,54 @@ function validatePrompt(config, profile, segment, prompt) {
     }
   }
 
+  // Rule 0.22 Check: Zero Vague Relative Position Gate in Staging and Ending
+  if (stagingMatch) {
+    const stagingBody = stagingMatch[1];
+    const matchVagueStaging = stagingBody.match(/(?:身侧|旁侧|身旁|旁边|在旁)/);
+    if (matchVagueStaging) {
+      fail(`${context} violates Rule 0.22: 【站位与起始状态】 contains forbidden vague relative position word ("${matchVagueStaging[0]}"). Must specify explicit screen coordinates ("画左", "画右", "主体X左侧/右侧半步").`);
+    }
+  }
+  const endingMatch = prompt.match(/【结束状态】([\s\S]*?)(?:【|$)/);
+  if (endingMatch) {
+    const endingBody = endingMatch[1];
+    const matchVagueEnding = endingBody.match(/(?:身侧|旁侧|身旁|旁边|在旁)/);
+    if (matchVagueEnding) {
+      fail(`${context} violates Rule 0.22: 【结束状态】 contains forbidden vague relative position word ("${matchVagueEnding[0]}"). Must specify explicit screen coordinates ("画左", "画右", "主体X左侧/右侧半步").`);
+    }
+  }
+
+  // Rule 0.23 Check: Strict Zero Scene Visual Description Hallucination Gate
+  const sceneSectionMatch = prompt.match(/【场景】([\s\S]*?)(?=【站位与起始状态】|【镜头|$)/);
+  const locationAssets = (segment.assets || []).filter((item) => item.assetType === 'location');
+  if (sceneSectionMatch && locationAssets.length > 0) {
+    const sceneBody = sceneSectionMatch[1].trim();
+    const forbiddenSceneProseRegex = /(?:残破|焦黑|木炭|房梁|砖瓦|木桩|满地|呼啸|质感|散落|断壁|残垣|泥沙|波光|开阔海口|海风穿堂|烈日当空|繁华大道|波涛|水体透彻|暗礁|珊瑚|人流|喧闹|拥挤|陈列|货架|高墙|深宅|阴冷|阴风|月朗星稀|月华|古意|沉香|红木家具|陈设|水光潋滟|阳光穿透|波浪拍打|光斑|手电筒|豪车|商务车|摇晃|摇曳|万道丁达尔|热浪|炙烤|烈日|晴空万里|人声鼎沸|街巷)/;
+    const match = sceneBody.match(forbiddenSceneProseRegex);
+    if (match) {
+      fail(`${context} violates Rule 0.23: 【场景】 contains forbidden descriptive scene appearance/atmospheric prose ("${match[0]}"). When scene reference image asset is present, 【场景】 must strictly be a pure spatial reference (e.g. "主体N场景空间，日景自然光照。"), zero descriptive architectural or environmental prose.`);
+    }
+    if (sceneBody.length > 35) {
+      fail(`${context} violates Rule 0.23: 【场景】 length (${sceneBody.length} chars) exceeds concise spatial reference limit. Must strictly be a pure spatial reference (e.g. "主体N场景空间，日景自然光照。"), zero descriptive architectural or environmental prose.`);
+    }
+  }
+
+  // Rule 0.24 Check: Zero Frontal Portrait Prior Hijack in 【资源引用】
+  if (prompt.includes('【资源引用】')) {
+    const hasLineartWorkflow = prompt.includes('[线稿图对应关系：') || profile.prompt?.requireStoryboardImages === true;
+    if (hasLineartWorkflow) {
+      const resourceMatch = prompt.match(/【资源引用】([\s\S]*?)(?:【场景】|【站位与起始状态】)/);
+      if (resourceMatch) {
+        const resourceBody = resourceMatch[1];
+        const forbiddenFrontalRegex = /(?:右上格提供正面服装|右下格提供背面发型|右下格提供背面服装|正面半身肖像|正面服装)/;
+        const match = resourceBody.match(forbiddenFrontalRegex);
+        if (match) {
+          fail(`${context} violates Rule 0.24: 【资源引用】 contains forbidden frontal multi-view reference text ("${match[0]}"). Under Rule 0.24, multi-view reference text must be purged to eliminate frontal portrait prior hijack, and spatial staging is governed exclusively by lineart.`);
+        }
+      }
+    }
+  }
+
   const assets = segment.assets || [];
   const characterSubjectNumbers = assets
     .filter((item) => item.assetType === 'character')
@@ -165,6 +219,19 @@ function validatePrompt(config, profile, segment, prompt) {
       validateSound(fields.get('环境音/动作音'), profile, `${context} shot ${index + 1}`);
 
       const sceneText = fields.get('场景/时间/光线') || '';
+      
+      // Rule 0.23 Check: Shot-Level Strict Zero Scene Visual Description Hallucination Gate
+      if (locationAssets.length > 0 && sceneText) {
+        const forbiddenShotSceneProseRegex = /(?:残破|焦黑|木炭|房梁|砖瓦|木桩|满地|呼啸|质感|散落|断壁|残垣|阴天|阴影|散射|斑驳|写实光照|开阔海口|海风穿堂|烈日当空|繁华大道|波涛|水体透彻|暗礁|珊瑚|人流|喧闹|拥挤|陈列|货架|高墙|深宅|阴冷|阴风|月朗星稀|月华|古意|沉香|红木家具|陈设|水光潋滟|阳光穿透|波浪拍打|光斑|手电筒|豪车|商务车|摇晃|摇曳|万道丁达尔|热浪|炙烤|烈日|晴空万里|人声鼎沸|街巷|金光微曦|金光渐盛|晨浪|红日升起|宏大雄壮|大浪翻滚|水花激荡|晴朗日光|和煦阳光|阳光明媚|烈日初升|平坦浅滩|暗夜海面|海潮低沉|清晨朝霞|金红日光|金沙|热烈阳光|人声喧哗|明亮自然光|阳光灿烂|烈日炙烤|水泥地面|烈日高悬|奢华典雅|阳光普照|阴风惨惨|烈日暴晒|澄澈|大洋狂风|海浪激荡|深海水波|幽蓝微光|暗流涌动|百人瞩目|群情亢奋|群情激愤|黑烟|典雅庄重|沉香幽幽|繁华长街)/;
+        const shotMatch = sceneText.match(forbiddenShotSceneProseRegex);
+        if (shotMatch) {
+          fail(`${context} shot ${index + 1} violates Rule 0.23: 场景/时间/光线 contains forbidden descriptive scene appearance/atmospheric prose ("${shotMatch[0]}"). When scene reference image asset is present, 场景/时间/光线 must strictly be a pure spatial reference (e.g. "主体N场景，日景自然光照。"), zero descriptive architectural or atmospheric prose.`);
+        }
+        if (sceneText.length > 25) {
+          fail(`${context} shot ${index + 1} violates Rule 0.23: 场景/时间/光线 length (${sceneText.length} chars) exceeds concise limit (max 25 chars). Must strictly be a pure spatial reference (e.g. "主体N场景，日景自然光照。").`);
+        }
+      }
+
       const actionText = fields.get('动作/表演') || '';
       const framingText = fields.get('景别/拍摄/运镜') || '';
       const characterText = fields.get('人物') || '';
@@ -283,7 +350,29 @@ function validatePrompt(config, profile, segment, prompt) {
         fail(`${context} shot ${index + 1} violates Rule 0.20: objective shot with sky/horizon contains underwater fish ("fish flying in sky" hazard). Must decouple into objective setup shot and pure high-angle top-down underwater POV shot.`);
       }
 
-            previousActionText = actionText;
+      // Rule 0.22 Check: Zero Vague Relative Position & Lateral Screen Invariance Gate
+      if (positionText) {
+        const matchVaguePos = positionText.match(/(?:身侧|旁侧|身旁|旁边|在旁)/);
+        if (matchVaguePos) {
+          fail(`${context} shot ${index + 1} violates Rule 0.22: 【位置承接】 contains forbidden vague relative position word ("${matchVaguePos[0]}"). Must specify explicit screen coordinates ("画左", "画右", "主体X左侧/右侧半步") and synchronize with anchor depth.`);
+        }
+      }
+      if (actionText) {
+        const matchVagueAction = actionText.match(/(?:身侧|旁侧|身旁|旁边|在旁)/);
+        if (matchVagueAction) {
+          fail(`${context} shot ${index + 1} violates Rule 0.22: 【动作/表演】 contains forbidden vague relative position word ("${matchVagueAction[0]}"). Must specify explicit screen coordinates ("画左", "画右").`);
+        }
+      }
+
+      // Rule 0.24 Check: Mandatory Storyboard Keyframe Image & Spatial Lineart Decoupling Gate
+      if (hasCharacterInShot && positionText.includes('[线稿图对应关系：')) {
+        const lineartContent = positionText.match(/\[线稿图对应关系：([^\]]+)\]/)?.[1] || '';
+        if (!lineartContent.includes('主体')) {
+          fail(`${context} shot ${index + 1} violates Rule 0.24: lineart mapping [线稿图对应关系：...] must explicitly map lineart figures to subjects (e.g. "对应主体1").`);
+        }
+      }
+
+      previousActionText = actionText;
     }
     if ((field.match(/主体锁：/g) || []).length !== 1 || !field.includes('各主体仅保留自身主体锁，不交换外观。')) {
       fail(`${context} timed range ${index + 1} must contain exactly one complete subject lock.`);
@@ -301,7 +390,10 @@ function validatePrompt(config, profile, segment, prompt) {
     const number = Number(match[1]);
     if (number < 1 || number > assets.length) fail(`${context} references undefined {{Mixed ${number}}}.`);
   }
-  const roleList = prompt.slice(prompt.indexOf('【角色清单】'), prompt.indexOf('【资源引用】'));
+  const roleListEnd = prompt.indexOf('【资源引用】') !== -1
+    ? prompt.indexOf('【资源引用】')
+    : (prompt.indexOf('【场景】') !== -1 ? prompt.indexOf('【场景】') : prompt.indexOf('【站位与起始状态】'));
+  const roleList = prompt.slice(prompt.indexOf('【角色清单】'), roleListEnd);
   for (const asset of assets.filter((item) => ['character', 'location', 'prop'].includes(item.assetType))) {
     const number = asset.mixedToken.match(/\d+/)?.[0];
     const token = escapeRegExp(asset.mixedToken);
@@ -309,7 +401,7 @@ function validatePrompt(config, profile, segment, prompt) {
       fail(`${context} does not define ${asset.mixedToken} as 主体${number}.`);
     }
   }
-  assertNamesOnlyInAllowedSpans(prompt, prompt.indexOf('【资源引用】'), aliases, context);
+  assertNamesOnlyInAllowedSpans(prompt, roleListEnd, aliases, context);
   const definitions = [...roleList.matchAll(/把\s+(\{\{Mixed\s+(\d+)\}\})\s+中[^；\n]+作为主体(\d+)[；。]/g)];
   const visualAssets = assets.filter((item) => ['character', 'location', 'prop'].includes(item.assetType));
   if (definitions.length !== visualAssets.length) {

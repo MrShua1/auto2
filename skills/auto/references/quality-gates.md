@@ -179,8 +179,16 @@ shot, never a continuity state. All unrelated gates remain in force.
   `approved_generated`, and registry status is `COMPLETE`. Otherwise status is
   `NEED_FIX` and every unresolved row is listed.
 - It contains `人物`, `场景`, `道具` and hidden `_索引` sheets.
-- Only human-approved asset images are embedded, with one asset per row and variants arranged horizontally.
 - `_索引` records each embedded image's asset ID, category, source path and approval timestamp.
+
+## G5.1 Mandatory Storyboard Keyframe Image & Spatial Lineart Gate (Rule 0.24)
+
+- Storyboard image generation is a mandatory prerequisite phase for video delivery. Direct video generation without verified storyboard images is strictly prohibited.
+- Every shot in each segment must have:
+  1. A dedicated pure B&W spatial staging lineart (`SEGxxx_镜头y_站位线稿`) defining lateral coordinates (画左/画中/画右), body facing, and gaze vectors without facial/clothing details;
+  2. Explicit lineart mapping injected in the shot's `位置承接：` (`[线稿图对应关系：...]`);
+  3. A dedicated storyboard image node (`biz/image`, `SEGxxx_镜头y_图片`) connected to the shot's characters, scene, and lineart;
+  4. The legacy frontal reference block (`【资源引用】`) is completely removed to eliminate frontal portrait prior bias.
 
 ## G5A TSC References And Prompts
 

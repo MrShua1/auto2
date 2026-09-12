@@ -303,18 +303,23 @@ Execute this exact order for the complete configured segment set:
    `tsc-handoff.yaml`.
 2. Use `modules/tsc/MODULE.md` as the sole semantic rule set to write every source
    `prompt.txt`; no external Skill or project-local prompt rules may replace it.
-   TSC uses the locked production profile rather than any Skill-wide creative default.
-3. Run `scripts/validate-video-prompts.cjs` and repair through the TSC module until
+   Purge legacy `【资源引用】` block and inject explicit lineart mapping `[线稿图对应关系：...]`
+   in each shot's `位置承接：` under Rule 0.24.
+3. Generate pure black-and-white spatial staging linearts (`shotX_lineart.png`) for every shot
+   at concurrency 20 using st1 `gpt-image-2.5-sunburst`.
+4. Deploy mandatory storyboard image nodes (`biz/image`) on canvas, binding character cards,
+   scene cards, and dedicated shot linearts. Verify generated storyboard keyframe images before
+   video node staging.
+5. Run `scripts/validate-video-prompts.cjs` and repair through the TSC module until
    the complete configured set passes.
-4. Run `scripts/build-episode-segment-package.ps1 -Force` to create the delivery
+6. Run `scripts/build-episode-segment-package.ps1 -Force` to create the delivery
    package, then run `scripts/validate-prevideo-delivery.cjs` before final approval
-   or LibTV execution.
-5. In `/分集` and bare `auto`, mark the pre-video package complete and stop here. In video-capable
-   Auto modes only, `scripts/generate-segment-libtv.cjs` without `--run` may perform
-   its local segment preflight; only explicit video authorization permits `--run`.
+   or canvas delivery.
+7. In `/分集` and bare `auto`, mark the pre-video package complete and stop here. In video-capable
+   Auto modes only, deploy pre-video graph structures; only explicit video authorization permits `--run`.
    A `draft_model_neutral` package is never runnable. A `final_prevideo` package
    still requires completed pre-video validation and a non-`episode_prevideo` state
-   with `videoSideEffectsAllowed: true` before any LibTV mutation.
+   with `videoSideEffectsAllowed: true` before any LibTV/Pippit mutation.
 
 Project-local scripts may transform project-specific source data into the required
 handoff artifacts, but they do not own Auto rules and are not required execution
