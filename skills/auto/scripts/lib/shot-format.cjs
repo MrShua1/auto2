@@ -150,7 +150,7 @@ function physicalStates(prompt, shots, profile) {
   }
   // Compare only explicit physical fact lines. Line ordering and legacy wrappers
   // are not narrative events and must not force dialogue or action replay.
-  const canonical = (value) => value.replace(/^(?:继承)?连续性快照：\s*/u, '').split(/\r?\n/).map((line) => line.trim()).filter(Boolean).sort().join('\n');
+  const canonical = (value) => value.replace(/^(?:继承)?连续性快照：\s*/u, '').replace(/\[(?:镜头1)?线稿图对应关系：[^\]]+\]\s*/g, '').split(/\r?\n/).map((line) => line.trim()).filter(Boolean).sort().join('\n');
   return { start, end, startKey: canonical(start), endKey: canonical(end) };
 }
 

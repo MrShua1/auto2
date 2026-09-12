@@ -201,6 +201,14 @@ function validatePrompt(config, profile, segment, prompt) {
     }
   }
 
+  // Rule 0.24 Check: Mandatory Lineart Mapping Declaration in 【站位与起始状态】
+  if (stagingMatch) {
+    const stagingBody = stagingMatch[1];
+    if (!/\[(?:镜头1)?线稿图对应关系：[^\]]+\]/.test(stagingBody)) {
+      fail(`${context} violates Rule 0.24: 【站位与起始状态】 must explicitly declare lineart-subject mapping at the beginning (e.g. "[线稿图对应关系：主体1=...，主体2=...]"), and its physical spatial staging must 100% align with Shot 1 lineart sketch.`);
+    }
+  }
+
   const assets = segment.assets || [];
   const characterSubjectNumbers = assets
     .filter((item) => item.assetType === 'character')
@@ -217,6 +225,12 @@ function validatePrompt(config, profile, segment, prompt) {
       const fields = validateFields(match, `${context} shot ${index + 1}`);
       if (profile.prompt.stateChangeContract === 'explicit_pre_action_ordered_action_post_action') validateAction(fields.get('动作/表演'), `${context} shot ${index + 1}`);
       validateSound(fields.get('环境音/动作音'), profile, `${context} shot ${index + 1}`);
+
+      // Rule 0.24 Check: Shot-Level Lineart Mapping in 位置承接
+      const posText = fields.get('位置承接') || '';
+      if (!/\[(?:镜头\d+)?线稿图对应关系：[^\]]+\]/.test(posText)) {
+        fail(`${context} shot ${index + 1} violates Rule 0.24: 位置承接 must explicitly declare lineart-subject mapping at the beginning (e.g. "[线稿图对应关系：...]").`);
+      }
 
       const sceneText = fields.get('场景/时间/光线') || '';
       
