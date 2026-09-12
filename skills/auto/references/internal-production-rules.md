@@ -301,6 +301,24 @@
        3. **纯正东方中国人骨相与写实身体比例（Rule 0.6 铁律）**：精准体现人物横向屏幕坐标（画左/画中/画右）、纵深前后关系、身体朝向（对峙、侧面、微侧）、肢体动态重心与微观物理动作（揪领、截腕、拍桌按纸、登船撑竿）；
        4. **本地流直接生成到位，无需云端二次生图**：本地已配备高清线稿图，上云画布仅需作为静态分镜图节点展示，彻底消灭空白生图卡片；
      * **100 并发极速生成架构**：采用真实 AI 接口（如 st1 `gpt-image-2.5-sunburst`，1792x1024），全批次镜头默认 **100 并发极速并行下发**。
+
+0.25 【线稿图剧本题材时代感知与角色身份排他性硬锁铁律（Script-Aware Era & Character Specificity Gate）】：
+   - **【最高绝对红线：严禁脱离剧本题材与时代背景自作主张（Zero Disconnected Genre Rule）】**：
+     * 严禁在执行 ControlNet 线稿生成时被“白描”、“墨线”等词汇引向古风先验（如长袍汉服、束发发髻、古装武侠）；
+     * 生成线稿前，必须从原著剧本（`script-source.txt`）与分段提示词中读取故事时代：
+       - **当代沿海/现代都市短剧（Modern Coastal/Urban Short Drama）**：
+         * **人物服装**：必须 100% 对应中国当代写实日常服饰（连帽卫衣 hoodies、现代工装夹克 workwear jacket、立领夹克、T恤、牛仔裤 denim、劳保鞋/运动鞋）；
+         * **人物发型**：青年男子必须为现代干净利落短发（Modern short haircut），严禁男子束发长发，中老年人为自然短发或渔民防风帽；
+         * **反古风先验负向硬锁（Anti-Ancient/Wuxia Negative Purge）**：必须显式注入 `Strictly zero ancient costumes, zero traditional hanfu, zero historical robes, zero wuxia clothing, strictly zero ancient hairpins, zero topknots, zero ancient buns, zero long hair on men, zero historical fantasy elements`，彻底打碎大模型将“墨线白描”自动脑补为古风武侠/汉服发髻的严重先验偏见；
+       - **古代/仙侠剧本**：方可使用古装长袍与束发发髻规范；
+   - **【角色身份、性别与年龄排他性硬锁（Strict Character Identity, Gender & Role Lock）】**：
+     * 严禁在提示词中使用模糊抽象词 `characters / figures`！抽象名词极易唤醒模型“男女情侣/背包女学生”的泛化幻觉；
+     * 必须根据分段【角色清单】与剧本动作，将每一个出镜角色物理定义到具体性别、年龄层与身份：
+       - 如“年轻坚毅男子黄子名（Young Chinese male protagonist, modern short haircut, casual hoodie）”；
+       - “老年沧桑渔民黄山（Elderly weathered Chinese father/fisherman, aged wrinkled face, rough modern casual workwear）”；
+       - “中年蛮横凶恶高利贷头目张顺民（Middle-aged burly aggressive Chinese debt collector, harsh sneering face, modern dark jacket）”；
+     * 严禁在画面中捏造任何未在剧本中登场的无关人物（如把两个男人的对峙画成年轻男女），违者一律定性为重大穿帮一票否决！
+
    - **【特征与环境层：角色与场景资产三权分立（Three-Tier Decoupled Binding）】**：
      * **角色资产卡（Character Cards）**：仅作为“身份、五官骨相、东方脸孔、发型与服装材质”的着色贴图，严禁承担构图站位职责；
      * **场景资产卡（Scene Cards）**：仅作为“空间建筑、材质质感与自然光照基调”，严禁描写画面修辞；
