@@ -327,7 +327,9 @@
      * **① Z轴纵深与近大远小视差（Z-Axis Depth & Perspective Foreshortening）**：镜头必须明确划分前景（Foreground）、中景主体（Midground）、深景背景（Background）；主要角色严禁站在同一平面横向排开，必须一方偏近景（比例较大）、另一方偏中景（比例较小），形成强烈的戏剧张力与空间进深；
      * **② 3/4 微侧立体透视（Dynamic Three-Quarter View）**：废止 90 度纯侧面，人物身体呈 45°~60° 三分之二微侧朝向，既展现胸膛、肩膀的立体三维结构，又以清晰的头部侧角与眼神聚焦对手，实现“看得清五官神态，又锁得死对峙朝向”；
      * **③ 过肩视点与对角线机位（Over-The-Shoulder / OTS & Diagonal Staging）**：充分运用过肩构图（OTS：前景角色的肩膀/手部形成透视框，深入看向后景对峙者）或斜向对角线站位，打破横平竖直的呆板感；
-     * **④ 极简地面透视基准线（Minimal Ground Perspective Lines）**：仅用 2~3 笔极简且精准的透视灭点线条（如地面石板延伸线、台阶落差、石桌边缘或墙角线），为画面注入真实物理三维纵深，拒绝悬浮平面。
+     * **④ 极简地面透视基准线（Minimal Ground Perspective Lines）**：仅用 2~3 笔极简且精准的透视灭点线条（如地面石板延伸线、台阶落差、石桌边缘或墙角线），为画面注入真实物理三维纵深，拒绝悬浮平面；
+     * **⑤ 多角色群像人数保真与阵营坐标硬锁（Multi-Figure Capacity & Faction Coordinate Lock）**：当场景出现 3 人以上（如 4~5 人对峙）时，大模型极易发生“群像注意力坍缩”，导致画面仅生成 2~3 人并吞噬次要角色。必须在提示词中显式采用【分阵营与绝对人数声明】：`EXACTLY N distinct individuals visible on screen. Screen-left faction (M figures facing right) vs Screen-right faction (K figures facing left). Zero missing background figures`；
+     * **⑥ 绝对禁止直视镜头与眼球视线硬锁（Strict Zero Camera-Facing Gaze & Eye Vector Lock）**：文生图模型在生成特写表情时具有极强肖像照看镜头偏见。必须在提示词与负向提示词中强制注入双向锁：`Hero's face and gaze strictly horizontally locked onto the opponent across the scene. Strictly zero looking at the camera lens, strictly zero eye contact with viewer, zero breaking the fourth wall!`。
    - **【极简画质标准守恒】**：依然保持 16:9、纯白底黑墨单线、0 边框、0 标注、0 箭头、0 灰度水彩、0 密集排线阴影。
 
    - **【特征与环境层：角色与场景资产三权分立（Three-Tier Decoupled Binding）】**：
