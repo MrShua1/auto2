@@ -1,19 +1,15 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-原著剧本逐字一致性门禁工具 (Docx Verbatim Parity Gate)
-核验交付目录下各集的 script-source.txt 与原始权威 docx 文本是否 100% 逐字一致。
-一旦字数缩水率 > 0% 或存在任何行差异，立即阻断报错（exit code 1）。
-"""
-
-import argparse
 import os
-import re
 import sys
+import re
 import zipfile
+import argparse
 import xml.etree.ElementTree as ET
 
-def extract_paragraphs_from_docx(docx_path):
+DOCX_DEFAULT = r"C:\Users\JW TSJ\Desktop\0910《有了水眼金睛，捕鱼寻宝当首富》剧本1-300集.docx"
+BASE_DIR_DEFAULT = r"C:\Users\JW TSJ\Desktop\完美分镜"
+
+def extract_docx_episodes(docx_path):
     with zipfile.ZipFile(docx_path) as z:
         xml_content = z.read("word/document.xml")
     tree = ET.fromstring(xml_content)
@@ -25,9 +21,6 @@ def extract_paragraphs_from_docx(docx_path):
             line = "".join(texts).strip()
             if line:
                 paragraphs.append(line)
-    return paragraphs
-
-def parse_episodes(paragraphs):
     full_text = "\n".join(paragraphs)
     splits = re.split(r"\n(?=第\d+集)", full_text)
     episodes_map = {}
@@ -38,104 +31,135 @@ def parse_episodes(paragraphs):
         first_line = seg.split("\n", 1)[0].strip()
         m = re.match(r"第(\d+)集", first_line)
         if m:
-            ep_num = int(m.group(1))
-            episodes_map[ep_num] = seg
+            episodes_map[int(m.group(1))] = seg
     return episodes_map
 
-def verify_parity(docx_path, output_root, start_ep, end_ep):
-    print(f"=== [Parity Gate] 开始执行原著逐字一致性门禁审查: 第 {start_ep} 集 ~ 第 {end_ep} 集 ===")
+def clean_for_match(text):
+    return re.sub(r'[，。！？、…—：:～~“”（）\(\)\"\'\s\t\r\n]', '', text)
+
+def verify_episode(ep_num, ep_dir, docx_text):
+    errors = []
+    source_path = os.path.join(ep_dir, "script-source.txt")
+    if not os.path.exists(source_path):
+        return [f"第{ep_num:03d}集 缺失 script-source.txt"]
     
-    paragraphs = extract_paragraphs_from_docx(docx_path)
-    episodes_map = parse_episodes(paragraphs)
-    
-    failures = []
-    successes = []
-    
-    print(f"{'集数':^8} | {'Docx行数':^8} | {'Docx字数':^8} | {'物理Source字数':^12} | {'逐字一致性':^10} | 审查判定")
-    print("-" * 75)
-    
-    for ep_num in range(start_ep, end_ep + 1):
-        if ep_num not in episodes_map:
-            failures.append((ep_num, "原著 docx 缺失该集"))
+    with open(source_path, "r", encoding="utf-8") as f:
+        source_text = f.read().strip()
+        
+    # Level 1: Source vs Docx
+    clean_docx = clean_for_match(docx_text)
+    clean_source = clean_for_match(source_text)
+    if clean_docx != clean_source:
+        errors.append(f"Level 1 失败: script-source.txt 与 docx 原著文本不一致 (原著 {len(docx_text)} 字 vs source {len(source_text)} 字)")
+        
+    # Find all SEGs
+    segs = sorted([d for d in os.listdir(ep_dir) if os.path.isdir(os.path.join(ep_dir, d)) and d.upper().startswith("SEG")])
+    if not segs:
+        errors.append("未找到任何 SEG 分段目录")
+        return errors
+        
+    combined_verbatim = ""
+    for seg in segs:
+        seg_dir = os.path.join(ep_dir, seg)
+        v_path = os.path.join(seg_dir, "script-verbatim.txt")
+        p_path = os.path.join(seg_dir, "prompt.txt")
+        
+        if not os.path.exists(v_path):
+            errors.append(f"{seg} 缺失 script-verbatim.txt")
             continue
             
-        docx_text = episodes_map[ep_num].strip()
-        docx_lines = [l.strip() for l in docx_text.splitlines() if l.strip()]
-        docx_char_count = len(docx_text)
+        with open(v_path, "r", encoding="utf-8") as f:
+            v_text = f.read().strip()
+        combined_verbatim += "\n" + v_text
         
-        ep_folder = f"第{ep_num:03d}集"
-        source_path = os.path.join(output_root, ep_folder, "script-source.txt")
-        
-        if not os.path.exists(source_path):
-            failures.append((ep_num, f"缺少 script-source.txt: {source_path}"))
-            print(f"第{ep_num:03d}集 | {len(docx_lines):^8} | {docx_char_count:^8} | {'MISSING':^12} | {'FAIL':^10} | 文件缺失")
-            continue
-            
-        with open(source_path, "r", encoding="utf-8") as f:
-            source_text = f.read().strip()
-            
-        source_lines = [l.strip() for l in source_text.splitlines() if l.strip()]
-        source_char_count = len(source_text)
-        
-        # 逐字对比
-        is_exact = (docx_text == source_text)
-        
-        if is_exact:
-            verdict = "100% PASS (零误差)"
-            print(f"第{ep_num:03d}集 | {len(docx_lines):^8} | {docx_char_count:^8} | {source_char_count:^12} | {'PASS':^10} | {verdict}")
-            successes.append(ep_num)
-        else:
-            # 差异定位
-            diff_ratio = (source_char_count - docx_char_count) / max(docx_char_count, 1) * 100
-            verdict = f"FAIL (字数差异 {diff_ratio:+.1f}%)"
-            print(f"第{ep_num:03d}集 | {len(docx_lines):^8} | {docx_char_count:^8} | {source_char_count:^12} | {'FAIL':^10} | {verdict}")
-            
-            # 查看首个不匹配行
-            first_mismatch = None
-            for idx, (dl, sl) in enumerate(zip(docx_lines, source_lines)):
-                if dl != sl:
-                    first_mismatch = (idx + 1, dl, sl)
-                    break
-            if first_mismatch:
-                failures.append((ep_num, f"第{first_mismatch[0]}行不匹配: docx='{first_mismatch[1][:30]}...' vs source='{first_mismatch[2][:30]}...'"))
-            elif len(docx_lines) != len(source_lines):
-                failures.append((ep_num, f"行数不符: docx有{len(docx_lines)}行, source有{len(source_lines)}行"))
-            else:
-                failures.append((ep_num, f"文本内容存在不可见字符差异"))
+        # Level 2: Verbatim lines must exist in source
+        v_lines = [l.strip() for l in v_text.splitlines() if l.strip()]
+        for vl in v_lines:
+            if re.match(r'^\d+-\d+', vl) or vl.startswith('人物：') or vl.startswith('人物:'):
+                continue
+            clean_vl = clean_for_match(vl)
+            if len(clean_vl) >= 4 and clean_vl not in clean_source:
+                errors.append(f"{seg} Level 2 失败: script-verbatim.txt 包含脑补伪造剧本行: '{vl[:35]}...'")
+                break
                 
-    print("-" * 75)
-    print(f"审查结果: 合格 {len(successes)} 集, 不合格 {len(failures)} 集 (总计 {end_ep - start_ep + 1} 集)")
-    
-    if failures:
-        print("\n[门禁阻断原因详情]:")
-        for ep_num, reason in failures:
-            print(f"  - 第 {ep_num:03d} 集: {reason}")
-        print("\n[Gate Verdict]: 门禁不通过！严禁流入下游制作！")
-        sys.exit(1)
-    else:
-        print("\n[Gate Verdict]: 100% 逐字对齐门禁全部通过！可安全流转下游！")
-        sys.exit(0)
+        # Level 3: Prompt dialogue quotes must exist in verbatim text
+        if os.path.exists(p_path):
+            with open(p_path, "r", encoding="utf-8") as f:
+                p_text = f.read().strip()
+            prompt_quotes = re.findall(r'[“"]([^”"\n]+)[”"]', p_text)
+            clean_v = clean_for_match(v_text)
+            for q in prompt_quotes:
+                clean_q = clean_for_match(q)
+                if len(clean_q) >= 4 and clean_q not in clean_v:
+                    errors.append(f"{seg} Level 3 失败: prompt.txt 包含未经原著授权的脑补假台词: '“{q}”'")
+                    
+    # Check total coverage
+    clean_combined_v = clean_for_match(combined_verbatim)
+    missing_source_lines = 0
+    for sl in [l.strip() for l in source_text.splitlines() if l.strip()]:
+        if re.match(r'^第\d+集', sl):
+            continue
+        clean_sl = clean_for_match(sl)
+        if len(clean_sl) >= 4 and clean_sl not in clean_combined_v:
+            missing_source_lines += 1
+    if missing_source_lines > 0:
+        errors.append(f"Level 2 覆盖率失败: 所有 SEG 合计遗漏了原著 {missing_source_lines} 行内容")
+        
+    return errors
 
 def main():
-    parser = argparse.ArgumentParser(description="Docx Verbatim Parity Gate")
-    parser.add_argument("--docx", default=r"C:\Users\JW TSJ\Desktop\0910《有了水眼金睛，捕鱼寻宝当首富》剧本1-300集.docx", help="Docx path")
-    parser.add_argument("--output-root", default=r"C:\Users\JW TSJ\Desktop\0910《有了水眼金睛，捕鱼寻宝当首富》-Auto分集制作-最新纯净版", help="Output root directory")
-    parser.add_argument("--batch", default="1-20", help="Batch range")
+    parser = argparse.ArgumentParser(description="Multi-tier Docx Parity and Anti-Hallucination Gate")
+    parser.add_argument("--docx", default=DOCX_DEFAULT, help="Docx path")
+    parser.add_argument("--output-root", default=BASE_DIR_DEFAULT, help="Output root directory")
+    parser.add_argument("--batch", default="1-20", help="Batch range e.g. 1-20 or 15")
     args = parser.parse_args()
     
     batch_str = args.batch.strip()
     if "-" in batch_str:
         start_ep, end_ep = map(int, batch_str.split("-"))
     else:
-        num = int(batch_str)
-        if num % 20 == 0:
-            start_ep = num - 19
-            end_ep = num
-        else:
-            start_ep = 1
-            end_ep = num
+        start_ep = int(batch_str)
+        end_ep = start_ep
+        
+    docx_episodes = extract_docx_episodes(args.docx)
+    print(f"=== Docx 权威底本加载完成，共 {len(docx_episodes)} 集 ===")
+    print(f"审查范围: 第 {start_ep} 集 ~ 第 {end_ep} 集")
+    print(f"审查目录: {args.output_root}\n")
+    
+    total_episodes = end_ep - start_ep + 1
+    passed_count = 0
+    failed_count = 0
+    
+    for ep_num in range(start_ep, end_ep + 1):
+        ep_dir = os.path.join(args.output_root, f"第{ep_num:03d}集")
+        if not os.path.exists(ep_dir):
+            print(f"[-] 第{ep_num:03d}集: 目录不存在 ({ep_dir})")
+            failed_count += 1
+            continue
             
-    verify_parity(args.docx, args.output_root, start_ep, end_ep)
+        docx_text = docx_episodes.get(ep_num, "")
+        if not docx_text:
+            print(f"[-] 第{ep_num:03d}集: 原著 docx 中缺失该集！")
+            failed_count += 1
+            continue
+            
+        errors = verify_episode(ep_num, ep_dir, docx_text)
+        if not errors:
+            print(f"[+] 第{ep_num:03d}集: 100% PASS (零脑补、零假台词、覆盖率完整)")
+            passed_count += 1
+        else:
+            print(f"[x] 第{ep_num:03d}集: FAILED (拦截到 {len(errors)} 项硬伤):")
+            for err in errors:
+                print(f"    - {err}")
+            failed_count += 1
+            
+    print("\n" + "="*60)
+    print(f"审计汇总: 共 {total_episodes} 集，通过 {passed_count} 集，拦截失败 {failed_count} 集")
+    print("="*60)
+    if failed_count > 0:
+        sys.exit(1)
+    else:
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()

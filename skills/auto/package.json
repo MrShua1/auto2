@@ -1,11 +1,13 @@
 {
   "name": "auto-production-tools",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "private": true,
   "dependencies": {
     "exceljs": "4.4.0",
     "sharp": "0.35.4",
     "yaml": "2.9.0"
   },
-  "overrides": { "uuid": "11.1.1" }
+  "overrides": {
+    "uuid": "11.1.1"
+  }
 }

@@ -287,6 +287,21 @@ description: "Auto 全自动影视分集与分镜生产工程。支持 /auto bat
     2. 该分段各镜头的专属站位线稿（接入【图片】输入区）；
     3. 各镜头生成确认后的分镜定妆图（作为起幅首帧/关键帧）；
   * 严格遵守 Strict Zero Credits Gate（纯设计态连线 $\Delta = 0$）与严格 0 视频生成红线。
+- **【Rule 0.28 单镜头16:9刚性单画幅与彻底消除多格连环画铁律（Strict Single-Frame 16:9 & Comic Panel Purge Gate）】**：
+  * **最高绝对红线：严禁生成任何多格、分屏、连环画网格（Comic Panels/Strips/Grids/Borders/Split Screens）**；
+  * **正向全画幅强锁**：`Strictly a SINGLE unified 16:9 widescreen full-frame cinematic camera shot, single camera view, single perspective. Strictly ONE single picture.`
+  * **负向彻底熔断**：`Strictly ZERO comic panels, ZERO split screens, ZERO multi-grid layouts, ZERO borders, ZERO comic strips, ZERO multiple frames, ZERO speech bubbles, ZERO thought bubbles, ZERO collage.`
+  * **时序动作解耦**：线稿仅抓取单一静态关键帧瞬间（Single decisive frozen keyframe snapshot），严禁将动作前/动作顺序/动作后连续塞入引发模型绘制时序连环画。
+- **【Rule 0.29 剧本同源当代现实主义与排他性去古装发髻长衫铁律（Authentic Modern Era & Anti-Ancient Costumes/Topknots Gate）】**：
+  * **最高绝对红线：当代都市/沿海题材严禁出现道士头、发髻（Topknot/Hair bun）、长衫、汉服或武侠反派装扮**；
+  * **现代排他硬锁**：`Time & Era: Modern contemporary China (2020s), authentic modern coastal realism. All characters: Strictly modern contemporary Chinese people, authentic modern neat short haircuts, modern casual everyday clothes (modern jackets, modern t-shirts, modern workwear, modern village casual wear, sneakers). Strictly ZERO ancient costumes, ZERO historical robes, ZERO topknots, ZERO hair buns, ZERO wuxia/hanfu elements.`
+  * **剧本同源风格注入**：`Visual Style: Authentic Chinese contemporary coastal realism (中国当代沿海现实主义), gritty modern seafaring narrative drama, cinematic lens composition and physical perspective, minimalist 3D line-drawing pre-visualization single frame keyframe sketch, pure black vector line work on pure solid white background, zero shading, zero grayscale, zero fill colors, zero textures, crisp thin black outlines.`
+- **【Rule 0.30 介质透视主客观解耦与大俯角水体构图铁律 · 彻底杜绝飞鱼上天穿帮（POV Underwater Angle & Zero Sky-Fish Gate）】**：
+  * **最高绝对红线：严禁在含天空或人物的客观镜头中描写水下生物（Zero Fish in Sky Rule）**；
+  * **主客观双镜蒙太奇解耦**：
+    1. 客观起因镜头：聚焦出镜人物望向水面，仅允许出现人物与陆地/船艇大环境，严禁描写任何水底生物细节；
+    2. 纯第一人称大俯角主观透视镜头：机位必须为大俯角垂直向下俯视水面（`High-Angle Top-Down POV looking directly down into water`），画面元素严格 0 天空、0 人物身体，仅包含透明海水、海底白沙、暗礁与游曳鱼群，台词强制声画解耦为画外音（O.S.）；
+    3. 客观神态承接镜头：镜头切回出镜人物特写与对白。
 
 ---
 

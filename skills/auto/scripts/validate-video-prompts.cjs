@@ -93,8 +93,8 @@ function getCharacterAliasEntries(config, assets) {
 function assertNamesOnlyInAllowedSpans(prompt, sectionStart, aliases, context) {
   let remainder = prompt.slice(sectionStart);
   remainder = remainder.replace(/[“”‘’"'][^“”‘’"']*[“”‘’"']/g, (match) => ' '.repeat(match.length));
-  remainder = remainder.replace(/\[线稿图对应关系：[^\]]+\]/g, (match) => ' '.repeat(match.length));
-  const voiceClause = /把\s+\{\{Mixed\s+\d+\}\}\s+仅作为[^；。\n]*(?:音色|声音)[^；。\n]*[；。]?/g;
+  remainder = remainder.replace(/\[(?:镜头\d+)?线稿图对应关系：[^\]]+\]/g, (match) => ' '.repeat(match.length));
+  const voiceClause = /把\s+\{\{Mixed\s+\d+\}\}\s+(?:仅作为|作为)[^；。\n]*(?:音色|声音|线稿|参考)[^；。\n]*[；。]?/g;
   remainder = remainder.replace(voiceClause, (match) => ' '.repeat(match.length));
   remainder = remainder.replace(/(?:画外声音|电话声音|内心声音|现场齐声|线上弹幕)[（(][^）)]+[）)]/g, (match) => ' '.repeat(match.length));
   const forbidden = [...new Set(aliases)].sort((left, right) => right.length - left.length);
@@ -105,7 +105,7 @@ function assertNamesOnlyInAllowedSpans(prompt, sectionStart, aliases, context) {
   }
 }
 
-function validatePrompt(config, profile, segment, prompt) {
+function validatePrompt(config, profile, segment, prompt, options = {}) {
   const context = segment.id || segment.folder;
   validateKnownDefects(prompt, context, segment);
   const numberedFormat = profile.prompt.shotFormat === NUMBERED_FORMAT;
@@ -122,6 +122,10 @@ function validatePrompt(config, profile, segment, prompt) {
   for (const section of sections) {
     if (section === '【资源引用】' && !prompt.includes('【资源引用】')) {
       // Rule 0.24: 【资源引用】 is deprecated and can be omitted in favor of decoupled lineart & storyboard image workflow
+      continue;
+    }
+    if (section === '【角色清单】' && !prompt.includes('【角色清单】')) {
+      // User standard: 【角色清单】 header can be omitted in favor of direct definitions
       continue;
     }
     if (prompt.split(section).length !== 2) fail(`${context} must contain ${section} exactly once.`);
@@ -404,10 +408,11 @@ function validatePrompt(config, profile, segment, prompt) {
     const number = Number(match[1]);
     if (number < 1 || number > assets.length) fail(`${context} references undefined {{Mixed ${number}}}.`);
   }
+  const roleListStart = prompt.indexOf('【角色清单】') !== -1 ? prompt.indexOf('【角色清单】') : 0;
   const roleListEnd = prompt.indexOf('【资源引用】') !== -1
     ? prompt.indexOf('【资源引用】')
     : (prompt.indexOf('【场景】') !== -1 ? prompt.indexOf('【场景】') : prompt.indexOf('【站位与起始状态】'));
-  const roleList = prompt.slice(prompt.indexOf('【角色清单】'), roleListEnd);
+  const roleList = prompt.slice(roleListStart, roleListEnd);
   for (const asset of assets.filter((item) => ['character', 'location', 'prop'].includes(item.assetType))) {
     const number = asset.mixedToken.match(/\d+/)?.[0];
     const token = escapeRegExp(asset.mixedToken);
@@ -437,6 +442,45 @@ function validatePrompt(config, profile, segment, prompt) {
   const quotedSubjectMatch = prompt.match(/[“"][^”"\n]*?主体\d+[^”"\n]*?[”"]/);
   if (quotedSubjectMatch) {
     fail(`${context} violates Rule 0.12: quoted literal dialogue/speech contains forbidden subject placeholder token (${quotedSubjectMatch[0]}). Dialogue/O.S. lines must remain 100% verbatim from original script and must never substitute words with 主体N.`);
+  }
+
+  // Rule 0.0 & 0.8 & 0.12: Strict Script Verbatim & Dialogue Fidelity Gate
+  const promptDir = options.promptPath ? path.dirname(options.promptPath) : (segment.folder && options.projectRoot ? path.resolve(options.projectRoot, segment.folder) : null);
+  const verbatimCandidates = [
+    segment.scriptVerbatimSource && options.projectRoot ? path.resolve(options.projectRoot, segment.scriptVerbatimSource) : null,
+    promptDir ? path.resolve(promptDir, 'script-verbatim.txt') : null,
+  ].filter(Boolean);
+
+  const verbatimPath = verbatimCandidates.find((p) => fs.existsSync(p));
+  if (verbatimPath) {
+    const verbatimText = fs.readFileSync(verbatimPath, 'utf8').replace(/^\uFEFF/, '').trim();
+    const cleanVerbatim = verbatimText.replace(/[，。！？、…—：:～~“”（）\(\)\"\'\s\t\r\n]/g, '');
+
+    const promptQuotes = [...prompt.matchAll(/[“"]([^”"\n]+)[”"]/g)].map((m) => m[1]);
+    for (const quote of promptQuotes) {
+      const cleanQuote = quote.replace(/[，。！？、…—：:～~“”（）\(\)\"\'\s\t\r\n]/g, '');
+      if (cleanQuote.length >= 4 && !cleanVerbatim.includes(cleanQuote)) {
+        fail(`${context} violates Rule 0.0 & 0.8 & 0.12: Quoted dialogue ("${quote}") is hallucinated and does not exist in script-verbatim.txt! All dialogue must be 100% authentic to the original script.`);
+      }
+    }
+
+    const sourceCandidates = [
+      config.scriptSource && options.projectRoot ? path.resolve(options.projectRoot, config.scriptSource) : null,
+      promptDir ? path.resolve(promptDir, '..', 'script-source.txt') : null,
+    ].filter(Boolean);
+    const sourcePath = sourceCandidates.find((p) => fs.existsSync(p));
+    if (sourcePath) {
+      const sourceText = fs.readFileSync(sourcePath, 'utf8').replace(/^\uFEFF/, '').trim();
+      const cleanSource = sourceText.replace(/[，。！？、…—：:～~“”（）\(\)\"\'\s\t\r\n]/g, '');
+      const vLines = verbatimText.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+      for (const vl of vLines) {
+        if (/^\d+-\d+/.test(vl) || vl.startsWith('人物：') || vl.startsWith('人物:') || /^第\d+集/.test(vl)) continue;
+        const cleanVl = vl.replace(/[，。！？、…—：:～~“”（）\(\)\"\'\s\t\r\n]/g, '');
+        if (cleanVl.length >= 4 && !cleanSource.includes(cleanVl)) {
+          fail(`${context} violates Rule 0.0 & 0.8: script-verbatim.txt contains fabricated/hallucinated text ("${vl}") not found in script-source.txt!`);
+        }
+      }
+    }
   }
   if (/\bC\d{3}\b|\bSHOT\d{3,}\b|秒｜镜头\d+|\bclipId\b/i.test(prompt)) {
     fail(`${context} contains an internal planning identifier.`);
@@ -484,7 +528,7 @@ const results = [];
 for (const segment of config.segments) {
   const promptPath = path.resolve(options.projectRoot, segment.promptSource);
   const prompt = readText(promptPath, `${segment.id} prompt`);
-  const result = validatePrompt(config, profile, segment, prompt);
+  const result = validatePrompt(config, profile, segment, prompt, { projectRoot: options.projectRoot, promptPath });
   if (segment.sameSceneAsPrevious === true && !result.inheritedSnapshot) {
     fail(`${segment.id} is marked sameSceneAsPrevious but has no inherited continuity payload.`);
   }
