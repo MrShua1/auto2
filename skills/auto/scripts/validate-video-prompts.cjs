@@ -105,6 +105,10 @@ function validatePrompt(config, profile, segment, prompt) {
   const numberedFormat = profile.prompt.shotFormat === NUMBERED_FORMAT;
   const duration = Number(segment.durationSeconds);
   if (!Number.isFinite(duration) || duration <= 0) fail(`${context} has an invalid durationSeconds.`);
+  const isSd20 = /sd2(?:\.0)?|seedance-2\.0/i.test(config.targetModel || '') || /sd2(?:\.0)?|auto2/i.test(profile.profileId || '');
+  if (isSd20 && (duration <= 10 || duration > 15)) {
+    fail(`${context} duration ${duration}s is invalid for SD 2.0 / Auto2 profile. Segment duration must be > 10s and <= 15s (11~15s).`);
+  }
   const prefix = config.layout?.promptDurationPrefix || '生成时长：';
   const suffix = config.layout?.promptDurationSuffix || '秒。';
   if (!prompt.startsWith(`${prefix}${duration}${suffix}`)) {

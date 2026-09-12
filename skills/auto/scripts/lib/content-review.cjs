@@ -30,9 +30,11 @@ function validateDuration(config, state) {
   if (bound) requireThat(typeof minimum === 'number' && Number.isFinite(minimum) && minimum > 0 && typeof maximum === 'number' && Number.isFinite(maximum) && maximum >= minimum, 'Invalid duration bounds.');
   const locked = state?.project?.segmentDurationRangeSeconds;
   if (Array.isArray(locked) && locked.length) requireThat(bound && isDeepStrictEqual(locked, [minimum, maximum]), 'Config duration bounds differ from the recorded user/project lock.');
+  const isSd20 = /sd2(?:\.0)?|seedance-2\.0/i.test(config.targetModel || '') || /sd2(?:\.0)?|auto2/i.test(config.productionProfile?.profileId || '');
   for (const segment of config.segments || []) {
     requireThat(typeof segment.durationSeconds === 'number' && Number.isFinite(segment.durationSeconds) && segment.durationSeconds > 0, `${segment.id}: invalid duration.`);
     if (bound) requireThat(segment.durationSeconds >= minimum && segment.durationSeconds <= maximum, `${segment.id}: duration outside locked range.`);
+    if (isSd20) requireThat(segment.durationSeconds > 10 && segment.durationSeconds <= 15, `${segment.id} duration ${segment.durationSeconds}s is invalid for SD 2.0 / Auto2 profile. Segment duration must be > 10s and <= 15s (11~15s).`);
   }
 }
 

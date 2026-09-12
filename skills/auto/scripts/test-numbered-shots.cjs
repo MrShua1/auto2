@@ -244,3 +244,45 @@ test('high-angle underwater POV shot with fish passes Rule 0.20', () => {
   assert.equal(f.run(modified).timedRanges, 2);
 });
 
+test('SD 2.0 profile accepts 11-15s segment duration with 2-3 shots', () => {
+  const f = fixture();
+  f.config.targetModel = 'seedance-2.0';
+  f.profile.profileId = 'sd2.0-standard-15s';
+  f.profile.prompt.timedPhaseMinimum = 2;
+  f.profile.prompt.timedPhaseMaximum = 3;
+  f.segment.durationSeconds = 12;
+  f.segment.shotTimings = [{ shot: 1, startSeconds: 0, endSeconds: 6 }, { shot: 2, startSeconds: 6, endSeconds: 12 }];
+  const modified = f.prompt.replace('生成时长：18秒。', '生成时长：12秒。');
+  assert.equal(f.run(modified).timedRanges, 2);
+});
+
+test('SD 2.0 profile accepts 15s max segment duration', () => {
+  const f = fixture();
+  f.config.targetModel = 'seedance-2.0';
+  f.profile.profileId = 'sd2.0-standard-15s';
+  f.profile.prompt.timedPhaseMinimum = 2;
+  f.profile.prompt.timedPhaseMaximum = 3;
+  f.segment.durationSeconds = 15;
+  f.segment.shotTimings = [{ shot: 1, startSeconds: 0, endSeconds: 7 }, { shot: 2, startSeconds: 7, endSeconds: 15 }];
+  const modified = f.prompt.replace('生成时长：18秒。', '生成时长：15秒。');
+  assert.equal(f.run(modified).timedRanges, 2);
+});
+
+test('SD 2.0 profile rejects segment duration <= 10s', () => {
+  const f = fixture();
+  f.config.targetModel = 'seedance-2.0';
+  f.profile.profileId = 'sd2.0-standard-15s';
+  f.segment.durationSeconds = 10;
+  f.segment.shotTimings = [{ shot: 1, startSeconds: 0, endSeconds: 5 }, { shot: 2, startSeconds: 5, endSeconds: 10 }];
+  const modified = f.prompt.replace('生成时长：18秒。', '生成时长：10秒。');
+  assert.throws(() => f.run(modified), /duration .* is invalid for SD 2.0 \/ Auto2 profile/);
+});
+
+test('SD 2.0 profile rejects segment duration > 15s', () => {
+  const f = fixture();
+  f.config.targetModel = 'seedance-2.0';
+  f.profile.profileId = 'sd2.0-standard-15s';
+  f.segment.durationSeconds = 18;
+  assert.throws(() => f.run(), /duration .* is invalid for SD 2.0 \/ Auto2 profile/);
+});
+
