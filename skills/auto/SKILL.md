@@ -234,6 +234,16 @@ description: "Auto 全自动影视分集与分镜生产工程。支持 /auto bat
        - “老年沧桑渔民黄山（Elderly weathered Chinese father/fisherman, aged wrinkled face, rough modern casual workwear）”；
        - “中年蛮横凶恶高利贷头目张顺民（Middle-aged burly aggressive Chinese debt collector, harsh sneering face, modern dark jacket）”；
     3. 严禁在画面中捏造任何未在剧本中登场的无关人物（如无端画出年轻女性、无关背包路人），违者一律定性为重大穿帮一票否决！
+- **【Rule 0.26 三维影视视听纵深调度与拒绝二维死板侧面平视铁律（3D Cinematic Depth, Z-Axis Spatial Staging & Anti-Flat Profile Gate）】**：
+  * **最高绝对红线：严禁二维横版死板纯侧面平视（Zero Flat 2D Side-View Rule）**：
+    1. 彻底禁止在提示词中使用 `in profile`（90度纯侧面剪影），严禁将机位降维成皮影戏或横版格斗游戏般的“纯左右二维平面关系”；
+    2. 影视分镜机位必须具备完整的 **X-Y-Z 三维空间坐标系**，呈现真实的电影视听深度；
+  * **三维影视视听调度四大支柱**：
+    1. **Z轴纵深与近大远小视差（Z-Axis Depth & Perspective Foreshortening）**：镜头必须明确划分前景（Foreground）、中景主体（Midground）、深景背景（Background）；主要角色严禁站在同一平面横向排开，必须一方偏近景（比例较大）、另一方偏中景（比例较小），形成强烈的戏剧张力与空间进深；
+    2. **3/4 微侧立体透视（Dynamic Three-Quarter View）**：废止 90 度纯侧面，人物身体呈 45°~60° 三分之二微侧朝向，既展现胸膛、肩膀的立体三维结构，又以清晰的头部侧角与眼神聚焦对手，实现“看得清五官神态，又锁得死对峙朝向”；
+    3. **过肩视点与对角线机位（Over-The-Shoulder / OTS & Diagonal Staging）**：充分运用过肩构图（OTS：前景角色的肩膀/手部形成透视框，深入看向后景对峙者）或斜向对角线站位，打破横平竖直的呆板感；
+    4. **极简地面透视基准线（Minimal Ground Perspective Lines）**：仅用 2~3 笔极简且精准的透视灭点线条（如地面石板延伸线、台阶落差、石桌边缘或墙角线），为画面注入真实物理三维纵深，拒绝悬浮平面。
+  * **极简画质标准守恒**：依然保持 16:9、纯白底黑墨单线、0 边框、0 标注、0 箭头、0 灰度水彩、0 密集排线阴影。
 - **【特征与环境层：角色与场景资产三权分立（Three-Tier Decoupled Binding）】**：
   * **角色资产卡（Character Cards）**：仅作为“身份、五官骨相、东方脸孔、发型与服装材质”的着色贴图，严禁承担构图站位职责；
   * **场景资产卡（Scene Cards）**：仅作为“空间建筑、材质质感与自然光照基调”，严禁描写画面修辞；
