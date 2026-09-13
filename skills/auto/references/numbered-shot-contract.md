@@ -242,3 +242,11 @@ To prevent AI video diffusion models (e.g., Seedance 2.5) from duplicating actio
    - 【动作/表演】 must strictly and exclusively describe camera-observable physical movements, body postures, prop manipulations, facial expressions, and lip movement locks.
    - Absolutely NEVER embed spoken dialogue texts or quotation marks (`“...”`, `"..."`) inside 【动作/表演】!
    - Dialogue and voiceover lines 100% and exclusively belong in the 【台词】 field, formatted with line breaks after each utterance according to Rule 0.34.
+
+9. **Acoustic Dynamic Partitioning & Zero Mechanical 4-SEG Gate (Rule 0.37)**:
+   - Dynamic Segment Slicing: Segment count MUST be dynamically computed via `acoustic-precompute.py` based on natural dialogue speech rate (3.6 chars/s) and physical action duration. Arbitrary fixed division (e.g. hardcoding 4 SEGs) triggers instant rejection.
+   - Strict Dialogue Capacity CI Gate (`validate-dialogue-capacity.py`):
+     * Single shot speech rate must not exceed 4.2 chars/s.
+     * Single shot dialogue must not exceed 35 characters.
+     * Single SEG dialogue must not exceed 55 characters.
+     * Segment count must not fall below `min_segs_required` in `acoustic-profile.json`.

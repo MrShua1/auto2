@@ -1,4 +1,4 @@
-﻿node_modules/
+node_modules/
 *.log
 *.tmp
 .DS_Store
@@ -6,3 +6,5 @@ Thumbs.db
 .auto-d-install-lock
 auto-d-backups/
 .libtv/
+__pycache__/
+*.pyc

@@ -144,6 +144,14 @@ shot, never a continuity state. All unrelated gates remain in force.
   - Zero Web-Novel Fluff: Action must only contain camera-observable physical movements; subjective psychological/web-novel fluff words trigger instant disqualification.
 - **Rule 0.36 (Zero Dialogue in Action Gate · CI & Review Gate)**:
   - Zero Dialogue in Action: 【动作/表演】 must strictly describe camera-observable physical movements and lip movement locks. Absolutely NEVER embed spoken dialogue texts or quotation marks (`“...”`, `"..."`) inside 【动作/表演】! Spoken dialogue and monologue belong 100% and exclusively in 【台词】. Violations trigger instant CI blocker and disqualification (FAIL / Exit 1).
+- **Rule 0.37 (Acoustic Dynamic Partitioning & Zero Mechanical 4-SEG Gate · CI & Review Gate)**:
+  - Acoustic Pre-computation Lock: Segment count must be derived dynamically from `skills/auto/scripts/acoustic-precompute.py` based on natural dialogue rate (3.6 chars/s) and physical action duration. Hardcoding "usually 3~4 SEGs" or forcing arbitrary 4-segment cuts triggers instant rejection.
+  - Strict Dialogue Capacity CI Gate (`validate-dialogue-capacity.py`):
+    * Max Speech Rate: Single shot speech rate must not exceed 4.2 chars/second.
+    * Max Shot Dialogue: Single shot dialogue must not exceed 35 characters.
+    * Max SEG Dialogue: Single segment total dialogue must not exceed 55 characters.
+    * Minimum Segment Threshold: Actual segment count must not be less than `min_segs_required` from `acoustic-profile.json`.
+    * Violations trigger instant CI blocker and disqualification (`[HARD FAIL]`).
 
 ## G5 Images
 
