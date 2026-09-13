@@ -41,6 +41,10 @@ shot, never a continuity state. All unrelated gates remain in force.
   explicit user count is preserved exactly instead.
 - Supplied usable references are not duplicated merely to satisfy the generated-
   asset candidate default, unless the user explicitly requested new generation.
+- **Rule 0.33 (Strict Asset Fidelity & Anti-Substitution Gate)**:
+  - Zero Fake Asset Substitution: If an asset is missing from the asset library, strictly forbid substituting it with an unrelated, mismatched or conflicting asset (e.g. substituting a small fishing net with a fishing rod triggers immediate rejection).
+  - Autonomous Asset Synthesis: When a required prop, character state or location is missing, the engine must autonomously generate compliant asset images adhering to Auto's cinematic asset framework (16:9, authentic material macro details, clean neutral background, strictly zero human hands/limbs).
+  - Multi-Level Mirroring & Mandatory Disclosure: Autonomously synthesized assets must be mirrored across the global library, episode directories, and segment mappings, and explicitly disclosed in batch reports.
 - `asset-requirements.json` contains one stable row per visible asset version derived
   from the complete script. Character wardrobe/state, location time and prop state
   variants are separate rows with episode, scene and exact script evidence.
@@ -132,6 +136,14 @@ shot, never a continuity state. All unrelated gates remain in force.
 - Every shot has a distinct editorial function.
 - Shot scale, lens, angle, height, composition and depth mechanism are concrete.
 - User-locked fields match exactly.
+- **Rule 0.34 (Strict Dialogue Semicolon Termination & Paragraph Line-Break Gate · Review Gate)**:
+  - Dialogue Paragraph Line-Break: In multi-dialogue shots or sequential utterances, dialogues must be separated by explicit line-breaks after each spoken paragraph/sentence. Jamming multiple dialogue lines into a single line triggers instant disqualification (FAIL / Exit 1). Canonical format: `主体1迎风笑道：“...”；\n主体1顺势起获喊道：“...”；\n主体1内心声音沉思说：“...”`.
+  - Dialogue Semicolon Termination: Every independent dialogue paragraph (including spoken dialogue and O.S. inner monologue) must strictly terminate with a semicolon (`；` or `;`), with closing quote on final line tolerated. Missing semicolons triggers instant disqualification (FAIL / Exit 1).
+- **Rule 0.35 (Single Physical Space & Zero Web-Novel Fluff Gate · Review Gate)**:
+  - Single Physical Space: Each shot must be strictly confined to a single physical location. Merging multiple physical locations into a single shot scene or action triggers instant disqualification.
+  - Zero Web-Novel Fluff: Action must only contain camera-observable physical movements; subjective psychological/web-novel fluff words trigger instant disqualification.
+- **Rule 0.36 (Zero Dialogue in Action Gate · CI & Review Gate)**:
+  - Zero Dialogue in Action: 【动作/表演】 must strictly describe camera-observable physical movements and lip movement locks. Absolutely NEVER embed spoken dialogue texts or quotation marks (`“...”`, `"..."`) inside 【动作/表演】! Spoken dialogue and monologue belong 100% and exclusively in 【台词】. Violations trigger instant CI blocker and disqualification (FAIL / Exit 1).
 
 ## G5 Images
 
@@ -179,16 +191,8 @@ shot, never a continuity state. All unrelated gates remain in force.
   `approved_generated`, and registry status is `COMPLETE`. Otherwise status is
   `NEED_FIX` and every unresolved row is listed.
 - It contains `人物`, `场景`, `道具` and hidden `_索引` sheets.
+- Only human-approved asset images are embedded, with one asset per row and variants arranged horizontally.
 - `_索引` records each embedded image's asset ID, category, source path and approval timestamp.
-
-## G5.1 Mandatory Storyboard Keyframe Image & Spatial Lineart Gate (Rule 0.24)
-
-- Storyboard image generation is a mandatory prerequisite phase for video delivery. Direct video generation without verified storyboard images is strictly prohibited.
-- Every shot in each segment must have:
-  1. A dedicated pure B&W spatial staging lineart (`SEGxxx_镜头y_站位线稿`) defining lateral coordinates (画左/画中/画右), body facing, and gaze vectors without facial/clothing details;
-  2. Explicit lineart mapping injected in the shot's `位置承接：` (`[线稿图对应关系：...]`);
-  3. A dedicated storyboard image node (`biz/image`, `SEGxxx_镜头y_图片`) connected to the shot's characters, scene, and lineart;
-  4. The legacy frontal reference block (`【资源引用】`) is completely removed to eliminate frontal portrait prior bias.
 
 ## G5A TSC References And Prompts
 
@@ -245,6 +249,14 @@ shot, never a continuity state. All unrelated gates remain in force.
   count as final prompts and never pass the video-generation gate.
 - Every TSC prompt preserves exact dialogue, causal order, reference ownership,
   character voice ownership and ownership of any explicitly included sound.
+- Bidirectional Script-OS Strict Parity Gate (Rule 0.32): Every source dialogue line with (OS)
+  must be delivered as voiceover (O.S.) with explicit on-screen character lips tightly closed.
+  Every source dialogue line without (OS) must be delivered as synchronous spoken dialogue with
+  explicit on-screen character mouth opening and lip-sync. A missing OS delivery when script has (OS),
+  or an invented OS delivery when script lacks (OS), unconditionally fails G5 and blocks delivery.
+- Abstract internal psychological thought phrases (such as 内心盘算, 暗自思忖, 心里暗想,
+  心里默念, 内心惊喜独白, 心生一计, 暗暗发誓, 暗叹) are strictly prohibited in prompt prose
+  and dialogue fields. Prompts must depict only observable physical actions and exact dialogue.
 - Every TSC prompt follows the profile-governed production format: role list,
   resource references, physical scene, starting blocking, the permitted number of
   timed camera fields and ending state.

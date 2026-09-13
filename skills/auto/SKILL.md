@@ -1,6 +1,6 @@
 ---
 name: auto
-description: "Auto 全自动影视分集与分镜生产工程。支持 /auto batch20（推进1-20集）、/auto batch40（推进21-40集）等批次指令。默认 100 并发极速分析与生图架构。分镜图与站位线稿解耦为必备流程。严格执行四维协同支柱、严禁纯代码机械死模板拼接、空间与情境感知动态换装、真实大模型逐幕物理动作转译与严格0视频生成。"
+description: "Auto 全自动影视分集与分镜生产工程。支持 /auto batch20（推进1-20集）、/auto batch40（推进21-40集）等批次指令。默认 20 并发分析架构。严格执行四维协同支柱、严禁纯代码机械死模板拼接、空间与情境感知动态换装、真实大模型逐幕物理动作转译与严格0视频生成。"
 ---
 
 # Auto 影视分集工程规范（Auto Screenplay-to-Prevideo Production）
@@ -57,10 +57,10 @@ description: "Auto 全自动影视分集与分镜生产工程。支持 /auto bat
 ### 4. 【批次生产颗粒度上限 20 集铁律（Rule 0.9）】
 - 单次生产任务上限严格锁定为 **≤ 20 集**（约 50~70 个 SEG），确保大模型注意力高度聚焦、逐句深读，杜绝批量上下文疲劳导致的粗制滥造。
 
-### 5. 【批次默认100并发分析与极速并行处理铁律（Rule 0.10）】
-- **默认 100 并发分析架构**：针对分集生产与生图渲染任务，严禁单线程串行低效等待！Auto 调度系统必须**默认启用 100 并发极速池（100 Concurrent Workers / Tasks）**，将批次内的分集与全量分镜任务一键分发至 100 个独立的并发推理与生图管道中同时并行处理。
+### 5. 【批次默认20并发分析与极速并行处理铁律（Rule 0.10）】
+- **默认 20 并发分析架构**：针对单批次 20 集的分集生产任务，严禁单线程串行逐集等待！Auto 调度系统必须**默认启用 20 并发分析（20 Concurrent Workers）**，将批次内的 20 集一键分发至 20 个独立的 AI 语义推理管道中同时并行分析与处理。
 - **并发分支四大支柱守恒**：每一个并发分支必须 100% 独立且完整执行四大支柱（逐字解析 △ 动作、精准匹配场景资产、情境动态换装、台词声画解耦），严禁降级使用简化死模板。
-- **批次聚合质检**：全部并发任务完成后统一收集汇总，执行全量资产纯洁性、原著逐字一致性门禁与 0 视频生成红线质检。
+- **批次聚合质检**：20 个并发任务完成后统一收集汇总，执行全量资产纯洁性、原著逐字一致性门禁与 0 视频生成红线质检。
 
 ### 6. 【预视频交付红线：严格 0 视频生成】
 - 本流水线为预视频交付工程，全流程仅输出标准化工程配置文件、分镜脚本与素材映射，**严禁执行任何底层的视频渲染与生成命令（严禁 --run / 任务提交）**。
@@ -70,9 +70,9 @@ description: "Auto 全自动影视分集与分镜生产工程。支持 /auto bat
   * **镜头 A（反应/起因 · Objective Reaction Shot）**：面部极微特写（Close-Up/ECU），平视微仰，聚焦双目神态转变（闭目到睁眼金芒迸发），出镜角色**双唇严密闭合**；
   * **镜头 B（主观视点呈现 · Subjective POV Shot）**：大俯角主观视角（High-Angle POV），纯净呈现金光震荡、海水通透与海底游鱼，**强制剔除观察者人物资产锁（严禁连入 Mixed 1）**，台词转为**画外音（O.S.）**；
   * **镜头 C（动作/情绪承接 · Result Shot）**：切回人物中近景，展示从容微笑与后续动作。
-- **单镜头黄金时长与单一物理动量定律（Shot Duration & Single Physical Action Rule）**：
-  * 单镜头时长刚性卡点：短剧单镜头严格锁定在 **2.5 秒 ~ 5.0 秒** 黄金区间，严禁生成 8~10 秒动作臃肿镜头；
-  * 单一物理动量定律：一个镜头在【动作顺序】中**仅允许承载 1 个核心物理动量转换**（如仅执行“睁眼金芒爆发”；或仅执行“金光波纹荡开海水通透”），严禁复合状态连续突变。
+- **长视频大模型黄金长镜头与连贯叙事定律（Cinematic Long-Shot & Continuity Law · Auto-STX Standard）**：
+  * **单段镜头数量与单镜头黄金时长**：单个视频分段（SEG，通常 20~28 秒）严格遵循长视频大模型（SD 2.5 / WAN 3.0）的黄金视听规律，**每个 SEG 保持 2 ~ 3 个连贯长镜头（单镜头时长建议在 8 秒 ~ 14 秒，如 12s+13s 或 8s+8s+9s）**，严禁过度切碎为 2~3 秒的零碎微镜头；
+  * **动作连贯完整定律**：同一镜头内应包容完整的动作起承转合、肢体物理演进与现场对白交互，给演员预留充足的表演与受力识别时间；仅在主客观视点解耦（POV）、场景空间转换或核心爆点反转时进行切镜，严禁单一简单动作即草率切镜。
 - **POV 资产锁纯化与幽灵占位符绝对清零（POV Asset Purge & Zero Ghost Mixed）**：
   * 主体锁与实际出镜主体 1:1 严格对齐，严禁出现 `{{Mixed 3}}` 等未出镜幽灵占位符；
   * POV 镜头严禁连入观察者人物卡，仅保留场景与被观察物，彻底杜绝海面浮空人脸事故。
@@ -121,13 +121,13 @@ description: "Auto 全自动影视分集与分镜生产工程。支持 /auto bat
 
 ### 14. 【声画对白绝对人嘴开口与OS画外音严格隔离铁律 · 彻底废除 O.S. 标签污染（Rule 0.18）】
 - **【最高绝对红线：原著剧本未标注 OS 则必须 100% 物理张嘴开口发音】**：
-  * 凡剧本未标注 `(OS)` 的台词，只要该说话角色在画面中出镜，**必须定性为现场真实对白（On-Screen Dialogue），必须由人物嘴唇同步张合发声（人嘴说话）**！
-  * 严禁将剧本正常台词偷懒做成“配音在响、人物闭嘴不动”的画外音（O.S.）！
-  * 只有当原著剧本显式标注 `(OS)` 或纯第一人称主观 POV（0 出镜人物）时，方可判定为画外音。
+  * **原著 OS 独占原则**：凡剧本未显式标注 `(OS)` 的台词，**100% 必须定性为现场真实对白（On-Screen Dialogue），必须安排在人物出镜的镜头中，由人物嘴唇同步张合发声（人嘴说话）**！
+  * **绝对严禁擅自打成画外音**：严禁将剧本正常台词偷懒做成“配音在响、人物闭嘴不动”的画外音（O.S.）！绝对严禁因镜头为主观视点（POV）或空镜而擅自把无 OS 标头的正常对白降维为画外音；
+  * **只有原著明确标有 (OS) 方为画外音**：只有当原著剧本显式标注 `(OS)` 时，方可判定为内心独白画外音，且出镜人物必须双唇严密闭合。
 - **【彻底清除字段标签中的 O.S./OS 污染词】**：
   * 彻底废除死板通用的 `台词/O.S./OS：` 混合标签！影视工业中 `O.S.`（Off-Screen）是强负向分类词，会诱导视频大模型直接生成闭口画外音；
   * 现场对白镜头必须使用纯净字段标签 `台词：`（或 `对白：`），绝对禁止出现 `O.S.`、`OS`、`画外音`；
-  * 仅当确为画外音时使用 `台词（画外音）：` 或 `画外音（O.S.）：`。
+  * 仅当原著剧本明确标注 `(OS)` 时，方可使用 `台词（画外音）：` 或 `画外音（O.S.）：`。
 - **【动作/表演必须显式注入物理开口动作】**：
   * 多模态视频扩散模型以 `动作/表演：` 作为第一帧与运动生成的绝对主干驱动；
   * 凡包含现场对白的镜头，`动作/表演：` 的【动作顺序】中**必须显式包含人物嘴部张合发音动作**（如：`嘴唇根据台词清晰自然张合开口发声，面部肌肉配合咬字，严禁紧闭双唇`），并在【动作后状态】中闭口恢复；动作字段遗漏张嘴动作一律定性为重大穿帮！
@@ -171,241 +171,303 @@ description: "Auto 全自动影视分集与分镜生产工程。支持 /auto bat
   * 【站位与起始状态】仅允许声明角色的**物理坐标、站立/坐卧姿态、朝向、视线聚焦以及与环境/道具的相对空间关系**（如‘主体1立于主体2船首中央，身体面向深景处的远景海面，后背朝向近景船舱，神情专注坚毅’）；
   * 严禁夹带任何服装、鞋帽、饰品描述，彻底杜绝先验冲突。
 
-### 18. 【绝对零模糊相对方位词与屏幕左右空间严格一致最高铁律 · 锚点远近景四维协同体系（Rule 0.22，Zero Vague Relative Position, Segment Lateral Screen Invariance & 4D Anchor-Depth Synergy Gate）】
-- **【最高绝对红线：彻底禁止无屏幕参照系的模糊相对方位词】**：
-  * **严禁在提示词（Prompt）、分镜表与状态承接中使用“旁侧”、“身侧”、“身旁”、“旁边”、“在旁”等无明确屏幕左右参照系的模糊词汇**！
-  * 此类词汇无绝对左右参考，必然诱发视频模型空间位置幻觉，导致角色在画左与画右之间随机瞬移对调，造成毁灭性穿帮；
-  * 任何角色的站位与相对位置，必须显式声明绝对屏幕横向坐标：**【画左】、【画右】、【画左偏中】、【画右偏中】、【画左外侧】、【画右外侧】**；
-  * 角色之间的相对横向间距，必须精确声明相对左右方向与步距（如“画左外侧（主体1左侧）”、“挺立于画左偏中（主体2右侧半步）”、“立于画右背景（主体4右后侧）”）。
-- **【同一分段（SEG）左右屏幕绝对恒定守恒公理】**：
-  * 在同一视频分段（SEG）的连续叙事空间内，**各角色/阵营在画面中的物理屏幕左右位置（画左 vs 画右）必须严格保持一致，绝对严禁擅自跳轴（Cross-the-line）、瞬移对调或左右翻转**！
-  * 镜头1确立为画左的角色，全段所有后续镜头必须恒定处于画左并面朝画右；镜头1确立为画右的角色，全段所有后续镜头必须恒定处于画右并面朝画左；
-  * 除非剧本在动作中明确写明大步跨越轴线的走位，否则左右阵营站位轴线绝对守恒。
-- **【与【锚点远近景】（景深层级与场景实体锚点）四维一体深度协同】**：
-  * 必须与 Rule 0.17【场景物理锚点与景深层次守恒】深度无缝协同，每一镜头的【位置承接】、【站位与起始状态】、【结束状态】必须形成**“横向左右 + 纵深景深 + 场景物理实体锚点 + 身体面部朝向”四维一体不可分割的完整几何坐标公式**：
-    `[角色] 挺立于【屏幕横向坐标（画左/画右/画左偏中/画右偏中）】+【景深层级（近景/中景/远景/深景）】+【场景物理实体锚点（如焦梁废墟地砖/远景海面/近景门阶）】+（相对其他角色的精确左右间距，如主体2右侧半步），身体与面部正向面朝【目标方位与角色】，后背严格背向【反向物理实体锚点】`；
-  * 严禁将横向左右与纵深远近割裂描写，严禁使用孤立模糊的前后左右词汇。
-- **【自动化门禁一票否决】**：
-  * 校验器在提示词审查时执行强制全字扫描：
-    1. 凡在【站位与起始状态】、【位置承接】、【结束状态】或【动作/表演】中检测到 `身侧|旁侧|身旁|旁边|在旁`，直接判定为违规穿帮，门禁立即阻断（Exit 1）；
-    2. 凡出镜角色的【位置承接】缺少 `画左|画右` 屏幕横向声明，或缺少 `近景|中景|远景|深景` 景深锚点声明，直接阻断报错（Exit 1）；
-    3. 凡在同一分段内同一角色在无走位动作声明的情况下发生 `画左` 与 `画右` 互换跳轴的，直接判定为时空穿帮一票否决（Exit 1）。
+### 18. 【Prompt 显式左右边空间坐标声明与景深四维协同绝对门禁（Rule 0.22，Explicit Screen Coordinate Gate）】
+- **【最高绝对红线：彻底禁止无左右参照系的模糊相对站位词】**：
+  * 严禁在【站位与起始状态】、【位置承接】、【动作/表演】中使用 `身侧`、`旁侧`、`身旁`、`旁边`、`在旁` 等孤立模糊相对位置词；
+  * 每一个角色的站位与走位必须具有明确的屏幕横向绝对坐标：`画左`、`画右` 或 `主体X左侧/右侧半步`；
+  * 必须与【锚点景深（前景/中景/深景）】、【身体面朝方向】、【视线聚焦目标】四维协同锁死。
 
-### 19. 【有场景参考绝对禁止场景画面描述最高铁律 · 场景资产双轨纯净锚定门禁（Rule 0.23，Strict Zero Scene Description Hallucination & Pure Scene Reference Gate）】
-- **【最高绝对红线：有场景参考时绝对禁止在【场景】位置撰写任何场景画面描写】**：
-  * 凡视频分段（SEG）中已连入或引用场景参考图资产时，【场景】字段必须 100% 仅保留纯粹的场景主体空间标识与基础自然采光声明，标准语法格式严格锁定为：`主体N场景空间，日景自然光照。`（或按剧本指定为 `夜景自然光照` / `黄昏自然光照`）；
-  * 绝对严禁在【场景】位置或分镜段落中擅自撰写任何场景画面细节、环境布局、废墟破坏程度、特定摆设、杂物细节或抽象修辞修饰（如严禁出现‘残破焦黑的房梁木炭散落，烧焦砖瓦满地，海风呼啸吹过废墟，沿海阴天真实质感’、‘残破砖瓦与焦黑木桩横陈’等）；
-- **【双轨逐镜头同步纯化硬阻断（Shot-Level Pure Spatial Reference Gate）】**：
-  * 分镜内部各镜头的 `场景/时间/光线：` 字段同样绝对严禁展开场景画面细节、天气修饰或光影形容词（如严禁出现‘废墟阴影与沿海阴天散射光’、‘斑驳阳光’、‘写实光照’等），统一严格写作：`场景/时间/光线：主体N场景，[日/夜]景自然光照。`；
-  * 场景的所有物理外观、材质、损毁程度与空间结构必须 100% 且唯一由场景参考图资产卡锁死，严禁文字重复或差异化描写引发大模型文本先验劫持穿帮；
-  * 自动化代码门禁将顶层【场景】与逐镜头【场景/时间/光线：】纳入双层同等硬拦截（Exit 1）。
+### 19. 【场景/时间/光线极简纯物理引用门禁（Rule 0.23，Concise Scene Staging Gate）】
+- **【最高绝对红线：严禁在【场景/时间/光线】中堆砌文学修辞或微观环境展开】**：
+  * 【场景/时间/光线】字数严格限制在 ≤ 25 字，必须为纯粹物理引用：如 `主体2场景，日景自然光照。` 或 `主体3场景，夜景自然光照。`；
+  * 微观物理互动与道具接触统一归入【动作/表演】。
 
-### 20. 【分镜图与站位线稿三阶解耦必备流程铁律 · 彻底粉碎正脸肖像偏见（Rule 0.24，Mandatory Storyboard Keyframe Image & Spatial Lineart Decoupling Gate）】
-- **【最高绝对红线：分镜图为全流程刚性必备流程，绝对严禁直接跑视频（Mandatory Storyboard Keyframe Axiom）】**：
-  * 分镜图片节点（`biz/image`）与分镜定妆图的生成，是 Auto 分集与分镜工程的**刚性必备前置环节（Pre-requisite Process）**，绝对不可跳过！
-  * **严禁跳过分镜生图直接向视频大模型提交生成任务**！
-  * 在视频节点之前，**必须为分段（SEG）中的每一个镜头建立对应的【分镜图片节点】（`SEG00x_镜头y_图片`）**；
-  * 只有在分镜图片节点上生成了确定的分镜定妆图（确认构图、人物朝向、视线交汇、光影质感达标）后，该分镜图才作为起幅首帧（First Frame）/关键帧输入视频节点，杜绝直接在视频模型中盲目抽奖导致的巨额算力浪费与严重穿帮。
-- **【空间骨架层：lllyasviel ControlNet 原生纯白描线稿标准（lllyasviel ControlNet Pure Lineart Axiom）】**：
-  * 每一个出镜镜头**必须由本地工作流生成 1 张纯净黑白站位线稿（`SEG00x_镜头y_站位线稿` / `shotX_lineart.png`）**；
-  * **最高绝对红线：绝对零干扰要素（Zero UI / Zero Artifacts Rule）**：
-    1. **严禁包含任何外边框、模板边框、信息框（0 UI Frames, 0 Outer Borders）**；
-    2. **严禁包含任何英文/汉字文本、动作标注、镜头编号、元数据水印（0 Text, 0 Labels, 0 Metadata）**；
-    3. **严禁包含任何运镜方向箭头、动作受力箭头（0 Directional Arrows, 0 Motion Vectors）**；
-    4. **严禁包含任何灰度水彩晕染、渐变阴影（0 Grayscale Wash, 0 Watercolor, 0 Shading）**；
-  * **绘制规范（Pure ControlNet Conditioning Lineart）**：
-    1. **满幅 16:9 纯线描绘制（Full Edge-to-Edge Drawing）**：画面纯粹铺满，无任何信箱黑白框架；
-    2. **纯白底色 + 纯黑流畅轮廓（Pure Black Ink on Solid White Background）**：高对比度、清晰连续的几何轮廓线；
-    3. **纯正东方中国人骨相与写实身体比例（Rule 0.6 铁律）**：精准体现人物横向屏幕坐标（画左/画中/画右）、纵深前后关系、身体朝向（对峙、侧面、微侧）、肢体动态重心与微观物理动作（揪领、截腕、拍桌按纸、登船撑竿）；
-    4. **本地流直接生成到位，无需云端二次生图**：本地已配备高清线稿图，上云画布仅需作为静态分镜图节点展示，彻底消灭空白生图卡片；
-  * **100 并发极速生成架构**：采用真实 AI 接口（如 st1 `gpt-image-2.5-sunburst`，1792x1024），全批次镜头默认 **100 并发极速并行下发**。
-- **【Rule 0.25 剧本题材时代感知与角色身份排他性硬锁铁律（Script-Aware Era & Character Specificity Gate）】**：
-  * **剧本时代题材严格锚定（Script-Aware Era & Genre Gate）**：
-    1. 严禁脱离剧本题材与时代背景自作主张生成线稿！必须从原著剧本（`script-source.txt`）与分段提示词中读取故事时代：
-       - **当代沿海/现代都市短剧（Modern Coastal/Urban Short Drama）**：
-         * **服装标准**：必须 100% 对应中国当代写实日常服饰（连帽卫衣 hoodies、现代工装夹克 workwear jacket、立领夹克、T恤、牛仔裤 denim、劳保鞋/运动鞋）；
-         * **发型标准**：青年男子必须为现代干净利落短发（Modern short haircut），严禁男子束发长发，中老年人为自然短发或渔民防风帽；
-         * **反古风先验负向硬锁（Anti-Ancient/Wuxia Negative Purge）**：必须显式注入 `Strictly zero ancient costumes, zero traditional hanfu, zero historical robes, zero wuxia clothing, strictly zero ancient hairpins, zero topknots, zero ancient buns, zero long hair on men, zero historical fantasy elements`，彻底打碎大模型将“墨线白描”自动脑补为古风武侠/汉服发髻的严重先验偏见；
-       - **古代/仙侠剧本**：方可使用古装长袍与束发发髻规范；
-  * **角色身份、性别与年龄排他性硬锁（Strict Character Identity, Gender & Role Lock）**：
-    1. 严禁在提示词中使用模糊抽象词 `characters / figures`！抽象名词极易唤醒模型“男女情侣/背包女学生”的泛化幻觉；
-    2. 必须根据分段【角色清单】与剧本动作，将每一个出镜角色物理定义到具体性别、年龄层与身份：
-       - 如“年轻坚毅男子黄子名（Young Chinese male protagonist, modern short haircut, casual hoodie）”；
-       - “老年沧桑渔民黄山（Elderly weathered Chinese father/fisherman, aged wrinkled face, rough modern casual workwear）”；
-       - “中年蛮横凶恶高利贷头目张顺民（Middle-aged burly aggressive Chinese debt collector, harsh sneering face, modern dark jacket）”；
-    3. 严禁在画面中捏造任何未在剧本中登场的无关人物（如无端画出年轻女性、无关背包路人），违者一律定性为重大穿帮一票否决！
-- **【Rule 0.26 三维影视视听纵深调度与拒绝二维死板侧面平视铁律（3D Cinematic Depth, Z-Axis Spatial Staging & Anti-Flat Profile Gate）】**：
-  * **最高绝对红线：严禁二维横版死板纯侧面平视（Zero Flat 2D Side-View Rule）**：
-    1. 彻底禁止在提示词中使用 `in profile`（90度纯侧面剪影），严禁将机位降维成皮影戏或横版格斗游戏般的“纯左右二维平面关系”；
-    2. 影视分镜机位必须具备完整的 **X-Y-Z 三维空间坐标系**，呈现真实的电影视听深度；
-  * **三维影视视听调度四大支柱**：
-    1. **Z轴纵深与近大远小视差（Z-Axis Depth & Perspective Foreshortening）**：镜头必须明确划分前景（Foreground）、中景主体（Midground）、深景背景（Background）；主要角色严禁站在同一平面横向排开，必须一方偏近景（比例较大）、另一方偏中景（比例较小），形成强烈的戏剧张力与空间进深；
-    2. **3/4 微侧立体透视（Dynamic Three-Quarter View）**：废止 90 度纯侧面，人物身体呈 45°~60° 三分之二微侧朝向，既展现胸膛、肩膀的立体三维结构，又以清晰的头部侧角与眼神聚焦对手，实现“看得清五官神态，又锁得死对峙朝向”；
-    3. **过肩视点与对角线机位（Over-The-Shoulder / OTS & Diagonal Staging）**：充分运用过肩构图（OTS：前景角色的肩膀/手部形成透视框，深入看向后景对峙者）或斜向对角线站位，打破横平竖直的呆板感；
-    4. **极简地面透视基准线（Minimal Ground Perspective Lines）**：仅用 2~3 笔极简且精准的透视灭点线条（如地面石板延伸线、台阶落差、石桌边缘或墙角线），为画面注入真实物理三维纵深，拒绝悬浮平面；
-    5. **多角色群像人数保真与阵营坐标硬锁（Multi-Figure Capacity & Faction Coordinate Lock）**：
-       - 当场景出现 3 人以上（如 4~5 人对峙）时，文生图大模型极易发生“群像注意力坍缩（Crowd Prior Collapse）”，导致画面仅生成 2~3 人并吞噬次要角色；
-       - 必须在提示词中显式采用【分阵营与绝对人数声明】：`EXACTLY N distinct individuals visible on screen. Screen-left faction (M figures facing right) vs Screen-right faction (K figures facing left). Zero missing background figures`；
-    6. **绝对禁止直视镜头与眼球视线硬锁（Strict Zero Camera-Facing Gaze & Eye Vector Lock）**：
-       - 文生图模型在生成“英俊男主/冷峻眼神”时具有极强的肖像照先验（Portrait Bias），极易导致身体侧身但脑袋硬生生扭过来“看镜头”的怪异恐怖谷穿帮；
-       - 必须在提示词与负向提示词中强制注入双向锁：`Hero's face and gaze strictly horizontally locked onto the opponent across the scene. Strictly zero looking at the camera lens, strictly zero eye contact with viewer, zero breaking the fourth wall!`。
-  * **极简画质标准守恒**：依然保持 16:9、纯白底黑墨单线、0 边框、0 标注、0 箭头、0 灰度水彩、0 密集排线阴影。
-- **【Rule 0.27 线稿纯白底零场景污染与宏观轮廓特征/微观细节绝对留白铁律（Strict Zero Scene Background & Silhouette-Only Feature Decoupling Gate）】**：
-  * **最高绝对红线：线稿背景 100% 纯白底，绝对严禁包含任何场景/环境元素（Zero Scene in Lineart Rule）**：
-    1. 场景资产卡（Mixed 场景）已 100% 独占环境、光影、建筑与材质渲染权；
-    2. 线稿严禁画出任何门窗、墙体、废墟、树木、桌椅或复杂地面（0 建筑、0 道具、0 场景）；若线稿绘制场景线条，ControlNet 的硬边缘将直接污染撕裂真实场景卡质感，产生生硬的漫画勾边与几何重影穿帮；
-    3. 线稿必须且仅能画纯人物在纯白空间内的站位与骨架；
-  * **人物特征绑定法则：【宏观体态轮廓给足特征，微观细节与五官绝对留白】（听话与一致的黄金平衡点）**：
-    1. **为什么不能带过多微观特征？**：若线稿画了具体的双眼皮、复杂眼眶、唇纹、衣服纽扣/拉链/密集褶皱，ControlNet 会将像素钉死在线稿上，与角色参考图的真实演员脸孔和服装材质产生微米级干涉，导致“戴假面具、五官崩坏变形、服装打架”，严重破坏一致性；
-    2. **为什么不能完全不带特征（纯火柴人/光头假人）？**：若线稿完全不带特征，多角色同框时视频模型无法将角色资产卡与具体人偶正确对应，极易引发【张冠李戴 / 角色乱附着 / 换头移魂（Identity Swap）】；
-    3. **黄金平衡标准**：
-       - **宏观特征给足（保证听话、防串角色）**：发型外廓（利落短发 vs 稀疏白发 vs 盘发）、体型体态（挺拔年轻 vs 佝偻老迈 vs 宽肩壮硕）、服装大版型剪影（卫衣 vs 夹克）、手势（指人/揪领）；
-       - **微观五官与面料绝对留白（保证真实、100%一致）**：面部内部光洁留白，绝对不画双眼皮/瞳孔高光/唇纹；衣服表面光洁留白，绝对不画纽扣/车缝线/密集褶皱。把真实感与 100% 一致性彻底留给角色参考图！
-- **【特征与环境层：角色与场景资产三权分立（Three-Tier Decoupled Binding）】**：
-  * **角色资产卡（Character Cards）**：仅作为“身份、五官骨相、东方脸孔、发型与服装材质”的着色贴图，严禁承担构图站位职责；
-  * **场景资产卡（Scene Cards）**：仅作为“空间建筑、材质质感与自然光照基调”，严禁描写画面修辞；
-  * **站位线稿（Lineart）**：独立承担三维构图与空间站位；
-  * 三者职责完全解耦、互不抢权。
-- **【提示词规范：彻底删除【资源引用】与显式注入线稿映射（Zero Resource Reference & Explicit Lineart Mapping）】**：
-  * **彻底删除旧版【资源引用】文本块**：严禁在 `prompt.txt` 中保留 `【资源引用】` 及其内部的 `右上格提供正面服装，右下格提供背面发型与服装` 等诱导正面肖像的旧版文字；
-  * **顶层【站位与起始状态】必须声明线稿图人物对应关系并与镜头1画面一致**：整个分段（SEG）顶层的【站位与起始状态】代表全段起幅的初始空间基准，与【镜头1】起幅画面物理同一！
-    1. 【站位与起始状态】首部必须 100% 显式声明线稿图人物对应关系：`[线稿图对应关系：主体1=某角色（站位/朝向），主体2=某角色（站位/朝向）]`；
-    2. 其文字描述必须与【镜头1】站位线稿图的画面物理事实 100% 完全一致，包含所有出镜人物在镜头1起幅时的绝对屏幕坐标（画左/画右/屏幕X坐标）、身体朝向与视线聚焦方向等空间信息；
-    3. 严禁顶层起始状态与镜头1线稿画面割裂脱节或前后矛盾；严禁包含任何穿着声明（遵守 Rule 0.21）；
-  * **逐镜头【位置承接】显式注入线稿映射指针**：每一个镜头的 `位置承接：` 起始处必须 100% 显式声明线稿人物与资产主体的映射指针：
-    `[线稿图对应关系：线稿画左外侧站立的两名人物对应主体2与主体3（面朝画右）；线稿画左偏中挺立的人物对应主体1（面朝画右）；线稿画右近景大步迈入的两名人物对应主体4与主体5（面朝画左）。]`
-  * 确保大模型能把角色卡 1:1 精准附着在线稿的人体骨架上，杜绝角色错位与乱穿乱跑。
-- **【分镜图片节点连线规则（Storyboard Image Node Connection Contract）】**：
-  * 画布上的每一个【分镜图片节点】（`SEG00x_镜头y_图片`）必须且仅能接入：
-    1. 该镜头肉眼实际出镜的角色资产卡；
-    2. 该镜头的场景资产卡；
-    3. 该镜头对应的专属站位线稿（`SEG00x_镜头y_站位线稿`）；
-  * 严禁遗漏线稿输入，严禁连入未出镜资产。
-- **【视频节点双轨接入规则（Video Node Dual-Track Ingress Contract）】**：
-  * 视频节点（`SEG00x`）必须同时接入：
-    1. 该分段出镜的所有角色卡、场景卡与音频参考；
-    2. 该分段各镜头的专属站位线稿（接入【图片】输入区）；
-    3. 各镜头生成确认后的分镜定妆图（作为起幅首帧/关键帧）；
-  * 严格遵守 Strict Zero Credits Gate（纯设计态连线 $\Delta = 0$）与严格 0 视频生成红线。
-- **【Rule 0.28 单镜头16:9刚性单画幅与彻底消除多格连环画铁律（Strict Single-Frame 16:9 & Comic Panel Purge Gate）】**：
-  * **最高绝对红线：严禁生成任何多格、分屏、连环画网格（Comic Panels/Strips/Grids/Borders/Split Screens）**；
-  * **正向全画幅强锁**：`Strictly a SINGLE unified 16:9 widescreen full-frame cinematic camera shot, single camera view, single perspective. Strictly ONE single picture.`
-  * **负向彻底熔断**：`Strictly ZERO comic panels, ZERO split screens, ZERO multi-grid layouts, ZERO borders, ZERO comic strips, ZERO multiple frames, ZERO speech bubbles, ZERO thought bubbles, ZERO collage.`
-  * **时序动作解耦**：线稿仅抓取单一静态关键帧瞬间（Single decisive frozen keyframe snapshot），严禁将动作前/动作顺序/动作后连续塞入引发模型绘制时序连环画。
-- **【Rule 0.29 剧本同源当代现实主义与排他性去古装发髻长衫铁律（Authentic Modern Era & Anti-Ancient Costumes/Topknots Gate）】**：
-  * **最高绝对红线：当代都市/沿海题材严禁出现道士头、发髻（Topknot/Hair bun）、长衫、汉服或武侠反派装扮**；
-  * **现代排他硬锁**：`Time & Era: Modern contemporary China (2020s), authentic modern coastal realism. All characters: Strictly modern contemporary Chinese people, authentic modern neat short haircuts, modern casual everyday clothes (modern jackets, modern t-shirts, modern workwear, modern village casual wear, sneakers). Strictly ZERO ancient costumes, ZERO historical robes, ZERO topknots, ZERO hair buns, ZERO wuxia/hanfu elements.`
-  * **剧本同源风格注入**：`Visual Style: Authentic Chinese contemporary coastal realism (中国当代沿海现实主义), gritty modern seafaring narrative drama, cinematic lens composition and physical perspective, minimalist 3D line-drawing pre-visualization single frame keyframe sketch, pure black vector line work on pure solid white background, zero shading, zero grayscale, zero fill colors, zero textures, crisp thin black outlines.`
-- **【Rule 0.30 介质透视主客观解耦与大俯角水体构图铁律 · 彻底杜绝飞鱼上天穿帮（POV Underwater Angle & Zero Sky-Fish Gate）】**：
-  * **最高绝对红线：严禁在含天空或人物的客观镜头中描写水下生物（Zero Fish in Sky Rule）**；
-  * **主客观双镜蒙太奇解耦**：
-    1. 客观起因镜头：聚焦出镜人物望向水面，仅允许出现人物与陆地/船艇大环境，严禁描写任何水底生物细节；
-    2. 纯第一人称大俯角主观透视镜头：机位必须为大俯角垂直向下俯视水面（`High-Angle Top-Down POV looking directly down into water`），画面元素严格 0 天空、0 人物身体，仅包含透明海水、海底白沙、暗礁与游曳鱼群，台词强制声画解耦为画外音（O.S.）；
-    3. 客观神态承接镜头：镜头切回出镜人物特写与对白。
+### 20. 【站位线稿（Lineart）与分镜定妆图双轨解耦规范（Rule 0.24，Mandatory Storyboard Keyframe Image & Spatial Lineart Decoupling Gate）】
+- **双轨解耦必备流程**：
+  * **站位线稿（Lineart）**：纯白底黑墨极简单线图（1792x1024），管人体三维骨架、屏幕空间坐标、微侧透视与手势动作；
+  * **分镜定妆图（Storyboard Image）**：结合角色卡、场景卡与线稿 ControlNet 渲染生成的 16:9 高清写实定妆帧；
+  * 提示词中彻底废除旧版【资源引用】，并在【站位与起始状态】及各镜头【位置承接】首部显式声明线稿映射指针：`[线稿图对应关系：参考 {{Mixed N}} 站位线稿，线稿画左站立人物对应主体1...]`。
 
----
+### 21. 【剧本题材时代感知与角色身份排他性硬锁铁律（Rule 0.25，Script-Aware Era & Character Specificity Gate）】
+- **时代背景排他硬锁**：当代都市/沿海题材严禁出现古代长衫、汉服、道士头等武侠古装元素；民国/古装题材严禁出现现代卫衣、冲锋衣；
+- **角色身份阶层防撞衫**：富豪穿定制西装，渔民穿防风连体服/工作服，群演穿平价日常常服，依据剧本身份排他定义款式与材质。
 
-## 三、 `/auto batch<N>` 标准生产流水线 SOP
+### 22. 【3D 景深层次与立体透视调度铁律（Rule 0.26，3D Cinematic Depth & Anti-Flat Profile Staging）】
+- 废止 90° 纯平侧面，强制采用 45°~60° 三分之二立体微侧透视（Dynamic Three-Quarter View）；
+- 建立 Z 轴纵深与近大远小视差，过肩机位（OTS）对角线调度，严禁全员在同一水平面上站成纸片人；
+- 多角色绝对人数保真（Multi-Figure Capacity）与严禁看镜头（Strict Zero Camera-Facing Gaze）。
 
-当触发 `/auto batch<N>` 时，智能体必须严格依照以下 7 个步骤推进：
+### 23. 【线稿纯白底零场景污染与宏观轮廓特征/微观细节绝对留白铁律（Rule 0.27，Strict Zero Scene Background & Silhouette-Only Feature Decoupling Gate）】
+- **背景 100% 纯白底**：线稿严禁画出任何门窗、墙体、树木或复杂场景背景（0 建筑、0 道具、0 场景）；
+- **黄金平衡标准**：宏观轮廓给足特征（发型外廓、服装大剪影、体态与手势动作，确保听话与防串角色），微观面部内部与面料细节绝对留白（不画双眼皮/唇纹/纽扣/车缝线，把真实感与 100% 一致性彻底留给角色参考图）。
 
-```mermaid
-flowchart TD
-    A[识别 batchN 指令并解析集数区间 [Start, End]] --> B[步骤 1: 地毯式提取权威 Docx 目标集数剧本切片]
-    B --> C[步骤 2: 空间与情境感知解析 (场景匹配 + 角色换装)]
-    C --> D[步骤 3: 真实大模型 LLM 物理转译 (△动作行深度分镜 + 彻底删除资源引用 + 注入线稿映射)]
-    D --> E[步骤 4: 空间站位线稿 100 并发生成与分镜图片节点必备部署 (biz/image + 三权分立连线)]
-    E --> F[步骤 5: 物理资产纯洁性与视频节点双轨连线 (0连线污染, 0视频生成)]
-    F --> G[步骤 6: 规范工程包写入 (单集配置 + 单SEG物料 + 线稿与分镜图资产)]
-    G --> H[步骤 7: 自动化测试门禁校验并输出 Batch 交付验收报告]
-```
+### 24. 【单镜头16:9刚性单画幅与彻底消除多格连环画铁律（Rule 0.28，Strict Single-Frame 16:9 & Comic Panel Purge Gate）】
+- **最高绝对红线：严禁生成任何多格、分屏、连环画网格（Comic Panels/Strips/Grids/Borders/Split Screens）**；
+- **正向全画幅强锁**：`Strictly a SINGLE unified 16:9 widescreen full-frame cinematic camera shot, single camera view, single perspective. Strictly ONE single picture.`；
+- **负向彻底熔断**：`Strictly ZERO comic panels, ZERO split screens, ZERO multi-grid layouts, ZERO borders, ZERO comic strips, ZERO multiple frames, ZERO speech bubbles, ZERO thought bubbles, ZERO collage.`；
+- **时序动作解耦**：线稿仅抓取单一静态关键帧瞬间（Single decisive frozen keyframe snapshot），严禁将动作前/动作顺序/动作后连续塞入引发模型绘制时序连环画。
 
-### 步骤 1：精确提取剧本切片与前置门禁（Deterministic Slicing & Parity Gate）
-- **确定性提取落盘**：执行 `python auto/scripts/sync-docx-slices.py --batch <range>`，直接将原著 docx 中的文字 100% 逐字提取并写入各集 `script-source.txt`；
-- **前置逐字门禁核验**：执行 `python auto/scripts/verify-docx-parity.py --batch <range>`，确保每集 `script-source.txt` 与 docx 字符一致性达 100%（0 遗漏、0 压缩），通过后方可流转下一步。
+### 25. 【剧本同源当代现实主义与排他性去古装发髻长衫铁律（Rule 0.29，Authentic Modern Era & Anti-Ancient Costumes/Topknots Gate）】
+- **最高绝对红线：当代都市/沿海题材严禁出现道士头、发髻（Topknot/Hair bun）、长衫、汉服或武侠反派装扮**；
+- **现代排他硬锁**：`Time & Era: Modern contemporary China (2020s), authentic modern coastal realism. All characters: Strictly modern contemporary Chinese people, authentic modern neat short haircuts, modern casual everyday clothes (modern jackets, modern t-shirts, modern workwear, modern village casual wear, sneakers). Strictly ZERO ancient costumes, ZERO historical robes, ZERO topknots, ZERO hair buns, ZERO wuxia/hanfu elements.`；
+- **剧本同源风格注入**：`Visual Style: Authentic Chinese contemporary coastal realism (中国当代沿海现实主义), gritty modern seafaring narrative drama, cinematic lens composition and physical perspective, minimalist 3D line-drawing pre-visualization single frame keyframe sketch, pure black vector line work on pure solid white background, zero shading, zero grayscale, zero fill colors, zero textures, crisp thin black outlines.`。
 
-### 步骤 2：全量资产多级检索与情境换装
-- 读取项目资产库（全量场景库、全量角色库）；
-- 对每一场戏的标头执行空间感知匹配（如 `182-1 日 内 教室` $\rightarrow$ `SCENE_040_多媒体阶梯教室`）；
-- 对主要角色（如黄子名）根据当前场景环境与剧情行为动态绑定服装（如课堂绑定 `CHAR_001` 牛仔衬衫常服）。
+### 26. 【介质透视主客观解耦与大俯角水体构图铁律 · 彻底杜绝飞鱼上天穿帮（Rule 0.30，POV Underwater Angle & Zero Sky-Fish Gate）】
+- **最高绝对红线：严禁在含天空或人物的客观镜头中描写水下生物（Zero Fish in Sky Rule）**；
+- **主客观双镜蒙太奇解耦**：
+  1. 客观起因镜头：聚焦出镜人物望向水面，仅允许出现人物与陆地/船艇大环境，严禁描写任何水底生物细节；
+  2. 纯第一人称大俯角主观透视镜头：机位必须为大俯角垂直向下俯视水面（`High-Angle Top-Down POV looking directly down into water`），画面元素严格 0 天空、0 人物身体，仅包含透明海水、海底白沙、暗礁与游曳鱼群，台词强制声画解耦为画外音（O.S.）；
+  3. 客观神态承接镜头：镜头切回出镜人物特写与对白。
 
-### 步骤 3：默认 100 并发真实大模型逐幕物理动作转译（提示词纯化与线稿映射）
-- **默认启用 100 并发分析架构**：批次内的所有分集一键分发至 100 个独立的 AI 语义推理 Worker 并发并行推进，绝不串行低效等待；
-- **【核心禁令】Prompt 严禁手写剧本正文**：主智能体派发任务时，Prompt 仅传递目标目录路径，**严禁大模型在 Prompt 里复述、概括剧本**；
-- **必须物理读取本地文件**：每个 Worker 必须通过 `view_file` 等文件读取工具，直接读取对应分集目录下的 `script-source.txt`，逐字逐句进行微观动作链、机位调度、视线朝向、声唇硬锁与自然拟音转译；
-- **提示词彻底纯化与双层线稿映射**：彻底删除旧版【资源引用】文本块；顶层【站位与起始状态】首部显式注入 `[线稿图对应关系：...]` 且文字描述与镜头1线稿构图画面物理 100% 一致；逐镜头【位置承接】首部显式注入对应镜头的线稿人物映射声明 `[线稿图对应关系：...]`。
+### 27. 【白描分镜图强制中景/全景与严禁近景面部特写铁律（Rule 0.31，Mandatory Medium/Full Shot Staging & Zero Close-Up Face Portrait Gate）】
+- **【核心职能法定界定 · 严禁将分镜图降维为面部写真（Core Staging Function Rule）】**：
+  * **白描分镜图（Lineart Reference）的核心法定使命是：锁定 3D 空间站位（Staging）、身体朝向与视线方向（Orientation & Gaze）、肢体动作骨架（Body Posture / Gestures）、以及人物与场景/道具的空间几何坐标关系（Spatial Geometry）**；
+  * **白描分镜图绝对不是成片的定妆首帧，更不是为了视频特写服务的面部肖像写真（Portrait Headshot）**！
+  * 当线稿输入为大脸特写时，ControlNet 与生成模型将完全丢失全身/半身骨骼姿态、腿部位置、坐卧状态以及与环境道具（如船只、甲板、渔网、桌椅）的空间关系，诱发致命的站位漂移与穿帮；
+- **【强制景别归一化与排他性反特写硬锁（Mandatory Medium/Full Shot Normalization）】**：
+  * 凡是有人物出镜的分镜线稿图，**无论提示词（Prompt）正文中视频动态运镜是否为“特写”、“大特写”、“近景推至面部”，其静态站位线稿必须且只能强制生成为【中景（Medium Shot）】或【全景/远景（Full / Long Shot）】**！
+  * **正向中远景锁**：`Shot framing: Medium shot (waist-up mid-shot) or Full shot (wide view) establishing character spatial staging, physical placement, and body orientation in the environment. Full torso, arms, hands, legs, and body orientation clearly visible in relation to the environment and props.`；
+  * **负向特写彻底熔断**：`Strictly ZERO extreme close-up, ZERO facial portrait, ZERO headshot, ZERO tight cropping.`；
+### 28. 【台词原著 OS 独占与绝对严禁假 OS 及抽象心理词最高铁律 · 彻底杜绝口型与语义穿帮（Rule 0.32，Strict Script-OS Exclusivity & Anti-Abstract Thoughts Gate）】
+- **【最高绝对红线：原著台词未显式标注 (OS) 则 100% 必须为人嘴开口真实对白】**：
+  * **原著 OS 独占原则（Script-OS Exclusivity）**：只有原著剧本在台词说话人后显式标注了 `(OS)` 或 `(O.S.)` 的台词，才具备合法资格定性为“内心独白 / 画外音（O.S.）”；
+  * **未标 OS 必为人嘴开口（Default Spoken Dialogue）**：凡原著剧本未显式标注 `(OS)` 的对白（哪怕带有 `（激动）`、`（大喜）`、`（看着渔网）` 等情绪/动作括号），**100% 必须定性为现场真实对白（Spoken Dialogue），必须安排在人物出镜的镜头中，由人物嘴唇根据台词真实张合开口发声（人嘴说话）**！
+  * **绝对严禁擅自脑补伪造 OS（Zero Fake OS Rule）**：绝对严禁以“该镜头是主观视点（POV）”、“画面没人出镜”、“省事不用对口型”为借口，擅自将原著未标注 OS 的真实对白强行篡改为“内心独白”、“画外音（O.S.）”！这是严重的歪曲剧本与影视穿帮事故，直接触发一票否决！
+- **【最高绝对红线：绝对严禁在提示词与台词中出现任何抽象心理词汇（Zero Abstract Thoughts Rule）】**：
+  * **彻底严禁抽象心理修饰**：严禁在台词字段、表演动作字段中使用 `内心盘算`、`暗自思忖`、`心里暗想`、`心里默念`、`内心惊喜独白`、`心想`、`暗叹`、`心生一计` 等任何抽象心理词汇！
+  * **根绝 AI 理解歧义**：视频大模型与语音合成（TTS）模型无法理解“内心盘算”到底是角色心里想的、还是要让配音演员念出来的旁白。夹带此类词汇必然导致配音混淆、字幕多字或口型严重错乱！
+  * **台词字段纯净度硬规范**：
+    - **现场对白镜头**：字段必须且只能为纯净的 `台词：`，冒号后必须直接由人物引导词紧接中文引号 `“……”` 声明原著台词（例如：`台词：主体1激动开口大声说：“绿色品质的银沙鱼，还是一大窝！”`），动作字段同步注入人嘴张合开口发音；
+    - **真 OS 镜头（原著标有 OS）**：字段必须且只能声明为 `台词（画外音）：主体X画外内心独白（O.S.）：“原著OS台词”`，动作字段显式锁死 `出镜角色双唇严密闭合（Lips tightly closed, zero lip movement），严禁口型驱动`；
+    - 冒号后必须直接紧接引号台词，严禁在引号前后夹带任何“紧接着内心盘算”、“心里暗自思忖”等私货！
+- **【双向绝对一致性监督闸门（Bidirectional Script-OS Parity Gate · 一票否决）】**：
+  * **剧本有 OS -> Prompt 必须写 OS**：如果原著剧本明确标注了 `(OS)` / `（OS）` / `内心OS`，输出的 Prompt 必须 100% 声明为画外内心独白（O.S.）且出镜角色双唇闭合；若 Prompt 未写 OS 或漏写画外音，**一律不过（Exit 1）**；
+  * **剧本无 OS -> Prompt 绝对严禁写 OS**：如果原著剧本未标注 OS，输出的 Prompt 必须 100% 作为现场对白由人物真实张嘴开口发音；若 Prompt 擅自加了画外音、O.S. 或内心独白，**一律不过（Exit 1）**；
+  * 自动化校验工具链（`validate-video-prompts.cjs`）强制对每句引号对白执行原著剧本 OS 状态 1:1 双向溯源比对，任何单向不匹配直接阻断构建。
 
-### 步骤 4：空间站位线稿 100 并发生成与分镜图片节点部署（【刚性必备核心流程】）
-- **刚性门禁**：分镜图片节点（`biz/image`）与分镜定妆图的生成，是 Auto 分集与分镜工程的**刚性必备前置环节（Pre-requisite Process）**，绝对不可跳过直接提交视频生成！
-- **空间骨架线稿生成**：每个镜头必须通过真实 AI 接口（如 st1 `gpt-image-2.5-sunburst`，1792x1024）默认启用 **100 并发极速生成纯净黑白站位线稿**（`SEG00x_镜头y_站位线稿`），只体现空间坐标、身体朝向、视线对峙与高低差，故意不画五官与衣服，物理锁死三维空间，粉碎正脸肖像偏见；
-- **分镜图片节点部署**：为每一个镜头建立对应的【分镜图片节点】（`SEG00x_镜头y_图片`，`biz/image`），执行“三权分立”连线——入边精确连入：①角色资产卡（长相与服装）；②场景资产卡（环境与光影）；③专属站位线稿（构图骨架）；
-- **分镜图确认与首帧桥接**：分镜图片节点生成的高清定妆图经质检确认后，作为视频节点的起幅首帧（First Frame）/关键帧输入，彻底消除视频开场变脸、看镜头或畸变。
+### 29. 【资产绝对保真与严禁移花接木/滥竽充数铁律 · 缺失资产全自动合规生成门禁（Rule 0.33，Strict Asset Fidelity, Anti-Substitution & Autonomous Asset Synthesis Gate）】
+- **【最高绝对红线：严禁任何移花接木、张冠李戴与滥竽充数（Zero Fake Asset Substitution Rule）】**：
+  * **资产语义与物理实体 100% 保真（Absolute Asset Fidelity）**：剧本中出现的道具、场景与角色，必须与资产卡图像保持 100% 物理实体一致。资产库若是缺失某项资产，**绝对严禁使用任何类别不符、功能相异或概念互斥的已有资产强行拼凑顶替**（例如：**严禁将“小破渔网”错配为“鱼竿（FISHING ROD）”**、严禁用普通打火机顶替特定火折子、用现代红酒杯顶替古董青花瓷瓶、用皮夹克顶替深潜橡胶衣等）！
+  * **一票否决穿帮事故（Instant Disqualification）**：凡是将原著明确规定的实体道具用不相干资产粗暴替代的，一律定性为“移花接木、恶意伪造作弊与重大生产穿帮事故”，直接触发一票否决！
+- **【补图一律使用 st1 引擎铁律（Strict st1 Image Generation Engine Only）】**：
+  * **指定唯一生图引擎**：凡在分集生产、资产补全、道具卡/角色卡生成或白描图绘制中需要生图补图的，**一律使用 st1 引擎**！
+    - **API 凭证配置**：`C:/Users/JW TSJ/.config/opencode/st1.credentials.json`；
+    - **API 服务端点**：`https://qwe.g-aisc.com/v1/images/generations`；
+    - **主生图模型**：`gpt-image-2.5-sunburst`；
+    - 严禁调用任何外部未经授权、易受限流或无配置的第三方临时生图渠道。
+- **【全面遵循 Auto 资产框架核心规范（Strict Auto Asset Framework Conformance）】**：
+  * ① **道具资产卡标准（Prop Card Standards）**：
+    - **画幅与规格**：1:1 正方形高保真微距/中景特写（1024x1024），纯净摄影质感；
+    - **物理实体保真**：忠实还原原著描述的材质、磨损痕迹、配件与结构，严禁抽象模糊；
+    - **绝对负向手持锁**：纯净无杂质的木质/石质/中性背景，**绝对零人体肢体、零手部入镜（Strictly zero human hands/limbs），彻底根绝道具卡的手持先验偏见**；
+    - **命名规范**：`PROP_xxx_<NAME>_v1.png`。
+  * ② **角色资产卡标准（Character Card Standards）**：
+    - **血统与骨相**：遵循 Rule 0.6，100% 纯正东方中国面孔，严防西方名流先验劫持；
+    - **服装与去泛化**：遵循 Rule 0.4，三维具象排他性服装（版型、材质、色盘），严禁全员克隆撞衫；
+    - **换装母图锁脸**：遵循 Rule 0.5，同角色换装必须基于人物标准母图进行垫图锁脸图生图；
+    - **命名规范**：`CHAR_xxx_<NAME>_<VARIATION>_v1.png`。
+  * ③ **白描分镜站位图标准（Lineart Standards）**：
+    - 遵循 Rule L-01 ~ L-06，16:9 纯白底黑线单画幅，人物头部光滑蛋形无五官（Rule L-05），单人镜头人数严格 1 人（Rule L-06），强制中景/全景（Rule L-04）。
+  * ④ **场景资产卡标准（Scene Card Standards）**：
+    - 16:9 纯净无人物大场景空镜，命名规范 `SCENE_xxx_<NAME>_v1.png`，杜绝滩涂无脑兜底。
+- **【多级镜像归档与透明通报门禁（Multi-Level Mirror & Mandatory Disclosure Gate）】**：
+  * 自生补齐的资产图必须赋予标准资产编号，同步镜像落盘至：
+  * 核心门禁脚本 `validate-video-prompts.cjs` 必须对素材映射进行语义逻辑审计：当道具名称含“网/NET/捕鱼网”而关联资产文件名包含“ROD/鱼竿/竿”时，或道具名称含“鱼/FISH”而关联文件名包含“BOTTLE/瓶”时，校验器立即触发语义互斥报错，强行阻断交付。
 
-### 步骤 5：物理资产连线与视频节点双轨接入
-- 每个 SEG 只连入该分段实际肉眼出镜的角色、场景与道具；
-- 将资产图片与生成的站位线稿拷贝至该 SEG 的本地 `资产/` 目录；
-- 输出精确的 `素材映射.txt`，确保 `{{Mixed N}}` 映射 100% 同源且 0 悬空；
-- 将专属站位线稿同时作为入边接入视频节点（`SEG00x`）的【图片】输入区，实现双轨闭环。
+### 30. 【台词分段换行排版与分号刚性闭合铁律 · Review 一票否决门禁（Rule 0.34，Strict Dialogue Semicolon Termination & Paragraph Line-Break Gate）】
+- **【最高绝对红线：一段话后必须立即换行排版，严禁单行混杂挤占堆叠（Strict Paragraph Line-Break Rule）】**：
+  * **一段话一换行，段落独立排版**：在【台词】字段中，无论同一主体连续多段发言、不同主体对谈交替、还是现场原声与内心独白（O.S.）转换，**每说完一段话后必须立即换行排版**！绝对严禁将多句台词挤占在同一行内；
+  * **彻底禁止单行堆砌**：绝对严禁将多句对白、呼应或独白全部挤压堆叠在同一行内（如严禁出现 `主体1迎风笑道：“A”；主体1顺势起获喊道：“B”；主体1内心声音沉思说：“C”` 挤在一行）！一段话后不换行者，直接定性为排版崩坏事故，门禁一票否决。
+- **【最高绝对红线：每一段台词末尾必须以分号（`;` 或 `；`）刚性闭合（Strict Semicolon Termination Rule）】**：
+  * **逐段末尾闭合**：每一段独立台词（无论是现场真实原声对白、多角色交替发言、还是画外内心独白 O.S.），其段落末尾（闭合引号 `”` 或句末标点之后）**必须显式以中文分号 `；`（或英文分号 `;`）结尾**（多段换行连接时，末段若以双引号封口亦被门禁包容）；
+  * **单句/多句统一闭合**：不管是单句简短对白还是长句对白，只要构成一个独立台词段落，段末必须紧跟分号（例如：`主体3爽快答道：“包！”；`）；
+  * **彻底终结粘连与漏标**：台词段落末尾严禁仅以句号 `。`、感叹号 `！`、问号 `？` 或纯引号 `”` 草率结束，必须在引号外显式追加分号封口（如 `...我算你两千。”；`）；
+  * **镜头末段台词统一规范闭合**：镜头内最后一段台词，同样建议以分号 `；` 严格闭合封口，形成完整闭环，杜绝下游多模态模型或 TTS/字幕生成引擎在解析时发生文本混淆或句末粘连。
+- **【黄金标准示范（Canonical Compliant Dialogue Format）】**：
+  * **标准范例 1（单人多段连续发言/独白，一段话一换行）**：
+    ```text
+    台词：主体1迎风笑道：“多亏了涨潮，银沙鱼们都从泥沙里出来了，捕捞难度大大减少！”；
+    主体1顺势起获喊道：“来了！水眼金睛，就看你的了！”；
+    主体1内心声音沉思说：“有了水眼金睛，轻轻松松钓起银沙鱼，但光靠银沙鱼还是没办法在三天内凑齐二十五万，得钓紫色品质以上的大货才行。”
+    ```
+  * **标准范例 2（多主体对白交互，一段话一换行，分号闭合）**：
+    ```text
+    台词：主体3热情介绍道：“这根竿子是碳素的，三米九。轮子是进口轴承，十公斤刹车力，八编PE线能上两百米。全套配下来，原价两千二，我算你两千。”；
+    主体1转动轮子询问道：“两千，包线包钩包坠？”；
+    主体3爽快答道：“包！”；
+    主体1双唇严密闭合，画外内心独白（O.S.）：“两千是贵了点，可为了海里的大鱼，这钱花得值。”；
+    紧接着主体1果断开口道：“没问题，就它了。”；
+    ```
+- **【违规负面清单与穿帮典型（Strict Negative List）】**：
+  * ❌ **违规典型 1（一段话后未换行，单行混杂挤占堆砌 · 致命穿帮）**：
+    `台词：主体1迎风笑道：“多亏了涨潮，银沙鱼们都从泥沙里出来了，捕捞难度大大减少！”；主体1顺势起获喊道：“来了！水眼金睛，就看你的了！”；主体1内心声音沉思说：“有了水眼金睛，轻轻松松钓起银沙鱼，但光靠银沙鱼还是没办法在三天内凑齐二十五万，得钓紫色品质以上的大货才行。”`
+    *(危害：一段话后未换行，多句台词挤占在单行！直接触发 Rule 0.34 一票否决门禁！)*
+  * ❌ **违规典型 2（段落末尾遗漏分号）**：
+    `主体3热情介绍道：“这根竿子是碳素的，三米九……我算你两千。”`（未加分号直接换行）
+    *(危害：违反统一结构约束，破坏工业化解析标记；一票否决！)*
+  * ❌ **违规典型 3（单句台词末尾遗漏分号）**：
+    `台词：主体1从容开口说：“今天收获颇丰。”`（单行台词亦未加分号闭合）
+    *(危害：未执行分号刚性闭合；一票否决！)*
+  * **不满足一律不通过（Exit 1）**：凡分镜提示词（Prompt）中存在任何多段台词挤占单行、或任一台词段落末尾缺少分号 `；` / `;` 的情形，**Review 审查必须直接判定为【不通过（FAIL）】，阻断流水线流转与预视频交付，强制要求修复台词排版后方可重新提交！**
 
-### 步骤 6：标准化写入工程物料
-- 在交付目录中按集创建工程包：
-  * **单集根目录**：`episode-package-config.json`、`production-profile.json`、`script-source.txt`、`segment-progress.json`、`分集大纲.txt`、`分集质检报告.txt`；
-  * **单 SEG 目录**：`prompt.txt`、`script-verbatim.txt`、`storyboard-execution.txt`、`tsc-handoff.yaml`、`素材映射.txt`、`shot1_lineart.png`、`shot2_lineart.png`、`shot3_lineart.png`、`资产/`（包含角色、场景与线稿）。
+### 31. 【多分段自然承载、单镜头单一物理空间与零网文浮夸形容词铁律 · Review 一票否决门禁（Rule 0.35，Multi-Segment Hierarchy, Single Physical Space & Zero Web-Novel Fluff Gate）】
+- **【最高绝对红线：多场戏多分段充分承载，严禁整集强制压缩为过少分段（Strict Multi-Segment Natural Hierarchy Rule）】**：
+  * 短剧单集（1~2分钟）剧本通常包含多个物理场景变换与数十条动作/对白，必须根据剧情与空间自然节点充分拆解为标准的 3~4 个独立分段（SEG001~SEG004，单 SEG 严格保持 15~28 秒）；
+  * 绝对严禁为了追求“少几个分段”而把包含多场戏、多物理地点的全集粗暴生硬压缩为 1~2 个 SEG！这种粗暴压缩必然导致单镜头时空跨越、剧情删减、动作变形与严重超时。
+- **【最高绝对红线：单镜头严格单一物理空间，严禁同一镜头内多地点跨时空强行融合（Single Physical Space Gate）】**：
+  * 每一个镜头的【场景/时间/光线】必须发生在一个且仅一个明确的物理空间内；
+  * **绝对严禁在同一个镜头的场景中强行拼接两个完全不同的物理地点**（如绝对严禁出现“主体4店内与主体5海口”）；
+  * **绝对严禁在同一个镜头的动作中进行跨场景瞬移**（如绝对严禁写“前半段在柜台展示、后半段在海口防波堤仰拍”）；
+  * 场景与微空间的物理转换必须通过分镜头（Shot）剪辑或分段（SEG）切换承接，违者一律定性为重大时空穿帮，直接一票否决！
+- **【最高绝对红线：动作表演纯粹物理化，彻底剔除所有网文小说式浮夸脑补与心理形容词（Pure Cinematic Action & Zero Web-Novel Fluff Rule）】**：
+  * 动作表演必须克制、冷静、客观、专业，严格由【动作前状态】、【客观物理动作顺序】、【动作后状态】三段式构成；
+  * **绝对严禁使用任何网文小说式的主观形容词与华丽脑补词**（如严禁出现“双手自豪抚摸”、“骨节分明”、“狂热与洞察智慧”、“眼中精光爆射”、“斩钉截铁吐出誓言般的一个字”等）；
+  * 所有肢体动作、神态与道具交互必须 100% 还原为可被摄影机直接捕捉的客观物理运动（如：伸手取出长盒打开、手指拨动线轮旋转、合拢盒盖、转头看向海面等）。
+- **【Review 刚性闸门与一票否决机制（Review Gate & Instant Disqualification）】**：
+  * 在 Auto 人工审核、Review 审查及自动化质检（`validate-video-prompts.cjs`）中，凡发现单一镜头场景混合多地、或动作中出现任何网文浮夸修饰词，直接判定为【FAIL】，阻断交付。
 
-### 步骤 7：批次聚合质检与交付报告
-- 调度总线（Batch Aggregator）统一收集 20 个并发分支产物，执行自动化质检套件：
-  1. 运行 `python auto/scripts/verify-docx-parity.py --batch <range>` 确认原著逐字一致性 100% PASS；
-  2. 4 大红线检查（0 假动作、0 视频生成、0 连线污染、0 肖像先验劫持）；
-  3. 场景与服装匹配率检查（100% 命中真实资产，0 海滩无脑兜底）；
-  4. 分镜图与线稿三阶解耦检查（线稿 100% 具备、分镜图片节点 100% 部署并连通）；
-  5. 声唇锁与道具负向姿态锁合规性检查；
-  6. 跨集位置与状态承接连续性检查；
-- 输出该 Batch 的《交付与验收检查点报告》（Markdown 格式），标记该批次已锁定完成，等待用户检阅或推进下一个 Batch。
+### 32. 【动作表演绝对禁入台词与引号铁律 · 剧本原著台词唯一驻留门禁（Rule 0.36，Zero Dialogue in Action Gate）】
+- **【最高绝对红线：动作/表演字段绝对严禁包含任何台词文本与双引号（Zero Dialogue in Action Rule）】**：
+  * **动作表演专职化**：【动作/表演】字段（含动作前状态、动作顺序、动作后状态）100% 专职描述摄像机镜头客观捕捉的人物站位、身体运动、肢体姿态、道具交互、面部微表情与嘴唇开闭驱动状态（如：`嘴唇根据台词清晰自然张合开口大声呼喊发声，严禁紧闭双唇`、`双唇严密闭合（Lips tightly closed, zero lip movement），内心深思`）；
+  * **绝对严禁在动作中夹带台词与引号**：动作描述中绝对严禁写入任何具体的台词字句、对白文本，严禁出现任何双引号 `“...”`、`"..."`！
+  * **台词唯一合法驻留字段**：原著剧本中的所有对白与画外音（O.S.），必须 100% 且唯一驻留在【台词】字段中，遵循 Rule 0.34 每段末尾分号闭合且一段话后立即换行排版。
+- **【黄金标准示范（Canonical Separation of Action and Dialogue）】**：
+  * **正确合规写法**：
+    【动作/表演】中纯物理动作与唇形说明（0 台词、0 引号）：
+    ```text
+    动作/表演：动作前状态：主体1站在船舷边，收回俯视海面的视线；动作顺序：主体1看着画左海面满脸兴奋，嘴唇根据台词清晰自然张合开口大声欢呼发声，面部肌肉配合咬字，严禁紧闭双唇；随即主体1右手抓起主体3银沙鱼与捕鱼网利落甩向画左海面，大网如飞伞般精准罩住银沙鱼所在的泥沙；主体1紧盯海面兴奋大声开口呼喊发声；紧接着主体1双手紧拽网绳发力拉扯，将沉甸甸的渔网一点点拖出海面；大网稳稳落在船艇甲板上，网内挤满了活蹦乱跳弹跳挣扎的银沙鱼；主体1看着满舱鱼获，双唇严密闭合（Lips tightly closed, zero lip movement），内心深思单靠银沙鱼难还巨债，必须锁定紫色大货；动作后状态：主体1稳稳站立船头看着满网活鱼，双唇自然闭合。
+    ```
+    【台词】中唯一放置逐字台词（一段话一换行）：
+    ```text
+    台词：主体1迎风笑道：“多亏了涨潮，银沙鱼们都从泥沙里出来了，捕捞难度大大减少！”；
+    主体1顺势起获喊道：“来了！水眼金睛，就看你的了！”；
+    主体1内心声音沉思说：“有了水眼金睛，轻轻松松钓起银沙鱼，但光靠银沙鱼还是没办法在三天内凑齐二十五万，得钓紫色品质以上的大货才行。”
+    ```
+- **【违规负面清单与穿帮典型（Strict Negative List）】**：
+  * ❌ **违规典型（动作中夹带台词与引号 · 穿帮一票否决）**：
+    `动作顺序：主体1看着画左海面满脸兴奋，嘴唇根据台词清晰自然张合开口大声说出话语：“多亏了涨潮，银沙鱼们都从泥沙里出来了，捕捞难度大大减少！”...`
+    *(致命事故：动作字段混入对白文本与引号，破坏声画物理分离架构，自动化门禁与 Review 审查一票否决！)*
+- **【自动化门禁强阻断（Automated CI Gate）】**：
+  * 核心门禁脚本 `validate-video-prompts.cjs` 部署了专用正则 `/[“"][^”"\n]+[”"]/` 实时扫描【动作/表演】字段，一旦检测到任何引号或台词夹带，直接抛出 `Zero Dialogue in Action Gate` 致命错误并强行退出（Exit 1），彻底阻断交付。
 
 ---
 
-## 四、 默认 100 并发分析架构规范（100-Concurrency Parallel Architecture）
 
-针对每批分集生产与生图工程，调度系统默认采用 100 并发极速推进架构：
+## 三、 并发生产三步法：任务同构黄金铁律（Three-Stage Isomorphic Concurrency Law）
+
+**核心最高哲学**：
+> **等效来自「任务同构」，不来自 GEMINI 更全、CLI 更齐、门禁更硬！**
+> 主会话只负责切片和收件；本批有几集就派几个 Worker，各自当一次完整的单集 `/auto`，且**只做物理转译**；全员交卷后先做一轮只读对照，再出线稿、绑资产、上传。
+
+**默认流程**：`S0 → S1 → S1.5 → S2`（`/auto batch20` 默认 20 路转译 + 20 路对照）。
+**回滚流程**：`S0 → S1 → S2`（与 `7c7f1c5` 三步法原文一致，见 `skills/auto/references/three-stage-v1.8.6.md`）。
 
 ```mermaid
 flowchart TD
-    CMD["/auto batch(N) 指令触发"] --> DISPATCH["Orchestrator 100并发调度总线 (Concurrency Dispatcher)"]
-    DISPATCH --> W01["Worker 01: 真实AI推理/生图"]
-    DISPATCH --> W02["Worker 02: 真实AI推理/生图"]
-    DISPATCH --> W03["Worker 03: 真实AI推理/生图"]
-    DISPATCH --> WDOT["... Worker 04 ~ 99 并发极速推进 ..."]
-    DISPATCH --> W100["Worker 100: 真实AI推理/生图"]
+    subgraph S0 ["第 0 步：主 Agent (纯代码，先做完再开人)"]
+        S0_A["仅跑脚本提取落盘: 本批 N 集 script-source.txt"]
+        S0_B["主 Agent 绝对严禁概括、严禁贴剧本、严禁等上一集 tsc-handoff.yaml"]
+        S0_C["开场从本集场次标头读 (日/内/教室)；衣服走角色卡，严禁写进站位"]
+    end
     
-    W01 --> AGG["Batch Aggregator (批次聚合器)"]
-    W02 --> AGG
-    W03 --> AGG
-    WDOT --> AGG
-    W100 --> AGG
+    subgraph S1 ["第 1 步：N 个 Worker = N 次单集 /auto (并发纯转译)"]
+        W1["Worker 1 (仅第001集)"]
+        W2["Worker 2 (仅第002集)"]
+        WDOT["... 一人一集 ..."]
+        WN["Worker N (仅本批最后一集)"]
+    end
+
+    subgraph S15 ["第 1.5 步：N 个 Reviewer = N 次单集只读对照 (可整步跳过)"]
+        R1["Reviewer 1 (仅第001集)"]
+        R2["Reviewer 2 (仅第002集)"]
+        RDOT["... 一人一集 ..."]
+        RN["Reviewer N (仅本批最后一集)"]
+    end
     
-    AGG --> GATE["跨集状态承接 + 0假动作 + 0视频生成 门禁验收"]
-    GATE --> REPORT["输出 Batch 统一交付检查点报告"]
+    subgraph S2 ["第 2 步：主 Agent (对照收齐后统一推进)"]
+        S2_A["无缺漏的集: --ep X 绑资产、出线稿、/run2"]
+        S2_B["严禁 N 个一起打全量 lineart，严禁跑 fake 报告与假质检"]
+    end
+
+    S0 --> S1 --> S15 --> S2
 ```
 
-### 1. 100 并发分发机制（Dispatch Principle）
-- 批次启动时，调度器一次性生成独立作业任务池，并行下发给 100 个大模型推理子进程、生图线程或智能体上下文；
-- 严禁单线程串行循环低效等待，充分释放多通道并发吞吐潜力。
+### 0. 回滚与跳过（保证可回到 `7c7f1c5` 三步法）
+- **操作回滚（不改仓库，当场生效）**：用户说「跳过对照」「回滚三步法」，或指令带 `--skip-review` 时，主会话必须**整步跳过第 1.5 步**，流程回到 `S0 → S1 → S2`，与 `7c7f1c5` 完全一致。不得改 prompt、不得补跑校验、不得写假 PASS。
+- **仓库回滚（一次提交可还原）**：`git revert` 插入第 1.5 步的那次提交；或用 `skills/auto/references/three-stage-v1.8.6.md` 从「## 三、」起整节替换本节。
+- **第 1.5 步不是门禁**：不调用 `validate-video-prompts` / `verify-docx-parity` 打回整批，不审 Rule 0.34 分号排版，不写 100% PASS，不自动改 `prompt.txt`。缺漏只记在本集 `review-gap.txt`，由人点名后整集重派第 1 步。
 
-### 2. 并发分支四大支柱守恒（Concurrent Full-Pillar Parity）
-- 每一个并发分支（Worker）必须 100% 独立且完整履行四大支柱：
-  * **支柱 1**：独立逐字深度解析该集 `△` 舞台动作行，绝不偷工减料；
-  * **支柱 2**：多级语义遍历全量场景资产库，精准绑定真实场景（0 海滩兜底）；
-  * **支柱 3**：剧情与空间感知动态换装（根据剧情处境绑定常服/潜水服/金瞳版）；
-  * **支柱 4**：多角色镜头调度与声画解耦（说话开口，OS独白强制双唇严密闭合）；
-- **防降级防护网**：严禁因追求并发吞吐而降级使用机械死模板或简陋规则拼接！
+### 1. 第 0 步（主 Agent，纯代码，先做完再开人）
+- **只跑纯代码切片**：执行脚本把本批 N 集 `script-source.txt` 确定性切片硬落盘（`/auto batch20` 为 20 集）；
+- **主 Agent 派发前禁令**：绝对不准概括剧情、绝对不准向 Prompt 里贴剧本正文；
+- **时空解耦无等待**：跨集绝对不要等上一集的 `tsc-handoff.yaml`（并行并发时它还根本不存在！）；
+- **开场与服装物理锚定**：需要开场信息时，直接从本集场次标头读（如 `日/内/教室`）；服装款式 100% 走角色卡，**绝对严禁写进【站位与起始状态】**（严格遵守 Rule 0.21）。
 
-### 3. 聚合质检与跨集承接（Batch Aggregation & Quality Gate）
-- 并发任务完成后，聚合器集中审查单集产物与全局连贯性：
-  * 角色状态承接（前一集末尾姿态与下一集开场姿态逻辑连续）；
-  * 0 视频级联输入与 0 视频渲染指令校验（`backend: unselected`）；
-  * 确认通过后生成统一批次质检报告。
+### 2. 第 1 步（N 个 Worker = N 次单集 /auto）
+每个 Worker 只做这一集的物理转译。派发词完全固定，**只改集号和路径，其它和单跑一集完全相同**。本批有几集就派几个；`/auto batch20` 默认 20。
 
-### 4. 100 并发分镜线稿极速生成与分镜图片节点批量部署
-- 针对各集已确立的分镜脚本，调度系统调用真实 AI 生图通道（st1 `gpt-image-2.5-sunburst`，1792x1024）默认启用 **100 并发极速批量生成纯净黑白站位线稿**；
-- 批量在交付画布（如小云雀漫剧画布）上自动化部署各镜头的【分镜图片节点】（`biz/image`），将出镜角色、场景与对应镜头的站位线稿完成多轨入边绑定，实现高效流水线交付。
+> **【统一标准派发词模版（只改集号路径，一字不增不减）】**：
+> `你就是单独执行 /auto 的这一集。不是批次里的第 N 个，不要加快，不要初稿。`
+> `1. view_file <第00X集>/script-source.txt 全文`
+> `2. 动作与伴随台词深度结合，同一镜头内允许多句对白以分号；换行接续，严禁一句台词切一个镜头。短剧整集依剧情自然节点拆分为多个独立 SEG（通常 3~4 个 SEG，单 SEG 严格保持 2~4 个长镜头，单 SEG 15~28 秒）。一个镜头绝对锁定在单一物理空间，严禁将两个不同地点强塞入同一个镜头！动作表演纯粹物理化，严禁使用任何网文小说式浮夸形容词（如“双手自豪抚摸”、“骨节分明”、“狂热与洞察智慧”等）。原著动作与对白必须完整融合推进，严禁把多条动作收成「对视微笑」`
+> `3. 写齐本集 prompt.txt / storyboard-execution.txt / script-verbatim.txt`
+> `4. 写完即停。不要跑 resolve-assets、fix-prompts、lineart、run2，不要写验收报告。`
+
+**【Worker 并发等效五大守则】**：
+1. **每人只拿一集路径，不要本批清单**；
+2. **严禁催促词**：不要写「你是 batch 的一员 / 抓紧 / 先出初稿」；
+3. **上下文极度留白**：系统级 `GEMINI.md` 已注入格式硬锁（0.18、0.21、0.28–0.31），**派发词里绝对不要再背一遍规则，把全部上下文 Token 留给剧本**！
+4. **成功标准极度具体**：「每一条 △ 动作、每一句对白都完整融入了镜头，单 SEG 稳定在 15~28 秒（2~4 镜）」，绝对不要写成「本批大致齐了」；
+5. **按行下拍而非理解**：`GEMINI.md` 只负责风格，清单在 `script-source.txt` 里。Worker 的工作是按文件逐行往下拍，不是去“主观理解这一集”。
+
+### 3. 第 1.5 步（N 个 Reviewer = N 次单集只读对照，线稿之前）
+等本批全部 `prompt.txt` 齐了再开。与第 1 步人数相同（`/auto batch20` 默认 20 路）。每人只对照一集。派发词完全固定，**只改集号和路径**。
+
+> **【统一对照派发词模版（只改集号路径，一字不增不减）】**：
+> `你只做这一集的只读对照。不是批次里的第 N 个，不要盖章，不要改词。`
+> `1. view_file <第00X集>/script-source.txt 全文`
+> `2. view_file <第00X集>/prompt.txt 全文`
+> `3. 按 script-source 行序：检查每一条 △ 动作、每一句对白，必须在 prompt 里有对应体现（允许且推荐动作与台词融合在同一镜头内）。不能漏掉动作或对白，不能把多条收成「对视微笑」`
+> `4. 只写本集 review-gap.txt：缺的 △ / 对白各列一行（原著原文 + 在 prompt 里找不到）。没有缺漏就写「本集无缺漏」一行。`
+> `5. 写完即停。不要改 prompt.txt，不要跑 fix-prompts / validate-video-prompts / lineart / run2，不要写 PASS 报告，不要审分号排版。`
+
+**【对照波收件规则】**：
+- 无缺漏的集（`review-gap.txt` 仅「本集无缺漏」）：进入第 2 步；
+- 有缺漏的集：主会话只汇总集号与缺漏原文，**不得自动改词、不得让 Reviewer 补镜、不得因几集有缺漏阻断整批**；用户点名后，只把点名的集整集重派第 1 步；
+- **绝对不要**把第 1.5 步放到线稿 / 资产 / `run2` 之后。返工会连带重做线稿和画布。
+
+### 4. 第 2 步（主 Agent，对照收齐后再做；跳过对照时等 prompt 齐了就做）
+这时才允许：`--ep X` 出线稿、绑资产、`/run2` 上传画布。
+- **单集单进程推进**：一集一个进程流转，不要 N 个一起打全量 lineart 导致 API 冲突拥挤；
+- **有缺漏的集先别进第 2 步**：等用户点名重译并再对照通过（或用户明确说「这集先过」）后再做线稿；
+- **严禁跑虚假报告**：不要跑 `generate-batch-report.py` 写假的 100% PASS；
+- **严禁拿假修复当质检**：不要跑 `fix-prompts.py` 当质检，正则脚本根本补不出大模型漏掉的原著动作。
+
+### 5. 严禁反模式清单（绝对不要做的）
+- ❌ **严禁拿机器门禁打回重修当免死金牌**：不要指望 `verify-docx-parity` 或 `validate-video-prompts` 打回重修来“保证不漏细节”——前者只核切片字数，后者只核文本格式（含 Rule 0.34 分号），都看不出大模型偷换动作；
+- ❌ **严禁用第 1.5 步当整批一票否决**：对照只出清单，不阻断无缺漏的集，不自动循环重修；
+- ❌ **严禁把第 1.5 步做成 Rule 0.34 排版闸门**：对照只查缺的 △ / 对白，分号与换行仍留给 `validate-video-prompts`，不要在对照波里打回整批；
+- ❌ **严禁 Reviewer 改 prompt 或盖 100% PASS**：对照只读；缺漏整集重派第 1 步，不要补镜；
+- ❌ **严禁把对照放到完整 batch20（线稿/run2）之后**：第 1.5 步必须在第 2 步之前，或整步跳过；
+- ❌ **严禁 Worker / Reviewer 临场乱写代码**：严禁让子智能体自己写临时代码，严禁把线稿生成、修词、上传塞进纯文本转译或对照会话；
+- ❌ **严禁假设并行 Worker 能读上一集终态**：并行时各 Worker 同时启动，根本不存在上一集的 `tsc-handoff.yaml`。
+
+---
+
+## 五、 全流程自动化工具链清单（Production Toolchain Reference）
+
+本项目所有高频核心能力已全部固化为可复用 CLI 脚本，严禁在 `scratch/` 编写临时代替代码：
+
+| 脚本路径 | 核心职能 | 调用命令示例 |
+| :--- | :--- | :--- |
+| `skills/auto/scripts/resolve-assets.py` | **多目录资产智能检索与素材映射** | `python skills/auto/scripts/resolve-assets.py --ep 3` 或 `--batch 20` |
+| `skills/auto/scripts/fix-prompts.py` | **Prompt 自动化合规纠偏与一键修复** | `python skills/auto/scripts/fix-prompts.py --ep 3` 或 `--batch 20` |
+| `skills/auto/scripts/generate-batch-report.py` | **批次（20集）全量验收检查点报告生成** | `python skills/auto/scripts/generate-batch-report.py --batch 20` |
+| `skills/auto/scripts/distribute-voices.py` | **角色标准音频参考绑定与分配** | `python skills/auto/scripts/distribute-voices.py --batch 20` |
+| `skills/lineart/scripts/batch-lineart-generator.cjs` | **100 并发白描分镜站位线稿生成** | `node skills/lineart/scripts/batch-lineart-generator.cjs --ep 3` |
+| `skills/run2/pippit_deploy_seg.py` | **小云雀漫剧画布部署与分镜图入边连线** | `python skills/run2/pippit_deploy_seg.py --ep 3` |
+| `skills/auto/scripts/verify-docx-parity.py` | **原著 Docx 逐字一致性门禁检测** | `python skills/auto/scripts/verify-docx-parity.py --batch 20` |
+| `skills/auto/scripts/validate-video-prompts.cjs` | **分镜提示词多模态规格静态 Lint** | `node skills/auto/scripts/validate-video-prompts.cjs` |
+| `skills/auto/scripts/st1-asset-generator.py` | **st1 影视级资产图全自动补全与生成** | `python skills/auto/scripts/st1-asset-generator.py --type prop --name 菜刀` |
+
 

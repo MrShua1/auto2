@@ -1,6 +1,6 @@
 {
   "name": "auto-production-tools",
-  "version": "1.8.5",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
     "exceljs": "4.4.0",

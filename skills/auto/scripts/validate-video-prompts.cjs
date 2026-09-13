@@ -351,6 +351,33 @@ function validatePrompt(config, profile, segment, prompt, options = {}) {
         }
       }
 
+      // Rule 0.34 Check: Dialogue Paragraph Line-Break & Strict Semicolon Termination Gate
+      if (hasSpokenDialogue) {
+        const rawDialogueLines = dialogueText.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+
+        for (let lIdx = 0; lIdx < rawDialogueLines.length; lIdx++) {
+          const dLine = rawDialogueLines[lIdx];
+
+          // 1. Line-Break Gate: Multiple dialogue quotes on a single line are strictly forbidden
+          const quotesOnLine = dLine.match(/[“"][^”"\n]+[”"]/g) || [];
+          if (quotesOnLine.length > 1) {
+            fail(`${context} shot ${index + 1} violates Rule 0.34 (Dialogue Paragraph Line-Break Gate): multiple dialogue quotes (${quotesOnLine.length}) detected on a single line ("${dLine}"). Dialogues between different speakers/sentences must be separated by line-breaks.`);
+          }
+
+          // 2. Semicolon Termination Gate: Each dialogue paragraph must terminate with a semicolon (";" or "；")
+          const isLastParagraph = lIdx === rawDialogueLines.length - 1;
+          const endsWithSemicolon = /[；;]\s*$/.test(dLine) || /[；;]\s*[（(][^）)]*[）)]\s*$/.test(dLine);
+
+          if (!endsWithSemicolon) {
+            // Tolerated edge case: last paragraph of multi-paragraph dialogue ending with closing quote
+            const isToleratedLastQuote = isLastParagraph && rawDialogueLines.length > 1 && /[”"]\s*$/.test(dLine);
+            if (!isToleratedLastQuote) {
+              fail(`${context} shot ${index + 1} violates Rule 0.34 (Dialogue Semicolon Termination Gate): dialogue line "${dLine}" does not end with a semicolon (";" or "；")! Every dialogue segment must strictly terminate with a semicolon.`);
+            }
+          }
+        }
+      }
+
       // Rule 0.21 Check: Zero Wardrobe Declaration in Continuity Gate
       if (positionText) {
         const forbiddenWardrobeRegex = /(?:身穿|穿着|穿戴|着装|佩戴|套着|工装|便服|长裤|短裤|短袖|长袖|衬衫|西装|T恤|旗袍|马甲|外衣|夹克)/;
@@ -390,6 +417,27 @@ function validatePrompt(config, profile, segment, prompt, options = {}) {
         }
       }
 
+      // Rule 0.35 Check: Single Physical Space & Zero Web-Novel Fluff Gate
+      if (sceneText) {
+        const dualSceneMatch = sceneText.match(/主体\d+.*?(?:店内与|与主体\d+|跨越至|切换至).*?主体\d+/);
+        if (dualSceneMatch) {
+          fail(`${context} shot ${index + 1} violates Rule 0.35 (Single Physical Space Gate): single shot scene description merges multiple distinct physical locations ("${dualSceneMatch[0]}"). Each shot must be strictly confined to a single physical location.`);
+        }
+      }
+      if (actionText) {
+        const forbiddenWebNovelFluff = /(?:骨节分明|双手自豪抚摸|狂热与洞察智慧|眼中精光爆射|斩钉截铁吐出誓言般)/;
+        const fluffMatch = actionText.match(forbiddenWebNovelFluff);
+        if (fluffMatch) {
+          fail(`${context} shot ${index + 1} violates Rule 0.35 (Zero Web-Novel Fluff Gate): action contains forbidden psychological/web-novel novelistic fluff ("${fluffMatch[0]}"). All actions must be objective, physical, camera-visible movements.`);
+        }
+
+        // Rule 0.36 Check: Zero Dialogue in Action Gate (动作表演绝对禁入台词与引号铁律)
+        const actionQuoteMatch = actionText.match(/[“"][^”"\n]+[”"]/);
+        if (actionQuoteMatch) {
+          fail(`${context} shot ${index + 1} violates Rule 0.36 (Zero Dialogue in Action Gate): 【动作/表演】 contains dialogue quote ("${actionQuoteMatch[0]}"). Dialogue must 100% and exclusively reside in the 【台词】 field!`);
+        }
+      }
+
       previousActionText = actionText;
     }
     if ((field.match(/主体锁：/g) || []).length !== 1 || !field.includes('各主体仅保留自身主体锁，不交换外观。')) {
@@ -420,6 +468,34 @@ function validatePrompt(config, profile, segment, prompt, options = {}) {
       fail(`${context} does not define ${asset.mixedToken} as 主体${number}.`);
     }
   }
+
+  // Rule 0.33 Check: Strict Asset Fidelity & Anti-Substitution (Zero Fake Asset Substitution)
+  for (const asset of assets.filter((item) => item.assetType === 'prop')) {
+    const token = escapeRegExp(asset.mixedToken);
+    const propDefMatch = roleList.match(new RegExp(`把\\s+${token}\\s+中的道具[（(]([^）)]+)[）)]作为主体\\d+`));
+    if (propDefMatch) {
+      const propName = propDefMatch[1].trim();
+      const relPath = (asset.relativePath || '').toLowerCase();
+      const lowerName = propName.toLowerCase();
+
+      // Net vs Fishing Rod check
+      if ((lowerName.includes('网') || lowerName.includes('渔网') || lowerName.includes('net')) &&
+          (relPath.includes('rod') || relPath.includes('鱼竿') || relPath.includes('钓竿') || relPath.includes('竿'))) {
+        fail(`${context} violates Rule 0.33 (Strict Asset Fidelity): prop "${propName}" is erroneously mapped to fishing rod asset "${asset.relativePath}". Zero Fake Asset Substitution allowed!`);
+      }
+      // Fishing Rod vs Net check
+      if ((lowerName.includes('鱼竿') || lowerName.includes('钓竿') || lowerName.includes('rod')) &&
+          (relPath.includes('net') || relPath.includes('渔网') || relPath.includes('网')) && !relPath.includes('rod')) {
+        fail(`${context} violates Rule 0.33 (Strict Asset Fidelity): prop "${propName}" is erroneously mapped to net asset "${asset.relativePath}". Zero Fake Asset Substitution allowed!`);
+      }
+      // Fish vs Non-creature container/jewelry check
+      if ((lowerName.includes('斑') || lowerName.includes('鱼') || lowerName.includes('fish')) &&
+          (relPath.includes('bottle') || relPath.includes('瓶') || relPath.includes('ring') || relPath.includes('戒') || relPath.includes('urn') || relPath.includes('盒'))) {
+        fail(`${context} violates Rule 0.33 (Strict Asset Fidelity): fish prop "${propName}" is erroneously mapped to container/jewelry asset "${asset.relativePath}". Zero Fake Asset Substitution allowed!`);
+      }
+    }
+  }
+
   assertNamesOnlyInAllowedSpans(prompt, roleListEnd, aliases, context);
   const definitions = [...roleList.matchAll(/把\s+(\{\{Mixed\s+(\d+)\}\})\s+中[^；\n]+作为主体(\d+)[；。]/g)];
   const visualAssets = assets.filter((item) => ['character', 'location', 'prop'].includes(item.assetType));
@@ -444,6 +520,12 @@ function validatePrompt(config, profile, segment, prompt, options = {}) {
     fail(`${context} violates Rule 0.12: quoted literal dialogue/speech contains forbidden subject placeholder token (${quotedSubjectMatch[0]}). Dialogue/O.S. lines must remain 100% verbatim from original script and must never substitute words with 主体N.`);
   }
 
+  // Rule 0.32 Check: Anti-Abstract Thoughts & Script-OS Exclusivity Gate
+  const abstractThoughtMatch = prompt.match(/(?:内心盘算|暗自思忖|心里暗想|心里默念|内心惊喜独白|心生一计|暗暗发誓|暗叹|心中盘算|暗自盘算)/);
+  if (abstractThoughtMatch) {
+    fail(`${context} violates Rule 0.32: contains forbidden abstract psychological thought word ("${abstractThoughtMatch[0]}"). Prompt must only describe observable physical actions and dialogue; abstract internal mental activities are strictly prohibited.`);
+  }
+
   // Rule 0.0 & 0.8 & 0.12: Strict Script Verbatim & Dialogue Fidelity Gate
   const promptDir = options.promptPath ? path.dirname(options.promptPath) : (segment.folder && options.projectRoot ? path.resolve(options.projectRoot, segment.folder) : null);
   const verbatimCandidates = [
@@ -461,6 +543,59 @@ function validatePrompt(config, profile, segment, prompt, options = {}) {
       const cleanQuote = quote.replace(/[，。！？、…—：:～~“”（）\(\)\"\'\s\t\r\n]/g, '');
       if (cleanQuote.length >= 4 && !cleanVerbatim.includes(cleanQuote)) {
         fail(`${context} violates Rule 0.0 & 0.8 & 0.12: Quoted dialogue ("${quote}") is hallucinated and does not exist in script-verbatim.txt! All dialogue must be 100% authentic to the original script.`);
+      }
+    }
+
+    // Rule 0.32: Bidirectional Script-OS Strict Parity Gate (剧本与 Prompt OS 状态双向绝对一致性监督闸门)
+    const sourceDialogueLines = [];
+    const vRawLines = verbatimText.split(/\r?\n/);
+    for (const vline of vRawLines) {
+      if (!vline.trim() || vline.startsWith('△') || vline.startsWith('人物') || /^\d+-\d+/.test(vline)) continue;
+      const dMatch = vline.match(/^\s*([^：:\n]{1,60})[：:]\s*(.*)$/u);
+      if (!dMatch) continue;
+      const inSpeakerOS = /[（(][^）)]*(?:O\.S\.|OS|内心OS|内心独白)[^）)]*[）)]|\b(?:O\.S\.|OS)\b/i.test(dMatch[1]);
+      const inTextOS = /^\s*[（(][^）)]*(?:O\.S\.|OS|内心OS|内心独白)[^）)]*[）)]/i.test(dMatch[2]);
+      const isOS = inSpeakerOS || inTextOS;
+      let rawSpeech = dMatch[2].replace(/^\s*[（(][^）)]*[）)]\s*/, '');
+      sourceDialogueLines.push({ raw: vline.trim(), speaker: dMatch[1], text: rawSpeech, isOS });
+    }
+
+    const promptQuoteMatches = [...prompt.matchAll(/[“"]([^”"\n]+)[”"]/g)];
+    for (const pqMatch of promptQuoteMatches) {
+      const qText = pqMatch[1];
+      const cleanQuote = qText.replace(/[，。！？、…—：:～~“”（）\(\)\"\'\s\t\r\n]/g, '');
+      if (cleanQuote.length < 2) continue;
+
+      const prefix = prompt.slice(Math.max(0, pqMatch.index - 120), pqMatch.index);
+      const lastClause = prefix.split(/[；;\n]/).pop() || prefix;
+      const isOSInPrompt = /(?:画外音|O\.S\.|OS|内心独白|内心声音)/i.test(lastClause);
+
+      let matchedSource = sourceDialogueLines.find(sl => {
+        const cleanSource = sl.text.replace(/[，。！？、…—：:～~“”（）\(\)\"\'\s\t\r\n]/g, '');
+        return cleanSource === cleanQuote;
+      });
+      if (!matchedSource) {
+        const candidates = sourceDialogueLines.filter(sl => {
+          const cleanSource = sl.text.replace(/[，。！？、…—：:～~“”（）\(\)\"\'\s\t\r\n]/g, '');
+          return cleanSource.includes(cleanQuote) || cleanQuote.includes(cleanSource);
+        });
+        if (candidates.length > 0) {
+          candidates.sort((a, b) => {
+            const la = a.text.replace(/[，。！？、…—：:～~“”（）\(\)\"\'\s\t\r\n]/g, '').length;
+            const lb = b.text.replace(/[，。！？、…—：:～~“”（）\(\)\"\'\s\t\r\n]/g, '').length;
+            return Math.abs(la - cleanQuote.length) - Math.abs(lb - cleanQuote.length);
+          });
+          matchedSource = candidates[0];
+        }
+      }
+
+      if (matchedSource) {
+        if (matchedSource.isOS && !isOSInPrompt) {
+          fail(`${context} violates Rule 0.32 (Bidirectional Script-OS Parity): Script has OS ("${matchedSource.raw}"), but Prompt dialogue ("${qText}") is NOT declared as voiceover/O.S.! Must declare as 画外内心独白（O.S.） with lips closed.`);
+        }
+        if (!matchedSource.isOS && isOSInPrompt) {
+          fail(`${context} violates Rule 0.32 (Bidirectional Script-OS Parity): Script has NO OS ("${matchedSource.raw}"), but Prompt dialogue ("${qText}") was falsely declared as voiceover/O.S.! Must be on-screen spoken dialogue with mouth opening and lip-sync.`);
+        }
       }
     }
 

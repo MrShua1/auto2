@@ -1,0 +1,2702 @@
+{
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG001\\资产\\人物\\CHAR_001_HUANG_ZIMING_VILLAGE_v1.png::1789128070.43478": {
+    "asset_id": "7684564943790981694",
+    "pippit_asset_id": "6805186035468",
+    "name": "CHAR_001_HUANG_ZIMING_VILLAGE_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG001\\资产\\人物\\CHAR_016_黄山_v1.png::1789093375.5612729": {
+    "asset_id": "7684564983955341848",
+    "pippit_asset_id": "6806363558156",
+    "name": "CHAR_016_黄山_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG001\\资产\\人物\\CHAR_041_苏桂芬_v1.png::1789099388.9856405": {
+    "asset_id": "7684565027999597118",
+    "pippit_asset_id": "6806460334092",
+    "name": "CHAR_041_苏桂芬_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG001\\资产\\人物\\CHAR_014_张顺民_v1.png::1789126227.0": {
+    "asset_id": "7684565099399594558",
+    "pippit_asset_id": "6806526430732",
+    "name": "CHAR_014_张顺民_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG001\\资产\\人物\\CHAR_021_小弟A_v1.png::1789126233.0": {
+    "asset_id": "7684565114855621145",
+    "pippit_asset_id": "6806600639500",
+    "name": "CHAR_021_小弟A_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG001\\资产\\场景\\SCENE_024_海边-黄家废墟_v1.png::1789093447.5301204": {
+    "asset_id": "7684565180164669977",
+    "pippit_asset_id": "6807002288652",
+    "name": "SCENE_024_海边-黄家废墟_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG001\\资产\\音频\\黄子名.mp3::1789200682.1436527": {
+    "asset_id": "7684565272925241918",
+    "pippit_asset_id": "6806443594508",
+    "name": "黄子名.mp3"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG001\\资产\\音频\\黄山.wav::1789200510.9373655": {
+    "asset_id": "7684565365016019480",
+    "pippit_asset_id": "6805166436108",
+    "name": "黄山.wav"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG001\\资产\\音频\\苏桂芬.wav::1789200508.5095825": {
+    "asset_id": "7684565413887951385",
+    "pippit_asset_id": "6807690422540",
+    "name": "苏桂芬.wav"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG001\\资产\\音频\\小弟A.wav::1789200507.307925": {
+    "asset_id": "7684565466673398334",
+    "pippit_asset_id": "6806482561548",
+    "name": "小弟A.wav"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG002\\资产\\人物\\CHAR_001_HUANG_ZIMING_VILLAGE_v1.png::1789128070.43478": {
+    "asset_id": "7684564943790981694",
+    "pippit_asset_id": "6805186035468",
+    "name": "CHAR_001_HUANG_ZIMING_VILLAGE_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG002\\资产\\人物\\CHAR_016_黄山_v1.png::1789093375.5612729": {
+    "asset_id": "7684564983955341848",
+    "pippit_asset_id": "6806363558156",
+    "name": "CHAR_016_黄山_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG002\\资产\\人物\\CHAR_014_张顺民_v1.png::1789126227.0": {
+    "asset_id": "7684565099399594558",
+    "pippit_asset_id": "6806526430732",
+    "name": "CHAR_014_张顺民_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG002\\资产\\人物\\CHAR_021_小弟A_v1.png::1789126233.0": {
+    "asset_id": "7684565114855621145",
+    "pippit_asset_id": "6806600639500",
+    "name": "CHAR_021_小弟A_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG002\\资产\\场景\\SCENE_024_海边-黄家废墟_v1.png::1789093447.5301204": {
+    "asset_id": "7684565180164669977",
+    "pippit_asset_id": "6807002288652",
+    "name": "SCENE_024_海边-黄家废墟_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG002\\资产\\音频\\黄子名.mp3::1789200682.1436527": {
+    "asset_id": "7684565272925241918",
+    "pippit_asset_id": "6806443594508",
+    "name": "黄子名.mp3"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG002\\资产\\音频\\黄山.wav::1789200510.9373655": {
+    "asset_id": "7684565365016019480",
+    "pippit_asset_id": "6805166436108",
+    "name": "黄山.wav"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG002\\资产\\音频\\小弟A.wav::1789200507.307925": {
+    "asset_id": "7684565466673398334",
+    "pippit_asset_id": "6806482561548",
+    "name": "小弟A.wav"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG003\\资产\\人物\\CHAR_001_HUANG_ZIMING_VILLAGE_v1.png::1789128070.43478": {
+    "asset_id": "7684564943790981694",
+    "pippit_asset_id": "6805186035468",
+    "name": "CHAR_001_HUANG_ZIMING_VILLAGE_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG003\\资产\\人物\\CHAR_016_黄山_v1.png::1789093375.5612729": {
+    "asset_id": "7684564983955341848",
+    "pippit_asset_id": "6806363558156",
+    "name": "CHAR_016_黄山_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG003\\资产\\人物\\CHAR_014_张顺民_v1.png::1789126227.0": {
+    "asset_id": "7684565099399594558",
+    "pippit_asset_id": "6806526430732",
+    "name": "CHAR_014_张顺民_v1.png"
+  },
+  "C:\\Users\\JW TSJ\\Desktop\\最新水眼\\第002集\\SEG003\\资产\\人物\\CHAR_021_小弟A_v1.png::1789126233.0": {
+    "asset_id": "7684565114855621145",
+    "pippit_asset_id": "6806600639500",
+    "name": "CHAR_021_小弟A_v1.png"
+  },
+  "hash:671f3f331fe9969ddd31b94b557e8933::size:712049": {
+    "asset_id": "7684564943790981694",
+    "pippit_asset_id": "6805186035468",
+    "name": "CHAR_001_HUANG_ZIMING_VILLAGE_v1.png",
+    "size": 712049,
+    "hash": "671f3f331fe9969ddd31b94b557e8933"
+  },
+  "hash:3f4a25f1e60c7c10e082e46d00d219bb::size:1592407": {
+    "asset_id": "7684564983955341848",
+    "pippit_asset_id": "6806363558156",
+    "name": "CHAR_016_黄山_v1.png",
+    "size": 1592407,
+    "hash": "3f4a25f1e60c7c10e082e46d00d219bb"
+  },
+  "hash:49952fad29eb3b2ce25ce5e667d53f48::size:1747657": {
+    "asset_id": "7684565027999597118",
+    "pippit_asset_id": "6806460334092",
+    "name": "CHAR_041_苏桂芬_v1.png",
+    "size": 1747657,
+    "hash": "49952fad29eb3b2ce25ce5e667d53f48"
+  },
+  "hash:c165ea01a0fed5aaba882f07173c08a6::size:1303702": {
+    "asset_id": "7684565099399594558",
+    "pippit_asset_id": "6806526430732",
+    "name": "CHAR_014_张顺民_v1.png",
+    "size": 1303702,
+    "hash": "c165ea01a0fed5aaba882f07173c08a6"
+  },
+  "hash:a58793f639ee52dad2fcd7ea44afba7f::size:993496": {
+    "asset_id": "7684565114855621145",
+    "pippit_asset_id": "6806600639500",
+    "name": "CHAR_021_小弟A_v1.png",
+    "size": 993496,
+    "hash": "a58793f639ee52dad2fcd7ea44afba7f"
+  },
+  "hash:afdd306b023ff8b5df88740ed8a7335a::size:2867110": {
+    "asset_id": "7684565180164669977",
+    "pippit_asset_id": "6807002288652",
+    "name": "SCENE_024_海边-黄家废墟_v1.png",
+    "size": 2867110,
+    "hash": "afdd306b023ff8b5df88740ed8a7335a"
+  },
+  "hash:094f05fa7420f825ccb75a86e1dc6407::size:179740": {
+    "asset_id": "7684565272925241918",
+    "pippit_asset_id": "6806443594508",
+    "name": "黄子名.mp3",
+    "size": 179740,
+    "hash": "094f05fa7420f825ccb75a86e1dc6407"
+  },
+  "hash:82a47c4d64f753d679b52a1ca7397e32::size:218850": {
+    "asset_id": "7684565365016019480",
+    "pippit_asset_id": "6805166436108",
+    "name": "黄山.wav",
+    "size": 218850,
+    "hash": "82a47c4d64f753d679b52a1ca7397e32"
+  },
+  "hash:4b553e3988d43854b58e5215c496e80f::size:193328": {
+    "asset_id": "7684565413887951385",
+    "pippit_asset_id": "6807690422540",
+    "name": "苏桂芬.wav",
+    "size": 193328,
+    "hash": "4b553e3988d43854b58e5215c496e80f"
+  },
+  "hash:6a26839a9ac5a1734fb3698a61ab2b83::size:193328": {
+    "asset_id": "7684565466673398334",
+    "pippit_asset_id": "6806482561548",
+    "name": "小弟A.wav",
+    "size": 193328,
+    "hash": "6a26839a9ac5a1734fb3698a61ab2b83"
+  },
+  "hash:8bcdee42b9a52a666065f3ee3d081bfb::size:1911741": {
+    "asset_id": "7684567507986792984",
+    "pippit_asset_id": "6808545856012",
+    "name": "PROP_001_YOULAN_BAN_v1.png",
+    "size": 1911741,
+    "hash": "8bcdee42b9a52a666065f3ee3d081bfb"
+  },
+  "hash:2bf9586b2b12fb30cf3132098a32a626::size:1542662": {
+    "asset_id": "7684567626354082366",
+    "pippit_asset_id": "6806086552588",
+    "name": "CHAR_020_田广民_v1.png",
+    "size": 1542662,
+    "hash": "2bf9586b2b12fb30cf3132098a32a626"
+  },
+  "hash:8e8e47af7847d7a5ace992608aae5614::size:1622249": {
+    "asset_id": "7684567660340576793",
+    "pippit_asset_id": "6808065446412",
+    "name": "CHAR_029_村民甲_v1.png",
+    "size": 1622249,
+    "hash": "8e8e47af7847d7a5ace992608aae5614"
+  },
+  "hash:690f2ef4a6f6fa920fde00851732a16a::size:1653848": {
+    "asset_id": "7684567708473983512",
+    "pippit_asset_id": "6808602864652",
+    "name": "CHAR_035_村民乙_v1.png",
+    "size": 1653848,
+    "hash": "690f2ef4a6f6fa920fde00851732a16a"
+  },
+  "hash:2b7952b17ec7080fbdb738bf28b64d31::size:2617916": {
+    "asset_id": "7684567734705078808",
+    "pippit_asset_id": "6806077324300",
+    "name": "SCENE_010_盘龙村海口_v1.png",
+    "size": 2617916,
+    "hash": "2b7952b17ec7080fbdb738bf28b64d31"
+  },
+  "hash:43dd21967b0ea28484c701eb68e1bb07::size:1248974": {
+    "asset_id": "7684567751394361881",
+    "pippit_asset_id": "6806363969036",
+    "name": "PROP_021_FENGSHOU_BOAT_v1.png",
+    "size": 1248974,
+    "hash": "43dd21967b0ea28484c701eb68e1bb07"
+  },
+  "hash:ffcfc0afd833ec9d4021785cbd715007::size:1024129": {
+    "asset_id": "7684611007474844222",
+    "pippit_asset_id": "6814724360716",
+    "name": "shot1_lineart.png",
+    "size": 1024129,
+    "hash": "ffcfc0afd833ec9d4021785cbd715007"
+  },
+  "hash:403a05b72fa91120f23bd4f52e27b1da::size:1257547": {
+    "asset_id": "7684611054060307006",
+    "pippit_asset_id": "6814377072140",
+    "name": "shot2_lineart.png",
+    "size": 1257547,
+    "hash": "403a05b72fa91120f23bd4f52e27b1da"
+  },
+  "hash:468d5fd8359e66ae7d0f9062cb1f68d2::size:1380181": {
+    "asset_id": "7684611087874933272",
+    "pippit_asset_id": "6814554020620",
+    "name": "shot3_lineart.png",
+    "size": 1380181,
+    "hash": "468d5fd8359e66ae7d0f9062cb1f68d2"
+  },
+  "hash:c77903aab8cc6ca2fbe58a48f2e7f198::size:1568476": {
+    "asset_id": "7684626176002015806",
+    "pippit_asset_id": "6818284424460",
+    "name": "CHAR_097_小弟B_v1.png",
+    "size": 1568476,
+    "hash": "c77903aab8cc6ca2fbe58a48f2e7f198"
+  },
+  "hash:bdfa75d359a28dcdf7832145b72f3c1e::size:2600509": {
+    "asset_id": "7684626189357203993",
+    "pippit_asset_id": "6817388920076",
+    "name": "SCENE_006_海上船艇_v1.png",
+    "size": 2600509,
+    "hash": "bdfa75d359a28dcdf7832145b72f3c1e"
+  },
+  "hash:5a4764c00919b4b87f3e7605b3769c0a::size:3002379": {
+    "asset_id": "7684626235818033688",
+    "pippit_asset_id": "6815936494860",
+    "name": "SCENE_001_海边_v1.png",
+    "size": 3002379,
+    "hash": "5a4764c00919b4b87f3e7605b3769c0a"
+  },
+  "hash:fb9bd62d809c5eb019cb4feb71025e0e::size:2652712": {
+    "asset_id": "7684626310979666457",
+    "pippit_asset_id": "6816935273484",
+    "name": "SCENE_009_海底_v1.png",
+    "size": 2652712,
+    "hash": "fb9bd62d809c5eb019cb4feb71025e0e"
+  },
+  "hash:b8e03fbc3e67a8f5bd6a000af5ae2929::size:207580": {
+    "asset_id": "7684626368214352408",
+    "pippit_asset_id": "6818663484684",
+    "name": "CHAR_001_HUANG_ZIMING_VOICE.mp3",
+    "size": 207580,
+    "hash": "b8e03fbc3e67a8f5bd6a000af5ae2929"
+  },
+  "hash:7a2598438b4cf5482ffa907e436c1940::size:944149": {
+    "asset_id": "7684626358715580990",
+    "pippit_asset_id": "6816474222860",
+    "name": "shot1_lineart.png",
+    "size": 944149,
+    "hash": "7a2598438b4cf5482ffa907e436c1940"
+  },
+  "hash:bc02df4e6afad055aeb475797dd6ec54::size:2757015": {
+    "asset_id": "7684626465569161752",
+    "pippit_asset_id": "6818295163660",
+    "name": "shot2_lineart.png",
+    "size": 2757015,
+    "hash": "bc02df4e6afad055aeb475797dd6ec54"
+  },
+  "hash:b3b59822e67ba15f19ebc6b76f892e2a::size:914351": {
+    "asset_id": "7684626530005467672",
+    "pippit_asset_id": "6818287634444",
+    "name": "shot3_lineart.png",
+    "size": 914351,
+    "hash": "b3b59822e67ba15f19ebc6b76f892e2a"
+  },
+  "hash:f3976d990eb114d76df4c1d3bd298005::size:903259": {
+    "asset_id": "7684626581566079513",
+    "pippit_asset_id": "6817462269452",
+    "name": "shot4_lineart.png",
+    "size": 903259,
+    "hash": "f3976d990eb114d76df4c1d3bd298005"
+  },
+  "hash:87a624246a5ca96541f68ed72247f42f::size:653672": {
+    "asset_id": "7684626658250916376",
+    "pippit_asset_id": "6818775614476",
+    "name": "shot5_lineart.png",
+    "size": 653672,
+    "hash": "87a624246a5ca96541f68ed72247f42f"
+  },
+  "hash:431f7a878bc6c575b8ac62c327ca53c2::size:969989": {
+    "asset_id": "7684626758734660120",
+    "pippit_asset_id": "6818133630988",
+    "name": "shot1_lineart.png",
+    "size": 969989,
+    "hash": "431f7a878bc6c575b8ac62c327ca53c2"
+  },
+  "hash:b8c9685bb5e414949367904accd64adc::size:952786": {
+    "asset_id": "7684626839751836185",
+    "pippit_asset_id": "6815734103308",
+    "name": "shot2_lineart.png",
+    "size": 952786,
+    "hash": "b8c9685bb5e414949367904accd64adc"
+  },
+  "hash:dd54209604bed06101ba92512d5d164c::size:877696": {
+    "asset_id": "7684626950413173273",
+    "pippit_asset_id": "6818645430028",
+    "name": "shot3_lineart.png",
+    "size": 877696,
+    "hash": "dd54209604bed06101ba92512d5d164c"
+  },
+  "hash:cbb84106f52312fb4f86619af9686add::size:779585": {
+    "asset_id": "7684627013869535768",
+    "pippit_asset_id": "6816018022156",
+    "name": "shot4_lineart.png",
+    "size": 779585,
+    "hash": "cbb84106f52312fb4f86619af9686add"
+  },
+  "hash:dd9e9508a68c44055b81154b0370b25e::size:850916": {
+    "asset_id": "7684627094437626392",
+    "pippit_asset_id": "6816457277708",
+    "name": "shot5_lineart.png",
+    "size": 850916,
+    "hash": "dd9e9508a68c44055b81154b0370b25e"
+  },
+  "hash:248c11e81acee3ac9c509fcffaf802d8::size:1040734": {
+    "asset_id": "7684627196204270105",
+    "pippit_asset_id": "6818645456396",
+    "name": "shot6_lineart.png",
+    "size": 1040734,
+    "hash": "248c11e81acee3ac9c509fcffaf802d8"
+  },
+  "hash:d0cb6ba0423d162265603524343863b4::size:932618": {
+    "asset_id": "7684627273470870040",
+    "pippit_asset_id": "6816759595788",
+    "name": "shot7_lineart.png",
+    "size": 932618,
+    "hash": "d0cb6ba0423d162265603524343863b4"
+  },
+  "hash:42019e63e9d7027017a3a9df71714480::size:926837": {
+    "asset_id": "7684627344628236862",
+    "pippit_asset_id": "6817320448780",
+    "name": "shot1_lineart.png",
+    "size": 926837,
+    "hash": "42019e63e9d7027017a3a9df71714480"
+  },
+  "hash:2b59fe8ac6c0e5e93bcb7f66e79546db::size:795104": {
+    "asset_id": "7684627458431451673",
+    "pippit_asset_id": "6818369099788",
+    "name": "shot2_lineart.png",
+    "size": 795104,
+    "hash": "2b59fe8ac6c0e5e93bcb7f66e79546db"
+  },
+  "hash:734bb34c073c4db609d2696771e4e717::size:973108": {
+    "asset_id": "7684627527654261272",
+    "pippit_asset_id": "6817328064268",
+    "name": "shot3_lineart.png",
+    "size": 973108,
+    "hash": "734bb34c073c4db609d2696771e4e717"
+  },
+  "hash:e95ef01ef65c038b64e78750533ff4f1::size:864102": {
+    "asset_id": "7684627593962570302",
+    "pippit_asset_id": "6816890328588",
+    "name": "shot4_lineart.png",
+    "size": 864102,
+    "hash": "e95ef01ef65c038b64e78750533ff4f1"
+  },
+  "hash:47872e194d062b50d7c749679ee762f3::size:922760": {
+    "asset_id": "7684627690913333785",
+    "pippit_asset_id": "6816486484236",
+    "name": "shot5_lineart.png",
+    "size": 922760,
+    "hash": "47872e194d062b50d7c749679ee762f3"
+  },
+  "hash:620183e5eec089a5dcfe68b350a2efc4::size:1036938": {
+    "asset_id": "7684627695800730137",
+    "pippit_asset_id": "6816513688076",
+    "name": "shot6_lineart.png",
+    "size": 1036938,
+    "hash": "620183e5eec089a5dcfe68b350a2efc4"
+  },
+  "hash:2a8822bd77bbc3b271973d8acde84e5c::size:945392": {
+    "asset_id": "7684627816856109593",
+    "pippit_asset_id": "6815766141964",
+    "name": "shot7_lineart.png",
+    "size": 945392,
+    "hash": "2a8822bd77bbc3b271973d8acde84e5c"
+  },
+  "hash:c183f6b5d12828caf76f4fee33031374::size:958646": {
+    "asset_id": "7684627908559847961",
+    "pippit_asset_id": "6816486512140",
+    "name": "shot1_lineart.png",
+    "size": 958646,
+    "hash": "c183f6b5d12828caf76f4fee33031374"
+  },
+  "hash:ce0382c90ace9f5e74fd9627b3686762::size:941285": {
+    "asset_id": "7684627965666083352",
+    "pippit_asset_id": "6818650179084",
+    "name": "shot2_lineart.png",
+    "size": 941285,
+    "hash": "ce0382c90ace9f5e74fd9627b3686762"
+  },
+  "hash:076f7fbc6e87973e46ebb11c55ec9aa8::size:2390543": {
+    "asset_id": "7684628038037930520",
+    "pippit_asset_id": "6817350940684",
+    "name": "shot3_lineart.png",
+    "size": 2390543,
+    "hash": "076f7fbc6e87973e46ebb11c55ec9aa8"
+  },
+  "hash:6f666568b4c795f76fcc89967af6bc92::size:1069748": {
+    "asset_id": "7684628076198117950",
+    "pippit_asset_id": "6818312082700",
+    "name": "shot4_lineart.png",
+    "size": 1069748,
+    "hash": "6f666568b4c795f76fcc89967af6bc92"
+  },
+  "hash:eaf8cd1f1fb8c1e61a488dcb5732109d::size:911436": {
+    "asset_id": "7684628055537992217",
+    "pippit_asset_id": "6818293858060",
+    "name": "shot5_lineart.png",
+    "size": 911436,
+    "hash": "eaf8cd1f1fb8c1e61a488dcb5732109d"
+  },
+  "hash:6890cf75d6009dd204b2a3a94568d7bf::size:990614": {
+    "asset_id": "7684628232578875928",
+    "pippit_asset_id": "6816735393804",
+    "name": "shot1_lineart.png",
+    "size": 990614,
+    "hash": "6890cf75d6009dd204b2a3a94568d7bf"
+  },
+  "hash:ef5f62cad6dfad5cd595c6d0740218ad::size:902140": {
+    "asset_id": "7684628283430847001",
+    "pippit_asset_id": "6817057668364",
+    "name": "shot2_lineart.png",
+    "size": 902140,
+    "hash": "ef5f62cad6dfad5cd595c6d0740218ad"
+  },
+  "hash:24a3816cc7037a13838e2d40eef68c82::size:1051478": {
+    "asset_id": "7684628339457950232",
+    "pippit_asset_id": "6815766191372",
+    "name": "shot3_lineart.png",
+    "size": 1051478,
+    "hash": "24a3816cc7037a13838e2d40eef68c82"
+  },
+  "hash:b225f2d47382c3f9543c31527562df6c::size:2602895": {
+    "asset_id": "7684628408345199166",
+    "pippit_asset_id": "6818292414220",
+    "name": "shot4_lineart.png",
+    "size": 2602895,
+    "hash": "b225f2d47382c3f9543c31527562df6c"
+  },
+  "hash:8cb5081d0068f297ed4dffb79c6effa3::size:893666": {
+    "asset_id": "7684628468164592152",
+    "pippit_asset_id": "6816452878604",
+    "name": "shot5_lineart.png",
+    "size": 893666,
+    "hash": "8cb5081d0068f297ed4dffb79c6effa3"
+  },
+  "hash:9703b8106b2614aa80d3ced3786cc554::size:965185": {
+    "asset_id": "7684629491691455000",
+    "pippit_asset_id": "6816453038092",
+    "name": "shot1_lineart.png",
+    "size": 965185,
+    "hash": "9703b8106b2614aa80d3ced3786cc554"
+  },
+  "hash:d0b5d5bd7f44975bfbbfed66a1c08994::size:973118": {
+    "asset_id": "7684629513754624537",
+    "pippit_asset_id": "6818153645068",
+    "name": "shot2_lineart.png",
+    "size": 973118,
+    "hash": "d0b5d5bd7f44975bfbbfed66a1c08994"
+  },
+  "hash:d8058c04d77f445a83d40664c1f03317::size:1030078": {
+    "asset_id": "7684629602420916760",
+    "pippit_asset_id": "6817062482956",
+    "name": "shot3_lineart.png",
+    "size": 1030078,
+    "hash": "d8058c04d77f445a83d40664c1f03317"
+  },
+  "hash:245f068b3d0d4478d9050c5fa0601e6d::size:926718": {
+    "asset_id": "7684629744105226777",
+    "pippit_asset_id": "6816471386892",
+    "name": "shot1_lineart.png",
+    "size": 926718,
+    "hash": "245f068b3d0d4478d9050c5fa0601e6d"
+  },
+  "hash:0f9bb6beaf21f4264e83beaa05de4cc9::size:1008791": {
+    "asset_id": "7684629821704012312",
+    "pippit_asset_id": "6816741540620",
+    "name": "shot2_lineart.png",
+    "size": 1008791,
+    "hash": "0f9bb6beaf21f4264e83beaa05de4cc9"
+  },
+  "hash:680648aae17c444bf90d18618e46cd66::size:935036": {
+    "asset_id": "7684629906793955865",
+    "pippit_asset_id": "6817516938508",
+    "name": "shot3_lineart.png",
+    "size": 935036,
+    "hash": "680648aae17c444bf90d18618e46cd66"
+  },
+  "hash:0dabc9417b2e658e4aeff0b36b439716::size:750323": {
+    "asset_id": "7684629982514561561",
+    "pippit_asset_id": "6817521593100",
+    "name": "shot1_lineart.png",
+    "size": 750323,
+    "hash": "0dabc9417b2e658e4aeff0b36b439716"
+  },
+  "hash:1441f6014de6f97602ac1ccc2f869837::size:1098776": {
+    "asset_id": "7684630082678407704",
+    "pippit_asset_id": "6816028848652",
+    "name": "shot2_lineart.png",
+    "size": 1098776,
+    "hash": "1441f6014de6f97602ac1ccc2f869837"
+  },
+  "hash:17f75d76dafd1e9a751a68ea68213363::size:717299": {
+    "asset_id": "7684630131973833241",
+    "pippit_asset_id": "6815956722188",
+    "name": "shot3_lineart.png",
+    "size": 717299,
+    "hash": "17f75d76dafd1e9a751a68ea68213363"
+  },
+  "hash:8cc1df16aacd9e986967b711a1b5cf8e::size:1089319": {
+    "asset_id": "7684661091767927358",
+    "pippit_asset_id": "6823752548364",
+    "name": "shot1_lineart.png",
+    "size": 1089319,
+    "hash": "8cc1df16aacd9e986967b711a1b5cf8e"
+  },
+  "hash:cfa4063161faef4242b54078105680a7::size:1184667": {
+    "asset_id": "7684661134565966361",
+    "pippit_asset_id": "6823059688972",
+    "name": "shot2_lineart.png",
+    "size": 1184667,
+    "hash": "cfa4063161faef4242b54078105680a7"
+  },
+  "hash:7880d320399168835b5bfdc684c77262::size:1208888": {
+    "asset_id": "7684661190257525310",
+    "pippit_asset_id": "6821490825740",
+    "name": "shot3_lineart.png",
+    "size": 1208888,
+    "hash": "7880d320399168835b5bfdc684c77262"
+  },
+  "hash:83dae24b44f6a92498b6f14a29ec5d23::size:1360419": {
+    "asset_id": "7684661293018399256",
+    "pippit_asset_id": "6824265348364",
+    "name": "shot1_lineart.png",
+    "size": 1360419,
+    "hash": "83dae24b44f6a92498b6f14a29ec5d23"
+  },
+  "hash:427ebc1f0d957aa4d105d99b5f14709f::size:922271": {
+    "asset_id": "7684661348814291480",
+    "pippit_asset_id": "6823212068876",
+    "name": "shot2_lineart.png",
+    "size": 922271,
+    "hash": "427ebc1f0d957aa4d105d99b5f14709f"
+  },
+  "hash:e4223a9abbaea49f88adfa02279cb75e::size:1206324": {
+    "asset_id": "7684661336060969496",
+    "pippit_asset_id": "6823378995724",
+    "name": "shot3_lineart.png",
+    "size": 1206324,
+    "hash": "e4223a9abbaea49f88adfa02279cb75e"
+  },
+  "hash:5bb83b9f9346f3cc1a999ab230cbce6d::size:973956": {
+    "asset_id": "7684664512037601854",
+    "pippit_asset_id": "6822114711308",
+    "name": "shot2_lineart.png",
+    "size": 973956,
+    "hash": "5bb83b9f9346f3cc1a999ab230cbce6d"
+  },
+  "hash:b7a0bb3360e02421ba07ddd4bfa29a0b::size:1039059": {
+    "asset_id": "7684664492429738521",
+    "pippit_asset_id": "6822796691468",
+    "name": "shot3_lineart.png",
+    "size": 1039059,
+    "hash": "b7a0bb3360e02421ba07ddd4bfa29a0b"
+  },
+  "hash:adbdcaf7dc8f1ed3b8f32a0affa3720e::size:1120979": {
+    "asset_id": "7684664547029811774",
+    "pippit_asset_id": "6822001129996",
+    "name": "shot3_lineart.png",
+    "size": 1120979,
+    "hash": "adbdcaf7dc8f1ed3b8f32a0affa3720e"
+  },
+  "hash:ee05f3e7000b4bb17adbf28c5a931b60::size:1205834": {
+    "asset_id": "7684664521407758872",
+    "pippit_asset_id": "6821669331724",
+    "name": "shot1_lineart.png",
+    "size": 1205834,
+    "hash": "ee05f3e7000b4bb17adbf28c5a931b60"
+  },
+  "hash:001fa60d9aaadbb5851374172607f426::size:1168313": {
+    "asset_id": "7684664491955733017",
+    "pippit_asset_id": "6823420650508",
+    "name": "shot2_lineart.png",
+    "size": 1168313,
+    "hash": "001fa60d9aaadbb5851374172607f426"
+  },
+  "hash:a32dfb4890bc5b920033aaf22ac49ee2::size:1231188": {
+    "asset_id": "7684664534422192665",
+    "pippit_asset_id": "6823437290508",
+    "name": "shot1_lineart.png",
+    "size": 1231188,
+    "hash": "a32dfb4890bc5b920033aaf22ac49ee2"
+  },
+  "hash:7a0b3bcc521dc9bcc572e071258e932c::size:1314668": {
+    "asset_id": "7684664482074231320",
+    "pippit_asset_id": "6824173102860",
+    "name": "shot1_lineart.png",
+    "size": 1314668,
+    "hash": "7a0b3bcc521dc9bcc572e071258e932c"
+  },
+  "hash:0df6368d162794a2c7135c5cffe392b6::size:1194994": {
+    "asset_id": "7684664524184011289",
+    "pippit_asset_id": "6823064888588",
+    "name": "shot2_lineart.png",
+    "size": 1194994,
+    "hash": "0df6368d162794a2c7135c5cffe392b6"
+  },
+  "hash:f0b8076d0819b191b163887d4c3bf877::size:1094770": {
+    "asset_id": "7684664544551125528",
+    "pippit_asset_id": "6823744136716",
+    "name": "shot3_lineart.png",
+    "size": 1094770,
+    "hash": "f0b8076d0819b191b163887d4c3bf877"
+  },
+  "hash:20b4dae2eb6e28259080625479edd2e3::size:897315": {
+    "asset_id": "7684675929012568638",
+    "pippit_asset_id": "6825031548684",
+    "name": "PROP_016_FISHING_ROD_KING_v1.png",
+    "size": 897315,
+    "hash": "20b4dae2eb6e28259080625479edd2e3"
+  },
+  "hash:cb3e506695497c9f0de63871e4ab5291::size:919802": {
+    "asset_id": "7684683313727308313",
+    "pippit_asset_id": "6826777691404",
+    "name": "shot1_lineart.png",
+    "size": 919802,
+    "hash": "cb3e506695497c9f0de63871e4ab5291"
+  },
+  "hash:efaf4e64463968d806ac99ad11509ded::size:1003102": {
+    "asset_id": "7684683331842327065",
+    "pippit_asset_id": "6826264696844",
+    "name": "shot2_lineart.png",
+    "size": 1003102,
+    "hash": "efaf4e64463968d806ac99ad11509ded"
+  },
+  "hash:3e3557aedd23d65c907d188e5f054d2b::size:1162305": {
+    "asset_id": "7684683346454741566",
+    "pippit_asset_id": "6826310833932",
+    "name": "shot1_lineart.png",
+    "size": 1162305,
+    "hash": "3e3557aedd23d65c907d188e5f054d2b"
+  },
+  "hash:4d5ed617a77a5233582dc10486ba8a4b::size:1005286": {
+    "asset_id": "7684683334518440472",
+    "pippit_asset_id": "6826773119500",
+    "name": "shot3_lineart.png",
+    "size": 1005286,
+    "hash": "4d5ed617a77a5233582dc10486ba8a4b"
+  },
+  "hash:152c4f4e05460227a29bbfdc77c609fc::size:980806": {
+    "asset_id": "7684683347914277401",
+    "pippit_asset_id": "6825919826700",
+    "name": "shot3_lineart.png",
+    "size": 980806,
+    "hash": "152c4f4e05460227a29bbfdc77c609fc"
+  },
+  "hash:33f0ff0d65a79b3133581315d6aea127::size:2053225": {
+    "asset_id": "7684683320605344281",
+    "pippit_asset_id": "6826147925516",
+    "name": "CHAR_073_王叔_v1.png",
+    "size": 2053225,
+    "hash": "33f0ff0d65a79b3133581315d6aea127"
+  },
+  "hash:b0b94b345539fb236b6d914a9399c30d::size:1014215": {
+    "asset_id": "7684683388938224152",
+    "pippit_asset_id": "6826257049356",
+    "name": "shot1_lineart.png",
+    "size": 1014215,
+    "hash": "b0b94b345539fb236b6d914a9399c30d"
+  },
+  "hash:45d5cb90d62d1f8e789c2223ca20a97e::size:795986": {
+    "asset_id": "7684683377723261465",
+    "pippit_asset_id": "6826777693452",
+    "name": "shot3_lineart.png",
+    "size": 795986,
+    "hash": "45d5cb90d62d1f8e789c2223ca20a97e"
+  },
+  "hash:8b1c8fede33d14a13b38c922b8dd1a28::size:978858": {
+    "asset_id": "7684683364217766462",
+    "pippit_asset_id": "6827500271628",
+    "name": "shot2_lineart.png",
+    "size": 978858,
+    "hash": "8b1c8fede33d14a13b38c922b8dd1a28"
+  },
+  "hash:862d20b0466339a00a4149e47bd1aff3::size:888397": {
+    "asset_id": "7684683347914736153",
+    "pippit_asset_id": "6826513494284",
+    "name": "shot2_lineart.png",
+    "size": 888397,
+    "hash": "862d20b0466339a00a4149e47bd1aff3"
+  },
+  "hash:6718a35ae662640bb77294a30a716960::size:877016": {
+    "asset_id": "7684683366583419416",
+    "pippit_asset_id": "6826147928076",
+    "name": "shot1_lineart.png",
+    "size": 877016,
+    "hash": "6718a35ae662640bb77294a30a716960"
+  },
+  "hash:d1e4523412f4e174dff72475f63b553d::size:1154128": {
+    "asset_id": "7684683377723195929",
+    "pippit_asset_id": "6826522980620",
+    "name": "shot3_lineart.png",
+    "size": 1154128,
+    "hash": "d1e4523412f4e174dff72475f63b553d"
+  },
+  "hash:4dabb5c1c7fee75520be2c597a78495f::size:879061": {
+    "asset_id": "7684683350611247678",
+    "pippit_asset_id": "6825697832716",
+    "name": "shot2_lineart.png",
+    "size": 879061,
+    "hash": "4dabb5c1c7fee75520be2c597a78495f"
+  },
+  "hash:c78613005952f4330ca6573a75a97c48::size:1852861": {
+    "asset_id": "7684640454856098328",
+    "pippit_asset_id": "6818581759500",
+    "name": "shot1_lineart.png",
+    "size": 1852861,
+    "hash": "c78613005952f4330ca6573a75a97c48"
+  },
+  "hash:048fdbc06244bef7fd25359b40849fca::size:1422926": {
+    "asset_id": "7684640439606280766",
+    "pippit_asset_id": "6818720130060",
+    "name": "shot2_lineart.png",
+    "size": 1422926,
+    "hash": "048fdbc06244bef7fd25359b40849fca"
+  },
+  "hash:37764b2e86e2deb9d24cbd8cc75b08cc::size:1492189": {
+    "asset_id": "7684640497927848472",
+    "pippit_asset_id": "6819660017932",
+    "name": "shot3_lineart.png",
+    "size": 1492189,
+    "hash": "37764b2e86e2deb9d24cbd8cc75b08cc"
+  },
+  "hash:b6e78391a5d083a3b36313db09125c37::size:1502379": {
+    "asset_id": "7684640611588211224",
+    "pippit_asset_id": "6818041164812",
+    "name": "shot1_lineart.png",
+    "size": 1502379,
+    "hash": "b6e78391a5d083a3b36313db09125c37"
+  },
+  "hash:103266a2534867ccfffd8ffca6cfca90::size:1566883": {
+    "asset_id": "7684640614600409662",
+    "pippit_asset_id": "6819034562316",
+    "name": "shot2_lineart.png",
+    "size": 1566883,
+    "hash": "103266a2534867ccfffd8ffca6cfca90"
+  },
+  "hash:d00c9c34678ae572fcd905c780dd636a::size:1342428": {
+    "asset_id": "7684640608213238334",
+    "pippit_asset_id": "6818179292940",
+    "name": "shot3_lineart.png",
+    "size": 1342428,
+    "hash": "d00c9c34678ae572fcd905c780dd636a"
+  },
+  "hash:4b1f4cc68d4f0f954e241b6cda41eeb0::size:1493111": {
+    "asset_id": "7684640732188492313",
+    "pippit_asset_id": "6819007664908",
+    "name": "shot1_lineart.png",
+    "size": 1493111,
+    "hash": "4b1f4cc68d4f0f954e241b6cda41eeb0"
+  },
+  "hash:26ac77dd9fda6d3a3422653db6309c71::size:1708089": {
+    "asset_id": "7684640794699203096",
+    "pippit_asset_id": "6817787716876",
+    "name": "shot2_lineart.png",
+    "size": 1708089,
+    "hash": "26ac77dd9fda6d3a3422653db6309c71"
+  },
+  "hash:4cac01673273e79052e7d110a63679a5::size:1727671": {
+    "asset_id": "7684640824130699801",
+    "pippit_asset_id": "6818577188108",
+    "name": "shot3_lineart.png",
+    "size": 1727671,
+    "hash": "4cac01673273e79052e7d110a63679a5"
+  },
+  "hash:3257624eeb402d2ddb14d38c34162426::size:1993539": {
+    "asset_id": "7684640907135943193",
+    "pippit_asset_id": "6817697032972",
+    "name": "shot1_lineart.png",
+    "size": 1993539,
+    "hash": "3257624eeb402d2ddb14d38c34162426"
+  },
+  "hash:861e129932ad3a2bfe918a895da17922::size:1685127": {
+    "asset_id": "7684640937942991384",
+    "pippit_asset_id": "6817603306764",
+    "name": "shot2_lineart.png",
+    "size": 1685127,
+    "hash": "861e129932ad3a2bfe918a895da17922"
+  },
+  "hash:e5f9f4b2a7b5a2e2381439e61942bc50::size:1908520": {
+    "asset_id": "7684640957178053145",
+    "pippit_asset_id": "6817695606284",
+    "name": "shot3_lineart.png",
+    "size": 1908520,
+    "hash": "e5f9f4b2a7b5a2e2381439e61942bc50"
+  },
+  "hash:546c531cdd756ebd72b84a38dce64953::size:230385": {
+    "asset_id": "7684677239422157337",
+    "pippit_asset_id": "6826306918668",
+    "name": "01-ethan-h2.jpg",
+    "size": 230385,
+    "hash": "546c531cdd756ebd72b84a38dce64953"
+  },
+  "hash:c0452dbb5f3e85f9b4c30be4f78ede66::size:2078051": {
+    "asset_id": "7684677244794995262",
+    "pippit_asset_id": "6826049253644",
+    "name": "03-master-bedroom.jpg",
+    "size": 2078051,
+    "hash": "c0452dbb5f3e85f9b4c30be4f78ede66"
+  },
+  "hash:06b314e03cb3f5c33c73441c72629851::size:1891930": {
+    "asset_id": "7684677234628084248",
+    "pippit_asset_id": "6824966768908",
+    "name": "02-ethan-h1.jpg",
+    "size": 1891930,
+    "hash": "06b314e03cb3f5c33c73441c72629851"
+  },
+  "hash:7285c4f5ed982f74767b72978cc9034d::size:76696": {
+    "asset_id": "7684677227640865304",
+    "pippit_asset_id": "6826779661324",
+    "name": "04-smartphone.png",
+    "size": 76696,
+    "hash": "7285c4f5ed982f74767b72978cc9034d"
+  },
+  "hash:a4dae5d8ae7e9e49a081c03d33fac86c::size:1981024": {
+    "asset_id": "7684677234628018712",
+    "pippit_asset_id": "6824555405580",
+    "name": "02-victoria-b1.jpg",
+    "size": 1981024,
+    "hash": "a4dae5d8ae7e9e49a081c03d33fac86c"
+  },
+  "hash:8b74f439c9a8cab91386759264677029::size:2042826": {
+    "asset_id": "7684677249727382040",
+    "pippit_asset_id": "6825786143244",
+    "name": "03-executive-office.jpg",
+    "size": 2042826,
+    "hash": "8b74f439c9a8cab91386759264677029"
+  },
+  "hash:0b077a8e2d851fe336846fa96826ac38::size:1951284": {
+    "asset_id": "7684677257826157081",
+    "pippit_asset_id": "6825666725644",
+    "name": "01-chloe-w1.jpg",
+    "size": 1951284,
+    "hash": "0b077a8e2d851fe336846fa96826ac38"
+  },
+  "hash:9dbf74099eff62882b1f4be2fc539f01::size:86359": {
+    "asset_id": "7684677239422091801",
+    "pippit_asset_id": "6825775501580",
+    "name": "04-demotion-doc.png",
+    "size": 86359,
+    "hash": "9dbf74099eff62882b1f4be2fc539f01"
+  },
+  "hash:69c5602910cc84dea6fc2c207c05f64d::size:230580": {
+    "asset_id": "7684677234011800126",
+    "pippit_asset_id": "6826230272524",
+    "name": "02-victoria-b2.jpg",
+    "size": 230580,
+    "hash": "69c5602910cc84dea6fc2c207c05f64d"
+  },
+  "hash:917bb09f2d88b5456809b0116e966ae3::size:193990": {
+    "asset_id": "7684677281863909912",
+    "pippit_asset_id": "6826770562572",
+    "name": "04-victoria-b3.jpg",
+    "size": 193990,
+    "hash": "917bb09f2d88b5456809b0116e966ae3"
+  },
+  "hash:3dec4d7a599f86a4b3ca1708452a97a7::size:211740": {
+    "asset_id": "7684677252076175934",
+    "pippit_asset_id": "6825631894540",
+    "name": "02-chloe-w2.jpg",
+    "size": 211740,
+    "hash": "3dec4d7a599f86a4b3ca1708452a97a7"
+  },
+  "hash:9dcbb4ceb9b1ed3d7d7cfc9f21125c7a::size:1842448": {
+    "asset_id": "7684677266064359961",
+    "pippit_asset_id": "6824812765452",
+    "name": "06-penthouse-livingroom.jpg",
+    "size": 1842448,
+    "hash": "9dcbb4ceb9b1ed3d7d7cfc9f21125c7a"
+  },
+  "hash:ac76b9282eb8b79dff1c7134e7d0a8e2::size:1859137": {
+    "asset_id": "7684677266064425497",
+    "pippit_asset_id": "6826512554508",
+    "name": "02-ethan-h3.jpg",
+    "size": 1859137,
+    "hash": "ac76b9282eb8b79dff1c7134e7d0a8e2"
+  },
+  "hash:c827036c890ecde0ad72e0a5b5f6590a::size:89955": {
+    "asset_id": "7684677252076208702",
+    "pippit_asset_id": "6826097688588",
+    "name": "07-suitcase.png",
+    "size": 89955,
+    "hash": "c827036c890ecde0ad72e0a5b5f6590a"
+  },
+  "hash:78477a2c42ecc3ddcad9966c2947e14f::size:760585": {
+    "asset_id": "7684685100201820734",
+    "pippit_asset_id": "6827878004236",
+    "name": "shot2_lineart.png",
+    "size": 760585,
+    "hash": "78477a2c42ecc3ddcad9966c2947e14f"
+  },
+  "hash:e08d6348dd80bd13b3cb4ca766d9e7dc::size:861628": {
+    "asset_id": "7684685100201886270",
+    "pippit_asset_id": "6826101985804",
+    "name": "shot2_lineart.png",
+    "size": 861628,
+    "hash": "e08d6348dd80bd13b3cb4ca766d9e7dc"
+  },
+  "hash:f241d85e0541be8224fba116fddbd980::size:956680": {
+    "asset_id": "7684685113132859966",
+    "pippit_asset_id": "6826264899084",
+    "name": "shot2_lineart.png",
+    "size": 956680,
+    "hash": "f241d85e0541be8224fba116fddbd980"
+  },
+  "hash:775688b713716e6202fc5f86333a09e4::size:907359": {
+    "asset_id": "7684685115569635864",
+    "pippit_asset_id": "6826122079756",
+    "name": "shot1_lineart.png",
+    "size": 907359,
+    "hash": "775688b713716e6202fc5f86333a09e4"
+  },
+  "hash:4409aeef5a20ab86847c4254f6f171df::size:977157": {
+    "asset_id": "7684685123828236824",
+    "pippit_asset_id": "6826137529612",
+    "name": "shot1_lineart.png",
+    "size": 977157,
+    "hash": "4409aeef5a20ab86847c4254f6f171df"
+  },
+  "hash:71e02392eb2cfd3931b9fbc53a4ced57::size:1049655": {
+    "asset_id": "7684685123828335128",
+    "pippit_asset_id": "6825725373196",
+    "name": "shot1_lineart.png",
+    "size": 1049655,
+    "hash": "71e02392eb2cfd3931b9fbc53a4ced57"
+  },
+  "hash:0201cc67c809570904e9f195669d4635::size:800194": {
+    "asset_id": "7684685120137249305",
+    "pippit_asset_id": "6827056367116",
+    "name": "shot2_lineart.png",
+    "size": 800194,
+    "hash": "0201cc67c809570904e9f195669d4635"
+  },
+  "hash:8b3a9d834d613fee4dba5ff34089f60a::size:997281": {
+    "asset_id": "7684685065796993598",
+    "pippit_asset_id": "6827526146828",
+    "name": "shot1_lineart.png",
+    "size": 997281,
+    "hash": "8b3a9d834d613fee4dba5ff34089f60a"
+  },
+  "hash:cb82f995f71349c762b9921494e6a7ab::size:2634987": {
+    "asset_id": "7684685069097484825",
+    "pippit_asset_id": "6826330726412",
+    "name": "SCENE_025_渔具店_v1.png",
+    "size": 2634987,
+    "hash": "cb82f995f71349c762b9921494e6a7ab"
+  },
+  "hash:9d2f7f7e38f606eecda028c3bdf12f20::size:1568250": {
+    "asset_id": "7684685067591352857",
+    "pippit_asset_id": "6827690727180",
+    "name": "CHAR_025_老张_v1.png",
+    "size": 1568250,
+    "hash": "9d2f7f7e38f606eecda028c3bdf12f20"
+  },
+  "hash:7613eafb4db9288a5b89fc10f498885f::size:688855": {
+    "asset_id": "7684696635003257406",
+    "pippit_asset_id": "6827722493964",
+    "name": "07-suitcase.png",
+    "size": 688855,
+    "hash": "7613eafb4db9288a5b89fc10f498885f"
+  },
+  "hash:ceefb967f4b12ebbee8e9cbbc6202351::size:686352": {
+    "asset_id": "7684696607552537113",
+    "pippit_asset_id": "6827783792140",
+    "name": "04-smartphone.png",
+    "size": 686352,
+    "hash": "ceefb967f4b12ebbee8e9cbbc6202351"
+  },
+  "hash:d6b49262a0f153e9847baf18cb8b7475::size:731550": {
+    "asset_id": "7684696637537731096",
+    "pippit_asset_id": "6827935627788",
+    "name": "04-demotion-doc.png",
+    "size": 731550,
+    "hash": "d6b49262a0f153e9847baf18cb8b7475"
+  },
+  "hash:e3ca886849c2a77ac723ac207b522c62::size:2168000": {
+    "asset_id": "7684696694818193944",
+    "pippit_asset_id": "6828124053516",
+    "name": "03-executive-office.jpg",
+    "size": 2168000,
+    "hash": "e3ca886849c2a77ac723ac207b522c62"
+  },
+  "hash:9f4396cb80695d36f83faf7bc16915cd::size:1841428": {
+    "asset_id": "7684696620257149502",
+    "pippit_asset_id": "6829277233164",
+    "name": "01-ethan-h2.jpg",
+    "size": 1841428,
+    "hash": "9f4396cb80695d36f83faf7bc16915cd"
+  },
+  "hash:eea49d0736e061ab22ea9ed0173472c0::size:1996922": {
+    "asset_id": "7684696637537796632",
+    "pippit_asset_id": "6827367211276",
+    "name": "04-victoria-b3.jpg",
+    "size": 1996922,
+    "hash": "eea49d0736e061ab22ea9ed0173472c0"
+  },
+  "hash:2a301858c15cd1b0c04f14087b75b8e4::size:1972927": {
+    "asset_id": "7684696625538155032",
+    "pippit_asset_id": "6827353608972",
+    "name": "02-victoria-b2.jpg",
+    "size": 1972927,
+    "hash": "2a301858c15cd1b0c04f14087b75b8e4"
+  },
+  "hash:9219d00415533fa077b667941298ef4a::size:1794389": {
+    "asset_id": "7684696675037839897",
+    "pippit_asset_id": "6828108865036",
+    "name": "SEG001_镜头8_图片.png",
+    "size": 1794389,
+    "hash": "9219d00415533fa077b667941298ef4a"
+  },
+  "hash:2ca5e0a15488cd70e4702c83f5e12001::size:1848793": {
+    "asset_id": "7684696548279042622",
+    "pippit_asset_id": "6827330599948",
+    "name": "SEG001_镜头6_图片.png",
+    "size": 1848793,
+    "hash": "2ca5e0a15488cd70e4702c83f5e12001"
+  },
+  "hash:28328ddd0e3f1631d3d4de6dac404e8f::size:1739857": {
+    "asset_id": "7684696675037872665",
+    "pippit_asset_id": "6828062155532",
+    "name": "SEG001_镜头7_图片.png",
+    "size": 1739857,
+    "hash": "28328ddd0e3f1631d3d4de6dac404e8f"
+  },
+  "hash:6d03cc1070f3ca340dab6513308b2fd1::size:1847732": {
+    "asset_id": "7684696673833992728",
+    "pippit_asset_id": "6827270507020",
+    "name": "SEG001_镜头5_图片.png",
+    "size": 1847732,
+    "hash": "6d03cc1070f3ca340dab6513308b2fd1"
+  },
+  "hash:7c41689a02dd960aa788e9ede0de0cef::size:1756037": {
+    "asset_id": "7684696677303091736",
+    "pippit_asset_id": "6827087965964",
+    "name": "SEG001_镜头3_图片.png",
+    "size": 1756037,
+    "hash": "7c41689a02dd960aa788e9ede0de0cef"
+  },
+  "hash:5db8038af47664a630813e9e40efa411::size:1813073": {
+    "asset_id": "7684696675037807129",
+    "pippit_asset_id": "6827734608652",
+    "name": "SEG001_镜头1_图片.png",
+    "size": 1813073,
+    "hash": "5db8038af47664a630813e9e40efa411"
+  },
+  "hash:5369b112a55b3dbd7b15d239596855ec::size:1844448": {
+    "asset_id": "7684696590163264025",
+    "pippit_asset_id": "6827077179404",
+    "name": "SEG001_镜头2_图片.png",
+    "size": 1844448,
+    "hash": "5369b112a55b3dbd7b15d239596855ec"
+  },
+  "hash:b3e9e240e94dd4e0d6c9b0739e89d12f::size:1881302": {
+    "asset_id": "7684696634907263513",
+    "pippit_asset_id": "6827332164876",
+    "name": "SEG002_镜头1_图片.png",
+    "size": 1881302,
+    "hash": "b3e9e240e94dd4e0d6c9b0739e89d12f"
+  },
+  "hash:d40f7e803f5ae8fe311011f7b967856e::size:1846281": {
+    "asset_id": "7684696573017096729",
+    "pippit_asset_id": "6827097062924",
+    "name": "SEG001_镜头4_图片.png",
+    "size": 1846281,
+    "hash": "d40f7e803f5ae8fe311011f7b967856e"
+  },
+  "hash:07936c38fc46b86b35022cd1d19a6991::size:1817233": {
+    "asset_id": "7684696651357471294",
+    "pippit_asset_id": "6827729906700",
+    "name": "SEG002_镜头5_图片.png",
+    "size": 1817233,
+    "hash": "07936c38fc46b86b35022cd1d19a6991"
+  },
+  "hash:a014a07107c259223b8b606df92340f6::size:1992858": {
+    "asset_id": "7684696669526950424",
+    "pippit_asset_id": "6828080280332",
+    "name": "SEG001_镜头9_图片.png",
+    "size": 1992858,
+    "hash": "a014a07107c259223b8b606df92340f6"
+  },
+  "hash:ace344c11e6e84b4fef63de59dac574e::size:1817863": {
+    "asset_id": "7684696670289969689",
+    "pippit_asset_id": "6827896224012",
+    "name": "SEG002_镜头3_图片.png",
+    "size": 1817863,
+    "hash": "ace344c11e6e84b4fef63de59dac574e"
+  },
+  "hash:d69c597fd2966c0306a8ac8911286184::size:1833140": {
+    "asset_id": "7684696669908795929",
+    "pippit_asset_id": "6827739024396",
+    "name": "SEG002_镜头2_图片.png",
+    "size": 1833140,
+    "hash": "d69c597fd2966c0306a8ac8911286184"
+  },
+  "hash:b89e05ee72e363c6d52ff29ce03c3eb0::size:1682059": {
+    "asset_id": "7684696665483756057",
+    "pippit_asset_id": "6827453661196",
+    "name": "SEG002_镜头4_图片.png",
+    "size": 1682059,
+    "hash": "b89e05ee72e363c6d52ff29ce03c3eb0"
+  },
+  "hash:dbd9bc02a6d57ebb6b7223a728f41026::size:1785971": {
+    "asset_id": "7684696618989945406",
+    "pippit_asset_id": "6827192600076",
+    "name": "SEG001_镜头11_图片.png",
+    "size": 1785971,
+    "hash": "dbd9bc02a6d57ebb6b7223a728f41026"
+  },
+  "hash:495763e4a8ab0c66e27d9900ca83187b::size:1854323": {
+    "asset_id": "7684696638908809790",
+    "pippit_asset_id": "6828436331788",
+    "name": "SEG001_镜头10_图片.png",
+    "size": 1854323,
+    "hash": "495763e4a8ab0c66e27d9900ca83187b"
+  },
+  "hash:bb5a9472a009478774e478a6df857f5f::size:1853283": {
+    "asset_id": "7684696640448512574",
+    "pippit_asset_id": "6828970065420",
+    "name": "SEG002_镜头7_图片.png",
+    "size": 1853283,
+    "hash": "bb5a9472a009478774e478a6df857f5f"
+  },
+  "hash:d8a82592a19c68b8aa9c3d2e185f5368::size:1671380": {
+    "asset_id": "7684696711662715417",
+    "pippit_asset_id": "6827755503628",
+    "name": "SEG002_镜头6_图片.png",
+    "size": 1671380,
+    "hash": "d8a82592a19c68b8aa9c3d2e185f5368"
+  },
+  "hash:2c9da9905bb76bc1952d0cb121e3e16e::size:1620013": {
+    "asset_id": "7684696648882700825",
+    "pippit_asset_id": "6827303822092",
+    "name": "SEG002_镜头8_图片.png",
+    "size": 1620013,
+    "hash": "2c9da9905bb76bc1952d0cb121e3e16e"
+  },
+  "hash:ed7cb5573e643c9cfeac37aff29a405a::size:1608858": {
+    "asset_id": "7684696689492427288",
+    "pippit_asset_id": "6828528296716",
+    "name": "SEG002_镜头10_图片.png",
+    "size": 1608858,
+    "hash": "ed7cb5573e643c9cfeac37aff29a405a"
+  },
+  "hash:9df67e9b57e9a80239f08f7dbc407c8a::size:1732558": {
+    "asset_id": "7684696743346455064",
+    "pippit_asset_id": "6827783800588",
+    "name": "SEG002_镜头11_图片.png",
+    "size": 1732558,
+    "hash": "9df67e9b57e9a80239f08f7dbc407c8a"
+  },
+  "hash:8ed037513e98d43cef07f9bd81f6784a::size:1796957": {
+    "asset_id": "7684696689244226110",
+    "pippit_asset_id": "6827241828876",
+    "name": "SEG002_镜头9_图片.png",
+    "size": 1796957,
+    "hash": "8ed037513e98d43cef07f9bd81f6784a"
+  },
+  "hash:287b610ca0d7b45afa2e423723e41636::size:1676708": {
+    "asset_id": "7684696696488346136",
+    "pippit_asset_id": "6827335345676",
+    "name": "SEG003_镜头2_图片.png",
+    "size": 1676708,
+    "hash": "287b610ca0d7b45afa2e423723e41636"
+  },
+  "hash:b2e123d3e871bf91773daabe4dfb53a9::size:1676396": {
+    "asset_id": "7684696689492591128",
+    "pippit_asset_id": "6827924895244",
+    "name": "SEG003_镜头1_图片.png",
+    "size": 1676396,
+    "hash": "b2e123d3e871bf91773daabe4dfb53a9"
+  },
+  "hash:8e446541120bb196afa09c9e4471432b::size:1638692": {
+    "asset_id": "7684696635004207678",
+    "pippit_asset_id": "6827072818700",
+    "name": "SEG003_镜头7_图片.png",
+    "size": 1638692,
+    "hash": "8e446541120bb196afa09c9e4471432b"
+  },
+  "hash:6073c1f4075d61ba373e735ec82bc64b::size:1811948": {
+    "asset_id": "7684696640448774718",
+    "pippit_asset_id": "6829275825676",
+    "name": "SEG002_镜头12_图片.png",
+    "size": 1811948,
+    "hash": "6073c1f4075d61ba373e735ec82bc64b"
+  },
+  "hash:1de0c9fa6e7e8372dd705cb7f44b4b38::size:1727697": {
+    "asset_id": "7684696687663415833",
+    "pippit_asset_id": "6827755507724",
+    "name": "SEG003_镜头3_图片.png",
+    "size": 1727697,
+    "hash": "1de0c9fa6e7e8372dd705cb7f44b4b38"
+  },
+  "hash:6e5a98c815e6878a5b36325917c98132::size:1717613": {
+    "asset_id": "7684696673835368984",
+    "pippit_asset_id": "6829148547340",
+    "name": "SEG003_镜头6_图片.png",
+    "size": 1717613,
+    "hash": "6e5a98c815e6878a5b36325917c98132"
+  },
+  "hash:3cf5a33e46b72bad82bf340c67e4dc7c::size:1744033": {
+    "asset_id": "7684696635004240446",
+    "pippit_asset_id": "6827732996364",
+    "name": "SEG003_镜头4_图片.png",
+    "size": 1744033,
+    "hash": "3cf5a33e46b72bad82bf340c67e4dc7c"
+  },
+  "hash:b3715482865039924409c8f83033f24d::size:1798136": {
+    "asset_id": "7684696708474864190",
+    "pippit_asset_id": "6827261515020",
+    "name": "SEG003_镜头5_图片.png",
+    "size": 1798136,
+    "hash": "b3715482865039924409c8f83033f24d"
+  },
+  "hash:fbdb0eba5914c22f12c3e5941ce79a0d::size:1568429": {
+    "asset_id": "7684696741114970648",
+    "pippit_asset_id": "6829111392780",
+    "name": "SEG003_镜头8_图片.png",
+    "size": 1568429,
+    "hash": "fbdb0eba5914c22f12c3e5941ce79a0d"
+  },
+  "hash:4125c27d93c40b74d1f871d75e4999c4::size:1722116": {
+    "asset_id": "7684696693854208537",
+    "pippit_asset_id": "6829430945804",
+    "name": "SEG003_镜头9_图片.png",
+    "size": 1722116,
+    "hash": "4125c27d93c40b74d1f871d75e4999c4"
+  },
+  "hash:6c8ce5c8d7e37b54aabfe71fbe386e7e::size:1794792": {
+    "asset_id": "7684696743346815512",
+    "pippit_asset_id": "6827452038412",
+    "name": "SEG003_镜头10_图片.png",
+    "size": 1794792,
+    "hash": "6c8ce5c8d7e37b54aabfe71fbe386e7e"
+  },
+  "hash:d707dc5b92bc1c29433698ba65d129c4::size:1799534": {
+    "asset_id": "7684696659138118206",
+    "pippit_asset_id": "6827335347468",
+    "name": "SEG003_镜头12_图片.png",
+    "size": 1799534,
+    "hash": "d707dc5b92bc1c29433698ba65d129c4"
+  },
+  "hash:0f52971367133936d75bb8087ee79110::size:1748128": {
+    "asset_id": "7684696709737726526",
+    "pippit_asset_id": "6827212278796",
+    "name": "SEG003_镜头11_图片.png",
+    "size": 1748128,
+    "hash": "0f52971367133936d75bb8087ee79110"
+  },
+  "hash:0c79c6ec035310278bfcd9854aa5732f::size:1787362": {
+    "asset_id": "7684696708475159102",
+    "pippit_asset_id": "6827755509260",
+    "name": "SEG004_镜头3_图片.png",
+    "size": 1787362,
+    "hash": "0c79c6ec035310278bfcd9854aa5732f"
+  },
+  "hash:afabadc2efaec6e874b75978a479fe07::size:1857553": {
+    "asset_id": "7684696634907951641",
+    "pippit_asset_id": "6827267548940",
+    "name": "SEG004_镜头2_图片.png",
+    "size": 1857553,
+    "hash": "afabadc2efaec6e874b75978a479fe07"
+  },
+  "hash:863d6ab328a4612c7162750c977fc0d0::size:1738388": {
+    "asset_id": "7684696634908082713",
+    "pippit_asset_id": "6828528299020",
+    "name": "SEG004_镜头5_图片.png",
+    "size": 1738388,
+    "hash": "863d6ab328a4612c7162750c977fc0d0"
+  },
+  "hash:f1e091c14a5fa1328671afa0d0333ee8::size:1726813": {
+    "asset_id": "7684696746529767998",
+    "pippit_asset_id": "6827746583820",
+    "name": "SEG004_镜头8_图片.png",
+    "size": 1726813,
+    "hash": "f1e091c14a5fa1328671afa0d0333ee8"
+  },
+  "hash:5a286fbdbc17237bfd979e67fbbc39d1::size:1849850": {
+    "asset_id": "7684696657422991934",
+    "pippit_asset_id": "6828448021260",
+    "name": "SEG004_镜头1_图片.png",
+    "size": 1849850,
+    "hash": "5a286fbdbc17237bfd979e67fbbc39d1"
+  },
+  "hash:d36c781b537bfe8af6f9be77c0fe8f61::size:1858320": {
+    "asset_id": "7684696689244684862",
+    "pippit_asset_id": "6827296288780",
+    "name": "SEG004_镜头9_图片.png",
+    "size": 1858320,
+    "hash": "d36c781b537bfe8af6f9be77c0fe8f61"
+  },
+  "hash:e9ef5e4d0bdbd6c7caf1214000d0d6c7::size:1789710": {
+    "asset_id": "7684696764016083480",
+    "pippit_asset_id": "6827350530316",
+    "name": "SEG005_镜头1_图片.png",
+    "size": 1789710,
+    "hash": "e9ef5e4d0bdbd6c7caf1214000d0d6c7"
+  },
+  "hash:6ccdf4ac6e15f58a2913d839bc1d0b07::size:1710670": {
+    "asset_id": "7684696755958809112",
+    "pippit_asset_id": "6827185094156",
+    "name": "SEG004_镜头12_图片.png",
+    "size": 1710670,
+    "hash": "6ccdf4ac6e15f58a2913d839bc1d0b07"
+  },
+  "hash:856a6d1dfda20b0e1b22d48e6e2df65d::size:1962244": {
+    "asset_id": "7684696733863952920",
+    "pippit_asset_id": "6827113716748",
+    "name": "SEG005_镜头2_图片.png",
+    "size": 1962244,
+    "hash": "856a6d1dfda20b0e1b22d48e6e2df65d"
+  },
+  "hash:609f8cbad2c1ba9abac372d26064a662::size:1851053": {
+    "asset_id": "7684696746529735230",
+    "pippit_asset_id": "6828563035660",
+    "name": "SEG004_镜头6_图片.png",
+    "size": 1851053,
+    "hash": "609f8cbad2c1ba9abac372d26064a662"
+  },
+  "hash:b4254b831f542855e6740d34281f8bc6::size:1818529": {
+    "asset_id": "7684696713839428158",
+    "pippit_asset_id": "6827722502924",
+    "name": "SEG004_镜头7_图片.png",
+    "size": 1818529,
+    "hash": "b4254b831f542855e6740d34281f8bc6"
+  },
+  "hash:873592a6c8b679d1b4934b38c451de43::size:1903692": {
+    "asset_id": "7684696759188423192",
+    "pippit_asset_id": "6827359627276",
+    "name": "SEG004_镜头4_图片.png",
+    "size": 1903692,
+    "hash": "873592a6c8b679d1b4934b38c451de43"
+  },
+  "hash:d86a98c597e39e0a7b7c8c7e8c40f0e5::size:1834134": {
+    "asset_id": "7684696687663874585",
+    "pippit_asset_id": "6827710397708",
+    "name": "SEG004_镜头11_图片.png",
+    "size": 1834134,
+    "hash": "d86a98c597e39e0a7b7c8c7e8c40f0e5"
+  },
+  "hash:6fddc5377da51307e84bf5bf87ea00e0::size:1675925": {
+    "asset_id": "7684696762552009240",
+    "pippit_asset_id": "6827374758668",
+    "name": "SEG004_镜头10_图片.png",
+    "size": 1675925,
+    "hash": "6fddc5377da51307e84bf5bf87ea00e0"
+  },
+  "hash:95b756f66c7a24b55f216337768999cd::size:1984683": {
+    "asset_id": "7684696757427143192",
+    "pippit_asset_id": "6827746585356",
+    "name": "SEG005_镜头3_图片.png",
+    "size": 1984683,
+    "hash": "95b756f66c7a24b55f216337768999cd"
+  },
+  "hash:fd79239c42607b11186a9fbcad557a98::size:2011300": {
+    "asset_id": "7684696693854700057",
+    "pippit_asset_id": "6826472310284",
+    "name": "SEG005_镜头5_图片.png",
+    "size": 2011300,
+    "hash": "fd79239c42607b11186a9fbcad557a98"
+  },
+  "hash:89b74a43fb171ef187a9e830f8362f94::size:2026362": {
+    "asset_id": "7684696709738447422",
+    "pippit_asset_id": "6828448024332",
+    "name": "SEG005_镜头4_图片.png",
+    "size": 2026362,
+    "hash": "89b74a43fb171ef187a9e830f8362f94"
+  },
+  "hash:6276a493e8a08a59fcb55f73974aa4bf::size:1966581": {
+    "asset_id": "7684696670291313177",
+    "pippit_asset_id": "6827095492620",
+    "name": "SEG006_镜头3_图片.png",
+    "size": 1966581,
+    "hash": "6276a493e8a08a59fcb55f73974aa4bf"
+  },
+  "hash:f8261cfd335140e9c22b0004377cfaac::size:1705613": {
+    "asset_id": "7684696759189176856",
+    "pippit_asset_id": "6827918943500",
+    "name": "SEG005_镜头6_图片.png",
+    "size": 1705613,
+    "hash": "f8261cfd335140e9c22b0004377cfaac"
+  },
+  "hash:11019cb26a038ecf6cddaccae73ef242::size:1984711": {
+    "asset_id": "7684696731782562329",
+    "pippit_asset_id": "6828544955148",
+    "name": "SEG005_镜头7_图片.png",
+    "size": 1984711,
+    "hash": "11019cb26a038ecf6cddaccae73ef242"
+  },
+  "hash:226b28270cf58d725405e3212538c05c::size:1933029": {
+    "asset_id": "7684696711663665689",
+    "pippit_asset_id": "6827707324172",
+    "name": "SEG006_镜头2_图片.png",
+    "size": 1933029,
+    "hash": "226b28270cf58d725405e3212538c05c"
+  },
+  "hash:478eb053e0dcb6a5efd5de6d43b39768::size:1841464": {
+    "asset_id": "7684696719066612286",
+    "pippit_asset_id": "6828893230348",
+    "name": "SEG006_镜头7_图片.png",
+    "size": 1841464,
+    "hash": "478eb053e0dcb6a5efd5de6d43b39768"
+  },
+  "hash:c0d60146d60c5ac71b7626e8e9bfdca0::size:1871788": {
+    "asset_id": "7684696759972807193",
+    "pippit_asset_id": "6827767213580",
+    "name": "SEG006_镜头8_图片.png",
+    "size": 1871788,
+    "hash": "c0d60146d60c5ac71b7626e8e9bfdca0"
+  },
+  "hash:a36dd728a6b2901db6cd61409129fbec::size:1700098": {
+    "asset_id": "7684696801341145624",
+    "pippit_asset_id": "6828544956172",
+    "name": "SEG006_镜头6_图片.png",
+    "size": 1700098,
+    "hash": "a36dd728a6b2901db6cd61409129fbec"
+  },
+  "hash:87d98a93ea856f882f0936fd77bd4d1f::size:1889018": {
+    "asset_id": "7684696727312253502",
+    "pippit_asset_id": "6827367221004",
+    "name": "SEG005_镜头8_图片.png",
+    "size": 1889018,
+    "hash": "87d98a93ea856f882f0936fd77bd4d1f"
+  },
+  "hash:3ee8cae20228df664b23f0395a5b4f1e::size:1925974": {
+    "asset_id": "7684696780239553049",
+    "pippit_asset_id": "6827103251468",
+    "name": "SEG006_镜头5_图片.png",
+    "size": 1925974,
+    "hash": "3ee8cae20228df664b23f0395a5b4f1e"
+  },
+  "hash:2f9a0b232cae6f8cc8e0dab50b326a47::size:1899376": {
+    "asset_id": "7684696689245209150",
+    "pippit_asset_id": "6827355085324",
+    "name": "SEG006_镜头10_图片.png",
+    "size": 1899376,
+    "hash": "2f9a0b232cae6f8cc8e0dab50b326a47"
+  },
+  "hash:696e7e15bb0cd36cbd3c1c9d733954dc::size:1860998": {
+    "asset_id": "7684696751554953790",
+    "pippit_asset_id": "6827212283148",
+    "name": "SEG005_镜头9_图片.png",
+    "size": 1860998,
+    "hash": "696e7e15bb0cd36cbd3c1c9d733954dc"
+  },
+  "hash:8a6c5d52195ccfd5ffdfb12e4c0616ce::size:1933905": {
+    "asset_id": "7684696757427765784",
+    "pippit_asset_id": "6829099046412",
+    "name": "SEG006_镜头9_图片.png",
+    "size": 1933905,
+    "hash": "8a6c5d52195ccfd5ffdfb12e4c0616ce"
+  },
+  "hash:7e5f55270af91283592f6b353a613f5f::size:1872112": {
+    "asset_id": "7684696726184051262",
+    "pippit_asset_id": "6827188042764",
+    "name": "SEG006_镜头11_图片.png",
+    "size": 1872112,
+    "hash": "7e5f55270af91283592f6b353a613f5f"
+  },
+  "hash:a28570588a1d1f687a5f6ed06524b5be::size:2144395": {
+    "asset_id": "7684696762975568446",
+    "pippit_asset_id": "6828056058892",
+    "name": "SEG006_镜头1_图片.png",
+    "size": 2144395,
+    "hash": "a28570588a1d1f687a5f6ed06524b5be"
+  },
+  "hash:a3623250c23b4c7eefb98b0d8e85f931::size:2230877": {
+    "asset_id": "7684696764016771608",
+    "pippit_asset_id": "6829100647180",
+    "name": "SEG006_镜头4_图片.png",
+    "size": 2230877,
+    "hash": "a3623250c23b4c7eefb98b0d8e85f931"
+  },
+  "hash:a7b0873c0b388cede75ab4f2ccbea821::size:1901420": {
+    "asset_id": "7684696766088675902",
+    "pippit_asset_id": "6827437001996",
+    "name": "SEG006_镜头12_图片.png",
+    "size": 1901420,
+    "hash": "a7b0873c0b388cede75ab4f2ccbea821"
+  },
+  "hash:4cb2645a564dc88e168378862bb9dc0f::size:1859170": {
+    "asset_id": "7684696762388431385",
+    "pippit_asset_id": "6827763073548",
+    "name": "SEG007_镜头1_图片.png",
+    "size": 1859170,
+    "hash": "4cb2645a564dc88e168378862bb9dc0f"
+  },
+  "hash:eca01ec949dfd0bd12f28f8f586fcecc::size:1948345": {
+    "asset_id": "7684696726184313406",
+    "pippit_asset_id": "6829091534092",
+    "name": "SEG007_镜头2_图片.png",
+    "size": 1948345,
+    "hash": "eca01ec949dfd0bd12f28f8f586fcecc"
+  },
+  "hash:f5a5b93e29797075509424c7ae96cfe6::size:1952256": {
+    "asset_id": "7684696775978156569",
+    "pippit_asset_id": "6829097572364",
+    "name": "SEG007_镜头4_图片.png",
+    "size": 1952256,
+    "hash": "f5a5b93e29797075509424c7ae96cfe6"
+  },
+  "hash:e4ef2041aac71172be0addf4f48fcec4::size:1901076": {
+    "asset_id": "7684696749776847385",
+    "pippit_asset_id": "6829103642892",
+    "name": "SEG007_镜头5_图片.png",
+    "size": 1901076,
+    "hash": "e4ef2041aac71172be0addf4f48fcec4"
+  },
+  "hash:d1f311a8b671987a2e0ca2cdc8fe20ca::size:1942960": {
+    "asset_id": "7684696751555412542",
+    "pippit_asset_id": "6828813474316",
+    "name": "SEG007_镜头3_图片.png",
+    "size": 1942960,
+    "hash": "d1f311a8b671987a2e0ca2cdc8fe20ca"
+  },
+  "hash:a4878663c859c498dbfd39911ec225a7::size:1966212": {
+    "asset_id": "7684696795691909656",
+    "pippit_asset_id": "6828970078476",
+    "name": "SEG007_镜头6_图片.png",
+    "size": 1966212,
+    "hash": "a4878663c859c498dbfd39911ec225a7"
+  },
+  "hash:38c37d8ecb6d31e607a3b4127a5ebd2f::size:1876629": {
+    "asset_id": "7684696746530882110",
+    "pippit_asset_id": "6827717928204",
+    "name": "SEG007_镜头8_图片.png",
+    "size": 1876629,
+    "hash": "38c37d8ecb6d31e607a3b4127a5ebd2f"
+  },
+  "hash:84a0013d36f361d2faa06466b5d0a1ee::size:1869662": {
+    "asset_id": "7684696759973265945",
+    "pippit_asset_id": "6829111402764",
+    "name": "SEG007_镜头7_图片.png",
+    "size": 1869662,
+    "hash": "84a0013d36f361d2faa06466b5d0a1ee"
+  },
+  "hash:bfb1794d344dd785f17486365459faca::size:2453977": {
+    "asset_id": "7684709390900871704",
+    "pippit_asset_id": "6829178298892",
+    "name": "shot2_lineart.png",
+    "size": 2453977,
+    "hash": "bfb1794d344dd785f17486365459faca"
+  },
+  "hash:78ccc75f237ae8f017c1477c13537ddb::size:1982519": {
+    "asset_id": "7684709196391498265",
+    "pippit_asset_id": "6828416959500",
+    "name": "shot2_lineart.png",
+    "size": 1982519,
+    "hash": "78ccc75f237ae8f017c1477c13537ddb"
+  },
+  "hash:dfed83c4ae907eb58de2262856bfab92::size:2178708": {
+    "asset_id": "7684709313852047934",
+    "pippit_asset_id": "6829277107980",
+    "name": "shot2_lineart.png",
+    "size": 2178708,
+    "hash": "dfed83c4ae907eb58de2262856bfab92"
+  },
+  "hash:28a239eca1d111d964cc674f304c9094::size:2076060": {
+    "asset_id": "7684709369019204120",
+    "pippit_asset_id": "6829112663564",
+    "name": "shot1_lineart.png",
+    "size": 2076060,
+    "hash": "28a239eca1d111d964cc674f304c9094"
+  },
+  "hash:9739a0e771b8fb7972d54af75db90e3d::size:1799498": {
+    "asset_id": "7684709302666035737",
+    "pippit_asset_id": "6830542879756",
+    "name": "shot2_lineart.png",
+    "size": 1799498,
+    "hash": "9739a0e771b8fb7972d54af75db90e3d"
+  },
+  "hash:eae53300ddb83f17e2bc9867f5318007::size:1920036": {
+    "asset_id": "7684709342423482942",
+    "pippit_asset_id": "6829803287308",
+    "name": "shot1_lineart.png",
+    "size": 1920036,
+    "hash": "eae53300ddb83f17e2bc9867f5318007"
+  },
+  "hash:3a0441485a2d9b071ceb838e4ba28f91::size:2401281": {
+    "asset_id": "7684709304642126360",
+    "pippit_asset_id": "6828832141324",
+    "name": "shot1_lineart.png",
+    "size": 2401281,
+    "hash": "3a0441485a2d9b071ceb838e4ba28f91"
+  },
+  "hash:1a9ad36d4888191023516e1776aae8ad::size:2434011": {
+    "asset_id": "7684709196391531033",
+    "pippit_asset_id": "6828416960012",
+    "name": "shot1_lineart.png",
+    "size": 2434011,
+    "hash": "1a9ad36d4888191023516e1776aae8ad"
+  },
+  "hash:0bbd21009748f54ad3d8c0f263f3cf25::size:1620815": {
+    "asset_id": "7684727264970342974",
+    "pippit_asset_id": "6828498254348",
+    "name": "shot1_lineart.png",
+    "size": 1620815,
+    "hash": "0bbd21009748f54ad3d8c0f263f3cf25"
+  },
+  "hash:b0c23f086cb8eb6a668a139298b721b2::size:1714812": {
+    "asset_id": "7684727315548717630",
+    "pippit_asset_id": "6830362412300",
+    "name": "shot2_lineart.png",
+    "size": 1714812,
+    "hash": "b0c23f086cb8eb6a668a139298b721b2"
+  },
+  "hash:00f9acc1630d9f34f125b7911a166c11::size:1887747": {
+    "asset_id": "7684727433047736857",
+    "pippit_asset_id": "6831458571788",
+    "name": "shot1_lineart.png",
+    "size": 1887747,
+    "hash": "00f9acc1630d9f34f125b7911a166c11"
+  },
+  "hash:6ddb89f1666e2369af4fe54b92ea3fcd::size:2638464": {
+    "asset_id": "7684727362013823512",
+    "pippit_asset_id": "6829888129548",
+    "name": "shot2_lineart.png",
+    "size": 2638464,
+    "hash": "6ddb89f1666e2369af4fe54b92ea3fcd"
+  },
+  "hash:82057f854a25184bc646cf1fc38648c4::size:2092982": {
+    "asset_id": "7684727361073578558",
+    "pippit_asset_id": "6828942101772",
+    "name": "shot1_lineart.png",
+    "size": 2092982,
+    "hash": "82057f854a25184bc646cf1fc38648c4"
+  },
+  "hash:b6b00b778a07cae3888516dc927c6c7d::size:2112685": {
+    "asset_id": "7684727433047704089",
+    "pippit_asset_id": "6830249857548",
+    "name": "shot2_lineart.png",
+    "size": 2112685,
+    "hash": "b6b00b778a07cae3888516dc927c6c7d"
+  },
+  "hash:f5b5cd385ee0d2141931dc795bb8b101::size:2284080": {
+    "asset_id": "7684727264970375742",
+    "pippit_asset_id": "6830466265356",
+    "name": "shot1_lineart.png",
+    "size": 2284080,
+    "hash": "f5b5cd385ee0d2141931dc795bb8b101"
+  },
+  "hash:87fd149e9beab346d663f4a3dd13796d::size:1791221": {
+    "asset_id": "7684727358477894168",
+    "pippit_asset_id": "6829833099020",
+    "name": "shot2_lineart.png",
+    "size": 1791221,
+    "hash": "87fd149e9beab346d663f4a3dd13796d"
+  },
+  "hash:790574cb23343f76676f38f8377908e6::size:2468381": {
+    "asset_id": "7684747610775519806",
+    "pippit_asset_id": "6829926592268",
+    "name": "shot2_lineart.png",
+    "size": 2468381,
+    "hash": "790574cb23343f76676f38f8377908e6"
+  },
+  "hash:b645115751f1c183f7a9f4b756fa780f::size:1694643": {
+    "asset_id": "7684747550309483032",
+    "pippit_asset_id": "6831366655500",
+    "name": "shot1_lineart.png",
+    "size": 1694643,
+    "hash": "b645115751f1c183f7a9f4b756fa780f"
+  },
+  "hash:8b8dc17da2dbafbe4dc68d216f8a5b41::size:2197149": {
+    "asset_id": "7684747523475898942",
+    "pippit_asset_id": "6830578870540",
+    "name": "shot2_lineart.png",
+    "size": 2197149,
+    "hash": "8b8dc17da2dbafbe4dc68d216f8a5b41"
+  },
+  "hash:9e44ef3b5b939a4075d2e6ffac9ecd38::size:1908590": {
+    "asset_id": "7684747719076102681",
+    "pippit_asset_id": "6831730347532",
+    "name": "shot2_lineart.png",
+    "size": 1908590,
+    "hash": "9e44ef3b5b939a4075d2e6ffac9ecd38"
+  },
+  "hash:2176063e2dd7ee13c67030b67456e3d5::size:1889633": {
+    "asset_id": "7684747805420126745",
+    "pippit_asset_id": "6832103563276",
+    "name": "shot2_lineart.png",
+    "size": 1889633,
+    "hash": "2176063e2dd7ee13c67030b67456e3d5"
+  },
+  "hash:3baa14e54bf5f6afe992e0de154a4bc2::size:1981888": {
+    "asset_id": "7684747694238548504",
+    "pippit_asset_id": "6832191278348",
+    "name": "shot1_lineart.png",
+    "size": 1981888,
+    "hash": "3baa14e54bf5f6afe992e0de154a4bc2"
+  },
+  "hash:b147de5f3f8011360bac7d1e30fa56ac::size:2295894": {
+    "asset_id": "7684747796201210392",
+    "pippit_asset_id": "6830232340236",
+    "name": "shot1_lineart.png",
+    "size": 2295894,
+    "hash": "b147de5f3f8011360bac7d1e30fa56ac"
+  },
+  "hash:f0a2d757d63677e3c6298a6806f5ee1f::size:1911171": {
+    "asset_id": "7684747672636916249",
+    "pippit_asset_id": "6830448952844",
+    "name": "shot1_lineart.png",
+    "size": 1911171,
+    "hash": "f0a2d757d63677e3c6298a6806f5ee1f"
+  },
+  "hash:3b9b31ad175017c925bdf822cb0dc879::size:1013694": {
+    "asset_id": "7684768826223723070",
+    "pippit_asset_id": "6831744619532",
+    "name": "PROP_017_SMALL_WORN_NET_v1.png",
+    "size": 1013694,
+    "hash": "3b9b31ad175017c925bdf822cb0dc879"
+  },
+  "hash:20e40d63cf4a2dd18b1714cd1f56a4e9::size:1619325": {
+    "asset_id": "7684768800500253246",
+    "pippit_asset_id": "6830519315980",
+    "name": "shot2_lineart.png",
+    "size": 1619325,
+    "hash": "20e40d63cf4a2dd18b1714cd1f56a4e9"
+  },
+  "hash:005f4726ec87bfc2fc49b13a4231884c::size:1704592": {
+    "asset_id": "7684768787744719385",
+    "pippit_asset_id": "6831173021452",
+    "name": "shot1_lineart.png",
+    "size": 1704592,
+    "hash": "005f4726ec87bfc2fc49b13a4231884c"
+  },
+  "hash:7ef93b72004fe8b33c70589054ee0816::size:2508182": {
+    "asset_id": "7684768776776204824",
+    "pippit_asset_id": "6833114170636",
+    "name": "shot2_lineart.png",
+    "size": 2508182,
+    "hash": "7ef93b72004fe8b33c70589054ee0816"
+  },
+  "hash:781de810f743ec657730944e15f77452::size:1883867": {
+    "asset_id": "7684768800500286014",
+    "pippit_asset_id": "6830401186060",
+    "name": "shot2_lineart.png",
+    "size": 1883867,
+    "hash": "781de810f743ec657730944e15f77452"
+  },
+  "hash:2989bf278e3bcd47745bec657061455a::size:1620464": {
+    "asset_id": "7684768701103276569",
+    "pippit_asset_id": "6832562839820",
+    "name": "shot3_lineart.png",
+    "size": 1620464,
+    "hash": "2989bf278e3bcd47745bec657061455a"
+  },
+  "hash:d0c9cc59e685b825de77b6d7e9ac3dae::size:1924622": {
+    "asset_id": "7684768826223755838",
+    "pippit_asset_id": "6831373208076",
+    "name": "shot1_lineart.png",
+    "size": 1924622,
+    "hash": "d0c9cc59e685b825de77b6d7e9ac3dae"
+  },
+  "hash:21be9e8779f5452e0216d71b6df1f7cc::size:2224093": {
+    "asset_id": "7684768594161238552",
+    "pippit_asset_id": "6830038646540",
+    "name": "shot2_lineart.png",
+    "size": 2224093,
+    "hash": "21be9e8779f5452e0216d71b6df1f7cc"
+  },
+  "hash:991888e67a634b06d15336296476d397::size:1981482": {
+    "asset_id": "7684768815956312638",
+    "pippit_asset_id": "6832213069580",
+    "name": "shot1_lineart.png",
+    "size": 1981482,
+    "hash": "991888e67a634b06d15336296476d397"
+  },
+  "hash:10224b8295cdf46b0a605c967061c9fb::size:2470362": {
+    "asset_id": "7684768590818984472",
+    "pippit_asset_id": "6831749300492",
+    "name": "shot1_lineart.png",
+    "size": 2470362,
+    "hash": "10224b8295cdf46b0a605c967061c9fb"
+  },
+  "hash:28031a470a2381a93570b1d0da0df7de::size:1569247": {
+    "asset_id": "7684772102859358744",
+    "pippit_asset_id": "6832483151116",
+    "name": "shot2_lineart.png",
+    "size": 1569247,
+    "hash": "28031a470a2381a93570b1d0da0df7de"
+  },
+  "hash:08f6b7513ae10aaec735d7adc5a4ea10::size:1418927": {
+    "asset_id": "7684772038678594072",
+    "pippit_asset_id": "6832223601932",
+    "name": "shot3_lineart.png",
+    "size": 1418927,
+    "hash": "08f6b7513ae10aaec735d7adc5a4ea10"
+  },
+  "hash:50bdd3c5d54cad5d18d48efeb8267ccf::size:1528109": {
+    "asset_id": "7684771915026694680",
+    "pippit_asset_id": "6831814715660",
+    "name": "shot2_lineart.png",
+    "size": 1528109,
+    "hash": "50bdd3c5d54cad5d18d48efeb8267ccf"
+  },
+  "hash:85d8a2df12d582aaeea148fa0a11ceab::size:1397817": {
+    "asset_id": "7684772052813120024",
+    "pippit_asset_id": "6830063222028",
+    "name": "shot1_lineart.png",
+    "size": 1397817,
+    "hash": "85d8a2df12d582aaeea148fa0a11ceab"
+  },
+  "hash:6d56a710de1a207746edcafd6b285197::size:2167764": {
+    "asset_id": "7684771942905954840",
+    "pippit_asset_id": "6831173125900",
+    "name": "shot2_lineart.png",
+    "size": 2167764,
+    "hash": "6d56a710de1a207746edcafd6b285197"
+  },
+  "hash:ecb631d88eebc85a19bc8f204d91ad0d::size:1831929": {
+    "asset_id": "7684772042557800984",
+    "pippit_asset_id": "6830502604300",
+    "name": "shot1_lineart.png",
+    "size": 1831929,
+    "hash": "ecb631d88eebc85a19bc8f204d91ad0d"
+  },
+  "hash:9cdf6c6ecf755ec19cba45dc0d9b3f7c::size:2375855": {
+    "asset_id": "7684771911616201278",
+    "pippit_asset_id": "6829966706188",
+    "name": "shot2_lineart.png",
+    "size": 2375855,
+    "hash": "9cdf6c6ecf755ec19cba45dc0d9b3f7c"
+  },
+  "hash:a7f9dd24e9e126390dbe76c41390a857::size:2120222": {
+    "asset_id": "7684772052813152792",
+    "pippit_asset_id": "6830499573004",
+    "name": "shot1_lineart.png",
+    "size": 2120222,
+    "hash": "a7f9dd24e9e126390dbe76c41390a857"
+  },
+  "hash:22c358df025067ef5b445197b7aa7d9a::size:1656984": {
+    "asset_id": "7684772066226274841",
+    "pippit_asset_id": "6832104430604",
+    "name": "shot1_lineart.png",
+    "size": 1656984,
+    "hash": "22c358df025067ef5b445197b7aa7d9a"
+  },
+  "hash:b2d17bb666071339d47cdcf8d21bd001::size:1934318": {
+    "asset_id": "7684778944356876862",
+    "pippit_asset_id": "6831744959500",
+    "name": "shot1_lineart.png",
+    "size": 1934318,
+    "hash": "b2d17bb666071339d47cdcf8d21bd001"
+  },
+  "hash:e7f8eaa6e17f0695b346bbe55bf2138c::size:1704535": {
+    "asset_id": "7684778907979596350",
+    "pippit_asset_id": "6832211944972",
+    "name": "shot1_lineart.png",
+    "size": 1704535,
+    "hash": "e7f8eaa6e17f0695b346bbe55bf2138c"
+  },
+  "hash:cc7ee7383898b4fa8fcfe7704dc2bb96::size:1563523": {
+    "asset_id": "7684778944356909630",
+    "pippit_asset_id": "6832132051980",
+    "name": "shot3_lineart.png",
+    "size": 1563523,
+    "hash": "cc7ee7383898b4fa8fcfe7704dc2bb96"
+  },
+  "hash:8225e077d620c17671de26fab09cf0a6::size:2075811": {
+    "asset_id": "7684778773414724120",
+    "pippit_asset_id": "6832192416524",
+    "name": "shot3_lineart.png",
+    "size": 2075811,
+    "hash": "8225e077d620c17671de26fab09cf0a6"
+  },
+  "hash:b75a7d4736601cf8b590345e68cf4ea5::size:1451731": {
+    "asset_id": "7684778876530557464",
+    "pippit_asset_id": "6830525789452",
+    "name": "PROP_007_YINSHA_FISH_v1.png",
+    "size": 1451731,
+    "hash": "b75a7d4736601cf8b590345e68cf4ea5"
+  },
+  "hash:a6265acfd986fcf4fcbabc9ca34153b8::size:2570390": {
+    "asset_id": "7684778708780319294",
+    "pippit_asset_id": "6831527226124",
+    "name": "shot2_lineart.png",
+    "size": 2570390,
+    "hash": "a6265acfd986fcf4fcbabc9ca34153b8"
+  },
+  "hash:7176ce39163aca519cdd968986dc9632::size:1483183": {
+    "asset_id": "7684778831626699326",
+    "pippit_asset_id": "6831367512076",
+    "name": "shot1_lineart.png",
+    "size": 1483183,
+    "hash": "7176ce39163aca519cdd968986dc9632"
+  },
+  "hash:51064cca21832aa09cf5221cab12e82c::size:1931274": {
+    "asset_id": "7684778842414842392",
+    "pippit_asset_id": "6830060477196",
+    "name": "shot2_lineart.png",
+    "size": 1931274,
+    "hash": "51064cca21832aa09cf5221cab12e82c"
+  },
+  "hash:b0847dfef48bd071ab9713bc4d0cf3d4::size:1972263": {
+    "asset_id": "7684778773414691352",
+    "pippit_asset_id": "6831731310860",
+    "name": "shot1_lineart.png",
+    "size": 1972263,
+    "hash": "b0847dfef48bd071ab9713bc4d0cf3d4"
+  },
+  "hash:2678683703e2a3620595bef6b5ff51b0::size:2566560": {
+    "asset_id": "7684778784940376600",
+    "pippit_asset_id": "6832480390156",
+    "name": "shot2_lineart.png",
+    "size": 2566560,
+    "hash": "2678683703e2a3620595bef6b5ff51b0"
+  },
+  "hash:ceae81c064066e6ffda790801a325a0e::size:1630349": {
+    "asset_id": "7684778852799447577",
+    "pippit_asset_id": "6831149380620",
+    "name": "shot2_lineart.png",
+    "size": 1630349,
+    "hash": "ceae81c064066e6ffda790801a325a0e"
+  },
+  "hash:83f24814cc073696021353c167411581::size:1635553": {
+    "asset_id": "7684779063835689496",
+    "pippit_asset_id": "6831977637388",
+    "name": "shot2_lineart.png",
+    "size": 1635553,
+    "hash": "83f24814cc073696021353c167411581"
+  },
+  "hash:48ca21c54f39a195d10a4025160a963c::size:1835060": {
+    "asset_id": "7684778907980546622",
+    "pippit_asset_id": "6832468297996",
+    "name": "shot2_lineart.png",
+    "size": 1835060,
+    "hash": "48ca21c54f39a195d10a4025160a963c"
+  },
+  "hash:37e0ccdad3d75f86df0e810a54729103::size:2022832": {
+    "asset_id": "7684778876531442200",
+    "pippit_asset_id": "6832103205388",
+    "name": "shot1_lineart.png",
+    "size": 2022832,
+    "hash": "37e0ccdad3d75f86df0e810a54729103"
+  },
+  "hash:a18acb5f3d718f8478a0f0d74a702c87::size:1551007": {
+    "asset_id": "7684779098090390078",
+    "pippit_asset_id": "6831335291660",
+    "name": "CHAR_145_摊贩A_v1.png",
+    "size": 1551007,
+    "hash": "a18acb5f3d718f8478a0f0d74a702c87"
+  },
+  "hash:f00ac68c23b09b2079a102836e9a807a::size:1953381": {
+    "asset_id": "7684779138691580478",
+    "pippit_asset_id": "6832223816972",
+    "name": "shot2_lineart.png",
+    "size": 1953381,
+    "hash": "f00ac68c23b09b2079a102836e9a807a"
+  },
+  "hash:4ffe6c8919fef630e9a3532608388437::size:1740093": {
+    "asset_id": "7684779063835722264",
+    "pippit_asset_id": "6832839321356",
+    "name": "CHAR_083_群众B_v1.png",
+    "size": 1740093,
+    "hash": "4ffe6c8919fef630e9a3532608388437"
+  },
+  "hash:99ae1b0cf120945f32d2d4252bcd5f39::size:1709922": {
+    "asset_id": "7684779139689234969",
+    "pippit_asset_id": "6832582656780",
+    "name": "shot1_lineart.png",
+    "size": 1709922,
+    "hash": "99ae1b0cf120945f32d2d4252bcd5f39"
+  },
+  "hash:8c4959b25162710f957332b8c4f1e997::size:1582164": {
+    "asset_id": "7684779112988492312",
+    "pippit_asset_id": "6832146951180",
+    "name": "CHAR_063_群众A_v1.png",
+    "size": 1582164,
+    "hash": "8c4959b25162710f957332b8c4f1e997"
+  },
+  "hash:8d419b97e803b2a2e3119802fd63ac43::size:2926616": {
+    "asset_id": "7684779141513708057",
+    "pippit_asset_id": "6831158167564",
+    "name": "SCENE_013_集市_v1.png",
+    "size": 2926616,
+    "hash": "8d419b97e803b2a2e3119802fd63ac43"
+  },
+  "hash:c96e5144ee477d8dd549f89e23237883::size:1909799": {
+    "asset_id": "7684779138691613246",
+    "pippit_asset_id": "6831444778252",
+    "name": "shot2_lineart.png",
+    "size": 1909799,
+    "hash": "c96e5144ee477d8dd549f89e23237883"
+  },
+  "hash:85675064e06e449dc3942df548950108::size:1575388": {
+    "asset_id": "7684779127966253593",
+    "pippit_asset_id": "6831950169356",
+    "name": "CHAR_118_群众C_v1.png",
+    "size": 1575388,
+    "hash": "85675064e06e449dc3942df548950108"
+  },
+  "hash:6c8eaa2f20a30a68a54301c3a6b24755::size:2055958": {
+    "asset_id": "7684779052339200537",
+    "pippit_asset_id": "6832932903180",
+    "name": "shot1_lineart.png",
+    "size": 2055958,
+    "hash": "6c8eaa2f20a30a68a54301c3a6b24755"
+  },
+  "hash:291f78b6bd437be8faa292a566afc69c::size:2149468": {
+    "asset_id": "7684779125659304473",
+    "pippit_asset_id": "6831621324556",
+    "name": "shot1_lineart.png",
+    "size": 2149468,
+    "hash": "291f78b6bd437be8faa292a566afc69c"
+  },
+  "hash:e5fbc76cf59fd1ce61b487a149995046::size:1259319": {
+    "asset_id": "7684779125659566617",
+    "pippit_asset_id": "6832226844172",
+    "name": "PROP_050_GOLD_BAR_STACK_v1.png",
+    "size": 1259319,
+    "hash": "e5fbc76cf59fd1ce61b487a149995046"
+  },
+  "hash:3a29cc0e2e1ca86e19ab7dbf2cc1b2d8::size:1305030": {
+    "asset_id": "7684779240323056190",
+    "pippit_asset_id": "6831132583692",
+    "name": "shot1_lineart.png",
+    "size": 1305030,
+    "hash": "3a29cc0e2e1ca86e19ab7dbf2cc1b2d8"
+  },
+  "hash:de5d88f99711a9735879b8df343f75e4::size:1465255": {
+    "asset_id": "7684779091916554776",
+    "pippit_asset_id": "6831746643724",
+    "name": "shot1_lineart.png",
+    "size": 1465255,
+    "hash": "de5d88f99711a9735879b8df343f75e4"
+  },
+  "hash:a5d0e7784d905ffb96f6c15ae4d2601f::size:3155846": {
+    "asset_id": "7684779054075544089",
+    "pippit_asset_id": "6831777636364",
+    "name": "SCENE_055_场景切换：海边岸上_礁石群_海底_v1.png",
+    "size": 3155846,
+    "hash": "a5d0e7784d905ffb96f6c15ae4d2601f"
+  },
+  "hash:2673b5c20b3cc3e09e528d162edacc58::size:2505280": {
+    "asset_id": "7684779095116857881",
+    "pippit_asset_id": "6831907082252",
+    "name": "shot1_lineart.png",
+    "size": 2505280,
+    "hash": "2673b5c20b3cc3e09e528d162edacc58"
+  },
+  "hash:818a4a450fc2fb84c32653361dd30510::size:1971768": {
+    "asset_id": "7684779052339528217",
+    "pippit_asset_id": "6832098578700",
+    "name": "PROP_018_VINTAGE_BAMBOO_BASKET_v1.png",
+    "size": 1971768,
+    "hash": "818a4a450fc2fb84c32653361dd30510"
+  },
+  "hash:75d5003e9af60e998f572bbc6b8b8572::size:2907075": {
+    "asset_id": "7684779184690217534",
+    "pippit_asset_id": "6830593475084",
+    "name": "SCENE_015_白沙海湾-礁石区_v1.png",
+    "size": 2907075,
+    "hash": "75d5003e9af60e998f572bbc6b8b8572"
+  },
+  "hash:c2518670ea163b94b8aafedc61e83d40::size:1638448": {
+    "asset_id": "7684779084040127000",
+    "pippit_asset_id": "6832210417164",
+    "name": "CHAR_058_大爷_v1.png",
+    "size": 1638448,
+    "hash": "c2518670ea163b94b8aafedc61e83d40"
+  },
+  "hash:89077281a055182281c090273586552e::size:2122185": {
+    "asset_id": "7684779052339495449",
+    "pippit_asset_id": "6833114697996",
+    "name": "shot3_lineart.png",
+    "size": 2122185,
+    "hash": "89077281a055182281c090273586552e"
+  },
+  "hash:6858e237d0d5c0c9a103df232f99587a::size:1603742": {
+    "asset_id": "7684779036723905048",
+    "pippit_asset_id": "6832435182092",
+    "name": "CHAR_091_大爷甲_v1.png",
+    "size": 1603742,
+    "hash": "6858e237d0d5c0c9a103df232f99587a"
+  },
+  "hash:0fbb234d25786583aa5a600bf6c07d27::size:2540488": {
+    "asset_id": "7684779125797863961",
+    "pippit_asset_id": "6832103215628",
+    "name": "shot2_lineart.png",
+    "size": 2540488,
+    "hash": "0fbb234d25786583aa5a600bf6c07d27"
+  },
+  "hash:c6a19104d824671116af1c58968fae0c::size:1842629": {
+    "asset_id": "7684779054075576857",
+    "pippit_asset_id": "6831438769932",
+    "name": "shot2_lineart.png",
+    "size": 1842629,
+    "hash": "c6a19104d824671116af1c58968fae0c"
+  },
+  "hash:9ef9173e940f97eaa15680cf4473efc0::size:1767975": {
+    "asset_id": "7684779190918414872",
+    "pippit_asset_id": "6831149392140",
+    "name": "shot1_lineart.png",
+    "size": 1767975,
+    "hash": "9ef9173e940f97eaa15680cf4473efc0"
+  },
+  "hash:ec921686fe6c20ae4992c28367bb7b14::size:1811091": {
+    "asset_id": "7684779091916587544",
+    "pippit_asset_id": "6832112142348",
+    "name": "shot2_lineart.png",
+    "size": 1811091,
+    "hash": "ec921686fe6c20ae4992c28367bb7b14"
+  },
+  "hash:0391d7e5c9f01e18fc1b558693792c0c::size:1367477": {
+    "asset_id": "7684779063836148248",
+    "pippit_asset_id": "6831746645004",
+    "name": "shot2_lineart.png",
+    "size": 1367477,
+    "hash": "0391d7e5c9f01e18fc1b558693792c0c"
+  },
+  "hash:f9121bd465a0d3cb1c37bdb289524ad3::size:1774595": {
+    "asset_id": "7684779169750483518",
+    "pippit_asset_id": "6832226846988",
+    "name": "shot2_lineart.png",
+    "size": 1774595,
+    "hash": "f9121bd465a0d3cb1c37bdb289524ad3"
+  },
+  "hash:f4d0765cbf3a71e5eddd149b08061a7d::size:1355492": {
+    "asset_id": "7684779184689824318",
+    "pippit_asset_id": "6831746640652",
+    "name": "CHAR_042_李经理_v1.png",
+    "size": 1355492,
+    "hash": "f4d0765cbf3a71e5eddd149b08061a7d"
+  },
+  "hash:4b8ed4a70582077fbd406bbe5fbedeb8::size:1625405": {
+    "asset_id": "7684779127966646809",
+    "pippit_asset_id": "6832406442508",
+    "name": "shot2_lineart.png",
+    "size": 1625405,
+    "hash": "4b8ed4a70582077fbd406bbe5fbedeb8"
+  },
+  "hash:e52876d3f2a171f4a06cf56bb3a943ae::size:1358700": {
+    "asset_id": "7684779103728173593",
+    "pippit_asset_id": "6830039010572",
+    "name": "shot2_lineart.png",
+    "size": 1358700,
+    "hash": "e52876d3f2a171f4a06cf56bb3a943ae"
+  },
+  "hash:d2f1f69e2ffd50617efbf834a01b993f::size:1607185": {
+    "asset_id": "7684779169750516286",
+    "pippit_asset_id": "6831435707660",
+    "name": "shot1_lineart.png",
+    "size": 1607185,
+    "hash": "d2f1f69e2ffd50617efbf834a01b993f"
+  },
+  "hash:64482ebbd952744e6a854cfe8333dd17::size:1356697": {
+    "asset_id": "7684779274234200638",
+    "pippit_asset_id": "6832133516300",
+    "name": "shot2_lineart.png",
+    "size": 1356697,
+    "hash": "64482ebbd952744e6a854cfe8333dd17"
+  },
+  "hash:afc1f7b6898adcda0acff6b69fef8b03::size:1606877": {
+    "asset_id": "7684779125659861529",
+    "pippit_asset_id": "6832124344588",
+    "name": "shot1_lineart.png",
+    "size": 1606877,
+    "hash": "afc1f7b6898adcda0acff6b69fef8b03"
+  },
+  "hash:badd5b7d4737c7b29289acc9ac9c0d8b::size:1666113": {
+    "asset_id": "7684779052339790361",
+    "pippit_asset_id": "6831132587020",
+    "name": "shot3_lineart.png",
+    "size": 1666113,
+    "hash": "badd5b7d4737c7b29289acc9ac9c0d8b"
+  },
+  "hash:2fee8f0d697546d22d233f880a786e50::size:1907566": {
+    "asset_id": "7684779184690446910",
+    "pippit_asset_id": "6830519649804",
+    "name": "shot3_lineart.png",
+    "size": 1907566,
+    "hash": "2fee8f0d697546d22d233f880a786e50"
+  },
+  "hash:90bc73cbe778ab267d6725f2f1ef06f1::size:2217237": {
+    "asset_id": "7684779027664962072",
+    "pippit_asset_id": "6831758683916",
+    "name": "SCENE_018_饭店包厢_v1.png",
+    "size": 2217237,
+    "hash": "90bc73cbe778ab267d6725f2f1ef06f1"
+  },
+  "hash:4d1fb335bb54c89679bf86634133d603::size:1783909": {
+    "asset_id": "7684779054075839001",
+    "pippit_asset_id": "6831155119116",
+    "name": "shot1_lineart.png",
+    "size": 1783909,
+    "hash": "4d1fb335bb54c89679bf86634133d603"
+  },
+  "hash:1dfeaad430d7751bf5fff82af87d9dd0::size:2282977": {
+    "asset_id": "7684779103728239129",
+    "pippit_asset_id": "6830499821580",
+    "name": "SCENE_020_红树林大饭店办公室_v1.png",
+    "size": 2282977,
+    "hash": "1dfeaad430d7751bf5fff82af87d9dd0"
+  },
+  "hash:11b5b5987f90be8295964d4c4483e50b::size:1726118": {
+    "asset_id": "7684779184690414142",
+    "pippit_asset_id": "6831347400716",
+    "name": "shot1_lineart.png",
+    "size": 1726118,
+    "hash": "11b5b5987f90be8295964d4c4483e50b"
+  },
+  "hash:a2513bbe8b25ca4b517ff9be3378d121::size:1475609": {
+    "asset_id": "7684779201525793304",
+    "pippit_asset_id": "6831155119628",
+    "name": "CHAR_022_吴芳华_v1.png",
+    "size": 1475609,
+    "hash": "a2513bbe8b25ca4b517ff9be3378d121"
+  },
+  "hash:2e5c1ea61e54371ca730b5d6745ba469::size:1707497": {
+    "asset_id": "7684779033281069592",
+    "pippit_asset_id": "6831627336972",
+    "name": "shot3_lineart.png",
+    "size": 1707497,
+    "hash": "2e5c1ea61e54371ca730b5d6745ba469"
+  },
+  "hash:de67854cefeb6646391812472a9d66f9::size:1578849": {
+    "asset_id": "7684779184690741822",
+    "pippit_asset_id": "6830502855692",
+    "name": "shot1_lineart.png",
+    "size": 1578849,
+    "hash": "de67854cefeb6646391812472a9d66f9"
+  },
+  "hash:1d224b70c7c18c7b5d1cc4943f1eb932::size:1703625": {
+    "asset_id": "7684779274234397246",
+    "pippit_asset_id": "6831816314380",
+    "name": "shot1_lineart.png",
+    "size": 1703625,
+    "hash": "1d224b70c7c18c7b5d1cc4943f1eb932"
+  },
+  "hash:819336017056274c9c5473a7f92fca20::size:1606166": {
+    "asset_id": "7684779154416140825",
+    "pippit_asset_id": "6832112145164",
+    "name": "shot1_lineart.png",
+    "size": 1606166,
+    "hash": "819336017056274c9c5473a7f92fca20"
+  },
+  "hash:e32af1189c9c8d9a48c4ef3b7b84d2a7::size:1641253": {
+    "asset_id": "7684779091917242904",
+    "pippit_asset_id": "6832213394956",
+    "name": "shot2_lineart.png",
+    "size": 1641253,
+    "hash": "e32af1189c9c8d9a48c4ef3b7b84d2a7"
+  },
+  "hash:3773e1417c912540c16d5de89830b38f::size:1569583": {
+    "asset_id": "7684779347105858072",
+    "pippit_asset_id": "6832939619596",
+    "name": "CHAR_092_光头鱼贩_v1.png",
+    "size": 1569583,
+    "hash": "3773e1417c912540c16d5de89830b38f"
+  },
+  "hash:6fe72d0cac1492bc4afb0aabdd805e53::size:1415135": {
+    "asset_id": "7684779169750843966",
+    "pippit_asset_id": "6831345885708",
+    "name": "shot1_lineart.png",
+    "size": 1415135,
+    "hash": "6fe72d0cac1492bc4afb0aabdd805e53"
+  },
+  "hash:65c97d1487ce79ab9a32689050bced68::size:1433971": {
+    "asset_id": "7684779274234626622",
+    "pippit_asset_id": "6831805822988",
+    "name": "shot3_lineart.png",
+    "size": 1433971,
+    "hash": "65c97d1487ce79ab9a32689050bced68"
+  },
+  "hash:d511619050ea1a988173fc5bd67110d0::size:1827644": {
+    "asset_id": "7684779125798421017",
+    "pippit_asset_id": "6830061973260",
+    "name": "shot2_lineart.png",
+    "size": 1827644,
+    "hash": "d511619050ea1a988173fc5bd67110d0"
+  },
+  "hash:b5add9079e34c7b947279427bd7639ae::size:1482578": {
+    "asset_id": "7684779139690185241",
+    "pippit_asset_id": "6830519653388",
+    "name": "PROP_017_DIVING_SCUBA_SET_v1.png",
+    "size": 1482578,
+    "hash": "b5add9079e34c7b947279427bd7639ae"
+  },
+  "hash:3080786384286448bd74ddb2bda68f76::size:1760337": {
+    "asset_id": "7684779201526415896",
+    "pippit_asset_id": "6831731331596",
+    "name": "shot2_lineart.png",
+    "size": 1760337,
+    "hash": "3080786384286448bd74ddb2bda68f76"
+  },
+  "hash:b050d92278f82b19b21b43738e1b718c::size:1412407": {
+    "asset_id": "7684779319641866814",
+    "pippit_asset_id": "6832198319628",
+    "name": "shot1_lineart.png",
+    "size": 1412407,
+    "hash": "b050d92278f82b19b21b43738e1b718c"
+  },
+  "hash:e7e94d69aeefc4e4cb6ddfc59a579810::size:1657931": {
+    "asset_id": "7684779190919135768",
+    "pippit_asset_id": "6832213396748",
+    "name": "shot2_lineart.png",
+    "size": 1657931,
+    "hash": "e7e94d69aeefc4e4cb6ddfc59a579810"
+  },
+  "hash:19d75756e8f185579941086326b5e893::size:1525327": {
+    "asset_id": "7684779352600855064",
+    "pippit_asset_id": "6832210423308",
+    "name": "shot1_lineart.png",
+    "size": 1525327,
+    "hash": "19d75756e8f185579941086326b5e893"
+  },
+  "hash:d5272b2479c29a4e1c8b38f8180613af::size:1422430": {
+    "asset_id": "7684779340030444057",
+    "pippit_asset_id": "6832483362572",
+    "name": "shot1_lineart.png",
+    "size": 1422430,
+    "hash": "d5272b2479c29a4e1c8b38f8180613af"
+  },
+  "hash:10f42178ff71720b7afb55848dad592c::size:2612192": {
+    "asset_id": "7684779309412024856",
+    "pippit_asset_id": "6831159672588",
+    "name": "shot2_lineart.png",
+    "size": 2612192,
+    "hash": "10f42178ff71720b7afb55848dad592c"
+  },
+  "hash:e2fe82ec57462f17885e3242d46c7575::size:1500246": {
+    "asset_id": "7684779124091650622",
+    "pippit_asset_id": "6831373577228",
+    "name": "PROP_014_SHIPWRECK_GOLD_INGOT_v1.png",
+    "size": 1500246,
+    "hash": "e2fe82ec57462f17885e3242d46c7575"
+  },
+  "hash:65768aee8164d26dc1e73e04899889b2::size:1160434": {
+    "asset_id": "7684779124091683390",
+    "pippit_asset_id": "6830608460044",
+    "name": "PROP_013_KANGXI_PORCELAIN_v1.png",
+    "size": 1160434,
+    "hash": "65768aee8164d26dc1e73e04899889b2"
+  },
+  "hash:57d71f376356cc908b5f7323ae24cc47::size:1684422": {
+    "asset_id": "7684779309412385304",
+    "pippit_asset_id": "6832101589260",
+    "name": "shot3_lineart.png",
+    "size": 1684422,
+    "hash": "57d71f376356cc908b5f7323ae24cc47"
+  },
+  "hash:51318119a54a2b68fc2093200c39ba58::size:2407600": {
+    "asset_id": "7684779190919332376",
+    "pippit_asset_id": "6832400587020",
+    "name": "shot1_lineart.png",
+    "size": 2407600,
+    "hash": "51318119a54a2b68fc2093200c39ba58"
+  },
+  "hash:1247f613c69023a0b584b7a301ee488b::size:2152821": {
+    "asset_id": "7684779184691167806",
+    "pippit_asset_id": "6831625821964",
+    "name": "shot2_lineart.png",
+    "size": 2152821,
+    "hash": "1247f613c69023a0b584b7a301ee488b"
+  },
+  "hash:7150f5ba400ef1319c399cadfd4e677e::size:1648529": {
+    "asset_id": "7684779139690381849",
+    "pippit_asset_id": "6832121531660",
+    "name": "shot1_lineart.png",
+    "size": 1648529,
+    "hash": "7150f5ba400ef1319c399cadfd4e677e"
+  },
+  "hash:2c26b0c687cdf6b342a6e057fc017a74::size:1681739": {
+    "asset_id": "7684779287811326489",
+    "pippit_asset_id": "6833115660044",
+    "name": "shot1_lineart.png",
+    "size": 1681739,
+    "hash": "2c26b0c687cdf6b342a6e057fc017a74"
+  },
+  "hash:1364511c88f9ae109afe1978c7d61a05::size:1673641": {
+    "asset_id": "7684779240324006462",
+    "pippit_asset_id": "6831817835020",
+    "name": "shot1_lineart.png",
+    "size": 1673641,
+    "hash": "1364511c88f9ae109afe1978c7d61a05"
+  },
+  "hash:66132028856b66f5a7cb5b91e835a7a7::size:1343247": {
+    "asset_id": "7684779125798945305",
+    "pippit_asset_id": "6831746659852",
+    "name": "shot2_lineart.png",
+    "size": 1343247,
+    "hash": "66132028856b66f5a7cb5b91e835a7a7"
+  },
+  "hash:56d30c37070efe73aa06ee881aeb974c::size:1245897": {
+    "asset_id": "7684779418757104153",
+    "pippit_asset_id": "6832379296012",
+    "name": "shot1_lineart.png",
+    "size": 1245897,
+    "hash": "56d30c37070efe73aa06ee881aeb974c"
+  },
+  "hash:118998c17e5145f2485407842afd926b::size:1212191": {
+    "asset_id": "7684779390756094488",
+    "pippit_asset_id": "6832154275084",
+    "name": "shot1_lineart.png",
+    "size": 1212191,
+    "hash": "118998c17e5145f2485407842afd926b"
+  },
+  "hash:5b6211ee6e899fd07c777ed0a195b7a9::size:1318310": {
+    "asset_id": "7684779309412549144",
+    "pippit_asset_id": "6830058942732",
+    "name": "shot2_lineart.png",
+    "size": 1318310,
+    "hash": "5b6211ee6e899fd07c777ed0a195b7a9"
+  },
+  "hash:e543a2726b60b28f8032f3eded13c5bd::size:1606551": {
+    "asset_id": "7684779453670507033",
+    "pippit_asset_id": "6831805827852",
+    "name": "CHAR_146_周师傅_v1.png",
+    "size": 1606551,
+    "hash": "e543a2726b60b28f8032f3eded13c5bd"
+  },
+  "hash:60af1569de1503bcd1a5cc3db0ab1325::size:1594461": {
+    "asset_id": "7684779210242687512",
+    "pippit_asset_id": "6831729810700",
+    "name": "shot1_lineart.png",
+    "size": 1594461,
+    "hash": "60af1569de1503bcd1a5cc3db0ab1325"
+  },
+  "hash:f08add3c28ae145539f2dbd3b875e967::size:1791238": {
+    "asset_id": "7684779357621142040",
+    "pippit_asset_id": "6832192436748",
+    "name": "shot2_lineart.png",
+    "size": 1791238,
+    "hash": "f08add3c28ae145539f2dbd3b875e967"
+  },
+  "hash:2aa835613e3635b930c9a2b02e8cd8e1::size:2253138": {
+    "asset_id": "7684779309412516376",
+    "pippit_asset_id": "6832500088844",
+    "name": "SCENE_061_镇博物馆办公室_v1.png",
+    "size": 2253138,
+    "hash": "2aa835613e3635b930c9a2b02e8cd8e1"
+  },
+  "hash:fb615fbb40d82653f76690f3d564cf88::size:2576887": {
+    "asset_id": "7684779374566425113",
+    "pippit_asset_id": "6832932910860",
+    "name": "SCENE_062_宝丰斋_v1.png",
+    "size": 2576887,
+    "hash": "fb615fbb40d82653f76690f3d564cf88"
+  },
+  "hash:2a892d019cfac4cb93d5785512c3ec28::size:1795265": {
+    "asset_id": "7684779383671816728",
+    "pippit_asset_id": "6830433625868",
+    "name": "shot2_lineart.png",
+    "size": 1795265,
+    "hash": "2a892d019cfac4cb93d5785512c3ec28"
+  },
+  "hash:fe460499ed1c52635053ca47c4547f4e::size:1537191": {
+    "asset_id": "7684779340031033881",
+    "pippit_asset_id": "6831367529484",
+    "name": "CHAR_170_老陈_v1.png",
+    "size": 1537191,
+    "hash": "fe460499ed1c52635053ca47c4547f4e"
+  },
+  "hash:94f805761a8c1786257178b6949c9a13::size:1770240": {
+    "asset_id": "7684779125660582425",
+    "pippit_asset_id": "6832837819660",
+    "name": "CHAR_047_张大妈_v1.png",
+    "size": 1770240,
+    "hash": "94f805761a8c1786257178b6949c9a13"
+  },
+  "hash:f66427e063414863518c765f417c23b7::size:1578602": {
+    "asset_id": "7684779464329380414",
+    "pippit_asset_id": "6831758713356",
+    "name": "CHAR_098_大爷B_v1.png",
+    "size": 1578602,
+    "hash": "f66427e063414863518c765f417c23b7"
+  },
+  "hash:079435f1981e6bb9e0b76aaf18750e6d::size:1118114": {
+    "asset_id": "7684779584814793241",
+    "pippit_asset_id": "6832379309580",
+    "name": "CHAR_018_朱璐瑶_v1.png",
+    "size": 1118114,
+    "hash": "079435f1981e6bb9e0b76aaf18750e6d"
+  },
+  "hash:999b552baf0ea90b031f5834ab00b835::size:1323049": {
+    "asset_id": "7684779759767503384",
+    "pippit_asset_id": "6832101613068",
+    "name": "CHAR_130_钱老板_v1.png",
+    "size": 1323049,
+    "hash": "999b552baf0ea90b031f5834ab00b835"
+  },
+  "hash:a67f703ee1dd59ebba3793f98dad9fef::size:1581899": {
+    "asset_id": "7684780800575111705",
+    "pippit_asset_id": "6832198390028",
+    "name": "shot2_lineart.png",
+    "size": 1581899,
+    "hash": "a67f703ee1dd59ebba3793f98dad9fef"
+  },
+  "hash:f85c0a724d72b7a8719d1d3cded4a50d::size:2478540": {
+    "asset_id": "7684797274043449880",
+    "pippit_asset_id": "6831976883724",
+    "name": "PROP_016_STEEL_KITCHEN_KNIFE_v1.png",
+    "size": 2478540,
+    "hash": "f85c0a724d72b7a8719d1d3cded4a50d"
+  },
+  "hash:4b08eb839656ceb878e39abd5fae1514::size:1796667": {
+    "asset_id": "7684797285280399896",
+    "pippit_asset_id": "6832275911948",
+    "name": "shot2_lineart.png",
+    "size": 1796667,
+    "hash": "4b08eb839656ceb878e39abd5fae1514"
+  },
+  "hash:71fb72d79ee9ac02bcecc62e0c894f2d::size:1758345": {
+    "asset_id": "7684797237776187966",
+    "pippit_asset_id": "6833145250572",
+    "name": "CHAR_129_大爷乙_v1.png",
+    "size": 1758345,
+    "hash": "71fb72d79ee9ac02bcecc62e0c894f2d"
+  },
+  "hash:20c1f67bc8210c6f5cbee25d1aca9e19::size:2861469": {
+    "asset_id": "7684797320042480190",
+    "pippit_asset_id": "6832501010956",
+    "name": "PROP_001_SANXIAN_JINLINDIAO_v1.png",
+    "size": 2861469,
+    "hash": "20c1f67bc8210c6f5cbee25d1aca9e19"
+  },
+  "hash:6c37068ce5078814dc56bd6dcb43b302::size:1601669": {
+    "asset_id": "7684797325889438270",
+    "pippit_asset_id": "6833221696012",
+    "name": "shot1_lineart.png",
+    "size": 1601669,
+    "hash": "6c37068ce5078814dc56bd6dcb43b302"
+  },
+  "hash:884a061f78f741b786ffb7b4d48ca2e8::size:2203342": {
+    "asset_id": "7684797241735610942",
+    "pippit_asset_id": "6832589665292",
+    "name": "PROP_017_COTTON_TOWEL_v1.png",
+    "size": 2203342,
+    "hash": "884a061f78f741b786ffb7b4d48ca2e8"
+  },
+  "hash:08c9a57762ded50269b2d91f4b1602ae::size:1685663": {
+    "asset_id": "7684797257241870873",
+    "pippit_asset_id": "6831907927052",
+    "name": "shot1_lineart.png",
+    "size": 1685663,
+    "hash": "08c9a57762ded50269b2d91f4b1602ae"
+  },
+  "hash:c84e80d862405a2bcadafa3e213b94c8::size:1717723": {
+    "asset_id": "7684797185159348798",
+    "pippit_asset_id": "6832514387468",
+    "name": "shot2_lineart.png",
+    "size": 1717723,
+    "hash": "c84e80d862405a2bcadafa3e213b94c8"
+  },
+  "hash:be13f7736c98e12597170f5ffc48ba78::size:1332670": {
+    "asset_id": "7684797296571974169",
+    "pippit_asset_id": "6832944370956",
+    "name": "shot2_lineart.png",
+    "size": 1332670,
+    "hash": "be13f7736c98e12597170f5ffc48ba78"
+  },
+  "hash:0bf32d6dbec06afa16e3fd7a4c5f0471::size:1837516": {
+    "asset_id": "7684797319208288793",
+    "pippit_asset_id": "6833392445708",
+    "name": "shot2_lineart.png",
+    "size": 1837516,
+    "hash": "0bf32d6dbec06afa16e3fd7a4c5f0471"
+  },
+  "hash:63613507d0a77072eac6702bf918b887::size:2052647": {
+    "asset_id": "7684797351009911358",
+    "pippit_asset_id": "6833218675212",
+    "name": "PROP_021_SPEED_BOAT_5M_v1.png",
+    "size": 2052647,
+    "hash": "63613507d0a77072eac6702bf918b887"
+  },
+  "hash:7517ed7a9c208d8bfa85a481d1c61b6e::size:1712200": {
+    "asset_id": "7684797325890454078",
+    "pippit_asset_id": "6833404549644",
+    "name": "CHAR_003_HUANG_ZIMING_DIVING_v1.png",
+    "size": 1712200,
+    "hash": "7517ed7a9c208d8bfa85a481d1c61b6e"
+  },
+  "hash:6a8700cc2272d6298b006963fc65b31e::size:1943534": {
+    "asset_id": "7684797349876875801",
+    "pippit_asset_id": "6832552392716",
+    "name": "shot2_lineart.png",
+    "size": 1943534,
+    "hash": "6a8700cc2272d6298b006963fc65b31e"
+  },
+  "hash:835926d88f413db8b30189be522c6016::size:2780167": {
+    "asset_id": "7684797363681034776",
+    "pippit_asset_id": "6833181813516",
+    "name": "PROP_014_CHONGNING_COIN_v1.png",
+    "size": 2780167,
+    "hash": "835926d88f413db8b30189be522c6016"
+  },
+  "hash:5166a00622d35c3481abd83b11485ccc::size:1829076": {
+    "asset_id": "7684797487286518296",
+    "pippit_asset_id": "6832573240332",
+    "name": "PROP_013_QINGCI_HAILONG_VASE_v1.png",
+    "size": 1829076,
+    "hash": "5166a00622d35c3481abd83b11485ccc"
+  },
+  "hash:6d984811b7611213e44bb97425518c38::size:2757776": {
+    "asset_id": "7684797988799611454",
+    "pippit_asset_id": "6833116563980",
+    "name": "PROP_050_RMB_CASH_STACK_v1.png",
+    "size": 2757776,
+    "hash": "6d984811b7611213e44bb97425518c38"
+  },
+  "hash:7544778644ee07bf7e6afcc0eaacf6ee::size:1854680": {
+    "asset_id": "7684937077645951512",
+    "pippit_asset_id": "6850874421004",
+    "name": "PROP_004_DONGXING_BAN_v1.png",
+    "size": 1854680,
+    "hash": "7544778644ee07bf7e6afcc0eaacf6ee"
+  },
+  "hash:0e8c9eec834d04d6ac83855295212114::size:1927728": {
+    "asset_id": "7684937077645984280",
+    "pippit_asset_id": "6849690114828",
+    "name": "shot3_lineart.png",
+    "size": 1927728,
+    "hash": "0e8c9eec834d04d6ac83855295212114"
+  },
+  "hash:0e1b51f11c980925ade3fccc075677cd::size:1519634": {
+    "asset_id": "7684937077645918744",
+    "pippit_asset_id": "6849229502220",
+    "name": "shot4_lineart.png",
+    "size": 1519634,
+    "hash": "0e1b51f11c980925ade3fccc075677cd"
+  },
+  "hash:769893b7d866abf426018259bb1bc7ab::size:1705316": {
+    "asset_id": "7684937090685436441",
+    "pippit_asset_id": "6850887987724",
+    "name": "shot1_lineart.png",
+    "size": 1705316,
+    "hash": "769893b7d866abf426018259bb1bc7ab"
+  },
+  "hash:064551dd3cd594e75da22aacd4ff9e40::size:1935535": {
+    "asset_id": "7684937049221186073",
+    "pippit_asset_id": "6849957518604",
+    "name": "shot2_lineart.png",
+    "size": 1935535,
+    "hash": "064551dd3cd594e75da22aacd4ff9e40"
+  },
+  "hash:d45d590a675ad3eb7f87dba1b4409246::size:2099788": {
+    "asset_id": "7684937102903362072",
+    "pippit_asset_id": "6850785938700",
+    "name": "shot2_lineart.png",
+    "size": 2099788,
+    "hash": "d45d590a675ad3eb7f87dba1b4409246"
+  },
+  "hash:5ae93c9c67702c4b416dbb3a4c0c377c::size:2257916": {
+    "asset_id": "7684937100051333656",
+    "pippit_asset_id": "6849218967564",
+    "name": "shot3_lineart.png",
+    "size": 2257916,
+    "hash": "5ae93c9c67702c4b416dbb3a4c0c377c"
+  },
+  "hash:522da580f8a370e69f6814e6f27b9375::size:2450762": {
+    "asset_id": "7684937091410625049",
+    "pippit_asset_id": "6851571469068",
+    "name": "shot1_lineart.png",
+    "size": 2450762,
+    "hash": "522da580f8a370e69f6814e6f27b9375"
+  }
+}
